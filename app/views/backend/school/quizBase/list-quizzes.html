@@ -1,0 +1,58 @@
+{% extends '../base.html' %}
+{% block content %}
+<!-- 面包屑 -->
+{{ breadcrumb.init([{'url':'', 'title':'题库'},{'url':'','title':'套题列表'}]) }}
+<!-- END OF BREADCRUMBS -->
+<input type="hidden" id="homeworkId" value="">
+<div class="w-base w-base-extraction w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa  fa-table fa-fw mr-5"></i>题库列表</h3>
+    </div>
+    <div class="w-base-container">
+        <div class="t-del-homework" style="padding-left: 16px; padding-top: 0px">
+            <table id="library-list" class="display" width="100%" cellspacing="0" style="border-color: gray;">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>名称</th>
+                    <th>作者</th>
+                    <th>创建时间</th>
+                    <th>使用次数</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for quiz in quizzes %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td style="text-align: left">{{quiz.title}}</td>
+                    <td>{{quiz.creatorDisplayName}}</td>
+                    <td>
+                        {{quiz.createdTime | date('Y-m-d',-480)}}
+                    </td>
+                    <td>
+                        {{quiz.usage}}
+                    </td>
+                    <td>
+                        <a class="w-btn-light w-btn-mini w-btn-opt w-btn-opt"
+                           href="/school/quizzes/{{quiz._id.toString()}}">详情</a>
+                        <a class="w-btn w-btn-iron-red w-btn-opt delete-btn" id="{{quiz._id.toString()}}">删除</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script>
+    requirejs(['/js/app/school/quizBase/list-quizzes.js']);
+</script>
+
+{% endblock %}

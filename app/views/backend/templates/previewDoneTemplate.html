@@ -1,0 +1,40 @@
+<script type="template" id="exerciseDoneTemplate">
+    <div class="player-container">
+        <div class="carousel slide">
+            <ul class="carousel-inner session-end-slider">
+                <li class="carousel-slide active item">
+                    <div class="session-end-main ">
+                        <h1 class="session-end slide-in">
+                            本次预习已完成！ <span class="lighter">+<span
+                                id="bonus"><%= summary.awardScore %></span> 积分</span>
+                        </h1>
+                        <div class="progress-xp-container">
+                            <div class="progress-xp">
+                                <div class="inner" style="">
+                                    <div class="lingot-bill">
+                                        <ul class="lingot-bill-items">
+                                            <li>你的积分总数
+                                                <span class="amount" id="bonus-counts" style="color: gold">
+                                                    <%= summary.totalScore %>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                        <p class="store-link">
+                                            使用积分从<a href="/student/mall" class="blue">积分商城</a>中获得时尚商品！
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="session-end-footer">
+            <div class="buttons">
+                <button class="continue btn btn-lg btn-green right exercises-completion">完成</button>
+            </div>
+        </div>
+    </div>
+</script>
+

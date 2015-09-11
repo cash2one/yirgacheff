@@ -1,0 +1,53 @@
+{% extends '../base.html' %}
+{% block content %}
+<!-- 面包屑 -->
+{{ breadcrumb.init([{'url':'', 'title':'题库'},{'url':'','title':'套题详情'}]) }}
+<!-- END OF BREADCRUMBS -->
+
+<div id="Anchor2" class="w-base w-base-extraction w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa  fa-info-circle fa-fw mr-5"></i>套题信息</h3>
+    </div>
+    <div class="w-base-container">
+        <div class="t-del-homework" style="padding-left: 16px; padding-top: 0px">
+            <div class="define">
+                套题名称：
+                <input id="homework-title" type="text" value="{{quiz.title}}" disabled/>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="Anchor3" class="w-base w-base-extraction w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa  fa-list fa-fw mr-5"></i>题目列表</h3>
+    </div>
+    <div class="w-base-container">
+        <div class="w-homework-total-info" style="margin-left: 83px">
+            <span class="w-homework-total-title">总计
+                <span id="total-number" class="w-homework-total-count">{{quiz.exercises.length}}</span>个题目</span>
+        </div>
+
+        <!-- 题目列表区域 START -->
+        <ul id="questions-area" style="margin-left: 18px;padding-bottom:30px">
+
+
+        </ul>
+        <!-- 题目列表区域 END -->
+    </div>
+</div>
+<input name="schoolId" id="schoolId" type="hidden" value="{{student.schoolId}}">
+<!-- 题型模版 -->
+{% include '../../templates/exerciseReadOnlyTemplate.html' %}
+{% endblock %}
+
+{% block javascript %}
+<script>
+    window.exercises = {{ quiz.exercises | json | safe}};
+</script>
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script>
+    requirejs(['/js/app/school/quizBase/view-quiz.js']);
+</script>
+
+{% endblock %}

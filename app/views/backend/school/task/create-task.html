@@ -1,0 +1,66 @@
+{% extends '../base.html' %}
+{% block content %}
+<!-- 面包屑 -->
+{{ breadcrumb.init([{'url':'','title':'营销活动'}]) }}
+<!-- END OF BREADCRUMBS -->
+<input type="hidden" id="homeworkId" value="">
+<div class="w-base w-base-extraction w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa fa-share-alt-square fa-fw mr-5"></i>创建任务</h3>
+    </div>
+    <div class="w-base-container">
+        <div class="t-del-homework wx-tasks" style="padding-top: 0px">
+            <div class="instruction">
+                <div class="title">选择任务类型</div>
+            </div>
+            <div class="type-list">
+                <ul>
+                    <li>
+                        <a href="/school/tasks/posts/create">
+                            <div class="task-icon">
+                                <img class="img" src="http://static.hizuoye.com/images/passage.png" width="90px"
+                                     height="90px">
+
+                                <div class="task-title">文章分享</div>
+                                <div class="task-content">分享文章，赚积分</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/school/tasks/lotteries/create">
+                            <div class="task-icon">
+                                <img class="img" src="http://static.hizuoye.com/images/lottery.png" width="90px"
+                                     height="90px">
+
+                                <div class="task-title">幸运转盘</div>
+                                <div class="task-content">转盘抽奖，赢精美礼品</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/school/tasks/activities/create">
+                            <div class="task-icon">
+                                <img class="img" src="http://static.hizuoye.com/images/activity.png" width="90px"
+                                     height="90px">
+
+                                <div class="task-title">活动分享</div>
+                                <div class="task-content">分享活动，赚积分</div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script>
+    requirejs(['/js/app/school/task/create-task.js']);
+</script>
+
+{% endblock %}

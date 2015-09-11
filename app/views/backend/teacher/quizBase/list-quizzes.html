@@ -1,0 +1,63 @@
+{% extends '../base.html' %}
+
+{% block content %}
+<!-- 面包屑 -->
+{{ breadcrumb.init([{'url':'', 'title':'题库'},{'url':'','title':'套题列表'}]) }}
+<!-- END OF BREADCRUMBS -->
+<div class="w-base w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa fa-table mr-5"></i>题库列表</h3>
+
+        <div class="w-base-right">
+            <a class="v-add-student w-btn w-btn-green w-btn-mini" href="/teacher/quizzes/create">出题</a>
+        </div>
+    </div>
+    <div class="w-base-container">
+        <div class="t-del-homework" style="padding-left: 16px; padding-top: 0px">
+            <table id="library-list" class="display" width="100%" cellspacing="0" style="border-color: gray;">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>名称</th>
+                    <th>作者</th>
+                    <th>创建时间</th>
+                    <th>使用次数</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for quiz in quizzes %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td style="text-align: left">{{quiz.title}}</td>
+                    <td>{{quiz.creator.displayName}}</td>
+                    <td>
+                        {{quiz.createdTime | date('Y-m-d')}}
+                    </td>
+                    <td>
+                        {{quiz.usage}}
+                    </td>
+                    <td>
+                        <a class="w-btn-light w-btn-mini w-btn-opt w-btn-opt-large"
+                           href="/teacher/quizzes/{{quiz._id.toString()}}">详情</a>
+                        <a class="w-btn w-btn-green w-btn-mini w-btn-opt w-btn-opt-large enable-library"
+                           href="/teacher/homework/create?quizId={{quiz._id.toString()}}">使用</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script>
+    requirejs(['/js/app/teacher/quizBase/list-quizzes.js']);
+</script>
+
+{% endblock %}

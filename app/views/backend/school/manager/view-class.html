@@ -1,0 +1,77 @@
+{% extends '../base.html' %}
+{% block content %} <!-- 面包屑 -->
+{{ breadcrumb.init([{'url':'','title':'班级管理'},{'url':'','title':'班级详情'}]) }}
+
+<div class="w-base w-base-extraction w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa  fa-info-circle fa-fw mr-5"></i>班级信息</h3>
+    </div>
+    <div class="w-base-container" style="padding: 20px;">
+        <div class="define">
+            <label for="className" class="mr-5">班级名称:</label>
+            <input type="text" id="className" value="{{clazz.className}}" disabled/>
+        </div>
+        <div class="define">
+            <label for="ownerDisplayName" class="mr-5">管理教师:</label>
+            <input type="text" id="ownerDisplayName" value="{{clazz.ownerDisplayName}}" disabled/>
+        </div>
+        <div class="define">
+            <label for="studentCount" class="mr-5">学生数量:</label>
+            <input type="text" id="studentCount" value="{{students.length}}" disabled/>
+        </div>
+    </div>
+</div>
+
+<div class="w-base w-base-extraction w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa  fa-table fa-fw mr-5"></i>学生列表</h3>
+    </div>
+    <div class="w-base-container">
+        <!-- TABLE STARTS -->
+        <div class="t-del-homework" style="padding-left: 16px; padding-top: 0px">
+            <table id="students-list" class="display" width="100%" cellspacing="0" style="border-color: gray;">
+                <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>学号</th>
+                    <th>密码</th>
+                    <th>性别</th>
+                    <th>学校</th>
+                    <th>年级</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{student.displayName}}</td>
+                    <td>{{student.username}}</td>
+                    <td>{{student.password}}</td>
+                    <td>{{student.gender}}</td>
+                    <td>{{student.onSchool.schoolName}}</td>
+                    <td>{{student.onSchool.grade}}</td>
+                    <td>
+                        <a class="w-btn-light w-btn-opt"
+                           href="/school/students/{{student._id.toString()}}">查看</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!-- TABLE ENDS-->
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block javascript %}
+
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script>
+    requirejs(['/js/app/school/manager/view-class.js']);
+</script>
+
+{% endblock %}

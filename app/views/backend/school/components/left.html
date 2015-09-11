@@ -1,0 +1,136 @@
+<div class="m-column">
+    <!-- 个人信息 -->
+    <div class="m-person-info">
+        <dl>
+            <dt>
+            <div class="avatar">
+                <div class="back"></div>
+                <div class="image">
+                    <img src="http://resource.hizuoye.com/{{user.avatar | default('images/default/avatar.jpg')}}"
+                         width="85" height="85">
+                </div>
+            </div>
+            </dt>
+            <dd>
+                <div class="w-ag-center">
+                    <span class="w-icon-md" style="font-size: 12px;"></span>
+                    <a href="javascript:void(0);" class="w-green"></a>
+                </div>
+                <div class="assets" style="margin-top: -14px;">
+                    <p class="gold w-fl-left">
+                        <a href="">
+                            <span class="detail">{{user.displayName}}</span>
+                        </a>
+                    </p>
+
+                    <p class="gift w-fl-left">
+                        <a href="/">
+                            <span class="detail">{{user.username}}</span>
+                        </a>
+                    </p>
+                </div>
+            </dd>
+        </dl>
+    </div>
+
+    <!-- 主菜单-->
+    <div class="m-side-menu">
+        <ul style="margin-top: -4px;padding-bottom: 15px">
+            <li class="{% if active === '0' %}active{% endif %}">
+                <a href="/school" class="one-level">
+                    <i class="fa fa-home fa-fw mr-5"></i>
+                    <span class="w-icon-md">首页</span>
+                </a>
+            </li>
+            <li class="{% if active === '1' %}active{% endif %}">
+                <a href="/school/teachers" class="one-level">
+                    <i class="fa fa-user fa-fw mr-5"></i>
+                    <span class="w-icon-md">教师管理</span>
+                </a>
+            </li>
+            <li class="{% if active === '2' %}active{% endif %}">
+                <a href="/school/classes" class="one-level">
+                    <i class="fa fa-sitemap fa-fw mr-5"></i>
+                    <span class="w-icon-md">班级管理</span>
+                </a>
+            </li>
+            <li class="{% if active === '3' %}active{% endif %}">
+                <a href="/school/students" class="one-level">
+                    <i class="fa fa-child fa-fw mr-5"></i>
+                    <span class="w-icon-md ">学生管理</span>
+                </a>
+            </li>
+            <li class="pull-down {% if active[0] === '4' %}active{% endif %}">
+                <a href="javascript:void(0);" class="one-level">
+                    <i class="fa fa-database fa-fw mr-5"></i>
+                    <span class="w-icon-md ">积分管理</span>
+                </a>
+
+                <div class="pull-level">
+                    <!--<a href="/school/scores/rules" class="{% if active === '4-0' %}current{% endif %}">积分规则</a>-->
+                    <a href="/school/scores/instruction" class="{% if active === '4-1' %}current{% endif %}">兑换说明</a>
+                </div>
+            </li>
+            <li class="{% if active === '5' %}active{% endif %}">
+                <a href="/school/scores/mall" class="one-level">
+                    <i class="fa fa-shopping-cart fa-fw mr-5"></i>
+                    <span class="w-icon-md ">积分商城</span>
+                </a>
+            </li>
+            <li class="{% if active === '6' %}active{% endif %}">
+                <a href="/school/schedules" class="one-level">
+                    <i class="fa fa-calendar fa-fw mr-5"></i>
+                    <span class="w-icon-md ">日程管理</span>
+                </a>
+            </li>
+            <!--<li >
+                <a href="javascript:void(0);" class="one-level"><span
+                        class="w-icon w-icon-19"></span><span class="w-icon-md ">大数据</span>
+                </a>
+            </li>-->
+            <li class="{% if active === '7' %}active{% endif %}">
+                <a href="/school/quizzes" class="one-level">
+                    <i class="fa fa-cubes fa-fw mr-5"></i>
+                    <span class="w-icon-md ">题库资源</span>
+                </a>
+            </li>
+            <li class="pull-down {% if active === '9' %}active{% endif %}">
+                <a href="javascript:void(0);" class="one-level">
+                    <i class="fa fa-weixin fa-fw mr-5"></i>
+                    <span class="w-icon-md ">微网站</span>
+                </a>
+
+                <div class="pull-level">
+                    <a href="/school/posts" class="{% if active === '9-0' %}current{% endif %}">所有文章</a>
+                    <a href="/school/posts/create" class="{% if active === '9-0' %}current{% endif %}">文章发布</a>
+                    <a href="/school/categories" class="{% if active === '9-0' %}current{% endif %}">栏目管理</a>
+                    <a href="/school/materials" class="{% if active === '9-0' %}current{% endif %}">图片库</a>
+                    <!--<a href="/school/weixin/scancode" class="{% if active === '9-0' %}current{% endif %}">二维码</a>-->
+                </div>
+            </li>
+            <li class="pull-down {% if active === '6' %}active{% endif %}">
+                <a href="javascript:void(0);" class="one-level">
+                    <i class="fa fa-share-alt-square fa-fw mr-5"></i>
+                    <span class="w-icon-md ">营销中心</span>
+                </a>
+
+                <div class="pull-level">
+                    <a href="/school/tasks" class="{% if active === '9-0' %}current{% endif %}">营销管理</a>
+                   <!-- <a href="/school/statistics" class="{% if active === '9-0' %}current{% endif %}">营销统计</a>-->
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 教室论坛以及在线咨询-->
+    <div class="m-synthesize">
+        <!--<div class="m-bss m-side-width">
+            <a target="_blank" href="javascript:void(0);" class="w-btn w-btn-gray w-btn-large w-btn-block">
+                <span class="w-icon w-icon-16"></span>
+                <span class="w-icon-md">教师论坛</span>
+            </a>
+        </div>-->
+        {% include '../../common/response.html' %}
+    </div>
+    {% include '../../common/ad-box.html' %}
+</div>

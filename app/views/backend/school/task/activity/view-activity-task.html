@@ -1,0 +1,226 @@
+{% extends '../../base.html' %}
+{% block content %}
+<!-- 面包屑 -->
+{{ breadcrumb.init([{'url':'','title':'营销活动'}]) }}
+<!-- END OF BREADCRUMBS -->
+<input type="hidden" id="taskId" value="{{task._id.toString()}}"/>
+<div class="w-base w-base-extraction w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa fa-share-alt-square fa-fw mr-5"></i>营销活动</h3>
+    </div>
+    <div class="w-base-container">
+        <div class="t-del-homework passage-activity" style="padding-top: 0px;">
+            <div class="task-management">
+                <div class="w-base-title">
+                    <h3></h3>
+
+                    <div class="w-base-switch">
+                        <ul id="tab-title">
+                            <li class="active">
+                                <a href="javascript:void(0)">
+                                    <span class="h-arrow">
+                                        <i class="w-icon-arrow w-icon-arrow-blue"></i>
+                                    </span>
+                                    <strong>基本信息</strong>
+                                </a>
+                            </li>
+                            <li class=""><a href="javascript:void(0)"><span class="h-arrow"><i
+                                    class="w-icon-arrow w-icon-arrow-blue"></i></span><strong>管理报名</strong></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <ul class="management-console">
+                    <!-- 基本信息 -->
+                    <li class="management-item">
+                        <div class="task-management-info">
+                            <ul>
+                                <li>
+                                    <div class="index"><i class="fa fa-users"></i>参与</div>
+                                    <div class="value">{{task.participants}}</div>
+                                </li>
+                                <li>
+                                    <div class="index"><i class="fa fa-pencil-square-o"></i>报名</div>
+                                    <div class="value">{{collect.length}}</div>
+                                </li>
+                                <li>
+                                    <div class="index"><i class="fa fa-eye"></i>阅读</div>
+                                    <div class="value">{{task.item.visitCount}}</div>
+                                </li>
+                                <li>
+                                    <div class="index"><i class="fa fa-share-alt"></i>分享</div>
+                                    <div class="value">{{task.item.shareCount}}</div>
+                                </li>
+                                <li>
+                                    <div class="index"><i class="fa fa-thumbs-up"></i>赞</div>
+                                    <div class="value">{{task.item.like}}</div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="t-del-homework passage-activity" style="padding: 0px">
+                            <form class="container" style="overflow: hidden" method="post" action="" id="activityForm">
+                                <div class="title">
+                                    <div class="title-content"><label for="name">任务名称：</label></div>
+                                    <input class="frm_input_box" id="name" style="width:693px" type="text"
+                                           name="name"
+                                           value="{{task.name}}"
+                                           placeholder="比如：分享活动，赚积分，得礼包">
+                                </div>
+                                <div class="title">
+                                    <div class="title-content"><label for="scoreAward">奖励积分：</label></div>
+                                    <input class="frm_input_box" id="scoreAward" style="width:245px" type="text"
+                                           name="scoreAward"
+                                           value="{{task.scoreAward}}"
+                                           placeholder="请填入分享本次活动奖励的积分数">
+                                </div>
+                                <div class="title">
+                                    <div class="title-content"><label for="theme">活动主题：</label></div>
+                                    <input class="frm_input_box" id="theme" style="width:693px" type="text"
+                                           value="{{task.item.theme}}"
+                                           name="theme">
+                                </div>
+                                <div class="compliment">
+                                    <div class="compliment-title"><label for="date-picker-start">活动时间：</label></div>
+                                    <input id="date-picker-start" type="text" class="w-datepicker"
+                                           style="margin-top: 3px"
+                                           value="{{task.item.startTime | date('Y-m-d',-480)}}"
+                                           name="starttime"/>
+                                    <span style="padding-left: 10px; padding-right: 12px">至</span>
+                                    <input id="date-picker-end" type="text" class="w-datepicker" name="endtime"
+                                           value="{{task.item.endTime | date('Y-m-d',-480)}}"/>
+                                </div>
+                                <div class="compliment">
+                                    <div class="compliment-title"><label for="expire-picker-end">截止时间：</label></div>
+                                    <input type="text" id="expire-picker-end" class="w-datepicker"
+                                           style="margin-top: 3px"
+                                           value="{{task.item.deadline | date('Y-m-d',-480)}}"
+                                           name="deadline"/>
+                                </div>
+                                <div class="title">
+                                    <div class="title-content"><label for="activity-location">活动地点：</label></div>
+                                    <input class="frm_input_box" id="activity-location" style="width:388px" type="text"
+                                           value="{{task.item.address}}"
+                                           name="address">
+                                </div>
+
+                                <div class="title">
+                                    <div class="title-content">活动详情：</div>
+                                    <div class="activity-detail-container">
+                            <textarea id="activity-detail" class="activity-detail" placeholder="请输入活动详情" name="content">
+                                {{task.item.content}}
+                            </textarea>
+                                    </div>
+                                </div>
+                                <div class="title">
+                                    <div class="title-content  title-content-ext">报名填写信息：</div>
+                                    <div class="title-info-list w-border-list" id="title-info-list">
+                                        <ul id="infoList">
+                                            <li class="item">姓名</li>
+                                            <li class="item">电话</li>
+                                            {% for info in task.item.infoCollect %}
+                                            <li class="item">{{info}}
+                                                <i class="fa fa-times deleteInfo"></i>
+                                                <input type="hidden" value="{{info}}" name="infoCollect"/>
+                                            </li>
+                                            {% endfor %}
+                                            <li class="item" style="background-color: #6bc30d;color: #fff"
+                                                id="add-title-info">+添加
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="p-activity-storage">
+                                <a class="w-btn w-btn-mini w-btn-green" id="activity-share-save"
+                                   href="javascript:void(0);">保存</a>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- 管理报名 -->
+                    <li class="management-item" style="display: none;">
+                        <div class="task-management-registration">
+                            <div class="counter">
+                                <span>{{collect.length}}</span>人报名
+                                <div class="download-info-list">
+                                    <a class="w-btn w-btn-mini w-btn-green"href="javascript:void(0);"><i class="fa fa-cloud-download"></i>下载名单</a>
+                                </div>
+                            </div>
+                            <div class="list-registration">
+                                <ul id="list-register">
+                                    <!-- 分界线 -->
+                                    {% for info in collect %}
+                                    <li class="data">
+                                        <ul class="registration-elem">
+                                            <li>
+                                                <div class="head">
+                                                    <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2823961627,3572677526&fm=58"
+                                                         width="35px" height="35px">
+
+                                                    <div class="name">{{info.name}}</div>
+                                                    <div class="create">{{info.createdTime | date('Y-m-d',-480)}}</div>
+                                                </div>
+                                            </li>
+                                            <li class="extraction">
+                                                <div class="head">
+                                                    <div class="info"><span class="key">手机：</span><span class="value">{{info.phone}}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            {% for other in info.others %}
+                                            <li class="extraction">
+                                                <div class="head">
+                                                    <div class="info"><span class="key">{{other.key}}：</span><span
+                                                            class="value">{{other.value}}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+
+                            </div>
+                        </div>
+                        <!-- 分页 -->
+                        <div style="" class="customize-pagination">
+                            <div id="pagination" class="content"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="jqi" id="add-title-info-dialog" style="display: none;">
+    <div class="jqiclose layer-close-btn">×</div>
+    <div class="jqistates">
+        <div class="jqistate" style="">
+            <div class="lead jqititle ">新建报名填写信息</div>
+            <div class="jqimessage ">
+                <div class="define">
+                    <div class="location">
+                        <label for="titleInfoName">名称：</label>
+                        <input class="input-area" type="text" name="titleInfoName"
+                               id="titleInfoName" placeholder="比如：联系地址">
+                    </div>
+                </div>
+            </div>
+            <div class="jqibuttons ">
+                <button class="layer-ok-btn">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% include '../../../common/media-lib.html' %}
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script>
+    requirejs(['/js/app/school/task/activity/view-activity-task.js']);
+</script>
+
+{% endblock %}

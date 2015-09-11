@@ -1,0 +1,179 @@
+{% extends '../base.html' %}
+{% block content %}
+<!-- 面包屑 -->
+{{ breadcrumb.init([{'url':'','title':'新建文章'}]) }}
+<!-- END OF BREADCRUMBS -->
+
+<div class="w-base ng-scope w-base-extraction w-base-border">
+    <input type="hidden" id="categoryId" value="{{categoryId}}">
+    <input type="hidden" id="postId" value="{{postId}}">
+
+    <div class="w-base-title">
+        <h3><i class="fa  fa-file-text-o fa-fw mr-5"></i>新建文章</h3>
+    </div>
+    <div class="w-base-container">
+        <div class="t-del-homework" style="padding-left: 16px;padding-top: 0px;padding-right: 10px;overflow: auto;">
+            <div class="coverpage-frame">
+                <div class="coverpage">
+                    <img width="258px" height="172px"
+                         src="http://static.hizuoye.com/images/coverpage_default.png">
+                </div>
+                <div class="coverpage-upload">
+                    <div class="title">
+                        <span>上传封面图片<span class="tip">(建议尺寸: 900像素x500像素)</span></span>
+                    </div>
+                    <div class="buttons">
+                        <a class="w-btn w-btn-mini w-btn-green posi-left" style="width: 60px"
+                           href="javascript:void(0);">
+                            <label for="local_image_upload">上传</label>
+                        </a>
+
+                        <form action='http://upload.qiniu.com' method='post' enctype='multipart/form-data'>
+                            <input type="file" id="local_image_upload" class="wx-materials-upload imageFile"
+                                   name="file"/>
+                            <input type="hidden" name="token" value="{{token}}">
+                            <input type="hidden" name="x:schoolId" value="{{user.schoolId.toString()}}">
+                        </form>
+                        <a class="w-btn w-btn-mini w-btn-green posi-left"
+                           style="margin-left: 24px"
+                           href="javascript:void(0);"
+                           id="chooseFromLibrary">
+                            <label>图片库选择</label>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="arrow-direction">
+                <div class="location"></div>
+            </div>
+            <div class="appmsg_editor">
+                <div class="passage-container">
+                    <form action="">
+                        <input type="hidden" name="image" id="coverImage"/>
+
+                        <div class="title">
+                            <div class="text">标题：</div>
+                            <div style="float: left">
+                        <span class="frm_input_box">
+                            <input type="text" class="frm_input js_title js_counter" id="post-title" value="">
+                        </span>
+                            </div>
+                        </div>
+                        <div class="title">
+                            <div class="text">栏目：</div>
+                            <div style="float: left">
+                                <select name="category" id="category">
+                                    {% for category in categories %}
+                                    <option value="{{category._id.toString()}}">{{category.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <div class="text">正文：</div>
+                            <div class="textarea-container">
+                                <textarea id="passage-text-container" class="passage-text-container"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="cover">
+                            <div class="text">设为首页文章：</div>
+                            <div style="float: left;margin-top: 7px;margin-left: 10px;">
+                                <label class="frm_radio_label" for="checkbox1">
+                                    <input type="radio" class="" name="pradios" id="checkbox1" value="1">
+                                    <span class="">是</span>
+                                </label>
+                            </div>
+                            <div style="float: left;margin-top: 7px;margin-left: 15px;">
+                                <label class="frm_radio_label" for="checkbox2">
+                                    <input type="radio" class="" name="pradios" id="checkbox2" value="0" checked>
+                                    <span class="">否</span>
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="passage-bottom">
+            <div class="passage-save">
+                <a class="w-btn w-btn-mini w-btn-green" href="javascript:void(0);" id="post-save-btn">发布</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="selectFromLibray" class="selectImageLibray">
+    <div class="title">
+        <h3>选择图片</h3>
+        <a href="javascript:void(0);" class="pop_closed layer-close-btn"></a>
+    </div>
+    <div style="min-height: 480px">
+        <div class="dialog_bd">
+            <div class="img_pick_panel inner_container_box side_l cell_layout">
+                <div class="inner_side">
+                    <div class="group_list">
+                        <div class="inner_menu_box">
+                            <dl class="inner_menu js_group">
+                                {% for group in groups %}
+                                <dd class="inner_menu_item js_groupitem {% if selected === group._id %} selected {% endif %}">
+                                    <a href="javascript:void(0);" class="inner_menu_link" title="{{group.name}}"
+                                       id="{{group._id && group._id.toString()}}">
+                                        <strong>{{group.name}}</strong><em class="num">(<span>0</span>)</em>
+                                    </a>
+                                </dd>
+                                {% endfor %}
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inner_main">
+                    <div class="img_pick_area">
+                        <div class="sub_title_bar in_dialog">
+                            <div class="upload_box posi-right align_right">
+                                <form action='http://upload.qiniu.com' method='post' enctype='multipart/form-data'>
+                                <span class="upload_area webuploader-container">
+                                    <a class="w-btn w-btn-mini w-btn-green" href="javascript:void(0);"
+                                       id="webUploadImage">
+                                        <label for="upload-images">本地上传</label>
+                                    </a>
+                                          <input type="file" id="upload-images" class="wx-materials-upload"
+                                                 name="file"/>
+                                          <input type="hidden" name="x:schoolId" value="{{user.schoolId.toString()}}"/>
+                                          <input type="hidden" name="x:groupId" value=""/>
+                                          <input type="hidden" name="token" value="{{mediaToken}}"/>
+                                </span>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="img_pick">
+                                <ul class="group js_list img_list" id="img_list" style="display: block;"></ul>
+                            </div>
+                            <div class="js_pagebar" style="display: block;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="dialog_ft">
+            <a class="w-btn w-btn-mini w-btn-green layer-ok-btn" id="redactor_upload_btn"
+               href="javascript:void(0);">确定</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script>
+    requirejs(['/js/app/school/site/create-post.js']);
+</script>
+
+{% endblock %}

@@ -1,0 +1,132 @@
+{% extends '../base.html' %}
+{% block content %}
+<!-- 面包屑 -->
+{{ breadcrumb.init([{'url':'','title':'新建文章'}]) }}
+<!-- END OF BREADCRUMBS -->
+
+<div class="w-base w-base-extraction w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa  fa-file-text-o fa-fw mr-5"></i>新建文章</h3>
+    </div>
+    <div class="w-base-container">
+        <div class="t-del-homework" style="padding-left: 16px;padding-top: 0px;padding-right: 10px;overflow: auto;">
+            <div class="coverpage-frame">
+                <div class="coverpage">
+                    <img width="258px" height="172px"
+                         {% if post %}
+                         src="http://resource.hizuoye.com/{{post.image}}"
+                         {% else %}
+                         src="http://static.hizuoye.com/images/coverpage_default.png"
+                         {% endif %}>
+                </div>
+                <div class="coverpage-upload">
+                    <div class="title">
+                        <span>上传封面图片<span class="tip">(建议尺寸: 900像素x500像素)</span></span>
+                    </div>
+                    <div class="buttons">
+                        <div id="container">
+                            <a id="local_image_upload" class="w-btn w-btn-mini w-btn-green posi-left"
+                               style="width: 60px" href="javascript:void(0);">
+                                上传
+                            </a>
+                        </div>
+                        <a class="w-btn w-btn-mini w-btn-green posi-left"
+                           style="margin-left: 24px"
+                           href="javascript:void(0);"
+                           id="chooseFromLibrary">
+                            图片库选择
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="arrow-direction">
+                <div class="location"></div>
+            </div>
+            <div class="appmsg_editor">
+                <div class="passage-container">
+                    <form action="" id="postForm" method="post">
+                        <input type="hidden" name="image" id="coverImage" value="{{post.image}}"/>
+                        <input type="hidden" value="{{post._id.toString()}}" id="postId"/>
+
+                        <div class="title">
+                            <div class="text"><label for="postTitle"></label>标题：</div>
+                            <div style="float: left">
+                                <span class="frm_input_box">
+                                    <input type="text" class="frm_input js_title js_counter"
+                                           id="postTitle"
+                                           value="{{post.title}}"
+                                           name="title">
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="title" style="padding-top: 52px">
+                            <div class="text"><label for="postTitle"></label>栏目：</div>
+                            <div style="float: left;margin-top: 6px;">
+                                <select name="category" id="category" class="dropdown">
+                                    <option value="">选择栏目</option>
+                                    {% for category in categories %}
+                                    <option value="{{category._id.toString()}}"
+                                    {% if post && post.category.toString()=== category._id.toString() %}
+                                    selected{% endif %}
+                                    {% if currentCategory=== category._id.toString() %}
+                                    selected {%endif %}>
+
+                                    {{category.name}}
+                                    </option>
+                                    {% endfor %}
+                                    {% if categories.length === 0 %}
+                                    {% endif %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="content">
+                            <div class="text"><label for="postContent">正文：</label></div>
+                            <div class="textarea-container">
+                                <textarea id="postContent" name="content">{{post.content}}</textarea>
+                            </div>
+                        </div>
+
+                        <div class="cover">
+                            <div class="text">设为首页文章：</div>
+                            <div style="float: left;margin-top: 7px;margin-left: 10px;">
+                                <label class="frm_radio_label" for="useSlide">
+                                    <input type="radio" class="" name="isSlide" id="useSlide" value="1"
+                                    {% if post && post.isSlide %} checked {% endif %}>
+                                    <span class="">是</span>
+                                </label>
+                            </div>
+                            <div style="float: left;margin-top: 7px;margin-left: 15px;">
+                                <label class="frm_radio_label" for="noSlide">
+                                    <input type="radio" class="" name="isSlide" id="noSlide" value="0"
+                                    {% if !post || !post.isSlide %} checked {% endif %}>
+                                    <span class="">否</span>
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="passage-bottom">
+            <div class="passage-save">
+                <a class="w-btn w-btn-mini w-btn-green" href="javascript:void(0);" id="savePost">
+                    {% if update %} 修改 {% else %} 发布 {% endif %}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include '../../common/media-lib.html' %}
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script>
+    requirejs(['/js/app/school/site/create-post.js']);
+</script>
+
+{% endblock %}

@@ -1,0 +1,60 @@
+<script type="template" id="mediaListTemplate">
+    <ul id="list-materials" class="img-list">
+        <% for(var i = 0 ;i < medias.length; i++){ var media = medias[i]; %>
+        <li class="img-item data" id="<%= media._id.toString() %>" title="<%= media.name %>">
+            <div class="img_item_bd">
+                <div class="pic magnify-photo">
+                    <a class="materials-photo-thumb" href="http://resource.hizuoye.com/<%= media.key %>" data-lightbox="magnify-photo">
+                        <img class="lazy" src="http://static.hizuoye.com/images/landscape.png"
+                             width="160px"
+                             height="160px"
+                             data-original="http://resource.hizuoye.com/<%= media.key %>">
+                        <div class="material-hover-mask">
+                            <i class="fa fa fa-search-plus fa-3x" style="margin-top: 50px"></i>
+                        </div>
+                    </a>
+                </div>
+                <span class="check_content">
+                    <label class="frm_checkbox_label" for="checkbox<%= media._id.toString() %>">
+                        <input type="checkbox" class="frm_checkbox" id="checkbox<%= media._id.toString() %>">
+                        <i class="icon_checkbox_unchecked"></i><span
+                            class="lbl_content media-name"><%= media.name %></span>
+                    </label>
+                </span>
+            </div>
+
+            <div class="msg_card_ft">
+                <ul class="grid_line msg_card_opr_list">
+                    <li class="grid_item size1of3 msg_card_opr_item">
+                        <a class="js_edit js_tooltip js_popover" href="javascript:void(0);"
+                           data-tooltip="编辑">
+                            <span class="msg_card_opr_item_inner">
+                                <i class="icon18_common edit_gray">编辑</i>
+                            </span>
+                            <span class="vm_box"></span>
+                        </a>
+                    </li>
+                    <li class="grid_item size1of3 msg_card_opr_item">
+                        <a class="js_move js_tooltip js_popover" href="javascript:void(0);"
+                           data-tooltip="移动分组">
+                            <span class="msg_card_opr_item_inner">
+                                <i class="icon18_common move_gray">移动分组</i>
+                            </span>
+                            <span class="vm_box"></span>
+                        </a>
+                    </li>
+                    <li class="grid_item size1of3 no_extra msg_card_opr_item">
+                        <a class="js_del js_tooltip js_popover" href="javascript:void(0);"
+                           data-tooltip="删除">
+                            <span class="msg_card_opr_item_inner">
+                                <i class="icon18_common del_gray">删除</i>
+                            </span>
+                            <span class="vm_box"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <% } %>
+    </ul>
+</script>

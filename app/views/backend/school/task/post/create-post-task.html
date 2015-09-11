@@ -1,0 +1,98 @@
+{% extends '../../base.html' %}
+{% block content %}
+<!-- 面包屑 -->
+{{ breadcrumb.init([{'url':'','title':'营销活动'}]) }}
+<!-- END OF BREADCRUMBS -->
+<input type="hidden" id="homeworkId" value="">
+<div class="w-base w-base-extraction w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa fa-share-alt-square fa-fw mr-5"></i>营销活动</h3>
+    </div>
+    <div class="w-base-container">
+        <div class="t-del-homework passage-activity" style="padding-top: 0px">
+            <form action="" method="post" id="post-task-form">
+                <div class="container">
+
+                    <div class="title">
+                        <div class="title-content">任务名称：</div>
+                        <input class="frm_input_box" style="width:693px" type="text" id="name"
+                               name="name"
+                               placeholder="比如：分享文章，赚积分，得礼包">
+                    </div>
+                    <div class="compliment">
+                        <div class="compliment-title">奖励积分：</div>
+                        <input class="frm_input_box" style="width:245px" type="text" id="scoreAward"
+                               name="scoreAward"
+                               placeholder="请填入分享本篇文章奖励的积分数">
+                    </div>
+                    <div class="compliment">
+                        <div class="compliment-title"><label for="post-category">文章类型：</label></div>
+                        <div class="p-category">
+                            <select class="dropdown" id="post-category">
+                                <option value="">所有分类</option>
+                                {% for category in categories %}
+                                <option value="{{category._id.toString()}}">{{category.name}}</option>
+                                {% endfor %}
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="main-content">
+                        <span class="content-title">选择要分享的文章：</span>
+
+                        <div class="p-list">
+                            <ul id="list-posts">
+                                {% for post in posts %}
+                                <li data-category="{{post.category.toString()}}">
+
+                                    <div class="p-radio-container">
+                                        <label class="frm_radio_label" for="{{post._id.toString()}}">
+                                            <input type="radio" name="item" class="frm_radio"
+                                                   value="{{post._id.toString()}}" id="{{post._id.toString()}}">
+                                            <i class="icon_radio"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="p-image-container">
+                                        <img class="lazy"
+                                             data-original="http://resource.hizuoye.com/{{post.image}}"
+                                             src="http://static.hizuoye.com/images/coverpage_default.png"
+                                             width="115px"
+                                             height="80px"
+                                             style="display: inline;">
+                                    </div>
+
+                                    <div class="p-title-container">
+                                        <div class="title-content">{{post.title}}</div>
+                                    </div>
+
+                                </li>
+                                {% endfor %}
+                                <li style='border-bottom: 0; {% if posts && posts.length > 0 %}display:none;{% endif %}'
+                                    id="none-posts">
+                                    <div class="p-title-container">
+                                        <div class="title-content">当前类别下暂无文章！</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="p-activity-storage">
+                <a class="w-btn w-btn-mini w-btn-green" id="post-share-save" href="javascript:void(0);">创建</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script>
+    requirejs(['/js/app/school/task/post/create-post-task.js']);
+</script>
+
+{% endblock %}

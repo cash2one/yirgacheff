@@ -1,0 +1,475 @@
+@charset "UTF-8";
+html, body, div, span, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, address, big, cite, code, del, em, font, img, ins, small, strong,
+var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend {
+    margin: 0;
+    padding: 0
+}
+
+ol, ul {
+    list-style: none
+}
+
+body {
+    background: transparent;
+    background: url('http://static.hizuoye.com/images/login/login_bg.jpg') no-repeat fixed transparent;
+    -webkit-background-size: cover;
+    font: 14px '微软雅黑',Arial,Helvetica,sans-serif;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.bkg-one{
+    background: url('http://static.hizuoye.com/images/login/login_bg_one.png') no-repeat fixed transparent;
+}
+
+.bk-two{
+
+}
+
+a {
+    color: #323232;
+    text-decoration: none;
+}
+
+input {
+    outline: none;
+}
+
+button, input, select, textarea {
+    outline: 0;
+}
+
+.f-header{
+    height:58px;
+    /*background-color: rgba(255, 255, 255, 0.5);*/
+    background-color: transparent\9;
+    /*filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=1, startColorstr='#7fffffff', endColorstr='#7fffffff');*/
+}
+
+.f-header .header{
+    width:1000px;
+    margin: 5px auto;
+}
+
+.f-header .header .logo-icon{
+    background: url(http://static.hizuoye.com/images/student/s-logo.png) no-repeat;
+    height: 60px;
+    width: 65px;
+    float: left;
+}
+
+.f-header .header .logo-icon-title{
+    background: url(http://static.hizuoye.com/images/student/s-logotype-title.png) no-repeat;
+    height: 50px;
+    width: 210px;
+    margin-top: 10px;
+    float: left;
+    margin-left: 2px;
+}
+
+.f-header .header .slogan{
+    background: url(http://static.hizuoye.com/images/login/slogan.png) no-repeat;
+    height: 50px;
+    float: left;
+    width: 250px;
+    margin-top: 3px;
+    margin-left: 10px;
+}
+
+.main{
+    /*height: 720px;*/
+    width: 100%;
+    /*background: url("http://static.hizuoye.com/images/_bg.jpg") center no-repeat;*/
+    margin-top: 3%;
+}
+
+
+.login-frame{
+    height: 363px;
+    /*width:1140px;*/
+    /*margin: 0 auto;*/
+}
+
+.global{
+    float: left;
+    width: 475px;
+    height:475px;
+    background:url("http://static.hizuoye.com/images/login/global.png") no-repeat;
+}
+
+
+.login {
+    float: left;
+    width: 565px;
+    height: 400px;
+    top: 340px;
+    text-align: center;
+    padding: 10px 20px;
+    /* margin: 140px auto; */
+    /*background-color: rgba(255, 255, 255, 0.5);*/
+    /*background-color: transparent\9;*/
+    /*filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=1, startColorstr='#7fffffff', endColorstr='#7fffffff');*/
+    zoom: 1;
+    /* border-radius: 10px; */
+}
+
+
+.login-container {
+    /*width: 40%;*/
+    /*margin: 190px auto;*/
+    margin-top: 8%;
+}
+
+.login-container-outer{
+    width: 425px;
+    margin: 5px auto;
+    text-align: center;
+    margin-left: -5px;
+    padding-top: 30px;
+}
+
+.login-box-1{
+    margin: 0 auto;
+    padding-bottom: 64px;
+    padding-top: 10px;
+    overflow: hidden;
+    width: 440px;
+    color: #555;
+    background: url("http://static.hizuoye.com/images/login/login-mask.png") no-repeat;
+    /*background-color: rgba(0, 0, 0, 0.5);
+    background-color: transparent\9;
+    filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=1, startColorstr='#7fffffff', endColorstr='#7fffffff');*/
+}
+
+.login-container .title{
+    padding-top: 20px;
+    text-align: center;
+    font: 24px '微软雅黑',Arial,Helvetica;
+    width: 260px;
+    height: 50px;
+    background:url("http://static.hizuoye.com/images/login/logo.png") no-repeat;
+    margin: 0 auto;
+    margin-left: 96px;
+    margin-bottom: 15px;
+}
+
+.login-container .category{
+    margin: 0 auto;
+    width: 280px;
+    height: 35px;
+    -moz-border-radius: 1px;
+    -webkit-border-radius: 1px;
+    border-radius: 1px;
+    overflow: hidden;
+    margin-bottom: 35px;
+    border: 1px solid #afafaf;
+    margin-left: 87px;
+    cursor: pointer;
+}
+
+.login-container .category .admin{
+    float: left;
+    width: 140px;
+    text-align: center;
+    padding-top: 8px;
+    padding-bottom: 7px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.active{
+    background-color: #fff;
+    /*background: rgba(255, 255, 255, 0.3) none repeat scroll 0% 0%;*/
+    background: url("http://static.hizuoye.com/images/login/tab-mask.png") no-repeat;
+}
+
+.login-container .category .stuff{
+    float: left;
+    width: 140px;
+    text-align: center;
+    padding-top: 8px;
+    padding-bottom: 7px;
+    color: #fff;
+    font-size: 15px;
+}
+
+
+
+.mt10 {
+    margin-top: 10px;
+}
+
+.ml32 {
+    margin-left: 32px;
+}
+
+.rel {
+    position: relative;
+}
+
+.mt20 {
+    margin-top: 20px;
+}
+
+.mt30 {
+    margin-top: 30px;
+}
+
+.f14 {
+    font-size: 14px;
+}
+
+.mt18 {
+    margin-top: 18px;
+}
+
+.mr32 {
+    margin-right: 32px;
+}
+
+.ml32 {
+    margin-left: 32px;
+}
+
+.m0 {
+    margin: 0;
+}
+
+.ml5 {
+    margin-left: 5px;
+}
+
+.ml32 {
+    margin-left: 32px;
+}
+.cl {
+    clear: both;
+}
+
+.input-prompt input {
+    width: 250px;
+    height: 32px;
+    line-height: 20px;
+    color: #fff;
+    padding-left: 30px;
+    background: url('http://static.hizuoye.com/images/login/input-mask.png') no-repeat;
+   /* background: rgba(255,255,255,0.17);*/
+    background-color: transparent\9;
+    outline: none;
+    font-family: "Microsoft YaHei","微软雅黑",Arail, Helvetica;
+   /* filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=1, startColorstr='#7fffffff', endColorstr='#7fffffff');*/
+}
+
+.input-prompt input:active{
+    border:1px solid #64c400;
+}
+
+.login-container input[type="text"], .login-container input[type="password"] {
+    border: solid 1px #353539;
+    font-size: 13px;
+}
+
+.input-prompt input:hover{
+    border:2px solid #64c400;
+}
+
+.input-prompt .prompt {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 10px;
+    left: 65px;
+}
+
+.input-prompt .prompt-mobile {
+    background: url("http://static.hizuoye.com/images/login/iconfont-user.png") no-repeat;
+}
+
+.input-prompt .prompt-password {
+    background: url("http://static.hizuoye.com/images/login/iconfont-lock.png") no-repeat;
+}
+
+
+.button-login {
+    width: 280px;
+    height: 50px;
+    color: white;
+    border: solid 0 white;
+    background:url('http://static.hizuoye.com/images/login/logo-title.png') no-repeat;
+}
+
+.button-login:hover{
+    background:url('http://static.hizuoye.com/images/login/logo-title-hover.png') no-repeat;
+}
+
+.button-login-loading{
+    width: 280px;
+    height: 50px;
+    color: white;
+    margin: 0 auto;
+    border: solid 0 white;
+    background: url('http://static.hizuoye.com/images/login/logo-title-loading.png') no-repeat;
+}
+
+.cpointer {
+    cursor: pointer;
+}
+
+.f24{
+    font-size: 24px;
+}
+
+
+.pop-right-error {
+    position: absolute;
+    z-index: 99;
+    font-size: 13px;
+    color: #ffeaeb;
+    background-color: #d93f44;
+    width: 136px;
+    height: 32px;
+    line-height: 32px;
+    margin-left: 5px;
+    padding-left: 5px;
+}
+
+.er-border {
+
+}
+
+.error-explanation{
+    z-index: 99;
+    font-size: 13px;
+    color: #ffeaeb;
+    background-color: #d93f44;
+    width: 275px;
+    height: 40px;
+    line-height: 38px;
+    padding-left: 5px;
+    margin-left: 88px;
+    margin-top: 24px;
+    border-color: red !important;
+}
+
+.footer {
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    width: 100%;
+}
+
+.footer .w {
+    text-align: center;
+}
+
+/*input.submit {*/
+    /*background: #7eb530;*/
+/*}*/
+
+/*input.submit:hover {*/
+    /*background: #47da26;*/
+/*}*/
+
+.left {
+    float: left;
+    width: 440px;
+    padding-top: 33px;
+}
+
+.right {
+    float: left;
+}
+
+.left li {
+    list-style: none;
+}
+
+.left dl {
+    height: 54px;
+    margin: 0 0 36px;
+}
+
+.left dt {
+    float: left;
+    width: 54px;
+    height: 54px;
+    background: url('http://static.hizuoye.com/images/login/login_icon.png') no-repeat;
+    font: 16px/54px "Microsoft Yahei";
+    color: #fff;
+}
+
+.left dd {
+    text-align: left;
+    float: left;
+    width: 370px;
+    padding-left: 10px;
+}
+
+.left dd.zh {
+    font: 20px "Microsoft Yahei";
+    color: #575757;
+    margin: 4px 0 3px 0;
+}
+
+.left dd.en {
+    color: #808080;
+    font: 12px Verdana;
+}
+
+.u-name, .u-pwd {
+    position: relative;
+    height: 66px;
+}
+
+.wrong-tip {
+    position: absolute;
+    top: 41px;
+    left: 0;
+    display: inline-block;
+    height: 20px;
+    background: #ffd8d8;
+    color: #ff0000;
+    line-height: 20px;
+    border: 1px solid #f3baba;
+    border-radius: 5px;
+    padding-left: 10px;
+    width: 288px;
+    text-align: left;
+    font-size: 12px;
+}
+
+.savecookie {
+    text-align: left;
+}
+
+#footer {
+    position:absolute;
+    bottom: 0px;
+    width:100%;
+    height:90px;
+    background-color:#3D3D3D;
+    background-color: rgba(255,255,255,0);
+}
+.footerText {
+    width:600px;
+    margin:60px auto;
+    text-align:center;
+    padding-top:80px;
+}
+.footerText>span {
+    margin:10px;
+    color:#dfdfdf;
+    line-height:2;
+    font-size:14px;
+}
+.footerText>span>a{
+    color:#dfdfdf;
+    text-decoration:none;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+

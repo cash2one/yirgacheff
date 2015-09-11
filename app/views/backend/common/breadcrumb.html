@@ -1,0 +1,18 @@
+{% macro init(links) %}
+<div class="w-breadcrumb">
+    <ul>
+        <li><a href="/">首页</a> <span class="divider">&gt;</span></li>
+        {% for link in links %}
+        {% if loop.last%}
+        <li class="active">{{link.title}}</li>
+        {% else %}
+        <li><a href="{{link.url}}">{{link.title}}</a>
+            <span class="divider">&gt;</span>
+        </li>
+        {% endif %}
+        {% endfor %}
+
+        <li class="back"><a href="javascript:history.back();">返回</a></li>
+    </ul>
+</div>
+{% endmacro %}

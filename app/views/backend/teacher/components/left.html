@@ -1,0 +1,99 @@
+<div class="m-column">
+    <!-- 个人信息 -->
+    <div class="m-person-info">
+        <input type="hidden" name="user_id" id="user_id">
+        <dl>
+            <dt>
+            <div class="avatar">
+                <div class="back"></div>
+                <div class="image">
+                    <img src="http://resource.hizuoye.com/{{user.avatar | default('images/default/avatar.jpg')}}"
+                         width="85" height="85">
+
+                </div>
+            </div>
+            </dt>
+            <dd>
+                <div class="w-ag-center">
+                    <span class="w-icon-md" style="font-size: 12px;"></span>
+                    <a href="javascript:void(0);" class="w-green"></a>
+                </div>
+                <div class="assets" style="margin-top: -14px;">
+                    <p class="gold w-fl-left">
+                        <a href="javascript:void(0);">
+                            <span class="detail">{{user.displayName}}</span>
+                        </a>
+                    </p>
+
+                    <p class="gift w-fl-left">
+                        <a href="javascript:void(0);">
+                            <span class="detail">{{user.username}}</span>
+                        </a>
+                    </p>
+                </div>
+            </dd>
+        </dl>
+    </div>
+
+    <!-- 主菜单-->
+    <div class="m-side-menu">
+        <ul style="margin-top: -4px;padding-bottom: 15px">
+            <li class="{% if active === '0' %} active {% endif %}">
+                <a href="/teacher" class="one-level">
+                    <i class="fa fa-home fa-fw mr-5"></i>
+                    <span class="w-icon-md" style="margin-left: -5px">首页</span>
+                </a>
+            </li>
+            <li class="pull-down {% if active[0] === '1' %}active{% endif %}">
+                <a href="javascript:void(0);" class="one-level"><i class="fa fa-pencil-square-o fa-fw mr-5"></i><span
+                        class="w-icon-md ">作业</span>
+                </a>
+
+                <div class="pull-level">
+                    <a href="/teacher/homework/create" class="{% if active === '1-0' %}current{% endif %}">布置作业</a>
+                    <a href="/teacher/homework" class="{% if active === '1-1' %}current{% endif %}">管理作业</a>
+                    <a href="/teacher/homework/history" class="{% if active === '1-2' %}current{% endif %}">作业历史</a>
+                </div>
+            </li>
+
+            <li class="{% if active === '3' %}active{% endif %}">
+                <a href="/teacher/classes" class="one-level"><i class="fa fa-sitemap fa-fw mr-5"></i></span><span
+                        class="w-icon-md ">班级管理</span>
+                </a>
+            </li>
+            <li class="{% if active === '4' %}active{% endif %}">
+                <a href="/teacher/students" class="one-level"><i class="fa fa-child fa-fw mr-5"></i><span
+                        class="w-icon-md ">学生管理</span>
+                </a>
+            </li>
+            <li class="{% if active === '5' %}active{% endif %}">
+                <a href="/teacher/quizzes" class="one-level"><i class="fa fa-cubes fa-fw mr-5"></i></span><span
+                        class="w-icon-md ">题库</span>
+                </a>
+            </li>
+            <li class="{% if active === '6' %}active{% endif %}">
+                <a href="/teacher/schedules" class="one-level"><i class="fa fa-calendar fa-fw mr-5"></i><span
+                        class="w-icon-md ">日程管理</span>
+                </a>
+            </li>
+            <li class="{% if active === '7' %}active{% endif %}">
+                <a href="/teacher/connections" class="one-level"><i class="fa fa-headphones fa-fw mr-5"></i><span
+                        class="w-icon-md ">家校通</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+
+    <!-- 教室论坛以及在线咨询-->
+    <div class="m-synthesize">
+        <!--<div class="m-bss m-side-width">
+            <a target="_blank" href="javascript:void(0);" class="w-btn w-btn-gray w-btn-large w-btn-block">
+                <span class="w-icon w-icon-16"></span>
+                <span class="w-icon-md">教师论坛</span>
+            </a>
+        </div>-->
+        {% include '../../common/response.html' %}
+    </div>
+    {% include '../../common/ad-box.html' %}
+</div>

@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include '../common/info-box.html' %}
+<div class="w-base w-base-extraction ng-scope w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa fa-pencil-square-o mr-5"></i>作业</h3>
+    </div>
+    <div class="w-base-container">
+        <!--//start-->
+        {% set subClasses = classes.slice(0,3) %}
+        <div class="t-homework-box">
+            <!-- 布置作业 -->
+            <dl>
+                <dt>
+                <h3>
+                    <span class="count w-orange ">{{classes.length || 0}}</span>
+                    <span class="info">个班级可以布置作业</span>
+                </h3>
+                <!-- ngRepeat: clazz in assignList -->
+                <ul>
+                    {% for clazz in subClasses%}
+                    <li><a href="javascript:void(0);" title="{{clazz.className}}">{{clazz.className}}</a></li>
+                    {% endfor %}
+                    {% if classes.length > 3 %}
+                    <li>...</li>
+                    {% endif %}
+                </ul>
+                <!-- end ngRepeat: clazz in assignList -->
+                <div class="line"></div>
+                </dt>
+                <dd>
+                    <div class="ic-box">
+                        <span class="w-hwk-icon w-hwk-icon-1"></span>
+                    </div>
+                    <div class="btn-box btn-box-location">
+                        <a title="布置作业" class="w-btn w-btn-green w-btn-ext"
+                           href="/teacher/homework/create">布置作业</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <!-- 检查作业 -->
+            <dl>
+                <dt>
+                <h3><span class="count w-orange">{{homeworkCount || 0}}</span><span
+                        class="info">份作业需要检查</span>
+                </h3>
+                <!-- ngRepeat: clazz in checkList -->
+                <ul>
+                    {% for homework in homeworkList %}
+                    <li><a href="/teacher/homework/{{homework._id.toString()}}"
+                           title="{{homework.clazz.className}}">{{homework.clazz.className}}</a>
+                    </li>
+                    {% endfor %}
+                    {% if homeworkCount && homeworkCount > 3 %}
+                    <li>...</li>
+                    {% endif %}
+                </ul>
+                <!-- end ngRepeat: clazz in checkList -->
+                <div class="line"></div>
+                </dt>
+                <dd>
+                    <div class="ic-box">
+                        <span class="w-hwk-icon w-hwk-icon-2"></span>
+                    </div>
+                    <div class="btn-box btn-box-location">
+                        <a title="检查作业" class="w-btn w-btn-orange w-btn-ext" href="/teacher/homework">检查作业</a>
+                    </div>
+                </dd>
+            </dl>
+            <div class="w-clear"></div>
+        </div>
+        <!--end//-->
+    </div>
+</div>
+
+
+<!-- 积分排行-->
+<div id="Anchor3" class="w-base w-base-extraction  w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa fa-trophy mr-5"></i>积分排行榜</h3>
+
+        <div class="w-base-ext" style="margin: 11px 0px 0px 20px">
+            <select class="dropdown" id="class-list" data-settings='{"cutOff":5}'>
+                {% if !classes || classes.length === 0 %}
+                <option value="">暂无班级</option>
+                {% endif %}
+                {% for clazz in classes %}
+                <option value="{{clazz.id}}">{{clazz.className}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div id="classScoreRankView" class="w-base-container" style="margin-top: 15px;">
+        <div id="classScoreRankTable">
+            <div class="t-del-homework backend-score-rank">
+                <div class="rank-title">
+                    <ul>
+                        <li>
+                            <div class="item">
+                                <span class="content">排名</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item">
+                                <span class="content">姓名</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item">
+                                <span class="content">学号</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="righter-score">积分数</div>
+                </div>
+                <div id="rankList">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% include '../templates/scoreRankTemplate.html' %}
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script>
+    requirejs(['/js/app/teacher/home.js']);
+</script>
+
+{% endblock %}

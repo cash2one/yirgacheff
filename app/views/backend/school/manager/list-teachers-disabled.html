@@ -1,0 +1,45 @@
+{% extends '../base.html' %}
+{% block content %}
+<!-- 面包屑 -->
+{{ breadcrumb.init([{'url':'','title':'教师管理'}]) }}
+<!-- END OF BREADCRUMBS -->
+
+<div class="w-base ng-scope w-base-extraction w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa  fa-table fa-fw mr-5"></i>禁用教师列表</h3>
+
+        <div class="w-base-right w-base-right-ext" style="padding: 0px 0px 0 0;">
+            <a class="v-add-student w-btn w-btn-green w-btn-mini" href="/school/teachers">返回教师管理</a>
+        </div>
+    </div>
+    <div class="w-base-container" style="margin-top: 15px;">
+
+        <!-- TABLE STARTS -->
+        <div class="t-del-homework" style="padding-left: 16px; padding-top: 0px">
+            <table id="teacher-list" class="display" width="100%" cellspacing="0" style="border-color: gray;">
+                <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>工号</th>
+                    <th>密码</th>
+                    <th>电话</th>
+                    <th>部门</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <!-- TABLE ENDS-->
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script>
+    requirejs(['/js/app/school/manager/list-teachers-disabled.js']);
+</script>
+
+{% endblock %}

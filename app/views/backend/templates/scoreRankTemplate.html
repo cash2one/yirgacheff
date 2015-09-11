@@ -1,0 +1,26 @@
+<script type="template" id="scoreRankTemplate">
+    <% for(var i = 0; i< students.length ; i++ ){ var student = students[i]; %>
+    <div class="rank-content">
+        <ul>
+            <li>
+                <div class="item">
+                    <span class="content"><%= i+1 %></span>
+                </div>
+            </li>
+
+            <li>
+                <div class="item">
+                    <span class="content"><%= student.displayName %></span>
+                </div>
+            </li>
+
+            <li>
+                <div class="item">
+                    <span class="content"><%= student.username %></span>
+                </div>
+            </li>
+        </ul>
+        <div class="score-count"><%= student.score %></div>
+    </div>
+    <% } %>
+</script>

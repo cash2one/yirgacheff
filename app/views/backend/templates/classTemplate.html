@@ -1,0 +1,63 @@
+<script type="template" id="classTemplate">
+
+    <div class="w-base w-base-extraction w-base-border classItem" style="border-top: 1px solid #dfdfdf;"
+         id="<%= clazz._id %>"
+         data-name="<%= clazz.className %>">
+        <div class="w-base-title">
+            <h3 style="font-size: 14px;padding-top: 16px" class="className"><%= clazz.className %></h3>
+
+            <div class="w-base-switch w-base-more">
+                <a href="javascript:void(0);" class="modify-class">
+                    <span class="w-icon-md">修改班级资料</span>
+                    <span class="w-icon-arrow w-icon-arrow-lRight"></span>
+                </a>
+            </div>
+        </div>
+        <div class="w-base-container">
+            <!--//start-->
+            <div class="t-class-manage">
+                <dl>
+                    <dt>
+                    <div class="ic-font" style="padding-bottom: 5px">
+                        <p class="w-blue">班级学生：<%= clazz.studentsCount || 0 %>人</p>
+                    </div>
+                    <div class="ic_btn">
+                        <a class="w-btn w-btn-green w-btn-small"
+                           href="/teacher/students?clazz=<%=clazz._id.toString() %>">学生详情</a>
+                    </div>
+                    </dt>
+                    <dd>
+                        <div class="cm-box">
+                            <div class="avatar">
+                                <div class="back"></div>
+                                <div class="image">
+                                    <div class="image-content"></div>
+                                </div>
+                                <i class="state w-icon-arrow w-icon-greenInfo"></i>
+                            </div>
+                            <p class="name">班级老师：<%= clazz.owner.displayName %></p>
+                        </div>
+                        <div class="cm-box">
+                            <div class="avatar">
+                            </div>
+                            <p class="name">
+
+                            <div class="link-tip"><a href="javascript:void(0);" class="exchange-class">转让班级</a></div>
+                            </p>
+                        </div>
+                        <div class="cm-box">
+                            <div class="avatar">
+                            </div>
+                            <p class="name">
+
+                            <div class="link-tip"><a href="javascript:void(0);" class="delete-class">删除班级</a></div>
+                            </p>
+                        </div>
+
+                    </dd>
+                </dl>
+            </div>
+            <!--end//-->
+        </div>
+    </div>
+</script>

@@ -1,0 +1,75 @@
+{% extends '../base.html' %}
+{% block content %}
+<!-- 面包屑 -->
+{{ breadcrumb.init([{'url':'','title':'分类管理'}]) }}
+<!-- END OF BREADCRUMBS -->
+
+<div class="w-base ng-scope w-base-extraction w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa  fa-table fa-fw mr-5"></i>栏目管理</h3>
+
+        <div class="w-base-right w-base-right-ext" style="padding: 0px 0px 0 0;">
+            <a class="v-add-student w-btn w-btn-mini w-btn-green" href="javascript:void(0);"
+               id="add-category-btn">+添加栏目</a>
+        </div>
+    </div>
+    <div class="w-base-container">
+
+        <!-- TABLE STARTS -->
+        <div class="t-del-homework" style="padding-left: 16px; padding-top: 0px">
+            <table id="category-list" class="display" width="100%" cellspacing="0" style="border-color: gray;">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>分类名称</th>
+                    <th>文章数</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <!-- TABLE ENDS-->
+    </div>
+</div>
+<!-- 新建分类 -->
+<div class="jqi" id="add-category-dialog" style="display: none;">
+    <div class="jqiclose layer-close-btn">×</div>
+    <div class="jqistates">
+        <div id="jqistate_state0" class="jqistate" style="">
+            <div class="jqiarrow"></div>
+            <div class="lead jqititle ">栏目信息</div>
+            <div class="jqimessage ">
+                <form id="category_form">
+
+                    <div class="define">
+                        <div class="location">
+                            <label for="name">名称：</label>
+                            <input class="input-area text-center" type="text" name="name" id="name">
+                        </div>
+                    </div>
+                    <div class="define">
+                        <div class="location">
+                            <label for="order">序号：</label>
+                            <input class="input-area text-center" type="text" name="order" id="order">
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="jqibuttons ">
+                <button class="layer-ok-btn">保存</button>
+            </div>
+            <div class="jqibuttons " style="display:none;"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script>
+    requirejs(['/js/app/school/site/list-categories.js']);
+</script>
+
+{% endblock %}

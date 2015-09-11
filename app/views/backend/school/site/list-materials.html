@@ -1,0 +1,197 @@
+{% extends '../base.html' %}
+{% block content %}
+<!-- 面包屑 -->
+{{ breadcrumb.init([{'url':'', 'title':'图片素材管理'}]) }}
+<!-- END OF BREADCRUMBS -->
+<div class="w-base w-base-extraction w-base-border">
+    <div class="w-base-title" style="border-top: 0">
+        <h3><i class="fa fa-picture-o fa-fw mr-5"></i>图片素材管理</h3>
+    </div>
+    <div class="w-base-container" style="overflow: hidden; padding-top: 0">
+        <div class="wx-img-materials-left-frame">
+            <div class="wx-img-materials-group">
+                <p class="title">
+                    <span class="group_name global_info_ele" id="currentGroup" title="未分组">未分组</span>
+                </p>
+                <a href="javascript:void(0);" class="title link" id="rename-group">重命名</a>
+                <a href="javascript:void(0);" class="title link" id="del-group">删除分组</a>
+
+                <div class="tip-btn">
+                    <div class="bubble_tips bubble_right warn">
+                        <div class="bubble_tips_inner">大小: 不超过2M,&nbsp;&nbsp;&nbsp;&nbsp;格式: bmp, png, jpeg, jpg, gif
+                        </div>
+                        <i class="bubble_tips_arrow out"></i>
+                        <i class="bubble_tips_arrow in"></i>
+                    </div>
+                    <div class="upload-btn">
+                        <a class="w-btn w-btn-mini w-btn-green" href="javascript:void(0);" id="local_image_upload">
+                            上传
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="wx-img-materials-left-content">
+                <div class="summary">
+                    <div class="oper_group">
+                        <div class="all_selected">
+                            <label class="frm_checkbox_label" for="all_checkbox">
+                                <input type="checkbox" class="frm_checkbox" id="all_checkbox">
+                                <i class="icon_checkbox_unchecked"></i><span
+                                    class="lbl_content lbl_content-ext">全选</span>
+                            </label>
+                        </div>
+
+                        <div class="all_moved">
+                            <a id="js_move_all" class="w-btn-light w-btn-mid btn_disabled" href="javascript:void(0);">移动分组</a>
+                        </div>
+
+                        <div class="all_deleted">
+                            <a id="js_del_all" class="w-btn-light w-btn-mid btn_disabled"
+                               href="javascript:void(0);">删除</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="group" id="mediaList">
+
+                </div>
+            </div>
+            <div style="" class="customize-pagination">
+                <div id="pagination" class="content"></div>
+            </div>
+        </div>
+        <div class="wx-img-materials-right-frame">
+            <div id="group-list" class="group-list">
+                {% for group in groups %}
+                <div class="group-item select-item {% if loop.index === 1 %} checked {% endif %}">
+                    <a id="{{group._id.toString()}}" class="inner_menu_link" title="{{group.name}}">
+                        <strong>{{group.name | subTitle(6)}}</strong> (<em class="num">0</em>)
+                    </a>
+                </div>
+                {% endfor %}
+                <div class="group-item">
+                    <a href="javascript:void(0);" class="inner_menu_link  add-new-category" title="新建分组">
+                        <em style="font-size: 17px">+</em><strong>
+                        <span class="add-new-group">新建分组</span>
+                    </strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- 创建分组 -->
+<div class="jqi" id="add-group-dialog" style="display: none;">
+    <div class="jqiclose layer-close-btn">×</div>
+    <div class="jqistates">
+        <div id="jqistate_state0" class="jqistate" style="">
+            <div class="jqiarrow"></div>
+            <div class="lead jqititle ">创建分组</div>
+            <div class="jqimessage ">
+                <form id="group_form">
+                    <div class="define">
+                        <div class="location">
+                            <label for="groupName">组名：</label>
+                            <input class="input-area" type="text" name="name" id="groupName">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="jqibuttons ">
+                <button class="layer-ok-btn">保存</button>
+            </div>
+            <div class="jqibuttons " style="display:none;"></div>
+        </div>
+    </div>
+</div>
+
+<!-- 修改文件组名称 -->
+<div class="jqi" id="edit-group-dialog" style="display: none;">
+    <div class="jqiclose layer-close-btn">×</div>
+    <div class="jqistates">
+        <div class="jqistate" style="">
+            <div class="jqiarrow"></div>
+            <div class="lead jqititle ">优你教育</div>
+            <div class="jqimessage ">
+                <form id="edit_group_form">
+                    <div class="define">
+                        <div class="location">
+                            <label for="renameGroup">新名称：</label>
+                            <input class="input-area" type="text" name="name" id="renameGroup">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="jqibuttons ">
+                <button class="layer-ok-btn">保存</button>
+            </div>
+            <div class="jqibuttons " style="display:none;"></div>
+        </div>
+    </div>
+</div>
+
+<!-- 修改单个文件名称 -->
+<div class="jqi" id="edit-single-file-dialog" style="display: none;">
+    <div class="jqiclose layer-close-btn">×</div>
+    <div class="jqistates">
+        <div class="jqistate">
+            <div class="jqiarrow"></div>
+            <div class="lead jqititle ">修改文件名</div>
+            <div class="jqimessage ">
+                <form id="single_img_file_form">
+                    <div class="define">
+                        <div class="location">
+                            <label for="filename">新名称：</label>
+                            <input class="input-area" type="text" name="filename" id="filename">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="jqibuttons ">
+                <button class="layer-ok-btn">保存</button>
+            </div>
+            <div class="jqibuttons " style="display:none;"></div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 移动分组 -->
+<div class="jqi" id="move-dialog" style="display: none;">
+    <div class="jqiclose layer-close-btn">×</div>
+    <div class="jqistates">
+        <div class="jqistate" style="">
+            <div class="jqiarrow"></div>
+            <div class="lead jqititle ">移动文件至</div>
+            <div class="jqimessage ">
+                <div class="define" style="margin-left: 130px;margin-top: 15px">
+                    <div style="margin-left: 63px;">
+                        <select id="movedGroup">
+                            {% for group in groups %}
+                            <option value="{{group._id.toString()}}">{{group.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="jqibuttons ">
+                <button class="layer-ok-btn">保存</button>
+            </div>
+            <div class="jqibuttons " style="display:none;"></div>
+        </div>
+    </div>
+</div>
+
+{% include '../../templates/mediaTemplate.html' %}
+
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script>
+    requirejs(['/js/app/school/site/list-materials.js']);
+</script>
+
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends '../base.html' %}
+{% block content %}
+<!-- 面包屑 -->
+{{ breadcrumb.init([{'url':'','title':'教师管理'}]) }}
+<!-- END OF BREADCRUMBS -->
+
+<div class="w-base ng-scope w-base-extraction w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa  fa-table fa-fw mr-5"></i>教师管理</h3>
+
+        <div class="w-base-right w-base-right-ext" style="padding: 0px 0px 0 0;">
+            <a class="v-add-student w-btn w-btn-mini w-btn-green" href="javascript:void(0);"
+               id="add-teacher-btn">+添加老师</a>
+            <a class="v-add-student w-btn w-btn-iron-red w-btn-mini" href="/school/teachers/disabled">禁用老师列表</a>
+
+        </div>
+    </div>
+    <div class="w-base-container">
+
+        <!-- TABLE STARTS -->
+        <div class="t-del-homework" style="padding-left: 16px; padding-top: 0px">
+            <table id="teacher-list" class="display" width="100%" cellspacing="0" style="border-color: gray;">
+                <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>工号</th>
+                    <th>密码</th>
+                    <th>电话</th>
+                    <th>部门</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <!-- TABLE ENDS-->
+    </div>
+</div>
+
+<div class="jqi" id="add-teacher-dialog" style="display: none;">
+    <div class="jqiclose layer-close-btn">×</div>
+    <div class="jqistates">
+        <div id="jqistate_state0" class="jqistate" style="">
+            <div class="jqiarrow jqiarrowundefined"></div>
+            <div class="lead jqititle ">新建老师</div>
+            <div class="jqimessage ">
+                <form id="teacher_form">
+
+                    <div class="define">
+                        <div class="location">
+                            <label for="displayName">姓名：</label>
+                            <input class="input-area" type="text" name="displayName" id="displayName">
+                        </div>
+                    </div>
+                    <div class="define">
+                        <div class="location">
+                            <label for="password">密码：</label>
+                            <input class="input-area" type="text" name="password" value="123456" id="password">
+                        </div>
+                    </div>
+                    <div class="define">
+                        <div class="location">
+                            <label for="contact">电话：</label>
+                            <input class="input-area" type="text" name="contact" id="contact">
+                        </div>
+                    </div>
+                    <div class="define">
+                        <div class="location">
+                            <label for="department">部门：</label>
+                            <input class="input-area" type="text" name="department" id="department">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="jqibuttons ">
+                <button class="layer-ok-btn">保存</button>
+            </div>
+            <div class="jqibuttons " style="display:none;"></div>
+        </div>
+    </div>
+    <!--</form>-->
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script>
+    requirejs(['/js/app/school/manager/list-teachers.js']);
+</script>
+
+{% endblock %}

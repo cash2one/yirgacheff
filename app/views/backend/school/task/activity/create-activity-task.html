@@ -1,0 +1,108 @@
+{% extends '../../base.html' %}
+{% block content %}
+<!-- 面包屑 -->
+{{ breadcrumb.init([{'url':'','title':'营销活动'}]) }}
+<!-- END OF BREADCRUMBS -->
+<div class="w-base w-base-extraction w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa fa-share-alt-square fa-fw mr-5"></i>营销活动</h3>
+    </div>
+    <div class="w-base-container">
+        <div class="t-del-homework passage-activity" style="padding-top: 0px">
+            <form class="container" style="overflow: hidden" method="post" action="" id="activityForm">
+                <div class="title">
+                    <div class="title-content"><label for="name">任务名称：</label></div>
+                    <input class="frm_input_box" id="name" style="width:693px" type="text"
+                           name="name"
+                           placeholder="比如：分享活动，赚积分，得礼包">
+                </div>
+                <div class="title">
+                    <div class="title-content"><label for="scoreAward">奖励积分：</label></div>
+                    <input class="frm_input_box" id="scoreAward" style="width:245px" type="text"
+                           name="scoreAward"
+                           placeholder="请填入分享本次活动奖励的积分数">
+                </div>
+                <div class="title">
+                    <div class="title-content"><label for="theme">活动主题：</label></div>
+                    <input class="frm_input_box" id="theme" style="width:693px" type="text"
+                           name="theme">
+                </div>
+                <div class="compliment">
+                    <div class="compliment-title"><label for="date-picker-start">活动时间：</label></div>
+                    <input id="date-picker-start" type="text" class="w-datepicker" style="margin-top: 3px"
+                           name="startTime"/>
+                        <span style="padding-left: 10px; padding-right: 12px">
+                        至
+                        </span>
+                    <input id="date-picker-end" type="text" class="w-datepicker" name="endTime"/>
+                </div>
+                <div class="compliment">
+                    <div class="compliment-title"><label for="expire-picker-end">截止时间：</label></div>
+                    <input type="text" id="expire-picker-end" class="w-datepicker" style="margin-top: 3px"
+                           name="deadline"/>
+                </div>
+                <div class="title">
+                    <div class="title-content"><label for="activity-location">活动地点：</label></div>
+                    <input class="frm_input_box" id="activity-location" style="width:388px" type="text"
+                           name="address">
+                </div>
+
+                <div class="title">
+                    <div class="title-content">活动详情：</div>
+                    <div class="activity-detail-container">
+                            <textarea id="activity-detail" class="activity-detail" placeholder="请输入活动详情"
+                                      name="content">
+                            </textarea>
+                    </div>
+                </div>
+                <div class="title">
+                    <div class="title-content  title-content-ext">报名填写信息：</div>
+                    <div class="title-info-list w-border-list" id="title-info-list">
+                        <ul id="infoList">
+                            <li class="item">姓名</li>
+                            <li class="item">电话</li>
+                            <li class="item" style="background-color: #6bc30d;color: #fff" id="add-title-info">+添加
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+            <div class="p-activity-storage">
+                <a class="w-btn w-btn-mini w-btn-green" id="activity-share-save" href="javascript:void(0);">保存</a>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<div class="jqi" id="add-title-info-dialog" style="display: none;">
+    <div class="jqiclose layer-close-btn">×</div>
+    <div class="jqistates">
+        <div id="jqistate_state0" class="jqistate" style="">
+            <div class="lead jqititle ">新建报名填写信息</div>
+            <div class="jqimessage ">
+                <div class="define">
+                    <div class="location">
+                        <label for="titleInfoName">名称：</label>
+                        <input class="input-area" type="text" name="titleInfoName"
+                               id="titleInfoName" placeholder="比如：联系地址">
+                    </div>
+                </div>
+            </div>
+            <div class="jqibuttons ">
+                <button class="layer-ok-btn">创建</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% include '../../../common/media-lib.html' %}
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script>
+    requirejs(['/js/app/school/task/activity/create-activity-task.js']);
+</script>
+
+{% endblock %}

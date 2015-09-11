@@ -1,0 +1,65 @@
+{% extends '../base.html' %}
+{% block content %}
+<!-- 面包屑 -->
+{{ breadcrumb.init([{'url':'','title':'班级管理'}]) }}
+<!-- END OF BREADCRUMBS -->
+
+<div class="w-base w-base-extraction w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa  fa-table fa-fw mr-5"></i>班级管理</h3>
+    </div>
+    <div class="w-base-container" style="padding:20px;">
+        <table id="teacher-list" class="display" width="100%">
+            <thead>
+            <tr>
+                <th>班级名称</th>
+                <th>管理教师</th>
+                <th>学生数</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for clazz in classes %}
+            <tr id="{{clazz._id.toString()}}">
+                <td style="text-align: left">{{clazz.className}}</td>
+                <td>{{clazz.ownerDisplayName}}</td>
+                <td>{{clazz.studentsCount}}</td>
+                <td>
+                    <a class="w-btn-light w-btn-opt mr-5" href="/school/classes/{{clazz._id.toString()}}">查看</a>
+                    <a class="w-btn-light w-btn-opt exchange-btn">转班</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="jqi" id="exchange-class">
+    <div class="jqiclose layer-close-btn">×</div>
+    <div class="jqistate">
+        <div class="jqititle ">转让班级</div>
+        <div class="jqimessage ">
+            <form id="exchange-form">
+                <div class="define location">
+                    <span>请输入将要更换的老师工号：</span>
+                    <input type="text" name="username" id="username">
+                </div>
+            </form>
+        </div>
+        <div class="jqibuttons ">
+            <button class="layer-ok-btn">确认转让</button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script>
+    requirejs(['/js/app/school/manager/list-classes.js']);
+</script>
+
+{% endblock %}

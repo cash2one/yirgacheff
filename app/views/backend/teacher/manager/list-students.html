@@ -1,0 +1,159 @@
+{% extends '../base.html' %}
+{% block content %} <!-- 面包屑 -->
+{{ breadcrumb.init([{'url':'','title':'班级管理'},{'url':'','title':'学生管理'}]) }}
+
+<div id="Anchor" class="w-base w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa fa-table mr-5"></i>学生管理</h3>
+
+        <div class="w-base-ext" style="margin: 10px 0px 0px 20px">
+            <select class="dropdown" id="class-list">
+                {% if !classes || classes.length === 0 %}
+                <option value="">暂无班级</option>
+                {% endif %}
+                {% for clazz in classes %}
+                <option value="{{clazz._id.toString()}}" {% if selectedClass=== clazz._id.toString() %} selected {%
+                        endif %}>
+                    {{clazz.className}}
+                </option>
+                {% endfor %}
+            </select>
+            <!-- </div>-->
+        </div>
+        <div class="w-base-right">
+            <a class="v-add-student w-btn w-btn-green w-btn-mini" style="width:120px"
+               href="javascript:void(0);" id="download-btn"><i class="fa fa-cloud-download"></i>下载学生列表</a>
+            <a class="v-add-student w-btn w-btn-green w-btn-mini" href="javascript:void(0);"
+               id="add-student-btn"><span style="font-size: 14px;margin-right: 3px"><i class="fa fa-plus-square"></i></span>新建学生</a>
+            <a class="v-add-student w-btn w-btn-green w-btn-mini" href="javascript:void(0);"
+               id="add-username-btn">按学号添加</a>
+        </div>
+    </div>
+    <div class="w-base-container">
+
+        <!-- TABLE STARTS -->
+        <div class="t-del-homework" style="padding-left: 16px; padding-top: 0px">
+            <table id="students-list" class="display" width="100%" cellspacing="0" style="border-color: gray;">
+                <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>学号</th>
+                    <th>密码</th>
+                    <th>性别</th>
+                    <th>积分信息</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <!-- TABLE ENDS-->
+    </div>
+</div>
+
+<div class="jqi" id="student-dialog" style="display: none">
+    <div class="jqiclose layer-close-btn">×</div>
+    <div class="jqistate">
+        <div class="lead jqititle">学生信息</div>
+        <form id="student-form">
+            <div class="define " style="margin-left: 130px">
+                <label for="displayName">姓名:</label>
+                <input type="text" name="displayName" id="displayName">
+            </div>
+            <div class="define" style="margin-left: 130px;">
+                <label for="gender">性别:</label>
+
+                <div style="margin-left: 36px;margin-top: -18px;">
+                    <select name="gender" id="gender">
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                </div>
+            </div>
+            <div class="define" style="margin-left: 130px">
+                <label for="password">密码:</label>
+                <input type="text" name="password" value="" id="password">
+            </div>
+            <div class="define" style="margin-left: 130px">
+                <label for="phone">电话:</label>
+                <input type="text" name="phone" id="phone">
+            </div>
+            <div class="define" style="margin-left: 130px">
+                <label for="schoolName">学校:</label>
+                <input type="text" name="onSchool" id="schoolName">
+            </div>
+            <div class="define" style="margin-left: 130px;">
+                <label for="grade">年级:</label>
+                <input type="text" name="grade" id="grade">
+            </div>
+            <div class="define" style="margin-left: 130px;padding-bottom: 24px">
+                <label for="remark">备注:</label>
+                <input type="text" name="remark" id="remark">
+            </div>
+
+        </form>
+        <div class="jqibuttons ">
+            <button class="layer-ok-btn">保存</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="jqi " id="joinclass-dialog">
+    <div class="jqiclose layer-close-btn">×</div>
+    <div class="jqistate">
+        <div class="lead jqititle ">通过学号添加学生</div>
+        <form id="username-form">
+            <div class="jqimessage ">
+                <div class="define location">
+                    <label for="username"></label>
+                    请输入学号：
+                    <input type="text" value="" name="username" id="username">
+                </div>
+            </div>
+        </form>
+        <div class="jqibuttons ">
+            <button class="layer-ok-btn">保存</button>
+        </div>
+    </div>
+    <!--</form>-->
+</div>
+
+
+<div class="jqi" id="score-dialog">
+    <div class="jqiclose layer-close-btn">×</div>
+    <div class="jqistate">
+        <div class="lead jqititle ">修改积分</div>
+        <form id="score-form">
+            <div class="jqimessage ">
+                <div class="define" style="margin-left: 130px;">
+                    <label for="scoreOpt">操作:</label>
+
+                    <div style="margin-left: 36px;margin-top: -18px;">
+                        <select name="operation" id="scoreOpt" class="dropdown">
+                            <option value="0">增加</option>
+                            <option value="1">减少</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="define location">
+                    <label for="scoreValue"> 请输入积分：</label>
+                    <input type="text" value="" name="value" id="scoreValue">
+                </div>
+            </div>
+        </form>
+        <div class="jqibuttons ">
+            <button class="layer-ok-btn">保存</button>
+        </div>
+    </div>
+    <!--</form>-->
+</div>
+
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script>
+    requirejs(['/js/app/teacher/manager/list-students.js']);
+</script>
+
+{% endblock %}

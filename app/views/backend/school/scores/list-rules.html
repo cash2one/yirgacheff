@@ -1,0 +1,43 @@
+{% extends '../base.html' %}
+{% block content %}
+<!-- 面包屑 -->
+{{ breadcrumb.init([{'url':'','title':'积分规则'}]) }}
+<!-- END OF BREADCRUMBS -->
+<div class="w-base ng-scope w-base-extraction w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa  fa-exchange fa-fw mr-5"></i>积分规则</h3>
+    </div>
+    <ul style="padding-bottom: 30px">
+
+        {% for rule in rules %}
+        <li class="credits-rules-li">
+            <span class="seq">{{loop.index}}</span>|<span class="title">{{rule.description}}</span>
+            <span class="value">
+                <input type="hidden" value="{{rule.key}}" name="key"/>
+                <input class="scores" value="{{rule.value}}" name="value" readonly/>
+                <a class="w-btn w-btn-opt w-btn-green edit update-btn">修改</a>
+                <a class="w-btn w-btn-opt w-btn-green save save-btn" style="display: none">保存</a>
+            </span>
+
+        </li>
+        {% endfor %}
+
+        {% if !rules || rules.length === 0 %}
+        <li class="credits-rules-li" style="border-bottom: 0">
+            <span>提示：当前系统没有任何积分规则！</span>
+        </li>
+        {% endif %}
+    </ul>
+</div>
+
+
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script>
+    requirejs(['/js/app/school/scores/list-rules.js']);
+</script>
+
+{% endblock %}

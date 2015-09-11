@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block css %}
+
+{% endblock %}
+{% block content %} <!-- 面包屑 -->
+{{ breadcrumb.init([{'url':'','title':'个人中心'},{'url':'','title':'基本信息'}]) }}
+
+<div class="w-base w-base-extraction w-base-border" id="t-center-img-upload">
+    <div class="w-base-title">
+        <h3><i class="fa fa-picture-o mr-5"></i>修改头像</h3>
+    </div>
+    <div class="t-center" style="padding-bottom: 50px">
+        <div class="t-center-image">
+            <img class="avatar"
+                 {% if user.avatar %} src="{{resourceURL}}/{{user.avatar}}?imageView2/1/w/180/h/180" {% else %}
+                 src="/images/default_head.jpg" {% endif %}
+                 width="180px" height="180px">
+            <div class="t-center-image-upload">
+                <a class="w-btn w-btn-green w-btn-mini"
+                   href="javascript:void(0);" id="local_image_upload">修改头像</a>
+            </div>
+        </div>
+        <p style="float: left;margin-top: 176px;margin-left: 16px">注：仅支持JPG, JPEG, GIF, PNG图像文件, 且文件小于2MBK</p>
+    </div>
+</div>
+
+<div id="update-information" class="w-base w-base-extraction w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa fa-info-circle mr-5"></i>个人资料</h3>
+    </div>
+    <div class="t-security">
+        <div class="myData">
+            <div class="w-form-table">
+                <form id="infoForm">
+                    <dl>
+                        <dt>我的姓名：</dt>
+                        <dd><input type="text" class="w-int" value="{{user.displayName}}" name="displayName"></dd>
+                        <dt>工号：</dt>
+                        <dd><input type="text" class="w-int dark-tip-show" value="{{user.username}}" data-tooltip="工号不可修改" readonly ></dd>
+                        <dt>联系方式：</dt>
+                        <dd><input type="text" class="w-int" value="{{user.contact}}" name="contact"></dd>
+                    </dl>
+                </form>
+            </div>
+            <div class="w-homework-store">
+                <div class="btn-areas-ext ext">
+                    <a class="jqibuttons" style="margin-left: 39px;" id="info-save-btn">保存</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="w-base w-base-extraction w-base-border" id="modify-panel">
+    <div class="w-base-title">
+        <h3><i class="fa fa-key mr-5"></i>修改密码</h3>
+    </div>
+    <div class="t-security">
+        <div class="myData">
+            <div class="w-form-table">
+                <form id="passwordForm">
+                    <dl>
+                        <dt>原始密码：</dt>
+                        <dd><input type="password" class="w-int" name="password"></dd>
+                        <dt>新的密码：</dt>
+                        <dd><input type="password" class="w-int" name="newPassword"></dd>
+                        <dt>再次输入：</dt>
+                        <dd><input type="password" class="w-int" name="confirmPassword"></dd>
+                    </dl>
+                </form>
+            </div>
+            <div class="w-homework-store">
+                <div class="btn-areas-ext ext">
+                    <a class="jqibuttons" style="margin-left: 39px;" id="change-psw-btn">保存</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script>
+    requirejs(['/js/app/teacher/profile.js']);
+</script>
+
+{% endblock %}

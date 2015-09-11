@@ -1,0 +1,146 @@
+{% macro makePreview(exercise) %}
+{% if exercise.eType === 0 %}
+<li class="preView">
+    <div class="w-quiz-list-area">
+        <div class="quiz-items quiz-items-ext">
+            <div class="quiz-item-title">
+                <div class="sequence sequence-ext">
+                    <div class="number" style="text-align: center;margin-top: -4px">
+                        <span style="color: #ffffff;font-size: 13px;" class="seq-val">{{exercise.sequence}}</span></div>
+                </div>
+                <div class="main-title">
+                    <div style="font-size: 18px;margin-left: 34px;line-height: 25px;">题目：</div>
+                    <div style="float: left;margin-top: -20px;margin-left: 106px;width: 85%;line-height: 1">
+                        <span class="">{{exercise.question}}</span>
+                    </div>
+                    {% if exercise.wrongAnswer %}
+                    <div class="result-flag-w"></div>
+                    {% else %}
+                    <div class="result-flag-r"></div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="quiz-options">
+                <ul>
+                    {% for choice in exercise.choices %}
+                    <li>
+                        {{choice.title}}&nbsp;&nbsp;&nbsp;{{choice.content}}
+                    </li>
+                    {% endfor %}
+                </ul>
+                <div class="virtual-line" style="margin-right: 60px;margin-top: 8px;"></div>
+                {% if exercise.wrongAnswer %}
+                <div class="" style="margin-top: 12px;">
+                    <span>学生答案</span>
+                    <span style="margin-left: 10px">{{exercise.wrongAnswer}}</span>
+                </div>
+                {% endif %}
+                <div class="" style="margin-top: 12px;">
+                    <span>正确答案</span>
+                    <span style="margin-left: 10px">{{exercise.answer}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</li>
+
+{% elif exercise.eType === 1 %}
+<li class="preView">
+    <div class="select-quiz-dialog select-quiz-dialog-ext">
+        <div class="quiz-item-title">
+            <div class="sequence sequence-ext">
+                <div class="number"><span style="color: #ffffff" class="seq-val">{{exercise.sequence}} </span></div>
+            </div>
+        </div>
+        <div class="main-title">
+            <div class="title-info" style="margin-top: 7px;">题目：</div>
+            <div style="float: left;margin-top: -19px;margin-left: 104px;width: 85%;line-height: 1">
+                {{exercise.question}}
+            </div>
+            {% if exercise.wrongAnswer %}
+            <div class="result-flag-w"></div>
+            {% else %}
+            <div class="result-flag-r"></div>
+            {% endif %}
+        </div>
+        <div class="select-quiz-imgs-area">
+            <ul>
+                {% for choice in exercise.choices %}
+                <li style="margin-left: 0;">
+                    <div class="img-option" style="margin-top: 16px">
+                        <span> {{choice.title}}</span>
+                    </div>
+                    <img style="margin-top: 6px;" class="img-content" src="{{choice.previewUrl}}"/>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div style="margin-top: 20px;margin-left: 33px;margin-right: 60px;">
+            <div class="virtual-line" style="margin-top: -10px;"></div>
+        </div>
+        {% if exercise.wrongAnswer %}
+        <div class="" style="margin-top: 12px;">
+            <span>学生答案</span>
+            <span style="margin-left: 10px">{{exercise.wrongAnswer}}</span>
+        </div>
+        {% endif %}
+        <div class="" style="margin-top: 12px;">
+            <span>正确答案</span>
+            <span style="margin-left: 10px">{{exercise.answer}}</span>
+        </div>
+    </div>
+</li>
+
+{% elif exercise.eType === 2 %}
+<li class="preView">
+    <div class="select-quiz-dialog  select-quiz-dialog-ext">
+        <div class="quiz-item-title">
+            <div class="sequence sequence-ext">
+                <div class="number"><span style="color: #ffffff" class="seq-val">{{exercise.sequence}}</span></div>
+            </div>
+        </div>
+        <div class="main-title">
+            <div class="title-info" style="margin-top: 7px;">题目：</div>
+            <div class="title-detail">
+                {{exercise.question}}
+            </div>
+            <div class="result-flag-w"></div>
+        </div>
+        <div class="select-quiz-imgs-area" style="height: 34px"></div>
+        <div class="virtual-line-out">
+            <div class="virtual-line" style="margin-top: -20px"></div>
+        </div>
+        {% if exercise.wrongAnswer %}
+        <div class="" style="margin-top: 12px;">
+            <span>学生答案</span>
+            <span style="margin-left: 10px">{{exercise.wrongAnswer}}</span>
+        </div>
+        {% endif %}
+        <div class="" style="margin-top: 12px;">
+            <span>正确答案</span>
+            <span style="margin-left: 10px">{{exercise.answer}}</span>
+        </div>
+    </div>
+</li>
+{% elif exercise.eType === 3 %}
+<li class="preView">
+    <div class="select-quiz-dialog  select-quiz-dialog-ext">
+        <div class="quiz-item-title">
+            <div class="sequence sequence-ext">
+                <div class="number"><span style="color: #ffffff" class="seq-val">{{exercise.sequence}}</span></div>
+            </div>
+        </div>
+        <div class="main-title">
+            <div class="title-info" style="margin-top: 7px;">题目：</div>
+            <div class="title-detail">
+                {{exercise.question}}
+            </div>
+        </div>
+        <div style="height: 20px"></div>
+        <div class="voicer-stage-play"></div>
+        <audio src="{{exercise.answer}}" preload="auto"></audio>
+    </div>
+</li>
+{% else %}
+{% endif %}
+{% endmacro %}

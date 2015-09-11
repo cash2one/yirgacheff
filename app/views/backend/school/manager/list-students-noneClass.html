@@ -1,0 +1,45 @@
+{% extends '../base.html' %}
+{% block content %} <!-- 面包屑 -->
+{{ breadcrumb.init([{'url':'','title':'学生管理'}]) }}
+
+<div id="Anchor" class="w-base w-base-extraction w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa  fa-table fa-fw mr-5"></i>未分班学生管理</h3>
+
+        <!--<div class="w-base-right" style="margin-right: 12px;">
+            <a class="v-add-student w-btn w-btn-mini" href="/school/students">返回</a>
+        </div>-->
+    </div>
+
+    <div class="w-base-container" style="margin-top: 15px;">
+
+        <!-- TABLE STARTS -->
+        <div class="t-del-homework" style="padding-left: 16px; padding-top: 0px">
+        <table id="students-list" class="display" width="100%" cellspacing="0" style="border-color: gray;">
+            <thead>
+            <tr>
+                <th>姓名</th>
+                <th>学号</th>
+                <th>密码</th>
+                <th>性别</th>
+                <th>学校</th>
+                <th>年级</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+        </table>
+        </div>
+        <!-- TABLE ENDS-->
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script>
+    requirejs(['/js/app/school/manager/list-students-noneClass.js']);
+</script>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{
+  "apps": [
+    {
+      "name": "yirgacheff",
+      "script": "server.js",
+      "log_date_format": "YYYY-MM-DD HH:mm Z",
+      "error_file": "/kuando/log/yirgacheff/error.log",
+      "out_file": "/kuando/log/yirgacheff/out.log",
+      "merge_logs": true,
+      "env": {
+        "NODE_ENV": "production"
+      },
+      "cwd": "/kuando/data/www/yirgacheff",
+      "exec_mode": "cluster_mode",
+      "instances": 2
+    }
+  ]
+}

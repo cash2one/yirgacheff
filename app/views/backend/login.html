@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{title}}|培训机构招生营销系统|培训行业管理软件|云端作业|培训学校招生系统|培训班管理软件</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="360家校云，微信营销平台，培训机构招生软件，培训学校管理系统，在线作业，教育培训管理软件，培训机构管理系统，培训管理软件"/>
+    <meta name="description" content="360家校云是教育培训行业内领先的招生软件，为广大教育培训行业的客户提供先进的招生营销手段，为教育培训行业提供专业的招生营销解决方案。"/>
+    <link rel="icon" href="/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+    <link href="/css/login.css" rel="stylesheet" media="screen">
+</head>
+<body>
+<!--<div class="f-header">
+    <div class="header">
+        <div class="logo-icon"></div>
+        <div class="logo-icon-title"></div>
+        &lt;!&ndash;<div class="slogan"></div>&ndash;&gt;
+    </div>
+</div>-->
+
+<div class="main">
+    <form name="loginForm" method="post" action="/login" id="loginForm">
+        <div class="login-frame">
+            <!--<div class="global"></div>-->
+            <div class="login-container">
+                <div class="login-box">
+                    <div class="login-box-1">
+                        <div class="login-container-outer">
+                            <div class="title">
+                            </div>
+                            <div class="category">
+                                <div class="admin active" data-role="school">校长</div>
+                                <div class="stuff" data-role="teacher">教师</div>
+                            </div>
+                            <div class="mt10">
+                                <div class="input-prompt ml32 mt20 rel">
+                                    <input type="hidden" name="role" id="role" value="school"/>
+                                    <input class="f14 input-mobilephone" id="username" name="username"
+                                           autocomplete="off" placeholder="请输入账号" type="text">
+                                    <span class="prompt-mobile prompt"></span>
+                                </div>
+                                <div class="input-prompt ml32 mt20 rel">
+                                    <input class="f14 input-password_plain" placeholder="请输入密码" autocomplete="off"
+                                           id="password" name="password" type="password">
+                                    <span class="prompt-password prompt"></span>
+                                </div>
+
+                                <div class="error-explanation" {% if !error %} style="display: none;" {% endif %}>
+                                    {{error}}
+                                </div>
+                            </div>
+
+                            <div class="mt20 ml32 mr32"></div>
+                            <div class="div-button-login ml32 cl">
+                                <input class="button-login cpointer mt30 f24" style="margin-top: 5px;" type="submit"
+                                       id="submit" value="">
+                                <input class="button-login-loading cpointer mt30 f24"
+                                       style="margin-top: 5px;display: none;"
+                                       id="submit_loading" value="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="footer">
+    <div class="footerText">
+        <span><a href="http://www.hizuoye.com">服务条款</a></span>
+        <span><a href="http://www.hizuoye.com">隐私协议</a></span>
+        <span><a href="http://www.hizuoye.com">免责声明</a></span>
+        <span><a href="http://www.hizuoye.com">使用条款</a></span>
+        <span><a href="http://www.hizuoye.com/about.html">关于我们</a></span>
+        <span><a href="http://www.hizuoye.com/about.html">加入我们</a></span>
+        <span><a href="http://www.hizuoye.com/about.html">联系我们</a></span>
+        <span><a style="font-size: 16px" href="http://www.hizuoye.com">www.hizuoye.com</a>&nbsp;©2010-2015</span>
+        <span>苏ICP备15025860号</span>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    window.jQuery || document.write('<script type="text/javascript" src="/js/lib/jquery.js"><\/script>');
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#username, #password').focus(function () {
+            $('.error-explanation').hide();
+        });
+        //提交表单
+        $("#loginForm").submit(function (event) {
+            var username = $('#username').val();
+            var password = $('#password').val();
+            var message = '';
+            if (isEmpty(username)) {
+                message = '请输入用户名';
+            } else if (isEmpty(password)) {
+                message = '请输入密码';
+            }
+            if (message !== '') {
+                event.preventDefault();
+                writeMessage(message);
+            } else {
+                $('#submit_loading').show();
+                $('#submit').hide();
+            }
+
+        });
+
+        $('.category').find('div').click(function () {
+            $(this).addClass('active').siblings().removeClass('active');
+            $("#role").val($(this).attr('data-role'));
+            $("#loginForm")[0].reset();
+        });
+
+        /*var random = Math.floor(Math.random() * 10);
+         if (random % 2 === 0) {
+         $("body").addClass('bkg-one');
+         }*/
+
+        function isEmpty(value) {
+            return value === '' || !value;
+        }
+
+        function writeMessage(msg) {
+            $('.error-explanation').show().text(msg);
+        }
+    });
+</script>
+</html>

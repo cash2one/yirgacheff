@@ -1,0 +1,55 @@
+{% extends '../base.html' %}
+{% block content %}
+<!-- 面包屑 -->
+{{ breadcrumb.init([{'url':'','title':'作业历史'}]) }}
+<!-- END OF BREADCRUMBS -->
+
+<div id="Anchor" class="w-base w-base-extraction w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa fa-table mr-5"></i>作业历史</h3>
+    </div>
+    <div class="w-base-container">
+
+        <!-- TABLE STARTS -->
+        <div class="t-del-homework" style="padding-left: 16px; padding-top: 0px">
+            <table id="homework-list" class="display" width="100%" cellspacing="0" style="border-color: gray;">
+                <thead>
+                <tr>
+                    <th>作业名称</th>
+                    <th>班级</th>
+                    <th>总人数</th>
+                    <th>完成人数</th>
+                    <th>创建时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for homework in homeworkList %}
+                <tr>
+                    <td style="text-align: left" title="{{homework.title}}">{{homework.title | subTitle(6)}}</td>
+                    <td title="{{homework.className}}">{{homework.className | subTitle(6)}}</td>
+                    <td>{{homework.statistics.studentCount}}</td>
+                    <td>{{homework.statistics.studentCountOfFinished}} 人</td>
+                    <td>{{homework.createdTime | date('Y-m-d')}}</td>
+                    <td>
+                        <a class="w-btn-light w-btn-mini w-btn-opt w-btn-opt-large"
+                           href="/teacher/homework/{{homework._id.toString()}}/history">查看详情</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!-- TABLE ENDS-->
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script>
+    requirejs(['/js/app/teacher/homework/list-homework-history.js']);
+</script>
+
+{% endblock %}

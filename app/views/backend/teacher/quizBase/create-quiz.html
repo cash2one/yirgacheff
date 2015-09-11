@@ -1,0 +1,208 @@
+{% extends '../base.html' %}
+
+{% block content %}
+<!-- 面包屑 -->
+{{ breadcrumb.init([{'url':'', 'title':'题库'},{'url':'','title':'新增套题'}]) }}
+<!-- END OF BREADCRUMBS -->
+
+<div id="Anchor2" class="w-base w-base-extraction w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa fa-info-circle mr-5"></i>套题信息</h3>
+    </div>
+    <div class="w-base-container" style="margin-top: 15px;">
+        <div class="t-del-homework" style="padding-left: 16px; padding-top: 0px">
+            <div class="define">
+                套题名称：
+                <input id="homework-title" type="text" placeholder="比如：新概念英语第一单元单词巩固练习"/>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="Anchor3" class="w-base w-base-extraction w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa fa-list mr-5"></i>题目列表</h3>
+    </div>
+    <div class="w-base-container" style="margin-top: 15px;">
+        <div class="w-homework-total-info" style="margin-left: 85px">
+            <a id="add-quiz" class="w-btn w-btn-green w-btn-mini" href="javascript:void(0);"
+               style="margin-top: 1px">+&nbsp;新建题目</a>
+            <span class="w-homework-total-title">总计<span id="total-number"
+                                                         class="w-homework-total-count">0</span>个题目</span>
+        </div>
+
+        <!-- 题目列表区域 START -->
+        <ul id="questions-area" style="margin-left: 18px">
+
+
+        </ul>
+        <div class="w-homework-tip"><span>提示：当前无任何题目，请点击[新建题目]创建作业！</span></div>
+        <div class="w-homework-store" style="display:none">
+            <div class="btn-areas">
+                <a class="jqibuttons" id="save-homework">保存作业</a>
+            </div>
+        </div>
+        <!-- 题目列表区域 END -->
+        <div style="background-color: #fff; height: 20px;"></div>
+    </div>
+    <!--<div style="margin-bottom: 15px; clear: both;background-color: #808080;height: 10px"></div>-->
+</div>
+
+<!-- 题型模版 -->
+<div class="w-base w-base-border" style="display: none;" id="quiz-type-box">
+    <div class="w-base-title">
+        <h3>题目类型</h3>
+
+        <div class="w-base-switch">
+            <ul id="tab-title">
+                <li class="active"><a href="javascript:void(0)"><span class="h-arrow"><i
+                        class="w-icon-arrow w-icon-arrow-blue"></i></span><strong>选择题</strong></a></li>
+                <li class=""><a href="javascript:void(0)"><span class="h-arrow"><i
+                        class="w-icon-arrow w-icon-arrow-blue"></i></span><strong>图片选择题</strong></a></li>
+                <li class=""><a href="javascript:void(0);"><span class="h-arrow"><i
+                        class="w-icon-arrow w-icon-arrow-blue"></i></span><strong>填空题</strong></a></li>
+                <li class=""><a href="javascript:void(0)"><span class="h-arrow"><i
+                        class="w-icon-arrow w-icon-arrow-blue"></i></span><strong>语音题</strong></a></li>
+                <li><a href="javascript:void(0);" class="msgclose layer-close-btn"><strong>x</strong></a></li>
+
+            </ul>
+        </div>
+
+    </div>
+    <!--template container-->
+    <div class="w-base-container">
+        <!--//start-->
+        <div>
+
+            <!-- 文字选择题-->
+            <div class="w-quiz-type-container">
+                <input type="hidden" name="eType" value="0">
+
+                <div class="w-quiz-type-info">
+                    <div class="w-quiz-type-title">
+                        <span>计划出多少道题：</span>
+                    </div>
+                    <div class="w-quiz-type-counts">
+                        <select class="dropdown w-quiz-type-select" name="quiz-count">
+                            <option value="0">请选择</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="w-quiz-type-info">
+                    <div class="w-quiz-type-title">
+                        <span>每道题几个选项：</span>
+                    </div>
+                    <div class="w-quiz-type-counts">
+                        <select class="dropdown w-quiz-type-select" name="quiz-options">
+                            <option value="0">请选择</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!--  图片选择题 -->
+            <div class="w-quiz-type-container" style="display: none">
+                <input type="hidden" name="eType" value="1">
+
+                <div class="w-quiz-type-info">
+                    <div class="w-quiz-type-title">
+                        <span>计划出多少道题：</span>
+                    </div>
+                    <div class="w-quiz-type-counts">
+                        <select class="dropdown w-quiz-type-select" name="quiz-count">
+                            <option value="0">请选择</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="w-quiz-type-info">
+                    <div class="w-quiz-type-title">
+                        <span>每道题几个选项：</span>
+                    </div>
+                    <div class="w-quiz-type-counts">
+                        <select class="dropdown w-quiz-type-select" name="quiz-options">
+                            <option value="0">请选择</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 填空题 -->
+            <div class="w-quiz-type-container" style="display: none">
+                <input type="hidden" name="eType" value="2">
+
+                <div class="w-quiz-type-info">
+                    <div class="w-quiz-type-title">
+                        <span>计划出多少道题：</span>
+                    </div>
+                    <div class="w-quiz-type-counts">
+                        <select class="dropdown w-quiz-type-select" name="quiz-count">
+                            <option value="0">请选择</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 语音题 -->
+            <div class="w-quiz-type-container" style="display: none">
+                <input type="hidden" name="eType" value="3">
+
+                <div class="w-quiz-type-info">
+                    <div class="w-quiz-type-title">
+                        <span>计划出多少道题：</span>
+                    </div>
+                    <div class="w-quiz-type-counts">
+                        <select class="dropdown w-quiz-type-select" name="quiz-count">
+                            <option value="0">请选择</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div style="margin: 38px auto; text-align: center">
+            <a class="w-btn w-btn-mini w-btn-iron-red layer-close-btn" href="javascript:void(0);">取消</a>
+            <span class="w-quiz-type-distance"></span>
+            <a class="w-btn w-btn-green w-btn-mini layer-ok-btn" href="javascript:void(0);">确定</a>
+        </div>
+        <div style="height: 10px;background: #fff"></div>
+        <!--end//-->
+    </div>
+</div>
+<div class="continue-add-homework">
+    <div class="title continue-create-homework">继续出题</div>
+</div>
+<input type="hidden" id="imageToken" value="{{imageToken}}"/>
+<input type="hidden" id="schoolId" value="{{user.schoolId.toString()}}"/>
+{% include '../../templates/exerciseTemplate.html' %}
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script>
+    requirejs(['/js/app/teacher/quizBase/create-quiz.js']);
+</script>
+
+{% endblock %}

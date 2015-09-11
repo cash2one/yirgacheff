@@ -1,0 +1,131 @@
+{% extends '../base.html' %}
+{% block content %}
+<!-- 面包屑 -->
+{{ breadcrumb.init([{'url':'','title':'作业管理'},{'url':'','title':'作业检查'}]) }}
+<!-- END OF BREADCRUMBS -->
+<input type="hidden" name="homeworkId" id="homeworkId" value="{{homework._id.toString()}}"/>
+<div id="Anchor" class="w-base" style="background-color: #f0f1f0">
+    <div style="width:1000px">
+        <ul class="home-information">
+            <li class="w-analyse-data-home w-fl-left">
+                <div>
+                    <div class="w-fl-left l-icon icon-terques">
+                        <div class="margin-top-20"><i class="fa fa-clock-o fa-5x"></i></div>
+                    </div>
+                    <div class="w-fl-left r-content">
+                        <div class="title">平均完成时间</div>
+                        <div class="content">
+                            <span class="slim">{{ homework.statistics.averageSpendSeconds | caculateTime('hour')}}</span><span class="thin">:</span>
+                            <span class="slim">{{ homework.statistics.averageSpendSeconds | caculateTime('minute')}}</span><span class="thin">:</span>
+                            <span class="slim">{{ homework.statistics.averageSpendSeconds | caculateTime('second')}}</span><span class="thin"></span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="w-analyse-data-home w-fl-left">
+                <div>
+                    <div class="w-fl-left l-icon icon-gold">
+                        <div class="margin-top-20"><i class="fa fa-flag-o fa-5x"></i></div>
+                    </div>
+                    <div class="w-fl-left r-content">
+                        <div class="title">作业完成率</div>
+                        <div class="content">{{homework.statistics.finishRate * 100}}%</div>
+                    </div>
+                </div>
+            </li>
+            <li class="w-analyse-data-home w-fl-left">
+                <div>
+                    <div class="w-fl-left l-icon icon-blue">
+                        <div class="margin-top-20"><i class="fa fa-frown-o fa-5x"></i></div>
+                    </div>
+                    <div class="w-fl-left r-content">
+                        <div class="title">平均错误率</div>
+                        <div class="content">{{homework.statistics.wrongRate * 100}}%</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 绘制图表 -->
+    <div class="w-base-container">
+        <div class="w-homework-check-chart">
+        </div>
+    </div>
+    <div class="w-homework-check-list w-base-border">
+        <div class="w-base-title" style="border-top: 0">
+            <h3><i class="fa fa-bar-chart mr-5"></i>作业错误率分布</h3>
+        </div>
+        <div id="column-chart"></div>
+    </div>
+
+    <div class="w-base-border">
+        <div class="w-homework-check-list" style="margin-bottom: 0">
+            <div class="w-base-title">
+                <h3><i class="fa fa-table mr-5"></i>学生完成情况</h3>
+            </div>
+            <div class="t-del-homework" style="padding-left: 16px; padding-top: 10px">
+                <table id="homework-list" class="display" width="100%" cellspacing="0" style="border-color: gray;">
+                    <thead>
+                    <tr>
+                        <th>姓名</th>
+                        <th>学号</th>
+                        <th>完成情况</th>
+                        <th>完成时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for performance in homework.performances %}
+                    <tr>
+                        <td>{{performance.student.displayName}}</td>
+                        <td>{{performance.student.username}}</td>
+                        <td>
+                            {% if performance.state === 1 %}
+                            完成
+                            {% elif performance.state ===2 %}
+                            已检查
+                            {% else %}
+                            未完成
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if !performance.state === 1 %}
+                            -
+                            {% else %}
+                            {{student.spendTime}}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if performance.state !== 0 %}
+                            <a class="w-btn-light w-btn-mini w-btn-opt w-btn-opt-large"
+                               href="/teacher/homework/{{homework._id.toString()}}/students/{{performance.student._id.toString()}}/history">查看详情</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="w-base" style="padding-bottom: 30px;">
+            <div style="margin: 0 auto;text-align: center">
+                <a class="w-btn w-btn-green complete-check-btn" style="width:120px;font-size: 15px"
+                   href="/teacher/homework/history">返回列表</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script>
+    requirejs(['/js/app/teacher/homework/view-classDetail-history.js']);
+</script>
+
+{% endblock %}

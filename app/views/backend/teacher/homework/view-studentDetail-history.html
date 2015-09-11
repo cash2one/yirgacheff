@@ -1,0 +1,126 @@
+{% extends '../base.html' %}
+
+{% block content %}
+<!-- 面包屑 -->
+{{ breadcrumb.init([{'url':'','title':'作业历史'},{'url':'','title':'作业详情'}]) }}
+<!-- END OF BREADCRUMBS -->
+
+<div class="w-base w-base-extraction w-base-border">
+    <div class="w-base-title">
+        <h3>学生信息</h3>
+    </div>
+
+    <div class="w-base-container" style="margin-top: 15px;overflow: hidden">
+        <div class="private-information" style="margin-left: 75px">
+            <ul style="float: left;">
+                <li>
+                    姓名：<input type="text" class="input-info input-info-ext" value="{{student.displayName}}"
+                              readonly="readonly"/>
+                </li>
+                <li style="margin-top: 20px">
+                    学校：<input type="text" class="input-info input-info-ext" value="{{student.onSchool.schoolName}}"
+                              readonly="readonly"/>
+                </li>
+
+            </ul>
+            <ul class="righter-ul">
+                <li>
+                    电话：<input type="text" class="input-info input-info-ext" value="{{student.phone}}"
+                              readonly="readonly"/>
+                </li>
+                <li style="margin-top: 20px">
+                    年级：<input type="text" class="input-info input-info-ext" value="{{student.onSchool.onGrade}}"
+                              readonly="readonly"/>
+                </li>
+
+            </ul>
+
+        </div>
+        <div style="background-color: #fff; height: 16px;"></div>
+    </div>
+
+</div>
+
+<div class="w-base w-base-extraction w-base-border">
+    <div class="w-base-title">
+        <h3>作业情况</h3>
+    </div>
+    <div class="w-base-container">
+        <ul style="width: 842px;margin: 0 auto;overflow:hidden">
+            <li class="w-analyse-data w-analyse-data-ext" style="background-color: #3fc59d; width: 221px;">
+                <div class="icon">
+                    <i class="fa fa-clock-o fa-5x"></i>
+                </div>
+                <div class="icon-title">
+                    <div class="title">花费时间</div>
+                    <div class="content" style="font-size: 13px">
+                        <span class="font-size-26">{{ performance.spendSeconds | caculateTime('hour')}}</span><span class="detail-thin">:</span>
+                        <span class="font-size-26">{{ performance.spendSeconds | caculateTime('minute')}}</span><span class="detail-thin">:</span>
+                        <span class="font-size-26">{{ performance.spendSeconds | caculateTime('second')}}</span>
+                    </div>
+                </div>
+            </li>
+            <li class="w-analyse-data w-analyse-data-ext" style="background-color: #e2747e; width: 221px">
+                <div class="icon">
+                    <i class="fa fa-frown-o fa-5x"></i>
+                </div>
+                <div class="icon-title">
+                    <div class="title">错题数量</div>
+                    <div class="content" style="font-size: 30px">{{performance.wrongCollect.length || 0}}</div>
+                </div>
+            </li>
+            <li class="w-analyse-data w-analyse-data-ext" style="background-color: #f4bf4d; width: 221px">
+                <div class="icon" style="padding-top: 15px">
+                    <i class="fa fa fa-database fa-4x"></i>
+                </div>
+                <div class="icon-title">
+                    <div class="title">积分总数</div>
+                    <div class="content" style="font-size: 30px">{{student.score}}</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="w-base w-base-border" style="margin-bottom: 0">
+    <div class="w-base-title">
+        <h3>作业详情</h3>
+    </div>
+    <div class="w-base-container">
+        <ul id="exerciseList">
+
+        </ul>
+
+    </div>
+    <div style="background-color: #fff; height: 30px;"></div>
+</div>
+
+<div class="w-base ng-scope w-base-border" style="margin-top: 15px; margin-bottom: 40px;padding-bottom: 20px;">
+    <div class="w-base-title">
+        <h3>作业评语</h3>
+    </div>
+    <div style="  margin-top: 20px;margin-left: 74px;">
+        <textarea class="w-textarea" rows="3" style="width: 718px" readonly>{{performance.comment && performance.comment.content}}</textarea>
+    </div>
+
+    <div style="background-color: #fff; height: 15px;"></div>
+</div>
+
+<input name="schoolId" id="schoolId" type="hidden" value="">
+
+{% include '../../templates/exerciseReadOnlyTemplate.html' %}
+
+{% endblock %}
+
+{% block javascript %}
+
+<script type="text/javascript">
+    window.exercises = {{exercises | json | safe}};
+</script>
+
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script>
+    requirejs(['/js/app/teacher/homework/view-studentDetail-history.js']);
+</script>
+{% endblock %}

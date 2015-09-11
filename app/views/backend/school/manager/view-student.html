@@ -1,0 +1,108 @@
+{% extends '../base.html' %}
+{% block content %}
+<!-- 面包屑 -->
+{{ breadcrumb.init([{'url':'','title':'学生详情'}]) }}
+<!-- END OF BREADCRUMBS -->
+
+<div class="w-base w-base-extraction w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa  fa-eye  fa-fw mr-5"></i>学生信息</h3>
+    </div>
+
+    <div class="w-base-container" style="margin-top: 15px;">
+        <div class="personal-head-img">
+            <img class="lazy" src="/images/default_head.jpg" {% if student.avatar %}
+                 data-original="{{resourceURL}}/{{student.avatar}}" {% endif %} width="150px" height="150px">
+        </div>
+        <div class="private-information">
+            <ul style="float: left">
+                <li>
+                    姓名：<input type="text" class="input-info" value="{{student.displayName}}" readonly="readonly"/>
+                </li>
+                <li style="margin-top: 20px">
+                    学校：<input type="text" class="input-info" value="{{student.onSchool}}"
+                              readonly="readonly"/>
+                </li>
+
+            </ul>
+            <ul style="margin-left: 298px">
+                <li>
+                    电话：<input type="text" class="input-info" value="{{student.phone}}" readonly="readonly"/>
+                </li>
+                <li style="margin-top: 20px">
+                    年级：<input type="text" class="input-info" value="{{student.grade}}" readonly="readonly"/>
+                </li>
+
+            </ul>
+
+            <div style="overflow: hidden;">
+                <span style="float: left; padding-top: 21px"> 备注：</span>
+                <textarea style="width:528px" class="w-textarea info-textarea" rows="3" id="ext-info" name="keyPoint"
+                          disabled="disabled">{{student.remark}}</textarea>
+            </div>
+
+        </div>
+        <div style="background-color: #fff; height: 16px;"></div>
+    </div>
+
+</div>
+
+<div class="w-base w-base-extraction w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa  fa-phone-square  fa-fw mr-5"></i>家校沟通记录</h3>
+
+        <div class="w-base-right w-base-right-ext"
+             style="float: left;margin-left: 15px;margin-top: 14px;font-size: 12px;">
+            共计&nbsp;<span id="records"></span>&nbsp;条
+        </div>
+    </div>
+    <div class="w-base-container">
+        <!--//start-->
+        <div class="t-journal-list t-journal-list-b connection-pipe">
+            <ul id="record-list">
+                {% if records.length === 0 %}
+                <li>
+                    <p style="text-align: center; margin-top: 30px">暂无纪录</p>
+                </li>
+                {% endif %}
+                {% for record in records %}
+                <li class="data">
+                    <div class="cal">
+                        <div class="year-month">{{record.createdTime | date('Y-m')}}</div>
+                        <div class="day">{{record.createdTime | date('d')}}</div>
+                    </div>
+                    <div class="conn-content">
+                        <!-- <span class="title">沟通内容：</span>-->
+                        <div class="words">
+                            {{record.content}}
+                        </div>
+                    </div>
+                    <div class="conn-recorder">
+                        <div style="margin-top: 12px;border-left: 1px solid #dfdfdf;padding-left: 10px;">
+                            记录人：{{record.creator.displayName}}
+                        </div>
+                    </div>
+
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div style="width: 100%; height:35px;margin: 0 auto">
+            <div id="pagination" style="margin: 0 auto;width: 520px;text-align: center"></div>
+        </div>
+        <div style="background-color: #fff; height: 16px;"></div>
+        <!--end//-->
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script>
+    requirejs(['/js/app/school/manager/view-student.js']);
+</script>
+
+{% endblock %}

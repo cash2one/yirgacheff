@@ -1,0 +1,47 @@
+/*switchBox*/
+.switchBox {
+    /*position: relative;*/
+}
+
+.switchBox li {
+    /*display: none;*/
+}
+
+.switchBox .tab {
+    text-align: center;
+    padding: 10px 0;
+    font: 0px/0px arial;
+}
+
+.switchBox .tab .prve {
+    width: 10px;
+    height: 10px;
+    overflow: hidden;
+    display: inline-block;
+    cursor: pointer;
+    margin: 0 2px;
+    border-radius: 10px;
+    color: #fff;
+    background-color: #eee;
+}
+
+.switchBox .tab .even {
+    background-color: #bbb;
+}
+
+.switchBox .back, .switchBox .next {
+    margin-top: -22px;
+    display: inline-block;
+    padding: 6px;
+    cursor: pointer;
+    font: 1px/0px arial;
+    border-radius: 5px;
+}
+
+.switchBox .back {
+    float: left;
+}
+
+.switchBox .next {
+    float: right;
+}

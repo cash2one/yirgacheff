@@ -1,0 +1,57 @@
+{% extends '../base.html' %}
+{% block content %}
+<!-- 面包屑 -->
+{{ breadcrumb.init([{'url':'', 'title':'日程'}]) }}
+<!-- END OF BREADCRUMBS -->
+<div class="w-base w-base-extraction w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa  fa-calendar fa-fw mr-5"></i>日程管理</h3>
+    </div>
+    <div class="w-base-container" style="padding: 20px;">
+        <div id='calendar'></div>
+    </div>
+</div>
+<input type="hidden" id="scheduleId"/>
+<div class="jqi" id="add-scheduler" style="display: none;">
+    <div class="jqiclose layer-close-btn">×</div>
+    <div class="jqistates">
+        <div class="lead jqititle ">新建日程</div>
+        <div class="jqimessage ">
+            <form id="schedule-form">
+
+                <div class="define">
+                    <div class="location">
+                        <label for="start">开始时间:</label>
+                        <input id="start" name="start" type="text" class="w-datepicker" style="padding: 1px 12px;"/>
+                    </div>
+                </div>
+                <div class="define">
+                    <div class="location">
+                        <label for="end">结束时间:</label>
+                        <input id="end" name="end" type="text" class="w-datepicker" style="padding: 1px 12px;"/>
+                    </div>
+                </div>
+                <div class="define">
+                    <div class="location">
+                        <label for="title">日程内容:</label>
+                        <input name="title" id="title" placeholder="日程内容" style="padding: 6px 12px;"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="jqibuttons ">
+            <button class="jqicancelbutton del-btn" style="display:none">删除</button>
+            <button class="layer-ok-btn">保存</button>
+        </div>
+    </div>
+    <!--</form>-->
+</div>
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script>
+    requirejs(['/js/app/school/scheduler/list-schedulers.js']);
+</script>
+
+{% endblock %}
