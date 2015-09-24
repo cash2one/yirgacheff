@@ -11,13 +11,6 @@
     <link href="/css/login.css" rel="stylesheet" media="screen">
 </head>
 <body>
-<!--<div class="f-header">
-    <div class="header">
-        <div class="logo-icon"></div>
-        <div class="logo-icon-title"></div>
-        &lt;!&ndash;<div class="slogan"></div>&ndash;&gt;
-    </div>
-</div>-->
 
 <div class="main">
     <form name="loginForm" method="post" action="/login" id="loginForm">
@@ -27,22 +20,18 @@
                 <div class="login-box">
                     <div class="login-box-1">
                         <div class="login-container-outer">
-                            <div class="title">
-                            </div>
-                            <div class="category">
-                                <div class="admin active" data-role="school">校长</div>
-                                <div class="stuff" data-role="teacher">教师</div>
-                            </div>
+                            <div class="title"></div>
                             <div class="mt10">
                                 <div class="input-prompt ml32 mt20 rel">
-                                    <input type="hidden" name="role" id="role" value="school"/>
                                     <input class="f14 input-mobilephone" id="username" name="username"
-                                           autocomplete="off" placeholder="请输入账号" type="text">
+                                           autocomplete="off"
+                                           placeholder="请输入账号" type="text" value="">
                                     <span class="prompt-mobile prompt"></span>
                                 </div>
                                 <div class="input-prompt ml32 mt20 rel">
-                                    <input class="f14 input-password_plain" placeholder="请输入密码" autocomplete="off"
-                                           id="password" name="password" type="password">
+                                    <input class="f14 input-password_plain" placeholder="请输入密码"
+                                           autocomplete="off"
+                                           id="password" name="password" type="password" value="">
                                     <span class="prompt-password prompt"></span>
                                 </div>
 
@@ -85,48 +74,25 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-
-        $('#username, #password').focus(function () {
-            $('.error-explanation').hide();
-        });
+        var $form = $('#loginForm');
         //提交表单
-        $("#loginForm").submit(function (event) {
-            var username = $('#username').val();
-            var password = $('#password').val();
+        $form.submit(function (event) {
+            var username = $('#username').val().trim();
+            var password = $('#password').val().trim();
             var message = '';
-            if (isEmpty(username)) {
+            if (username === "") {
                 message = '请输入用户名';
-            } else if (isEmpty(password)) {
+            } else if (password === "") {
                 message = '请输入密码';
             }
             if (message !== '') {
                 event.preventDefault();
-                writeMessage(message);
+                $('.error-explanation').text(msg).show();
             } else {
                 $('#submit_loading').show();
                 $('#submit').hide();
             }
-
         });
-
-        $('.category').find('div').click(function () {
-            $(this).addClass('active').siblings().removeClass('active');
-            $("#role").val($(this).attr('data-role'));
-            $("#loginForm")[0].reset();
-        });
-
-        /*var random = Math.floor(Math.random() * 10);
-         if (random % 2 === 0) {
-         $("body").addClass('bkg-one');
-         }*/
-
-        function isEmpty(value) {
-            return value === '' || !value;
-        }
-
-        function writeMessage(msg) {
-            $('.error-explanation').show().text(msg);
-        }
     });
 </script>
 </html>
