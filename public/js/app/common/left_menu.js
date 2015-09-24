@@ -1,6 +1,6 @@
 'use strict';
 
-define(['jquery', 'layerWrapper', 'lazyLoad'], function ($, layer) {
+define(['jquery', 'layer', 'lazyLoad'], function ($, layer) {
     var init = function () {
         $("img.lazy").lazyload({
             effect: "fadeIn"
@@ -30,23 +30,34 @@ define(['jquery', 'layerWrapper', 'lazyLoad'], function ($, layer) {
 
 
         //处理反馈信息
-        $('.response-comment').click(function () {
-            layer.open('response-comment-dialog', function (index) {
-                $('#response-content').val('');
-                layer.close(index);
-                layer.msg('感谢您的反馈，我们会及时处理！');
+        $('.response-comment').on('click', function(){
+            layer.open({
+                type: 1, //page层
+                area: ['520px', ''],
+                title: '在线反馈',
+                shade: 0.6, //遮罩透明度
+                moveType: 1, //拖拽风格，0是默认，1是传统拖动
+                shift: -1, //0-6的动画形式，-1不开启
+                content: $('#response-comment-dialog')
             });
+        });
+        $('.ok-message').on('click', function(){
+            layer.msg('感谢您的反馈，我们会及时处理！');
         });
 
 
         //处理在线咨询
-        $('.online_consultation').click(function () {
-            layer.open('online-consultation-dialog', function (index) {
-                layer.close(index);
-
+        $('.online_consultation').on('click', function(){
+            layer.open({
+                type: 1, //page层
+                area: ['530px', ''],
+                title: '添加下面的联系方式，方便和您及时沟通',
+                shade: 0.6, //遮罩透明度
+                moveType: 1, //拖拽风格，0是默认，1是传统拖动
+                shift: -1, //0-6的动画形式，-1不开启
+                content: $('#online-consultation-dialog')
             });
         });
-
     };
 
 

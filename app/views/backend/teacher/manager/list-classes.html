@@ -25,42 +25,33 @@
 
 
 <!-- 添加b班级提示框-->
-<div class="jqi " id="class-dialog">
-    <div class="jqiclose layer-close-btn">×</div>
-    <div class="jqistates">
-        <div class="jqititle ">班级信息</div>
-        <form id="class-form">
-            <div class="jqimessage ">
-                <div class="define location">
-                    请输入班级名称：
-                    <input type="text" placeholder="比如：新概念英语1班" value="" name="className">
-                </div>
-            </div>
-        </form>
-        <div class="jqibuttons ">
-            <button class="layer-ok-btn">保存</button>
+<div class="invisible " id="class-dialog">
+    <form class="form-control" id="class-form">
+        <div class="form-group">
+            <label>请输入班级名称：</label>
+            <input type="text" placeholder="比如：新概念英语1班" value="" name="className">
         </div>
-    </div>
+        <div class="form-group btn-position">
+            <a class="btn-middle solid-btn-blue layer-ok-btn">确定</a>
+            <a class="btn-middle solid-btn-gray layer-close-btn">取消</a>
+        </div>
+    </form>
     <!--</form>-->
 </div>
 
 <!-- 转让班级DIV -->
-<div class="jqi" id="exchange-class">
-    <div class="jqiclose layer-close-btn">×</div>
-    <div class="jqistate">
-        <div class="jqititle ">转让信息</div>
-        <form id="exchange-form">
-            <div class="jqimessage ">
-                <div class="define location">
-                    <span>请输入将要更换的老师工号：</span>
-                    <input type="text" name="username" id="username">
-                </div>
-            </div>
-        </form>
-        <div class="jqibuttons ">
-            <button class="layer-ok-btn">确认转让</button>
+<div class="invisible" id="exchange-class">
+    <form class="form-control" id="exchange-form">
+        <div class="form-group">
+            <label>请输入将要更换的老师工号：</label>
+            <input type="text" name="username" id="username">
         </div>
-    </div>
+
+        <div class="form-group btn-position">
+            <a class="btn-middle solid-btn-blue layer-ok-btn">确定</a>
+            <a class="btn-middle solid-btn-gray layer-close-btn">取消</a>
+        </div>
+    </form>
 </div>
 {% include '../../templates/classTemplate.html' %}
 

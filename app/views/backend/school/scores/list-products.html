@@ -60,58 +60,36 @@
     </div>
 </div>
 
-<div class="jqi" id="add-product-dialog" style="display:none">
-    <div class="jqiclose layer-close-btn">×</div>
-    <div class="jqistates">
-        <div id="jqistate_state0" class="jqistate" style="">
-            <div class="jqiarrow jqiarrowundefined"></div>
-            <div class="lead jqititle ">添加商品</div>
-            <div class="jqimessage ">
-                <form id="product-form">
-                    <div class="define">
-                        <div class="location-ext">
-                            <label for="productName" class="posi-left margin-top-15">商品名称：</label>
-                            <input class="input-area posi-left" style="margin-left: 14px;margin-top: 10px"
-                                   type="text" name="productName" id="productName">
-                        </div>
-                    </div>
-                    <div class="define">
-                        <div class="location-ext">
-                            <label class="posi-left margin-top-15">商品数量：</label>
-                            <input class="input-area numberMask posi-left"
-                                   style="width:50px;text-align: center;margin-left: 15px;margin-top: 10px"
-                                   type="text" name="stock" id="stock">
-                        </div>
-                    </div>
-                    <div class="define">
-                        <div class="location-ext">
-                            <label class="posi-left margin-top-15">兑换积分：</label>
-                            <input class="input-area numberMask posi-left"
-                                   style="width:50px;text-align: center;margin-left: 15px;margin-top: 10px"
-                                   type="text" name="score" id="costScore">
-                        </div>
-                    </div>
-
-                    <div class="define">
-                        <div class="location-ext">
-                            <label class="posi-left margin-top-15">商品图片：</label>
-                            <a class="v-add-student w-btn w-btn-green w-btn-mini posi-left"
-                               style="margin-left: 15px;;margin-top: 13px"
-                               href="javascript:void(0);" id="local_image_upload">点击上传</a>
-                        </div>
-                        <div class="pro-image-frame" style="margin-top: 52px">
-                            <img id="imagePreview" src="" width="223px" height="160px">
-                        </div>
-                        <input type="hidden" name="imageKey"/>
-                    </div>
-                </form>
-            </div>
-            <div class="jqibuttons ">
-                <button class="jqicancelbutton w-btn-iron-red layer-close-btn">取消</button>
-                <button class="layer-ok-btn">保存</button>
-            </div>
+<div class="invisible" id="add-product-dialog">
+    <form class="form-control" id="product-form">
+        <div class="form-group">
+            <label>商品名称：</label>
+            <input type="text" name="productName" id="productName">
         </div>
-    </div>
+        <div class="form-group">
+            <label>商品数量：</label>
+            <input type="text" name="stock" id="stock">
+        </div>
+        <div class="form-group">
+            <label>兑换积分：</label>
+            <input type="text" name="score" id="costScore">
+        </div>
+
+        <div class="form-group">
+            <label class="posi-left margin-top-15">商品图片：</label>
+            <a class="v-add-student btn-middle solid-btn-green" style="margin:10px 0px 5px 5px;"
+               href="javascript:void(0);" id="local_image_upload">点击上传</a>
+
+            <div class="pro-image-frame">
+                <img id="imagePreview" src="" width="240px" height="160px">
+            </div>
+            <input type="hidden" name="imageKey"/>
+        </div>
+        <div class="form-group btn-position">
+            <a class="btn-middle solid-btn-blue layer-ok-btn">确定</a>
+            <a class="btn-middle solid-btn-gray layer-close-btn">取消</a>
+        </div>
+    </form>
     <!--</form>-->
 </div>
 

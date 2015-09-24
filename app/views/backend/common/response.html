@@ -1,6 +1,6 @@
 <div class="sever-info m-side-width">
     <div class="w-btn w-btn-gray w-btn-block">
-        <div style="float: left;margin-left: 20px;">
+        <div style="float: left;margin-left: 20px; color: #fff;">
             <i class="fa fa-phone-square fa-2x"></i>
         </div>
         <p class="tel">
@@ -20,23 +20,19 @@
     </div>
 </div>
 
-<div class="jqi " id="response-comment-dialog" style="display: none;">
-    <div class="jqiclose layer-close-btn">×</div>
-    <div class="jqistates">
-        <div class="jqititle ">请输入您的反馈信息</div>
-        <div class="jqimessage ">
-            <textarea style="width: 479px;margin-left: 21px;margin-top: 20px;" class="w-textarea textarea-rec" rows="3" id="response-content"></textarea>
+<div class="invisible" id="response-comment-dialog">
+    <form class="form-control">
+        <div class="form-group">
+            <textarea  rows="3" id="response-content"></textarea>
         </div>
-        <div class="jqibuttons ">
-            <button class="layer-ok-btn">提交</button>
+        <div class="layui-layer-btn">
+            <a class="btn-middle solid-btn-blue ok-message layui-layer-btn0">确定</a>
+            <a class="btn-middle solid-btn-gray layui-layer-btn1">取消</a>
         </div>
-    </div>
+    </form>
 </div>
 
-<div class="jqi " id="online-consultation-dialog" style="display: none;">
-    <div class="jqiclose layer-close-btn">×</div>
-    <div class="jqistates">
-        <div class="jqititle ">添加下面的联系方式，方便和您及时沟通</div>
+<div class="invisible" id="online-consultation-dialog">
         <div class="jqimessage consultation">
             <ul>
                 <li>
@@ -53,5 +49,4 @@
                 </li>
             </ul>
         </div>
-    </div>
 </div>

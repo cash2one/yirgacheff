@@ -1,6 +1,6 @@
 'use strict';
 
-define(['jquery','layerWrapper'], function ($,layer) {
+define(['jquery','layer'], function ($,layer) {
     var init = function () {
         var $account = $('.m-header');
         $account.find('ul li.v-menu-hover').each(function () {
@@ -24,9 +24,15 @@ define(['jquery','layerWrapper'], function ($,layer) {
 
 
         //帮助与支持
-        $('#help').click(function(){
-            layer.open('online-consultation-dialog', function (index) {
-                layer.close(index);
+        $('#help').on('click', function(){
+            layer.open({
+                type: 1, //page层
+                area: ['530px', ''],
+                title: '添加下面的联系方式，方便和您及时沟通',
+                shade: 0.6, //遮罩透明度
+                moveType: 1, //拖拽风格，0是默认，1是传统拖动
+                shift: -1, //0-6的动画形式，-1不开启
+                content: $('#online-consultation-dialog')
             });
         });
 

@@ -33,6 +33,7 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'layerWrapper', 'u
         //添加商品
         $('#add-product-btn').click(function () {
             layer.ajaxForm({
+                title:'添加商品',
                 container: 'add-product-dialog',
                 form: $productForm,
                 validator: formValidator,

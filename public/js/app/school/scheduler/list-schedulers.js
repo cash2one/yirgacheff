@@ -40,9 +40,9 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'layerWrapper', 'm
                     end: calEvent.end.format('YYYY-MM-DD HH:mm')
                 });
                 $('#scheduleId').val(calEvent._id);
-                $('.jqititle').text('修改日程');
                 $('.del-btn').show();
                 layer.ajaxForm({
+                    title:'日程修改',
                     container: 'add-scheduler',
                     form: scheduleForm,
                     validator: formValidator,
@@ -75,10 +75,10 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'layerWrapper', 'm
                 scheduleForm[0].reset();
                 $('#start').val(start.hour(8).format('YYYY-MM-DD HH:mm'));
                 $('#end').val(start.hour(9).format('YYYY-MM-DD HH:mm'));
-                $('.jqititle').text('新建日程');
                 $('.del-btn').hide();
 
                 layer.ajaxForm({
+                    title:'新建日程',
                     container: 'add-scheduler',
                     form: scheduleForm,
                     validator: formValidator,
