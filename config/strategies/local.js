@@ -3,9 +3,9 @@
 /**
  * Module dependencies.
  */
-var passport = require('passport'),
-    LocalStrategy = require('passport-local').Strategy,
-    mongoose = require('mongoose');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var models = require('../../app/models');
 
 module.exports = function () {
     // Use local strategy
@@ -15,15 +15,7 @@ module.exports = function () {
             passReqToCallback: true
         },
         function (req, username, password, done) {
-            var role = req.body.role;
-            var UserModel;
-            if (role === 'school') {
-                UserModel = mongoose.model('School');
-            } else if (role === 'teacher') {
-                UserModel = mongoose.model('Teacher');
-            } else {
-                return done(new Error('缺少角色信息'));
-            }
+            var UserModel = username.length === 5 ? models.School : models.Teacher;
             UserModel.findOne({
                 username: username
             }, 'username password salt schoolId state', function (err, user) {
