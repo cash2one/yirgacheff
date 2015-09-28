@@ -8,6 +8,20 @@ requirejs(['jquery', 'restfulClient', 'datatables', 'leftMenu', 'headMenu', 'val
         var jqTable = $('#students-list');
         var $classList = $('#class-list');
 
+        var validateClass = function () {
+            if (!$classList.val()) {
+                layer.confirm('没有班级，去添加新班级', function () {
+                    self.location = '/teacher/classes';
+                });
+                return false;
+            }
+            return true;
+        };
+
+        if (!validateClass()) {
+            return;
+        }
+
         var dataTable = jqTable.DataTable({
             'bAutoWidth': false,
             'bSort': false,
@@ -44,6 +58,7 @@ requirejs(['jquery', 'restfulClient', 'datatables', 'leftMenu', 'headMenu', 'val
             var selectClass = $classList.val();
             if (!selectClass || selectClass === '') {
                 layer.msg('请先添加班级');
+                return;
             }
             var url = '/api/v1/classes/' + selectClass + '/students';
             dataTable.ajax.url(url);
@@ -86,7 +101,7 @@ requirejs(['jquery', 'restfulClient', 'datatables', 'leftMenu', 'headMenu', 'val
             var randomPassword = new Date().getTime().toString(16).substr(4);
             $('#password').val(randomPassword);
             layer.ajaxForm({
-                title:'学生信息',
+                title: '添加学生',
                 container: 'student-dialog',
                 form: $studentForm,
                 validator: formValidator,
@@ -107,7 +122,7 @@ requirejs(['jquery', 'restfulClient', 'datatables', 'leftMenu', 'headMenu', 'val
             var self = $(this);
             $studentForm.renderForm(student);
             layer.ajaxForm({
-                title:'学生信息',
+                title: '修改学生',
                 container: 'student-dialog',
                 form: $studentForm,
                 validator: formValidator,
@@ -131,7 +146,7 @@ requirejs(['jquery', 'restfulClient', 'datatables', 'leftMenu', 'headMenu', 'val
             var isNumber = new RegExp('^\s*[1-9]+[0-9]*\s*$');
             var self = $(this);
             layer.ajaxForm({
-                title:'积分修改',
+                title: '积分修改',
                 container: 'score-dialog',
                 form: 'score-form',
                 validator: function (data) {
@@ -179,7 +194,7 @@ requirejs(['jquery', 'restfulClient', 'datatables', 'leftMenu', 'headMenu', 'val
                 return layer.msg("请先创建班级");
             }
             layer.ajaxForm({
-                title:'通过学号添加学生',
+                title: '添加学生',
                 container: 'joinclass-dialog',
                 form: 'username-form',
                 validator: function (data) {
