@@ -1,11 +1,8 @@
 'use strict';
 
-
 var passport = require('passport');
 var models = require('../app/models');
 var roles = require('../app/common/constants').roles;
-var path = require('path');
-var config = require('./config');
 
 module.exports = function () {
 
@@ -26,8 +23,5 @@ module.exports = function () {
         });
     });
 
-    // Initialize strategie
-    config.getGlobbedFiles('./config/strategies/**/*.js').forEach(function (strategy) {
-        require(path.resolve(strategy))();
-    });
+    require('./strategies/local.js')();
 };
