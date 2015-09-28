@@ -73,6 +73,9 @@ var api = {
                 if (err) {
                     return next(err);
                 }
+                if (homeworkList.length === 0) {
+                    return res.sendStatus(200);
+                }
                 Homework.create(homeworkList, function (err) {
                     if (err) {
                         return next(err);
