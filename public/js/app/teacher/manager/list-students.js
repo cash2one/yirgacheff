@@ -86,6 +86,7 @@ requirejs(['jquery', 'restfulClient', 'datatables', 'leftMenu', 'headMenu', 'val
             var randomPassword = new Date().getTime().toString(16).substr(4);
             $('#password').val(randomPassword);
             layer.ajaxForm({
+                title:'学生信息',
                 container: 'student-dialog',
                 form: $studentForm,
                 validator: formValidator,
@@ -106,6 +107,7 @@ requirejs(['jquery', 'restfulClient', 'datatables', 'leftMenu', 'headMenu', 'val
             var self = $(this);
             $studentForm.renderForm(student);
             layer.ajaxForm({
+                title:'学生信息',
                 container: 'student-dialog',
                 form: $studentForm,
                 validator: formValidator,
@@ -129,6 +131,7 @@ requirejs(['jquery', 'restfulClient', 'datatables', 'leftMenu', 'headMenu', 'val
             var isNumber = new RegExp('^\s*[1-9]+[0-9]*\s*$');
             var self = $(this);
             layer.ajaxForm({
+                title:'积分修改',
                 container: 'score-dialog',
                 form: 'score-form',
                 validator: function (data) {
@@ -176,6 +179,7 @@ requirejs(['jquery', 'restfulClient', 'datatables', 'leftMenu', 'headMenu', 'val
                 return layer.msg("请先创建班级");
             }
             layer.ajaxForm({
+                title:'通过学号添加学生',
                 container: 'joinclass-dialog',
                 form: 'username-form',
                 validator: function (data) {

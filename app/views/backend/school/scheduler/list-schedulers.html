@@ -12,38 +12,25 @@
     </div>
 </div>
 <input type="hidden" id="scheduleId"/>
-<div class="jqi" id="add-scheduler" style="display: none;">
-    <div class="jqiclose layer-close-btn">×</div>
-    <div class="jqistates">
-        <div class="lead jqititle ">新建日程</div>
-        <div class="jqimessage ">
-            <form id="schedule-form">
-
-                <div class="define">
-                    <div class="location">
-                        <label for="start">开始时间:</label>
-                        <input id="start" name="start" type="text" class="w-datepicker" style="padding: 1px 12px;"/>
-                    </div>
-                </div>
-                <div class="define">
-                    <div class="location">
-                        <label for="end">结束时间:</label>
-                        <input id="end" name="end" type="text" class="w-datepicker" style="padding: 1px 12px;"/>
-                    </div>
-                </div>
-                <div class="define">
-                    <div class="location">
-                        <label for="title">日程内容:</label>
-                        <input name="title" id="title" placeholder="日程内容" style="padding: 6px 12px;"/>
-                    </div>
-                </div>
-            </form>
+<div class="invisible" id="add-scheduler">
+    <form class="form-control" id="schedule-form">
+        <div class="form-group">
+            <label for="start">开始时间:</label>
+            <input id="start" name="start" type="text" class="w-datepicker"/>
         </div>
-        <div class="jqibuttons ">
-            <button class="jqicancelbutton del-btn" style="display:none">删除</button>
-            <button class="layer-ok-btn">保存</button>
+        <div class="form-group">
+            <label for="end">结束时间:</label>
+            <input id="end" name="end" type="text" class="w-datepicker"/>
         </div>
-    </div>
+        <div class="form-group">
+            <label for="title">日程内容:</label>
+            <input name="title" id="title" placeholder="日程内容"/>
+        </div>
+        <div class="form-group btn-position">
+            <a class="invisible btn-middle solid-btn-red jqicancelbutton del-btn">删除</a>
+            <a class="btn-middle solid-btn-blue layer-ok-btn">保存</a>
+        </div>
+    </form>
     <!--</form>-->
 </div>
 {% endblock %}

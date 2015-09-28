@@ -35,22 +35,17 @@
     </div>
 </div>
 
-<div class="jqi" id="exchange-class">
-    <div class="jqiclose layer-close-btn">×</div>
-    <div class="jqistate">
-        <div class="jqititle ">转让班级</div>
-        <div class="jqimessage ">
-            <form id="exchange-form">
-                <div class="define location">
-                    <span>请输入将要更换的老师工号：</span>
+<div class="invisible" id="exchange-class">
+            <form class="form-control" id="exchange-form">
+                <div class="form-group">
+                    <label>请输入将要更换的老师工号：</label>
                     <input type="text" name="username" id="username">
                 </div>
+                <div class="form-group btn-position">
+                    <a class="btn-middle solid-btn-blue layer-ok-btn">确定</a>
+                    <a class="btn-middle solid-btn-gray layer-close-btn">取消</a>
+                </div>
             </form>
-        </div>
-        <div class="jqibuttons ">
-            <button class="layer-ok-btn">确认转让</button>
-        </div>
-    </div>
 </div>
 
 {% endblock %}

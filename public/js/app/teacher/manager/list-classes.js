@@ -28,6 +28,7 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'layerWrapper', 'u
         $('#addClazz').bind('click', function () {
             $classForm[0].reset();
             layer.ajaxForm({
+                title:'班级信息',
                 container: 'class-dialog',
                 form: $classForm,
                 validator: formValidator,
@@ -50,6 +51,7 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'layerWrapper', 'u
             var classId = currentClass.attr('id');
             $classForm.find('input[name="className"]').val(className);
             layer.ajaxForm({
+                title:'班级信息',
                 container: 'class-dialog',
                 form: $classForm,
                 validator: formValidator,
@@ -70,8 +72,9 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'layerWrapper', 'u
             var currentClass = $(this).closest('div.classItem'),
                 className = currentClass.attr('data-name'),
                 url = '/api/v1/classes/' + currentClass.attr('id') + '/changeOwner';
-            $('#exchange-class').find('.jqititle').text(className);
+
             layer.ajaxForm({
+                title:className,
                 container: 'exchange-class',
                 form: 'exchange-form',
                 validator: function (data) {

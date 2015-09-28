@@ -63,6 +63,7 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'validator', 'laye
             var randomPassword = new Date().getTime().toString(16).substr(4);
             $('#password').val(randomPassword);
             layer.ajaxForm({
+                title:'新建教师',
                 container: 'add-teacher-dialog',
                 form: $teacherForm,
                 validator: formValidator,
@@ -97,6 +98,7 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'validator', 'laye
             var self = $(this);
             $("#teacher_form").renderForm(teacher);
             layer.ajaxForm({
+                title:'信息修改',
                 container: 'add-teacher-dialog',
                 form: $teacherForm,
                 validator: formValidator,

@@ -18,6 +18,7 @@ requirejs(['jquery', 'leftMenu', 'headMenu', 'layerWrapper', 'datatables'],
             var classId = $(this).parents('tr').attr('id'),
                 url = '/api/v1/classes/' + classId + '/changeOwner';
             layer.ajaxForm({
+                title:'转让班级',
                 container: 'exchange-class',
                 form: 'exchange-form',
                 validator: function (data) {

@@ -16,24 +16,17 @@ module.exports = function () {
 
     // Deserialize sessions
     passport.deserializeUser(function (user, done) {
-        var userProxy;
-        switch (user.role) {
-            case(roles.HEADMASTER):
-                userProxy = models.School;
-                break;
-            case(roles.TEACHER):
-                userProxy = models.Teacher;
-                break;
-            default:
-                userProxy = models.Student;
-        }
+        var userProxy = user.role === roles.HEADMASTER ? models.School : models.Teacher;
         userProxy.findById(user.id, function (err, userInfo) {
+            if (!userInfo) {
+                return done(new Error('用户不存在'));
+            }
             userInfo.role = user.role;
             done(err, userInfo);
         });
     });
 
-    // Initialize strategies
+    // Initialize strategie
     config.getGlobbedFiles('./config/strategies/**/*.js').forEach(function (strategy) {
         require(path.resolve(strategy))();
     });

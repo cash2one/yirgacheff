@@ -41,6 +41,7 @@ define(['jquery', 'restfulClient', 'layer', 'underscore', 'jqueryExt'], function
             var validator = ops.validator;
             var $form = ops.form;
             var cancel = ops.cancelCallback;
+            var title = ops.title || false;
             if (!$container) {
                 throw 'options must have a container option (id or jquery element) .';
             }
@@ -86,11 +87,10 @@ define(['jquery', 'restfulClient', 'layer', 'underscore', 'jqueryExt'], function
             var width = $container.width() + 'px';
             var configs = {
                 type: 1,
-                area: [width, height],
-                title: false,
+                area: width,
+                title: title,
                 shift: 5,
-                closeBtn: false,
-                zIndex: 5000,
+                zIndex:5000,
                 content: $container
             };
             var index = layer.open(configs);

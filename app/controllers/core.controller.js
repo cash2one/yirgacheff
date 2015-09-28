@@ -24,7 +24,7 @@ exports.showLogin = function (req, res) {
 exports.login = function (req, res, next) {
     passport.authenticate('local', function (err, user) {
         if (err || !user) {
-            res.render('backend/login', {error: err.message});
+            res.render('backend/login', {error: (err && err.message) || '用户不存在'});
         } else {
             user.password = undefined;
             user.salt = undefined;

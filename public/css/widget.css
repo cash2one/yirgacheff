@@ -431,7 +431,9 @@
     line-height: 120%;
     padding-left: 5px;
 }
-
+.tel{
+    color: #fff;
+}
 .w-icon-blue, a:hover .w-icon {
     /*background-image: url(images/w-icon-blue.png);*/
 }
@@ -1951,92 +1953,6 @@ select.w-int {
     color: #66cc66;
 }
 
-/*popup - box*/
-div.jqi {
-    border-radius: 0;
-    padding: 0;
-    border: none;
-    font: 14px/100% "微软雅黑", "Microsoft YaHei", arial;
-}
-
-div.jqi .jqiclose {
-    font-size: 28px;
-    font-weight: normal;
-    color: #000;
-    border-left: 1px solid #dfdfdf;
-    padding: 15px 13px 0;
-    height: 33px;
-}
-
-div.jqi .jqistates {
-    margin-top: -12px;
-}
-
-div.jqi .jqititle {
-    color: #383a4b;
-    padding: 16px 0 11px 20px;
-    font-size: 18px;
-    border-color: #dfdfdf;
-}
-
-div.jqi .jqimessage {
-    margin: 40px 20px 20px;
-    padding: 0;
-}
-
-div.jqi .jqimessage .jqicontent {
-    margin: 40px 20px;
-    clear: both;
-    line-height: 180%;
-}
-
-div.jqi .jqibuttons {
-    /*border: none;*/
-    /*background: none;*/
-    text-align: center;
-    padding: 20px 0 30px;
-}
-
-div.jqi .jqibuttons button {
-    background-color: #50a200;
-    color: #fff;
-    display: inline-block;
-    padding: 12px 35px;
-    text-decoration: none;
-    text-align: center;
-    font: 14px/1.125 "微软雅黑", "Microsoft YaHei", Arial;
-    vertical-align: middle;
-    outline: none;
-    cursor: pointer;
-    border-radius: 3px;
-}
-
-div.jqi .jqibuttons button:hover {
-    background-color: #70cf1c;
-    color: #fff;
-}
-
-div.jqi .jqibuttons button:active {
-    background-color: #50a400;
-}
-
-div.jqi .jqibuttons .jqidefaultbutton {
-    background-color: #50a200;
-}
-
-div.jqi .jqibuttons .jqicancelbutton {
-    background-color: #d84c31;
-    border-radius: 3px;
-}
-
-div.jqi .jqibuttons .jqicancelbutton:hover {
-    background-color: #d14836;
-}
-
-div.jqi .jqibuttons .jqidefaultbutton:hover {
-    background-color: #52b4fb;
-}
-
 /*w-yellow-info*/
 .w-yellow-info {
     padding: 8px 15px;
@@ -2537,7 +2453,6 @@ div.jqi .jqibuttons .jqidefaultbutton:hover {
 .w-datepicker {
     position: relative;
     width: 160px;
-    height: 24px;
     border: 1px solid #dfdfdf;
     cursor: pointer;
     background: #fff;
@@ -2947,7 +2862,7 @@ div.jqi .jqibuttons .jqidefaultbutton:hover {
     margin-top: 10px;
     margin-left: 106px;
     height: 160px;
-    width: 223px;
+    width: 240px;
     border: 1px dashed #dfdfdf
 }
 

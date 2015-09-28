@@ -36,47 +36,29 @@
     </div>
 </div>
 
-<div class="jqi" id="add-teacher-dialog" style="display: none;">
-    <div class="jqiclose layer-close-btn">×</div>
-    <div class="jqistates">
-        <div id="jqistate_state0" class="jqistate" style="">
-            <div class="jqiarrow jqiarrowundefined"></div>
-            <div class="lead jqititle ">新建老师</div>
-            <div class="jqimessage ">
-                <form id="teacher_form">
-
-                    <div class="define">
-                        <div class="location">
-                            <label for="displayName">姓名：</label>
-                            <input class="input-area" type="text" name="displayName" id="displayName">
-                        </div>
-                    </div>
-                    <div class="define">
-                        <div class="location">
-                            <label for="password">密码：</label>
-                            <input class="input-area" type="text" name="password" value="123456" id="password">
-                        </div>
-                    </div>
-                    <div class="define">
-                        <div class="location">
-                            <label for="contact">电话：</label>
-                            <input class="input-area" type="text" name="contact" id="contact">
-                        </div>
-                    </div>
-                    <div class="define">
-                        <div class="location">
-                            <label for="department">部门：</label>
-                            <input class="input-area" type="text" name="department" id="department">
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="jqibuttons ">
-                <button class="layer-ok-btn">保存</button>
-            </div>
-            <div class="jqibuttons " style="display:none;"></div>
+<div class="invisible" id="add-teacher-dialog">
+    <form class="form-control" id="teacher_form">
+        <div class="form-group">
+                <label for="displayName">姓名：</label>
+                <input class="input-area" type="text" name="displayName" id="displayName">
         </div>
-    </div>
+        <div class="form-group">
+                <label for="password">密码：</label>
+                <input class="input-area" type="text" name="password" value="123456" id="password">
+        </div>
+        <div class="form-group">
+                <label for="contact">电话：</label>
+                <input class="input-area" type="text" name="contact" id="contact">
+        </div>
+        <div class="form-group">
+                <label for="department">部门：</label>
+                <input class="input-area" type="text" name="department" id="department">
+        </div>
+        <div class="form-group btn-position">
+            <a class="btn-middle solid-btn-blue layer-ok-btn">确定</a>
+            <a class="btn-middle solid-btn-gray layer-close-btn">取消</a>
+        </div>
+    </form>
     <!--</form>-->
 </div>
 

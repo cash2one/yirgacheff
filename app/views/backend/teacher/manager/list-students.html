@@ -50,102 +50,86 @@
     </div>
 </div>
 
-<div class="jqi" id="student-dialog" style="display: none">
-    <div class="jqiclose layer-close-btn">×</div>
-    <div class="jqistate">
-        <div class="lead jqititle">学生信息</div>
-        <form id="student-form">
-            <div class="define " style="margin-left: 130px">
-                <label for="displayName">姓名:</label>
-                <input type="text" name="displayName" id="displayName">
-            </div>
-            <div class="define" style="margin-left: 130px;">
-                <label for="gender">性别:</label>
-
-                <div style="margin-left: 36px;margin-top: -18px;">
-                    <select name="gender" id="gender">
-                        <option value="男">男</option>
-                        <option value="女">女</option>
-                    </select>
-                </div>
-            </div>
-            <div class="define" style="margin-left: 130px">
-                <label for="password">密码:</label>
-                <input type="text" name="password" value="" id="password">
-            </div>
-            <div class="define" style="margin-left: 130px">
-                <label for="phone">电话:</label>
-                <input type="text" name="phone" id="phone">
-            </div>
-            <div class="define" style="margin-left: 130px">
-                <label for="schoolName">学校:</label>
-                <input type="text" name="onSchool" id="schoolName">
-            </div>
-            <div class="define" style="margin-left: 130px;">
-                <label for="grade">年级:</label>
-                <input type="text" name="grade" id="grade">
-            </div>
-            <div class="define" style="margin-left: 130px;padding-bottom: 24px">
-                <label for="remark">备注:</label>
-                <input type="text" name="remark" id="remark">
-            </div>
-
-        </form>
-        <div class="jqibuttons ">
-            <button class="layer-ok-btn">保存</button>
+<div class="invisible" id="student-dialog">
+    <form class="form-control" id="student-form">
+        <div class="form-group">
+            <label for="displayName">姓名:</label>
+            <input type="text" name="displayName" id="displayName">
         </div>
-    </div>
+        <div class="form-group">
+            <label for="gender">性别:</label>
+
+                <select name="gender" id="gender">
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                </select>
+        </div>
+        <div class="form-group">
+            <label for="password">密码:</label>
+            <input type="text" name="password" value="" id="password">
+        </div>
+        <div class="form-group">
+            <label for="phone">电话:</label>
+            <input type="text" name="phone" id="phone">
+        </div>
+        <div class="form-group">
+            <label for="schoolName">学校:</label>
+            <input type="text" name="onSchool" id="schoolName">
+        </div>
+        <div class="form-group" >
+            <label for="grade">年级:</label>
+            <input type="text" name="grade" id="grade">
+        </div>
+        <div class="form-group">
+            <label for="remark">备注:</label>
+            <input type="text" name="remark" id="remark">
+        </div>
+        <div class="form-group btn-position">
+            <a class="btn-middle solid-btn-blue layer-ok-btn">确定</a>
+            <a class="btn-middle solid-btn-gray layer-close-btn">取消</a>
+        </div>
+    </form>
+
 </div>
 
 
-<div class="jqi " id="joinclass-dialog">
-    <div class="jqiclose layer-close-btn">×</div>
-    <div class="jqistate">
-        <div class="lead jqititle ">通过学号添加学生</div>
-        <form id="username-form">
-            <div class="jqimessage ">
-                <div class="define location">
-                    <label for="username"></label>
-                    请输入学号：
-                    <input type="text" value="" name="username" id="username">
-                </div>
-            </div>
-        </form>
-        <div class="jqibuttons ">
-            <button class="layer-ok-btn">保存</button>
+<div class="invisible" id="joinclass-dialog">
+    <form class="form-control" id="username-form">
+        <div class="form-group">
+            <label for="username"></label>
+            请输入学号：
+            <input type="text" value="" name="username" id="username">
         </div>
-    </div>
-    <!--</form>-->
+        <div class="form-group btn-position">
+            <a class="btn-middle solid-btn-blue layer-ok-btn">确定</a>
+            <a class="btn-middle solid-btn-gray layer-close-btn">取消</a>
+        </div>
+    </form>
+<!--</form>-->
 </div>
 
 
-<div class="jqi" id="score-dialog">
-    <div class="jqiclose layer-close-btn">×</div>
-    <div class="jqistate">
-        <div class="lead jqititle ">修改积分</div>
-        <form id="score-form">
-            <div class="jqimessage ">
-                <div class="define" style="margin-left: 130px;">
-                    <label for="scoreOpt">操作:</label>
+<div class="invisible" id="score-dialog">
+    <form class="form-control" id="score-form">
+        <div class="form-group">
+            <label for="scoreOpt">请输入操作：</label>
 
-                    <div style="margin-left: 36px;margin-top: -18px;">
-                        <select name="operation" id="scoreOpt" class="dropdown">
-                            <option value="0">增加</option>
-                            <option value="1">减少</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="define location">
-                    <label for="scoreValue"> 请输入积分：</label>
-                    <input type="text" value="" name="value" id="scoreValue">
-                </div>
-            </div>
-        </form>
-        <div class="jqibuttons ">
-            <button class="layer-ok-btn">保存</button>
+            <select name="operation" id="scoreOpt">
+                <option value="0">增加</option>
+                <option value="1">减少</option>
+            </select>
+
         </div>
-    </div>
-    <!--</form>-->
+        <div class="form-group">
+            <label for="scoreValue"> 请输入积分：</label>
+            <input type="text" value="" name="value" id="scoreValue">
+        </div>
+        <div class="form-group btn-position">
+            <a class="btn-middle solid-btn-blue layer-ok-btn">确定</a>
+            <a class="btn-middle solid-btn-gray layer-close-btn">取消</a>
+        </div>
+    </form>
+<!--</form>-->
 </div>
 
 {% endblock %}
