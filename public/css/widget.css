@@ -398,7 +398,7 @@
 
 /*w-icon*/
 .w-icon {
-    background: url(http://static.hizuoye.com/images/w-icon.png) no-repeat 5000px 5000px;
+    background: url("/images/w-icon.png") no-repeat 5000px 5000px;
     width: 19px;
     height: 19px;
     display: inline-block;
@@ -408,7 +408,7 @@
 }
 
 .w-icon-white {
-    background: url(http://static.hizuoye.com/images/w-icon-white.png) no-repeat 5000px 5000px;
+    background: url("/images/w-icon-white.png") no-repeat 5000px 5000px;
     width: 19px;
     height: 19px;
     display: inline-block;
@@ -418,7 +418,7 @@
 }
 
 .w-icon-head-default {
-    background: url(http://static.hizuoye.com/images/head-logo.png) no-repeat;
+    background: url("/images/head-logo.png") no-repeat;
     height: 18px;
     width: 18px;
     margin-right: 10px;
@@ -439,7 +439,7 @@
 }
 
 .w-icon-white, a:hover .w-icon-white {
-    background-image: url(http://static.hizuoye.com/images/w-icon-white.png);
+    background-image: url("/images/w-icon-white.png");
 }
 
 .w-icon-1 {
@@ -582,7 +582,7 @@
 
 /*w-arrow*/
 .w-icon-arrow, .w-icon-public {
-    background: url(http://static.hizuoye.com/images/w-arrow.png) no-repeat -20px -8px;
+    background: url("/images/w-arrow.png") no-repeat -20px -8px;
 }
 
 .w-icon-public {
@@ -802,7 +802,7 @@ a:hover .w-icon-arrow-lRight {
 
 /*w-hwk-icon*/
 .w-hwk-icon {
-    background: url(http://static.hizuoye.com/images/m-homework-icon.png) no-repeat 0 0;
+    background: url("/images/m-homework-icon.png") no-repeat 0 0;
     width: 100px;
     height: 66px;
     display: inline-block;
@@ -867,7 +867,7 @@ a:hover .w-icon-arrow-lRight {
 }
 
 .w-lv-grade {
-    background: url(http://static.hizuoye.com/images/lv/grade-icon.png) no-repeat 0 0;
+    background: url("/images/lv/grade-icon.png") no-repeat 0 0;
     width: 17px;
     height: 17px;
     display: inline-block;
@@ -891,7 +891,7 @@ a:hover .w-icon-arrow-lRight {
 }
 
 .w-level {
-    background: url(http://static.hizuoye.com/images/lv/medal-icon.png) no-repeat 0 0;
+    background: url("/images/lv/medal-icon.png") no-repeat 0 0;
     width: 115px;
     height: 30px;
     display: inline-block;
@@ -1106,7 +1106,7 @@ a:hover .w-icon-arrow-lRight {
 .w-base .w-base-container .class-frame .class-icon {
     width: 220px;
     height: 201px;
-    background: url("http://static.hizuoye.com/images/student/class-icon.png") no-repeat;
+    background: url("/images/student/class-icon.png") no-repeat;
     /*position: absolute;*/
     margin-top: 24px;
     float: left;
@@ -1273,7 +1273,7 @@ a:hover .w-icon-arrow-lRight {
 
 /*form - w-checkbox*/
 .w-checkbox, .w-radio, .w-hook {
-    background: url(http://static.hizuoye.com/images/w-checkbox.png) no-repeat;
+    background: url("/images/w-checkbox.png") no-repeat;
     width: 12px;
     height: 12px;
     display: inline-block;
@@ -1596,7 +1596,7 @@ select.w-int {
 }
 
 .w-breadcrumb li a {
-    color: #50a200;
+    color: #72d26e;
 }
 
 .w-breadcrumb li .divider {
@@ -1847,7 +1847,7 @@ select.w-int {
 }
 
 .w-turn-page-list .next span, .w-turn-page-list .back span {
-    background: url(http://static.hizuoye.com/images/turn-page.png) no-repeat 0 0;
+    background: url("/images/turn-page.png") no-repeat 0 0;
     width: 5px;
     height: 12px;
     line-height: 100px;
@@ -1891,7 +1891,7 @@ select.w-int {
     height: 95px;
     display: inline-block;
     vertical-align: middle;
-    background: url(http://static.hizuoye.com/images/build-image.png) no-repeat;
+    background: url("/images/build-image.png") no-repeat;
     text-align: center;
     position: relative;
 }
@@ -1918,7 +1918,7 @@ select.w-int {
 }
 
 .w-build-image .wb-new {
-    background: url(http://static.hizuoye.com/images/w-icon-new.png) no-repeat 0 0;
+    background: url("/images/w-icon-new.png") no-repeat 0 0;
     width: 28px;
     height: 17px;
     display: block;
@@ -2013,13 +2013,13 @@ select.w-int {
     overflow: hidden;
     display: inline-block;
     margin: 0 3px;
-    background: url(http://static.hizuoye.com/images/play.png) no-repeat 0 0;
+    background: url("/images/play.png") no-repeat 0 0;
     cursor: pointer;
     vertical-align: middle;
 }
 
 .mp3_bg_icon_gray {
-    background-image: url(http://static.hizuoye.com/images/play_dis.png)
+    background-image: url("/images/play_dis.png")
 }
 
 .flashValBox {
@@ -2164,7 +2164,7 @@ select.w-int {
 .giftSelect .pop .jcarousel-prev-horizontal, .giftSelect .pop .jcarousel-next-horizontal {
     width: 12px;
     height: 18px;
-    background: url(http://static.hizuoye.com/images/giftArraw.png) no-repeat 0 -28px;
+    background: url("/images/giftArraw.png") no-repeat 0 -28px;
     position: absolute;
     right: 50px;
     top: 9px;
@@ -2313,7 +2313,7 @@ select.w-int {
 
 /*radios*/
 .radios, .checkboxs {
-    background: url(http://static.hizuoye.com/images/w-checkbox.png) no-repeat 0 0;
+    background: url("/images/w-checkbox.png") no-repeat 0 0;
     cursor: pointer;
     width: 12px;
     height: 12px;
@@ -2465,7 +2465,7 @@ select.w-int {
     border-radius: 0px;
     margin-left: 1px;
     padding-left: 20px;
-    background: url(http://static.hizuoye.com/images/datepicker-icon.png) no-repeat #fff 0 -9px;
+    background: url("/images/datepicker-icon.png") no-repeat #fff 0 -9px;
 }
 
 .w-datepicker:focus {
@@ -2590,14 +2590,14 @@ select.w-int {
     height: 40px;
     margin-top: -50px;
     margin-right: -17px;
-    background: url(http://static.hizuoye.com/images/r-icon.png) no-repeat;
+    background: url("/images/r-icon.png") no-repeat;
 }
 
 .result-flag-w {
     float: right;
     width: 40px;
     height: 40px;
-    background: url(http://static.hizuoye.com/images/e-icon.png) no-repeat;
+    background: url("/images/e-icon.png") no-repeat;
     z-index: 2001;
     position: absolute;
     margin-top: -10px;
@@ -3442,39 +3442,39 @@ ul.pupil-messages .message-content {
     height: 50px;
     overflow: hidden;
     text-indent: -2000px;
-    background: url("http://static.hizuoye.com/images/w-top.png") no-repeat;
+    background: url("/images/w-top.png") no-repeat;
 }
 
 .w-top:hover {
-    background: url("http://static.hizuoye.com/images/w-top-hover.png") no-repeat;
+    background: url("/images/w-top-hover.png") no-repeat;
 }
 
 .advertisement-1 {
-    background: url('http://static.hizuoye.com/images/MostredFriday_v1.png') no-repeat;
+    background: url('/images/MostredFriday_v1.png') no-repeat;
     width: 760px;
     height: 159px;
 }
 
 .advertisement-2 {
-    background: url('http://static.hizuoye.com/images/MostredFriday_v2.png') no-repeat;
+    background: url('/images/MostredFriday_v2.png') no-repeat;
     width: 760px;
     height: 100px;
 }
 
 .advertisement-3 {
-    background: url('http://static.hizuoye.com/images/MostredFriday_v5.jpg') no-repeat;
+    background: url('/images/MostredFriday_v5.jpg') no-repeat;
     width: 760px;
     height: 100px;
 }
 
 .advertisement-4 {
-    background: url('http://static.hizuoye.com/images/to_banner_v1.jpg') no-repeat;
+    background: url('/images/to_banner_v1.jpg') no-repeat;
     width: 760px;
     height: 100px;
 }
 
 .ad-box {
-    background: url('http://static.hizuoye.com/images/left-adv.png') no-repeat;
+    background: url('/images/left-adv.png') no-repeat;
     width: 205px;
     height: 215px;
     border-radius: 5px;
@@ -3919,7 +3919,7 @@ ul.pupil-messages .message-content {
 }
 
 .icon_radio_checked {
-    background: url("http://static.hizuoye.com/images/base_icon.png") 0 -208px no-repeat;
+    background: url("/images/base_icon.png") 0 -208px no-repeat;
     width: 16px;
     height: 16px;
     vertical-align: middle;
@@ -3927,7 +3927,7 @@ ul.pupil-messages .message-content {
 }
 
 .icon_radio_unchecked {
-    background: url("http://static.hizuoye.com/images/base_icon.png") 0 -182px no-repeat;
+    background: url("/images/base_icon.png") 0 -182px no-repeat;
     width: 16px;
     height: 16px;
     vertical-align: middle;
@@ -4108,11 +4108,11 @@ ul.pupil-messages .message-content {
     height: 18px;
     margin-left: 46px;
     cursor: pointer;
-    background: url("http://static.hizuoye.com/images/base_icon.png") 0 -4610px no-repeat;
+    background: url("/base_icon.png") 0 -4610px no-repeat;
 }
 
 .passage-list .del_btn:hover{
-    background: url("http://static.hizuoye.com/images/base_icon.png") 0 -4638px no-repeat;
+    background: url("/images/base_icon.png") 0 -4638px no-repeat;
 }
 
 .tasks-list{
@@ -4334,11 +4334,11 @@ ul.pupil-messages .message-content {
     height: 16px;
     line-height: 999em;
     overflow: hidden;
-    background: url("http://static.hizuoye.com/images/base_icon.png") 0 -2757px no-repeat;
+    background: url("/images/base_icon.png") 0 -2757px no-repeat;
 }
 
 .pop_closed:hover {
-    background: url("http://static.hizuoye.com/images/base_icon.png") 0 -2783px no-repeat;
+    background: url("/images/base_icon.png") 0 -2783px no-repeat;
 }
 
 .dialog_bd{
@@ -4516,7 +4516,7 @@ ul.pupil-messages .message-content {
     position: absolute;
     top: 0;
     left: 0;
-    background: transparent url("http://static.hizuoye.com/images/icon_card_selected.png") no-repeat 0 0;
+    background: transparent url("/images/icon_card_selected.png") no-repeat 0 0;
     width: 120px;
     height: 120px;
     vertical-align: middle;
@@ -4630,7 +4630,7 @@ ul.pupil-messages .message-content {
     margin-top: 50px;
     width:15px;
     height: 28px;
-    background: url("http://static.hizuoye.com/images/i-arrow.png") no-repeat;
+    background: url("/images/i-arrow.png") no-repeat;
 }
 
 .site-category-selection{
@@ -4710,7 +4710,7 @@ ul.pupil-messages .message-content {
 }
 
 .icon_radio {
-    background: url("http://static.hizuoye.com/images/base_icon.png") 0 -182px no-repeat;
+    background: url("/images/base_icon.png") 0 -182px no-repeat;
     width: 16px;
     height: 16px;
     vertical-align: middle;
@@ -4720,7 +4720,7 @@ ul.pupil-messages .message-content {
 }
 
 .selected .icon_radio {
-    background: url("http://static.hizuoye.com/images/base_icon.png") 0 -208px no-repeat;
+    background: url("/images/base_icon.png") 0 -208px no-repeat;
 }
 
 .frm_radio_label, .frm_checkbox_label {
@@ -4977,7 +4977,7 @@ ul.pupil-messages .message-content {
 .upload-progress-layout .right-content .del-button{
     width: 16px;
     height: 16px;
-    background:url('http://static.hizuoye.com/images/delete-icon.png') no-repeat;
+    background:url('/images/delete-icon.png') no-repeat;
     cursor: pointer;
 }
 

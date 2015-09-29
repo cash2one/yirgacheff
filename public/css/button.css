@@ -105,3 +105,6 @@
     opacity: .9;
     text-decoration: none
 }
+.btn-cursor{
+    cursor: not-allowed;
+}
