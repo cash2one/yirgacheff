@@ -599,8 +599,8 @@ html #layui_layer_skinlayercss {
 }
 
 .layui-layer-loading .layui-layer-content {
-    width: 60px;
-    height: 24px;
+    width: 100px;
+    height: 20px;
     background: url(default/loading-0.gif) no-repeat
 }
 
