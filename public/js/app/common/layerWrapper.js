@@ -9,7 +9,7 @@ define(['jquery', 'restfulClient', 'layer', 'underscore', 'jqueryExt'], function
                 $content = $('#' + contentId);
             }
             var height = $content.height() + 'px',
-                width = $content.width() + 20 + 'px',
+                width = $content.width() + 'px',
                 configs = {
                     type: 1,
                     area: [width, height],
@@ -83,13 +83,14 @@ define(['jquery', 'restfulClient', 'layer', 'underscore', 'jqueryExt'], function
                     return $form.serializeObject();
                 }
             }
-            var width = $container.width() + 20 + 'px';
+            var height = $container.height() + 'px';
+            var width = $container.width() + 'px';
             var configs = {
                 type: 1,
                 area: width,
                 title: title,
                 shift: 5,
-                zIndex: 5000,
+                zIndex:5000,
                 content: $container
             };
             var index = layer.open(configs);

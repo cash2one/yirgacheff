@@ -40,9 +40,9 @@ requirejs(['jquery', 'restfulClient', 'datatables', 'leftMenu', 'headMenu', 'val
                 {'data': 'score'},
                 {
                     'data': null,
-                    'defaultContent': '<a class="w-btn-light w-btn-opt edit" >修改</a>&nbsp;&nbsp;'
-                    + '<a class="w-btn-light w-btn-opt w-btn-opt-large score-edit" >积分修改</a>&nbsp;&nbsp;' +
-                    '<a class="w-btn w-btn-iron-red w-btn-opt delete">删除</a>'
+                    'defaultContent': '<a class="btn-small a-btn-blue edit" >修改</a>&nbsp;&nbsp;'
+                    + '<a class="btn-small a-btn-blue score-edit" >积分</a>&nbsp;&nbsp;' +
+                    '<a class="btn-small a-btn-red delete">删除</a>'
                 }
             ]
         });

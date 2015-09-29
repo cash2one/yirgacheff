@@ -30,39 +30,35 @@
     <div class="w-base-title">
         <h3><i class="fa fa-info-circle mr-5"></i>作业信息</h3>
     </div>
-    <div class="w-base-container" style="margin-top: 15px;">
-        <div class="t-del-homework" style="padding-left: 16px; padding-top: 0px">
-            <div class="define">
-                作业标题：
+    <div class="form-control">
+            <div class="form-group">
+                <label for="homework-title">作业标题：</label>
                 <input id="homework-title" type="text" placeholder="比如：新概念英语第一单元单词巩固练习" value="{{homework.title}}"/>
 
             </div>
-            <div class="define">
-                完成奖励：
+            <div class="form-group">
+                <label for="finishAward">完成奖励：</label>
                 <input id="finishAward" type="text" value="0"/>
 
             </div>
-            <div class="define">
-                满分奖励：
+            <div class="form-group">
+                <label for="performanceAward">满分奖励：</label>
                 <input id="performanceAward" type="text" value="0"/>
 
             </div>
-            <div class="controls" style="margin: 15px 0;overflow: hidden;clear: both;">
-                <span style="float: left; padding-top: 10px">知识重点：</span>
-                <textarea class="w-textarea" rows="3" id="keyPoint" name="keyPoint"></textarea>
+            <div class="form-group">
+                <label for="keyPoint" class="lable-location">知识重点：</label>
+                <textarea class="textarea-location" rows="3" id="keyPoint" name="keyPoint"></textarea>
                 <input type="hidden" value="" id="keyPointRecord" name="keyPointRecord"/>
             </div>
-
-            <a class="w-btn w-btn-mini w-btn-orange" href="javascript:void(0);" id="localAudioUploadButton"
-               style="margin-left: 68px">
+            <div class="form-group btn-location">
+            <a class="btn-middle a-btn-green" href="javascript:void(0);" id="localAudioUploadButton">
                 <i class="fa fa-cloud-upload"></i>上传录音</a>
-            <span class="upload-local-audio-button"><a href="/teacher/guider" target="_blank">如何上传录音</a></span>
-            <span class="upload-local-audio-icon">
-                <i class="fa fa-question-circle"></i>
-            </span>
+            <span class="upload-local-audio-button"><a href="/teacher/guider" target="_blank">如何上传录音</a><i class="fa fa-question-circle"></i></span>
+            </div>
+
 
             <div style="margin-left: -96px" id="keypoint-recording-display"></div>
-        </div>
     </div>
 </div>
 <div id="Anchor3" class="w-base w-base-extraction  w-base-border">
@@ -71,7 +67,7 @@
     </div>
     <div class="w-base-container" style="margin-top: 15px;">
         <div class="w-homework-total-info" style="margin-left: 85px">
-            <a id="add-quiz" class="w-btn w-btn-green w-btn-mini" href="javascript:void(0);"
+            <a id="add-quiz" class="btn-middle solid-btn-green" href="javascript:void(0);"
                style="margin-top: 1px"><span style="font-size: 14px;margin-right: 3px"><i class="fa fa-plus-square"></i></span>新建题目</a>
             <span class="w-homework-total-title">总计<span id="total-number"
                                                          class="w-homework-total-count">0</span>个题目</span>
@@ -97,19 +93,17 @@
 <!-- 题型模版 -->
 <div class="w-base w-base-border" style="display: none;" id="quiz-type-box">
     <div class="w-base-title">
-        <h3>题目类型</h3>
-
         <div class="w-base-switch">
             <ul id="tab-title">
                 <li class="active"><a href="javascript:void(0)"><span class="h-arrow"><i
-                        class="w-icon-arrow w-icon-arrow-blue"></i></span><strong>选择题</strong></a></li>
+                        class="w-icon-arrow-blue"></i></span><strong>选择题</strong></a></li>
                 <li class=""><a href="javascript:void(0)"><span class="h-arrow"><i
-                        class="w-icon-arrow w-icon-arrow-blue"></i></span><strong>图片选择题</strong></a></li>
+                        class="w-icon-arrow-blue"></i></span><strong>图片选择题</strong></a></li>
                 <li class=""><a href="javascript:void(0);"><span class="h-arrow"><i
-                        class="w-icon-arrow w-icon-arrow-blue"></i></span><strong>填空题</strong></a></li>
+                        class="w-icon-arrow-blue"></i></span><strong>填空题</strong></a></li>
                 <li class=""><a href="javascript:void(0)"><span class="h-arrow"><i
-                        class="w-icon-arrow w-icon-arrow-blue"></i></span><strong>语音题</strong></a></li>
-                <li><a href="javascript:void(0);" class="msgclose layer-close-btn"><strong>x</strong></a></li>
+                        class="w-icon-arrow-blue"></i></span><strong>语音题</strong></a></li>
+                <li style="margin-left:237px; "><a href="javascript:void(0);" class="msgclose layer-close-btn">&times;</a></li>
 
             </ul>
         </div>
@@ -121,153 +115,119 @@
         <div>
 
             <!-- 文字选择题-->
-            <div class="w-quiz-type-container">
+            <div class="w-quiz-type-container form-control">
                 <input type="hidden" name="eType" value="0">
-
-                <div class="w-quiz-type-info">
-                    <div class="w-quiz-type-title">
-                        <span>计划出多少道题：</span>
-                    </div>
-                    <div class="w-quiz-type-counts">
-                        <select class="dropdown w-quiz-type-select" name="quiz-count">
+                <div class="form-group">
+                        <label>题目个数：</label>
+                        <select name="quiz-count">
                             <option value="0">请选择</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
                         </select>
-                    </div>
                 </div>
-                <div class="w-quiz-type-info">
-                    <div class="w-quiz-type-title">
-                        <span>每道题几个选项：</span>
-                    </div>
-                    <div class="w-quiz-type-counts">
-                        <select class="dropdown w-quiz-type-select" name="quiz-options">
+                <div class="form-group">
+                        <label>选项个数：</label>
+                        <select name="quiz-options">
                             <option value="0">请选择</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
                         </select>
-                    </div>
                 </div>
             </div>
 
             <!--  图片选择题 -->
-            <div class="w-quiz-type-container" style="display: none">
+            <div class="w-quiz-type-container form-control" style="display: none">
                 <input type="hidden" name="eType" value="1">
-
-                <div class="w-quiz-type-info">
-                    <div class="w-quiz-type-title">
-                        <span>计划出多少道题：</span>
-                    </div>
-                    <div class="w-quiz-type-counts">
-                        <select class="dropdown w-quiz-type-select" name="quiz-count">
+                <div class="form-group">
+                        <label>题目个数：</label>
+                        <select name="quiz-count">
                             <option value="0">请选择</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
                         </select>
-                    </div>
                 </div>
-                <div class="w-quiz-type-info">
-                    <div class="w-quiz-type-title">
-                        <span>每道题几个选项：</span>
-                    </div>
-                    <div class="w-quiz-type-counts">
-                        <select class="dropdown w-quiz-type-select" name="quiz-options">
+                <div class="form-group">
+                        <label>选项个数：</label>
+                        <select name="quiz-options">
                             <option value="0">请选择</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
                         </select>
-                    </div>
                 </div>
             </div>
 
             <!-- 填空题 -->
-            <div class="w-quiz-type-container" style="display: none">
+            <div class="w-quiz-type-container form-control" style="display: none">
                 <input type="hidden" name="eType" value="2">
 
-                <div class="w-quiz-type-info">
-                    <div class="w-quiz-type-title">
-                        <span>计划出多少道题：</span>
-                    </div>
-                    <div class="w-quiz-type-counts">
-                        <select class="dropdown w-quiz-type-select" name="quiz-count">
+                <div class="form-group">
+                        <label>题目个数：</label>
+                        <select name="quiz-count">
                             <option value="0">请选择</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
                         </select>
-                    </div>
                 </div>
             </div>
 
             <!-- 语音题 -->
-            <div class="w-quiz-type-container" style="display: none">
+            <div class="w-quiz-type-container form-control" style="display: none">
                 <input type="hidden" name="eType" value="3">
 
-                <div class="w-quiz-type-info">
-                    <div class="w-quiz-type-title">
-                        <span>计划出多少道题：</span>
-                    </div>
-                    <div class="w-quiz-type-counts">
-                        <select class="dropdown w-quiz-type-select" name="quiz-count">
+                <div class="form-group">
+                        <label>题目个数：</label>
+                        <select name="quiz-count">
                             <option value="0">请选择</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
                         </select>
-                    </div>
                 </div>
             </div>
         </div>
-
-
-        <div style="margin: 38px auto;width:239px">
-            <a class="w-btn w-btn-mini w-btn-iron-red layer-close-btn" href="javascript:void(0);">取消</a>
+        <div style="width: 346px; margin: 0 auto; text-align: right">
+            <a class="btn-middle solid-btn-blue layer-ok-btn" href="javascript:void(0);">确定</a>
             <span class="w-quiz-type-distance"></span>
-            <a class="w-btn w-btn-green w-btn-mini layer-ok-btn" href="javascript:void(0);">确定</a>
+            <a class="btn-middle solid-btn-gray layer-close-btn" href="javascript:void(0);">取消</a>
         </div>
-        <div style="height: 10px;background: #fff"></div>
+        <div style="height: 20px;background: #fff; border: none"></div>
         <!--end//-->
     </div>
 </div>
 
-<div class="jqi" id="forward-to-classes" style="display: none;">
-    <div class="jqiclose layer-close-btn">×</div>
-    <div class="jqistate">
-        <div class="jqititle ">提示</div>
-        <div class="jqimessage ">
-            <div class="define location">
+<div class="invisible" id="forward-to-classes">
+        <form class="form-control">
+            <div class="form-group location">
                 <span>现在还没有班级，不能布置作业！</span>
             </div>
-        </div>
-        <div class="jqibuttons ">
-            <button class="layer-ok-btn">去新建班级</button>
-        </div>
-    </div>
+
+            <div class="form-group btn-position">
+                <a class="btn-middle solid-btn-blue layer-ok-btn">去新建班级</a>
+            </div>
+        </form>
 </div>
 
-<div class="jqi" id="add-homework-to-quizzes" style="display: none;">
-    <div class="jqiclose layer-close-btn">×</div>
-    <div class="jqistate">
-        <div class="jqititle ">提示</div>
-        <div class="jqimessage ">
-            <div class="define location">
+<div class="invisible" id="add-homework-to-quizzes">
+        <form class="form-control">
+            <div class="form-group">
                 <span style="font-size: 16px">是否将本次作业添加到题库，以便后续使用？</span>
             </div>
-        </div>
-        <div style="margin: 30px auto;width:240px">
-            <a class="w-btn w-btn-mini w-btn-iron-red layer-close-btn" href="javascript:void(0);">否</a>
-            <span class="w-quiz-type-distance"></span>
-            <a class="w-btn w-btn-green w-btn-mini layer-ok-btn" href="javascript:void(0);">是</a>
-        </div>
-    </div>
+            <div class="form-group btn-position">
+                <a class="btn-middle solid-btn-blue layer-ok-btn" href="javascript:void(0);">确定</a>
+                <span class="w-quiz-type-distance"></span>
+                <a class="btn-middle solid-btn-gray layer-close-btn" href="javascript:void(0);">取消</a>
+            </div>
+        </form>
+
 </div>
 
 <div class="continue-add-homework">

@@ -133,7 +133,7 @@ table tbody tr td {
 }
 
 .m-header .logo {
-    background: url(http://static.hizuoye.com/images/k-logo.png) no-repeat;
+    background: url("/images/k-logo.png") no-repeat;
     width: 52px;
     height: 45px;
     float: left;
@@ -141,7 +141,7 @@ table tbody tr td {
 }
 
 .m-header .logo-title {
-    background: url(http://static.hizuoye.com/images/logo.png) no-repeat;
+    background: url("/images/logo.png") no-repeat;
     width: 186px;
     height: 40px;
     float: left;
@@ -151,7 +151,7 @@ table tbody tr td {
 .m-header .category {
     width: 41px;
     height: 18px;
-    background: url(http://static.hizuoye.com/images/s-category.png) no-repeat;
+    background: url("/images/s-category.png") no-repeat;
     float: left;
     margin-top: 14px;
 }
@@ -159,7 +159,7 @@ table tbody tr td {
 .m-header .t-category {
     width: 41px;
     height: 18px;
-    background: url(http://static.hizuoye.com/images/t-category.png) no-repeat;
+    background: url("/images/t-category.png") no-repeat;
     float: left;
     margin-top: 10px;
     margin-left: 5px;
@@ -302,11 +302,9 @@ table tbody tr td {
 }
 
 .m-person-info dt {
-    /*background: url(http://static.hizuoye.com/images/profile-menu.png) no-repeat;*/
     background-color: #474747;
     width: 100%;
     height: 130px;
-    /*position: relative;*/
     overflow: hidden;
 }
 
@@ -385,7 +383,7 @@ table tbody tr td {
 .m-person-info dd .info .user-level {
     font: 11px/15px "arial";
     color: #fff;
-    background: url(http://static.hizuoye.com/images/w-arrow-orange.png) no-repeat;
+    background: url("/images/w-arrow-orange.png") no-repeat;
     display: inline-block;
     width: 40px;
     padding: 0 0 0 10px;
@@ -476,11 +474,11 @@ table tbody tr td {
 
 .m-side-menu li .pull-level a:hover, .m-side-menu li .pull-level .current {
     color: #fff;
-    background: url(http://static.hizuoye.com/images/column-icon.png) no-repeat 200px -45px #556073;
+    background: url("/images/column-icon.png") no-repeat 200px -45px #556073;
 }
 
 .m-side-menu li.pull-down a.one-level {
-    background: url(http://static.hizuoye.com/images/column-icon.png) no-repeat 200px -5px;
+    background: url("/images/column-icon.png") no-repeat 200px -5px;
 }
 
 .m-side-menu li.active a.one-level {
@@ -514,7 +512,6 @@ table tbody tr td {
 
 .m-synthesize .sever-info .tel {
     font-size: 16px;
-    /*background: url(http://static.hizuoye.com/images/m-tel.png) no-repeat 25px 5px;*/
     padding-left: 27px;
     margin-bottom: 15px;
 }
@@ -559,7 +556,7 @@ table tbody tr td {
 }
 
 .m-footer .link .spare-icon {
-    background: url("http://static.hizuoye.com/images/m-icon-share.png") no-repeat 500px 500px;
+    background: url("/images/m-icon-share.png") no-repeat 500px 500px;
     display: inline-block;
     width: 39px;
     height: 38px;
@@ -567,7 +564,7 @@ table tbody tr td {
 }
 
 .m-footer .link .spare-icon:hover {
-    background-image: url("http://static.hizuoye.com/images/m-icon-share-blue.png")
+    background-image: url("/m-icon-share-blue.png")
 }
 
 .m-footer .link .spare-weibo {
@@ -625,7 +622,7 @@ table tbody tr td {
 }
 
 .m-footer .m-foot-link .m-code .c-image {
-    background: url("http://static.hizuoye.com/images/m-code.jpg") no-repeat;
+    background: url("/images/m-code.jpg") no-repeat;
     width: 90px;
     height: 90px;
     margin: 0 auto;
@@ -645,7 +642,7 @@ table tbody tr td {
 .m-footer .m-service .c-title {
     color: #667284;
     font-size: 12px;
-    background: url(http://static.hizuoye.com/images/service-icon.png) no-repeat 0 7px;
+    background: url("/images/service-icon.png") no-repeat 0 7px;
     line-height: 25px;
     padding-left: 45px;
     margin-bottom: 10px;
@@ -809,7 +806,8 @@ input[type=radio]:checked {
 .mr-5 {
     margin-right: 5px;
 }
-
-
+.ml-5{
+  margin-left: 5px;
+}
 
 

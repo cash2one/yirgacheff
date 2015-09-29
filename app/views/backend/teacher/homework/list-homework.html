@@ -32,9 +32,9 @@
                     <td>{{homework.statistics.studentCountOfFinished}} 人</td>
                     <td>{{homework.createdTime | date('Y-m-d',-480)}}</td>
                     <td>
-                        <a class="w-btn-light w-btn-mini w-btn-opt"
+                        <a class="btn-small a-btn-blue w-btn-opt"
                            href="/teacher/homework/{{homework._id.toString()}}">检查</a>
-                        <a class="w-btn w-btn-iron-red w-btn-mini w-btn-iron-red w-btn-opt delete"
+                        <a class="btn-small a-btn-red w-btn-opt delete"
                            href="javascript:void(0);"
                            id="{{homework._id.toString()}}">删除</a>
                     </td>

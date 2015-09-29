@@ -11,7 +11,7 @@ ol, ul {
 
 body {
     background: transparent;
-    background: url('http://static.hizuoye.com/images/login/login_bg.jpg') no-repeat fixed transparent;
+    background: url('/images/login/login_bg.jpg') no-repeat fixed transparent;
     -webkit-background-size: cover;
     font: 14px '微软雅黑',Arial,Helvetica,sans-serif;
     padding: 0;
@@ -19,7 +19,7 @@ body {
 }
 
 .bkg-one{
-    background: url('http://static.hizuoye.com/images/login/login_bg_one.png') no-repeat fixed transparent;
+    background: url('/images/login/login_bg_one.png') no-repeat fixed transparent;
 }
 
 .bk-two{
@@ -52,14 +52,14 @@ button, input, select, textarea {
 }
 
 .f-header .header .logo-icon{
-    background: url(http://static.hizuoye.com/images/student/s-logo.png) no-repeat;
+    background: url("/images/student/s-logo.png") no-repeat;
     height: 60px;
     width: 65px;
     float: left;
 }
 
 .f-header .header .logo-icon-title{
-    background: url(http://static.hizuoye.com/images/student/s-logotype-title.png) no-repeat;
+    background: url("/images/student/s-logotype-title.png") no-repeat;
     height: 50px;
     width: 210px;
     margin-top: 10px;
@@ -68,7 +68,7 @@ button, input, select, textarea {
 }
 
 .f-header .header .slogan{
-    background: url(http://static.hizuoye.com/images/login/slogan.png) no-repeat;
+    background: url("/images/login/slogan.png") no-repeat;
     height: 50px;
     float: left;
     width: 250px;
@@ -94,7 +94,7 @@ button, input, select, textarea {
     float: left;
     width: 475px;
     height:475px;
-    background:url("http://static.hizuoye.com/images/login/global.png") no-repeat;
+    background:url("/images/login/global.png") no-repeat;
 }
 
 
@@ -135,7 +135,7 @@ button, input, select, textarea {
     overflow: hidden;
     width: 440px;
     color: #555;
-    background: url("http://static.hizuoye.com/images/login/login-mask.png") no-repeat;
+    background: url("/images/login/login-mask.png") no-repeat;
     /*background-color: rgba(0, 0, 0, 0.5);
     background-color: transparent\9;
     filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=1, startColorstr='#7fffffff', endColorstr='#7fffffff');*/
@@ -147,7 +147,7 @@ button, input, select, textarea {
     font: 24px '微软雅黑',Arial,Helvetica;
     width: 260px;
     height: 50px;
-    background:url("http://static.hizuoye.com/images/login/logo.png") no-repeat;
+    background:url("/images/login/logo.png") no-repeat;
     margin: 0 auto;
     margin-left: 96px;
     margin-bottom: 15px;
@@ -181,7 +181,6 @@ button, input, select, textarea {
 .active{
     background-color: #fff;
     /*background: rgba(255, 255, 255, 0.3) none repeat scroll 0% 0%;*/
-    background: url("http://static.hizuoye.com/images/login/tab-mask.png") no-repeat;
 }
 
 .login-container .category .stuff{
@@ -253,7 +252,7 @@ button, input, select, textarea {
     line-height: 20px;
     color: #fff;
     padding-left: 30px;
-    background: url('http://static.hizuoye.com/images/login/input-mask.png') no-repeat;
+    background: url('/images/login/input-mask.png') no-repeat;
    /* background: rgba(255,255,255,0.17);*/
     background-color: transparent\9;
     outline: none;
@@ -283,11 +282,11 @@ button, input, select, textarea {
 }
 
 .input-prompt .prompt-mobile {
-    background: url("http://static.hizuoye.com/images/login/iconfont-user.png") no-repeat;
+    background: url("/images/login/iconfont-user.png") no-repeat;
 }
 
 .input-prompt .prompt-password {
-    background: url("http://static.hizuoye.com/images/login/iconfont-lock.png") no-repeat;
+    background: url("/images/login/iconfont-lock.png") no-repeat;
 }
 
 
@@ -296,11 +295,11 @@ button, input, select, textarea {
     height: 50px;
     color: white;
     border: solid 0 white;
-    background:url('http://static.hizuoye.com/images/login/logo-title.png') no-repeat;
+    background:url('/images/login/logo-title.png') no-repeat;
 }
 
 .button-login:hover{
-    background:url('http://static.hizuoye.com/images/login/logo-title-hover.png') no-repeat;
+    background:url('/images/login/logo-title-hover.png') no-repeat;
 }
 
 .button-login-loading{
@@ -309,7 +308,7 @@ button, input, select, textarea {
     color: white;
     margin: 0 auto;
     border: solid 0 white;
-    background: url('http://static.hizuoye.com/images/login/logo-title-loading.png') no-repeat;
+    background: url('/images/login/logo-title-loading.png') no-repeat;
 }
 
 .cpointer {
@@ -394,7 +393,7 @@ button, input, select, textarea {
     float: left;
     width: 54px;
     height: 54px;
-    background: url('http://static.hizuoye.com/images/login/login_icon.png') no-repeat;
+    background: url('/images/login/login_icon.png') no-repeat;
     font: 16px/54px "Microsoft Yahei";
     color: #fff;
 }

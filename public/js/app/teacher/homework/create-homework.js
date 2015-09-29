@@ -16,10 +16,15 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'exerciseBuilder',
 
         var classes = $('#level_and_clazzs').find('ul li');
         if (classes.length == 0) {
-            layer.open('forward-to-classes', function (index) {
-                layer.close(index);
-                self.location.href = '/teacher/classes';
+            layer.open({
+               title:'提示',
+               contentId:'forward-to-classes',
+               okCallback:function(index){
+                   layer.close(index);
+                   self.location.href = '/teacher/classes';
+               }
             });
+
         }
 
         //班级选择
@@ -44,30 +49,37 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'exerciseBuilder',
         $('.continue-create-homework').click(addHomework);
 
         function addHomework() {
-            layer.open('quiz-type-box', function (index) {
-                var $append = $('#questions-area'),
-                    $current = $('div.w-quiz-type-container:visible'),
-                    eType = $current.find('input[name = eType]').val(),
-                    exerciseCount = $current.find('select[name = quiz-count]').val(),
-                    $optionSelect = $current.find('select[name = quiz-options]'),
-                    optionsCount;
-                if (exerciseCount == 0) {
-                    layer.alert('请选择 [计划出多少道题]！');
-                    return;
+            layer.open({
+                closeBtn: false,
+                contentId: 'quiz-type-box',
+                okCallback: function (index) {
+                    var $append = $('#questions-area'),
+                        $current = $('div.w-quiz-type-container:visible'),
+                        eType = $current.find('input[name = eType]').val(),
+                        exerciseCount = $current.find('select[name = quiz-count]').val(),
+                        $optionSelect = $current.find('select[name = quiz-options]'),
+                        optionsCount;
+                    if (exerciseCount == 0) {
+                        layer.alert('请选择 [计划出多少道题]！');
+                        return;
+                    }
+                    if ($optionSelect.val() == 0) {
+                        layer.alert('请选择 [每道题几个选项]！');
+                        return;
+                    } else {
+                        optionsCount = $optionSelect.val();
+                    }
+                    exerciseBuilder.buildExercises($append, eType, exerciseCount, optionsCount);
+                    //显示当前一共有多少道题目
+                    displayQuizNum();
+                    closeAddDialogAction();
+                    layer.close(index);
+                },
+                cancelCallback: function () {
+                    closeAddDialogAction();
                 }
-                if ($optionSelect.val() == 0) {
-                    layer.alert('请选择 [每道题几个选项]！');
-                    return;
-                } else {
-                    optionsCount = $optionSelect.val();
-                }
-                exerciseBuilder.buildExercises($append, eType, exerciseCount, optionsCount);
-                //显示当前一共有多少道题目
-                displayQuizNum();
-                closeAddDialogAction();
-                layer.close(index);
-            }, closeAddDialogAction);
-        }
+            });
+        };
 
         function closeAddDialogAction() {
             $('#tab-title').find('li').eq(0).addClass('active').siblings().removeClass('active');
@@ -204,7 +216,7 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'exerciseBuilder',
 
         function saveHomework(data) {
             $http.post('/api/v1/homework', data, function () {
-                location.href = '/teacher/homework';
+               location.href = '/teacher/homework';
             });
         }
 
@@ -212,13 +224,18 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'exerciseBuilder',
         $('#save-homework').on('click', function () {
             var data = gtHomeworkData();
             if (!data) return false;
-            layer.open('add-homework-to-quizzes', function (index) {
-                layer.close(index);
-                data.addQuizBase = true;
-                saveHomework(data);
-            }, function () {
-                saveHomework(data);
+            layer.open({
+                title:'提示',
+                contentId: 'add-homework-to-quizzes',
+                okCallback: function (index) {
+                    layer.close(index);
+                    data.addQuizBase = true;
+                    saveHomework(data);
+                },
+                cancelCallback: function () {
+                    saveHomework(data);
+                }
+
             });
         });
-
     });

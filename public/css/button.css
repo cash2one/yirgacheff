@@ -30,32 +30,41 @@
     padding: 4px 0
 }
 .a-btn-green {
-    border: #6bc30d 1px solid;
-    color: #6bc30d ;
+    border: #72d26e 1px solid;
+    color: #72d26e ;
 }
 .a-btn-green:hover {
-    background-color: #6bc30d;
+    background-color: #72d26e;
     color: #fff;
 }
 .a-btn-blue {
-    border: #4898d5 1px solid;
-    color: #4898d5 ;
+    border: #48b0f7 1px solid;
+    color: #48b0f7 ;
 }
 .a-btn-blue:hover {
-    background-color: #4898d5;
+    background-color: #48b0f7;
     color: #fff;
 }
 .a-btn-red {
-    border: #d14836 1px solid;
-    color: #d14836 ;
+    border: #f55753 1px solid;
+    color: #f55753 ;
 }
 .a-btn-red:hover {
-    background-color: #d14836;
+    background-color: #f55753;
+    color: #fff;
+}
+.a-btn-orange {
+    border: #f8d053 1px solid;
+    color: #f8d053 ;
+}
+.a-btn-orange:hover {
+    background-color: #f8d053;
     color: #fff;
 }
 
+
 .solid-btn-green {
-    background: #6bc30d;
+    background: #72d26e;
     color: #fff;
 }
 .solid-btn-green:hover {
@@ -63,7 +72,7 @@
     color: #fff;
 }
 .solid-btn-blue {
-    background: #4898d5;
+    background: #48b0f7;
     color: #fff;
 }
 .solid-btn-blue:hover {
@@ -71,10 +80,18 @@
     color: #fff;
 }
 .solid-btn-red {
-    background: #d14836;
+    background: #f55753;
     color: #fff ;
 }
 .solid-btn-red:hover {
+    opacity: 0.9;
+    color: #fff;
+}
+.solid-btn-orange {
+    background: #f8d053;
+    color: #fff ;
+}
+.solid-btn-orange:hover {
     opacity: 0.9;
     color: #fff;
 }
@@ -87,4 +104,7 @@
     color: #333;
     opacity: .9;
     text-decoration: none
+}
+.btn-cursor{
+    cursor: not-allowed;
 }

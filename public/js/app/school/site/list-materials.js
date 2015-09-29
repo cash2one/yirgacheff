@@ -37,6 +37,7 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'layerWrapper', 'u
         //新建分组
         $('.add-new-category').click(function () {
             layer.ajaxForm({
+                title:'新建',
                 container: 'add-group-dialog',
                 form: 'group_form',
                 validator: function (data) {
@@ -93,6 +94,7 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'layerWrapper', 'u
             var $newName = $('#renameGroup');
             $newName.val(groupName);
             layer.ajaxForm({
+                title:'修改',
                 container: 'edit-group-dialog',
                 form: 'edit_group_form',
                 validator: function (data) {
@@ -157,6 +159,7 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'layerWrapper', 'u
                 medias.push($(this).attr('id'));
             });
             layer.ajaxForm({
+                title:'移动文件',
                 container: 'move-dialog',
                 validator: function (data) {
                     if (data.medias.length === 0) {
@@ -249,6 +252,7 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'layerWrapper', 'u
             var current = $(this).closest('li.img-item');
             $('#filename').val(current.attr('title'));
             layer.ajaxForm({
+                title:'修改',
                 container: 'edit-single-file-dialog',
                 validator: function (data) {
                     if (!data.name || data.name.trim() === '') {

@@ -102,26 +102,51 @@ define(['jquery', 'qiniu', 'layerWrapper'], function ($, Qiniu, layer) {
                         progress.setStatus('等待中...');
                     });
 
-                    layer.open(uploadProgress, function (index) {
-                        var files = up.files;
-                        if (files.length === 0) {
-                            layer.close(index);
-                            return;
-                        }
-                        if (ops.onComplete) {
-                            if (!ops.multi) {
-                                files = files[0];
-                            }
-                            ops.onComplete(files, function () {
+                    layer.open({
+                        contentId:uploadProgress,
+                        title:'图片上传',
+                        okCallback: function (index) {
+                            var files = up.files;
+                            if (files.length === 0) {
                                 layer.close(index);
-                                up.splice(0); // 删除队列中所有文件
-                                uploadProgress.find('ul').empty();
-                            });
+                                return;
+                            }
+                            if (ops.onComplete) {
+                                if (!ops.multi) {
+                                    files = files[0];
+                                }
+                                ops.onComplete(files, function () {
+                                    layer.close(index);
+                                    up.splice(0); // 删除队列中所有文件
+                                    uploadProgress.find('ul').empty();
+                                });
+                            }
+                        },
+                        cancelCallback: function () {
+                            uploadProgress.find('ul').empty();
+                            up.splice(0); // 删除队列中所有文件
                         }
-                    }, function () {
-                        uploadProgress.find('ul').empty();
-                        up.splice(0); // 删除队列中所有文件
                     });
+//                    layer.open(uploadProgress, function (index) {
+//                        var files = up.files;
+//                        if (files.length === 0) {
+//                            layer.close(index);
+//                            return;
+//                        }
+//                        if (ops.onComplete) {
+//                            if (!ops.multi) {
+//                                files = files[0];
+//                            }
+//                            ops.onComplete(files, function () {
+//                                layer.close(index);
+//                                up.splice(0); // 删除队列中所有文件
+//                                uploadProgress.find('ul').empty();
+//                            });
+//                        }
+//                    }, function () {
+//                        uploadProgress.find('ul').empty();
+//                        up.splice(0); // 删除队列中所有文件
+//                    });
                 },
 
                 'UploadProgress': function (up, file) {

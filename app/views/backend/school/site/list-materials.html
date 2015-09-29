@@ -24,7 +24,7 @@
                         <i class="bubble_tips_arrow in"></i>
                     </div>
                     <div class="upload-btn">
-                        <a class="w-btn w-btn-mini w-btn-green" href="javascript:void(0);" id="local_image_upload">
+                        <a class="btn-middle solid-btn-green" href="javascript:void(0);" id="local_image_upload">
                             上传
                         </a>
 
@@ -83,105 +83,65 @@
 </div>
 
 <!-- 创建分组 -->
-<div class="jqi" id="add-group-dialog" style="display: none;">
-    <div class="jqiclose layer-close-btn">×</div>
-    <div class="jqistates">
-        <div id="jqistate_state0" class="jqistate" style="">
-            <div class="jqiarrow"></div>
-            <div class="lead jqititle ">创建分组</div>
-            <div class="jqimessage ">
-                <form id="group_form">
-                    <div class="define">
-                        <div class="location">
+<div class="invisible" id="add-group-dialog">
+                <form class="form-control" id="group_form">
+                    <div class="form-group">
                             <label for="groupName">组名：</label>
-                            <input class="input-area" type="text" name="name" id="groupName">
-                        </div>
+                            <input  type="text" name="name" id="groupName">
+                    </div>
+                    <div class="form-group btn-position">
+                        <a class="btn-middle solid-btn-blue layer-ok-btn">确定</a>
+                        <a class="btn-middle solid-btn-gray layer-close-btn">取消</a>
                     </div>
                 </form>
-            </div>
-            <div class="jqibuttons ">
-                <button class="layer-ok-btn">保存</button>
-            </div>
-            <div class="jqibuttons " style="display:none;"></div>
-        </div>
-    </div>
 </div>
 
 <!-- 修改文件组名称 -->
-<div class="jqi" id="edit-group-dialog" style="display: none;">
-    <div class="jqiclose layer-close-btn">×</div>
-    <div class="jqistates">
-        <div class="jqistate" style="">
-            <div class="jqiarrow"></div>
-            <div class="lead jqititle ">优你教育</div>
-            <div class="jqimessage ">
-                <form id="edit_group_form">
-                    <div class="define">
-                        <div class="location">
+<div class="invisible" id="edit-group-dialog">
+                <form class="form-control" id="edit_group_form">
+                    <div class="form-group">
                             <label for="renameGroup">新名称：</label>
-                            <input class="input-area" type="text" name="name" id="renameGroup">
-                        </div>
+                            <input  type="text" name="name" id="renameGroup">
+                    </div>
+                    <div class="form-group btn-position">
+                        <a class="btn-middle solid-btn-blue layer-ok-btn">确定</a>
+                        <a class="btn-middle solid-btn-gray layer-close-btn">取消</a>
                     </div>
                 </form>
-            </div>
-            <div class="jqibuttons ">
-                <button class="layer-ok-btn">保存</button>
-            </div>
-            <div class="jqibuttons " style="display:none;"></div>
-        </div>
-    </div>
 </div>
 
 <!-- 修改单个文件名称 -->
-<div class="jqi" id="edit-single-file-dialog" style="display: none;">
-    <div class="jqiclose layer-close-btn">×</div>
-    <div class="jqistates">
-        <div class="jqistate">
-            <div class="jqiarrow"></div>
-            <div class="lead jqititle ">修改文件名</div>
-            <div class="jqimessage ">
-                <form id="single_img_file_form">
-                    <div class="define">
-                        <div class="location">
+<div class="invisible" id="edit-single-file-dialog">
+                <form class="form-control" id="single_img_file_form">
+                    <div class="form-group">
                             <label for="filename">新名称：</label>
-                            <input class="input-area" type="text" name="filename" id="filename">
-                        </div>
+                            <input type="text" name="filename" id="filename">
+                    </div>
+                    <div class="form-group btn-position">
+                        <a class="btn-middle solid-btn-blue layer-ok-btn">确定</a>
+                        <a class="btn-middle solid-btn-gray layer-close-btn">取消</a>
                     </div>
                 </form>
-            </div>
-            <div class="jqibuttons ">
-                <button class="layer-ok-btn">保存</button>
-            </div>
-            <div class="jqibuttons " style="display:none;"></div>
-        </div>
-    </div>
 </div>
 
 
 <!-- 移动分组 -->
-<div class="jqi" id="move-dialog" style="display: none;">
-    <div class="jqiclose layer-close-btn">×</div>
-    <div class="jqistates">
-        <div class="jqistate" style="">
-            <div class="jqiarrow"></div>
-            <div class="lead jqititle ">移动文件至</div>
-            <div class="jqimessage ">
-                <div class="define" style="margin-left: 130px;margin-top: 15px">
-                    <div style="margin-left: 63px;">
+<div class="invisible" id="move-dialog" >
+            <form class="form-control">
+                <div class="form-group">
                         <select id="movedGroup">
                             {% for group in groups %}
                             <option value="{{group._id.toString()}}">{{group.name}}</option>
                             {% endfor %}
                         </select>
-                    </div>
+
                 </div>
-            </div>
-            <div class="jqibuttons ">
-                <button class="layer-ok-btn">保存</button>
-            </div>
-            <div class="jqibuttons " style="display:none;"></div>
-        </div>
-    </div>
+                <div class="form-group btn-position">
+                    <a class="btn-middle solid-btn-blue layer-ok-btn">确定</a>
+                    <a class="btn-middle solid-btn-gray layer-close-btn">取消</a>
+                </div>
+            </form>
+
 </div>
 
 {% include '../../templates/mediaTemplate.html' %}

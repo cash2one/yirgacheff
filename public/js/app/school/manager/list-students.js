@@ -27,7 +27,7 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'easyDropDown', 'd
                 {'data': 'grade'},
                 {
                     'data': null,
-                    'defaultContent': '<a class="w-btn-light w-btn-opt detail" >查看</a>'
+                    'defaultContent': '<a class="btn-small a-btn-blue detail" >查看</a>'
                 }
             ],
             "aoColumnDefs": [
