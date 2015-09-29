@@ -513,7 +513,6 @@ table tbody tr td {
 
 .m-synthesize .sever-info .tel {
     font-size: 16px;
-    padding-left: 27px;
     margin-bottom: 15px;
 }
 
@@ -526,7 +525,6 @@ table tbody tr td {
 .m-synthesize .sever-info .on-line {
     padding: 10px 0;
     width: 46%;
-    font-size: 12px;
 }
 
 /*m-footer*/
