@@ -937,6 +937,7 @@ a:hover .w-icon-arrow-lRight {
 }
 
 .w-base-border {
+    border: 1px solid #dfdfdf;
 }
 
 .w-base-ext {
@@ -1733,7 +1734,7 @@ select.w-int {
 }
 
 .w-border-list li.active {
-    color: #50a200;
+    color: #fff;
     position: relative;
 }
 

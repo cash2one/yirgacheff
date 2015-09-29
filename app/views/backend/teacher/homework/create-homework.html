@@ -36,6 +36,13 @@
                 <input id="homework-title" type="text" placeholder="比如：新概念英语第一单元单词巩固练习" value="{{homework.title}}"/>
 
             </div>
+        <div class="form-group" >
+            <label for="homework-title">加入题库：</label>
+            <select name="question">
+                <option value="是">是</option>
+                <option value="否">否</option>
+            </select>
+        </div>
             <div class="form-group">
                 <label for="finishAward">完成奖励：</label>
                 <input id="finishAward" type="text" placeholder="0"/>
@@ -103,7 +110,7 @@
                         class="w-icon-arrow-blue"></i></span><strong>填空题</strong></a></li>
                 <li class=""><a href="javascript:void(0)"><span class="h-arrow"><i
                         class="w-icon-arrow-blue"></i></span><strong>语音题</strong></a></li>
-                <li style="margin-left:237px; "><a href="javascript:void(0);" class="msgclose layer-close-btn">&times;</a></li>
+                <li style="margin-left:236px; "><a href="javascript:void(0);" class="msgclose layer-close-btn">&times;</a></li>
 
             </ul>
         </div>
@@ -223,7 +230,6 @@
             </div>
             <div class="form-group btn-position">
                 <a class="btn-middle solid-btn-blue layer-ok-btn" href="javascript:void(0);">确定</a>
-                <span class="w-quiz-type-distance"></span>
                 <a class="btn-middle solid-btn-gray layer-close-btn" href="javascript:void(0);">取消</a>
             </div>
         </form>

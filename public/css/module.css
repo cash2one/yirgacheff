@@ -878,7 +878,8 @@
 }
 
 .t-homeworkClass-list li.active {
-    background-color: #f5fbff;
+    background-color: #72d26e;
+    color: #fff;
     /*padding-bottom: 11px;
     border-bottom: none;*/
     z-index: 2;

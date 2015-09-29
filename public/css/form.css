@@ -43,6 +43,10 @@ div.form-control{
 .form-group textarea:focus{
     border: 1px solid #72c02c;
 }
+.form-group .radio{
+    width: 30px;
+    height: 13px;
+}
 .error {
     font-weight: bold;
     font-size: 13px;
