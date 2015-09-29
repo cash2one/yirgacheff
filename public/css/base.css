@@ -133,7 +133,7 @@ table tbody tr td {
 }
 
 .m-header .logo {
-    background: url("/images/k-logo.png") no-repeat;
+    background: url("/images/k-logo.png?v=1.1") no-repeat;
     width: 52px;
     height: 45px;
     float: left;

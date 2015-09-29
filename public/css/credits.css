@@ -673,7 +673,7 @@
 
 .smart_clazz_list li .title .count {
     float: right;
-    background-color: #50a200;
+    background-color: #72d26e;
     color: #fff;
     min-width: 70px;
     /* margin: 0 auto; */
@@ -2267,7 +2267,7 @@ div.jqi .jqimessage .w-ag-center {
 }
 
 .credits-rules-li .value .scores:focus{
-    border: 1px solid #50a200;
+    border: 1px solid #72d26e;
 }
 
 .credits-rules-li .value .update-btn, .save-btn{

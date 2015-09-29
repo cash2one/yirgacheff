@@ -8,52 +8,71 @@
     <meta name="description" content="360家校云是教育培训行业内领先的招生软件，为广大教育培训行业的客户提供先进的招生营销手段，为教育培训行业提供专业的招生营销解决方案。"/>
     <link rel="icon" href="/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-    <link href="/css/login.css" rel="stylesheet" media="screen">
+    <link href="/css/login.css?v=1" rel="stylesheet" media="screen">
 </head>
 <body>
 
 <div class="main">
-    <form name="loginForm" method="post" action="/login" id="loginForm">
-        <div class="login-frame">
-            <!--<div class="global"></div>-->
-            <div class="login-container">
-                <div class="login-box">
-                    <div class="login-box-1">
-                        <div class="login-container-outer">
-                            <div class="title"></div>
-                            <div class="mt10">
-                                <div class="input-prompt ml32 mt20 rel">
-                                    <input class="f14 input-mobilephone" id="username" name="username"
-                                           autocomplete="off"
-                                           placeholder="请输入账号" type="text" value="">
-                                    <span class="prompt-mobile prompt"></span>
-                                </div>
-                                <div class="input-prompt ml32 mt20 rel">
-                                    <input class="f14 input-password_plain" placeholder="请输入密码"
-                                           autocomplete="off"
-                                           id="password" name="password" type="password" value="">
-                                    <span class="prompt-password prompt"></span>
-                                </div>
-
-                                <div class="error-explanation" {% if !error %} style="display: none;" {% endif %}>
-                                    {{error}}
-                                </div>
-                            </div>
-
-                            <div class="mt20 ml32 mr32"></div>
-                            <div class="div-button-login ml32 cl">
-                                <input class="button-login cpointer mt30 f24" style="margin-top: 5px;" type="submit"
-                                       id="submit" value="">
-                                <input class="button-login-loading cpointer mt30 f24"
-                                       style="margin-top: 5px;display: none;"
-                                       id="submit_loading" value="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="main-bg">
+    <form class="form-control mt-100" id="loginForm">
+        <div class="form-group"><img src="/images/login/logo.png"></div>
+        <div class="form-group ml-10">
+            <input id="username" name="username" placeholder="请输入账号" type="text">
+            <span class="prompt prompt-user"></span>
         </div>
+        <div class="form-group ml-10">
+            <input id="password" name="password" placeholder="请输入密码" type="password">
+            <span class="prompt prompt-pwd"></span>
+        </div>
+        <div class="error-explanation ls-5" {% if !error %} style="display: none;" {% endif %}>
+        {{error}}
+       </div>
+        <div class="form-group ml-10 ls-10">
+            <a class="btn-superbig solid-btn-green">登陆</a>
+        </div>
+
     </form>
+    </div>
+    <!--<form name="loginForm" method="post" action="/login" id="loginForm">-->
+        <!--<div class="login-frame">-->
+            <!--&lt;!&ndash;<div class="global"></div>&ndash;&gt;-->
+            <!--<div class="login-container">-->
+                <!--<div class="login-box">-->
+                    <!--<div class="login-box-1">-->
+                        <!--<div class="login-container-outer">-->
+                            <!--<div class="title"></div>-->
+                            <!--<div class="mt10">-->
+                                <!--<div class="input-prompt ml32 mt20 rel">-->
+                                    <!--<input class="f14 input-mobilephone" id="username" name="username"-->
+                                           <!--autocomplete="off"-->
+                                           <!--placeholder="请输入账号" type="text" value="">-->
+                                    <!--<span class="prompt-mobile prompt"></span>-->
+                                <!--</div>-->
+                                <!--<div class="input-prompt ml32 mt20 rel">-->
+                                    <!--<input class="f14 input-password_plain" placeholder="请输入密码"-->
+                                           <!--autocomplete="off"-->
+                                           <!--id="password" name="password" type="password" value="">-->
+                                    <!--<span class="prompt-password prompt"></span>-->
+                                <!--</div>-->
+
+                                <!--<div class="error-explanation" {% if !error %} style="display: none;" {% endif %}>-->
+                                    <!--{{error}}-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <!--<div class="mt20 ml32 mr32"></div>-->
+                            <!--<div class="div-button-login ml32 cl mt18">-->
+                                <!--<a class="btn-superbig solid-btn-green" style="margin-top: 5px;"-->
+                                       <!--id="submit">登陆</a>-->
+
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</form>-->
+
 </div>
 <div class="footer">
     <div class="footerText">

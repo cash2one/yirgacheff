@@ -90,7 +90,7 @@
 }
 
 .w-onEvent {
-    color: #50a200 !important;
+    color: #72d26e !important;
 }
 
 .w-noData-block {
@@ -307,7 +307,7 @@
 
 .w-btn-mBlue, .w-btn-mBlue:hover, .w-btn-mBlue:active {
     background-color: #fff;
-    color: #50a200;
+    color: #72d26e;
     border: 1px solid #09f;
 }
 
@@ -321,7 +321,7 @@
 }
 
 .w-btn-gray:hover {
-    color: #50a200;
+    color: #72d26e;
 }
 
 .w-btn-small {
@@ -1071,7 +1071,7 @@ a:hover .w-icon-arrow-lRight {
 .w-base .w-base-container .info-frame .info {
     width: 200px;
     height: 40px;
-    background-color: #50a200;
+    background-color: #72d26e;
     margin-left: 5px;
     float: left;
 }
