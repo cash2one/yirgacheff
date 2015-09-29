@@ -108,3 +108,8 @@
 .btn-cursor{
     cursor: not-allowed;
 }
+
+/*list-class*/
+.pt-62{
+    padding-top: 62px;
+}

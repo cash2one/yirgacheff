@@ -47,7 +47,7 @@ a {
 }
 
 a:hover {
-    color: #50a200;
+    color: #72d26e;
 }
 
 img {
@@ -241,17 +241,18 @@ table tbody tr td {
 
 .m-header .link .pull-down .select a:hover {
     background-color: #556073;
-    color: #50a200;
+    color: #72d26e;
     font-weight: bold;
 }
 
 .m-header .link .pull-down .select .sign-out {
-    background-color: #fa7252;
+    background-color: #f55753;
     border-bottom: none;
 }
 
 .m-header .link .pull-down .select .sign-out:hover {
-    background-color: #c94728;
+    background: f55753;
+    opacity: 0.9;
     color: #fff;
 }
 
@@ -536,7 +537,7 @@ table tbody tr td {
 }
 
 .m-footer {
-    border-top: 2px solid #50a200;
+    border-top: 2px solid #72d26e;
 }
 
 .m-footer .m-inner {
@@ -609,7 +610,7 @@ table tbody tr td {
 }
 
 .m-footer .m-foot-link a:hover {
-    color: #50a200;
+    color: #72d26e;
 }
 
 .m-footer .m-foot-link .w-fl-left {

@@ -1327,7 +1327,7 @@ select.w-int {
 }
 
 .w-int:focus, .w-int-active {
-    border-color: #50a200;
+    border-color: #72d26e;
     background-color: #fff
 }
 
@@ -1406,7 +1406,7 @@ select.w-int {
 }
 
 .w-select ul li a:hover {
-    background-color: #50a200;
+    background-color: #72d26e;
     color: #fff;
 }
 
@@ -1602,7 +1602,7 @@ select.w-int {
 
 .w-breadcrumb li .divider {
     padding: 0 8px 0 2px;
-    color: #50a200;
+    color: #72d26e;
 }
 
 .w-breadcrumb li.back {
@@ -1744,7 +1744,7 @@ select.w-int {
 
 .w-border-list li.current {
     background-color: #f5fbff;
-    border-color: #50a200;
+    border-color: #72d26e;
     position: relative;
     z-index: 5;
 }
@@ -1844,7 +1844,7 @@ select.w-int {
 }
 
 .w-turn-page-list .this {
-    color: #50a200;
+    color: #72d26e;
 }
 
 .w-turn-page-list .next span, .w-turn-page-list .back span {
@@ -1910,7 +1910,7 @@ select.w-int {
 
 .w-build-image .wb-title {
     padding: 12px 0 0;
-    color: #50a200;
+    color: #72d26e;
 }
 
 .w-build-image .wb-name {
@@ -1983,7 +1983,7 @@ select.w-int {
 }
 
 .message_page_list a.this {
-    background-color: #50a200;
+    background-color: #72d26e;
     color: #fff;
     font-weight: bold;
 }
@@ -2504,7 +2504,7 @@ select.w-int {
 }
 
 .w-homework-total-count {
-    color: #50a200;
+    color: #72d26e;
     font-size: 21px;
 }
 
