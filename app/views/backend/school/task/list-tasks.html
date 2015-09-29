@@ -12,8 +12,8 @@
         </h3>
 
         <div class="w-base-right w-base-right-ext" style="padding: 0px 0px 0 0;margin-right: 23px;">
-            <a class="w-btn w-btn-mini w-btn-green" href="/school/tasks/create"
-               id="add-passage-btn" style="margin-right: 12px;">创建新任务</a>
+            <a class="btn-middle solid-btn-green" href="/school/tasks/create"
+               id="add-passage-btn" style="margin-right:22px; ">创建新任务</a>
         </div>
     </div>
     <div class="w-base-container">
@@ -67,23 +67,23 @@
                             <div class="management">
                                 {% if task.state === 0 %}
                                 <div class="">
-                                    <a class="w-btn w-btn-mini w-btn-green"
+                                    <a class="btn-middle a-btn-blue"
                                        href="/school/tasks/{{task._id.toString()}}">管理任务</a>
                                 </div>
                                 {% else %}
                                 <div class="">
-                                    <a class="w-btn w-btn-mini w-btn-green"
+                                    <a class="btn-middle a-btn-blue"
                                        href="/school/tasks/{{task._id.toString()}}">查看任务</a>
                                 </div>
                                 {% endif %}
 
                                 {% if task.state === 0 %}
                                 <div style="margin-top: 15px">
-                                    <a class="w-btn-light w-btn-opt list-tasks-close-btn close-task">关闭任务</a>
+                                    <a class="btn-middle a-btn-red close-task">关闭任务</a>
                                 </div>
                                 {% else %}
                                 <div style="margin-top: 15px">
-                                    <a class="w-btn-light w-btn-opt list-tasks-close-btn closed-task-btn">已关闭</a>
+                                    <a class="btn-middle a-btn-gray closed-task-btn">已关闭</a>
                                 </div>
                                 {% endif %}
                             </div>

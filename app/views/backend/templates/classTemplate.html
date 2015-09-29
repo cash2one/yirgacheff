@@ -6,7 +6,7 @@
         <div class="w-base-title">
             <h3 style="font-size: 14px;padding-top: 16px" class="className"><%= clazz.className %></h3>
 
-            <div class="w-base-switch w-base-more">
+            <div class="w-base-switchup w-base-more">
                 <a href="javascript:void(0);" class="modify-class">
                     <span class="w-icon-md">修改班级资料</span>
                     <span class="w-icon-arrow w-icon-arrow-lRight"></span>
@@ -22,7 +22,7 @@
                         <p class="w-blue">班级学生：<%= clazz.studentsCount || 0 %>人</p>
                     </div>
                     <div class="ic_btn">
-                        <a class="w-btn w-btn-green w-btn-small"
+                        <a class="btn-big solid-btn-green"
                            href="/teacher/students?clazz=<%=clazz._id.toString() %>">学生详情</a>
                     </div>
                     </dt>

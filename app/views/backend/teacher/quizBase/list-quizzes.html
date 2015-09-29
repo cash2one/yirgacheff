@@ -9,7 +9,7 @@
         <h3><i class="fa fa-table mr-5"></i>题库列表</h3>
 
         <div class="w-base-right">
-            <a class="v-add-student w-btn w-btn-green w-btn-mini" href="/teacher/quizzes/create">出题</a>
+            <a class="v-add-student btn-middle solid-btn-green" href="/teacher/quizzes/create">出题</a>
         </div>
     </div>
     <div class="w-base-container">
@@ -38,9 +38,9 @@
                         {{quiz.usage}}
                     </td>
                     <td>
-                        <a class="w-btn-light w-btn-mini w-btn-opt w-btn-opt-large"
+                        <a class="btn-small a-btn-blue"
                            href="/teacher/quizzes/{{quiz._id.toString()}}">详情</a>
-                        <a class="w-btn w-btn-green w-btn-mini w-btn-opt w-btn-opt-large enable-library"
+                        <a class="btn-small a-btn-green enable-library"
                            href="/teacher/homework/create?quizId={{quiz._id.toString()}}">使用</a>
                     </td>
                 </tr>

@@ -24,7 +24,7 @@
     </div>
     <div class="w-base-container" style="margin-top: 15px;">
         <div class="w-homework-total-info" style="margin-left: 85px">
-            <a id="add-quiz" class="w-btn w-btn-green w-btn-mini" href="javascript:void(0);"
+            <a id="add-quiz" class="btn-middle solid-btn-green" href="javascript:void(0);"
                style="margin-top: 1px">+&nbsp;新建题目</a>
             <span class="w-homework-total-title">总计<span id="total-number"
                                                          class="w-homework-total-count">0</span>个题目</span>
@@ -74,119 +74,91 @@
         <div>
 
             <!-- 文字选择题-->
-            <div class="w-quiz-type-container">
+            <div class="w-quiz-type-container form-control">
                 <input type="hidden" name="eType" value="0">
-
-                <div class="w-quiz-type-info">
-                    <div class="w-quiz-type-title">
-                        <span>计划出多少道题：</span>
-                    </div>
-                    <div class="w-quiz-type-counts">
-                        <select class="dropdown w-quiz-type-select" name="quiz-count">
-                            <option value="0">请选择</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label>题目个数：</label>
+                    <select name="quiz-count">
+                        <option value="0">请选择</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
                 </div>
-                <div class="w-quiz-type-info">
-                    <div class="w-quiz-type-title">
-                        <span>每道题几个选项：</span>
-                    </div>
-                    <div class="w-quiz-type-counts">
-                        <select class="dropdown w-quiz-type-select" name="quiz-options">
-                            <option value="0">请选择</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label>选项个数：</label>
+                    <select name="quiz-options">
+                        <option value="0">请选择</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
                 </div>
             </div>
 
             <!--  图片选择题 -->
-            <div class="w-quiz-type-container" style="display: none">
+            <div class="w-quiz-type-container form-control" style="display: none">
                 <input type="hidden" name="eType" value="1">
-
-                <div class="w-quiz-type-info">
-                    <div class="w-quiz-type-title">
-                        <span>计划出多少道题：</span>
-                    </div>
-                    <div class="w-quiz-type-counts">
-                        <select class="dropdown w-quiz-type-select" name="quiz-count">
-                            <option value="0">请选择</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label>题目个数：</label>
+                    <select name="quiz-count">
+                        <option value="0">请选择</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
                 </div>
-                <div class="w-quiz-type-info">
-                    <div class="w-quiz-type-title">
-                        <span>每道题几个选项：</span>
-                    </div>
-                    <div class="w-quiz-type-counts">
-                        <select class="dropdown w-quiz-type-select" name="quiz-options">
-                            <option value="0">请选择</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label>选项个数：</label>
+                    <select name="quiz-options">
+                        <option value="0">请选择</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
                 </div>
             </div>
 
             <!-- 填空题 -->
-            <div class="w-quiz-type-container" style="display: none">
+            <div class="w-quiz-type-container form-control" style="display: none">
                 <input type="hidden" name="eType" value="2">
 
-                <div class="w-quiz-type-info">
-                    <div class="w-quiz-type-title">
-                        <span>计划出多少道题：</span>
-                    </div>
-                    <div class="w-quiz-type-counts">
-                        <select class="dropdown w-quiz-type-select" name="quiz-count">
-                            <option value="0">请选择</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label>题目个数：</label>
+                    <select name="quiz-count">
+                        <option value="0">请选择</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
                 </div>
             </div>
 
             <!-- 语音题 -->
-            <div class="w-quiz-type-container" style="display: none">
+            <div class="w-quiz-type-container form-control" style="display: none">
                 <input type="hidden" name="eType" value="3">
 
-                <div class="w-quiz-type-info">
-                    <div class="w-quiz-type-title">
-                        <span>计划出多少道题：</span>
-                    </div>
-                    <div class="w-quiz-type-counts">
-                        <select class="dropdown w-quiz-type-select" name="quiz-count">
-                            <option value="0">请选择</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label>题目个数：</label>
+                    <select name="quiz-count">
+                        <option value="0">请选择</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
                 </div>
             </div>
         </div>
-
-
-        <div style="margin: 38px auto; text-align: center">
-            <a class="w-btn w-btn-mini w-btn-iron-red layer-close-btn" href="javascript:void(0);">取消</a>
+        <div style="width: 346px; margin: 0 auto; text-align: right">
+            <a class="btn-middle solid-btn-blue layer-ok-btn" href="javascript:void(0);">确定</a>
             <span class="w-quiz-type-distance"></span>
-            <a class="w-btn w-btn-green w-btn-mini layer-ok-btn" href="javascript:void(0);">确定</a>
+            <a class="btn-middle solid-btn-gray layer-close-btn" href="javascript:void(0);">取消</a>
         </div>
-        <div style="height: 10px;background: #fff"></div>
+        <div style="height: 20px;background: #fff; border: none"></div>
         <!--end//-->
     </div>
 </div>

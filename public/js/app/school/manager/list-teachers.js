@@ -24,8 +24,8 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'validator', 'laye
                 {'data': 'department'},
                 {
                     'data': null,
-                    'defaultContent': '<a class="w-btn-light w-btn-opt edit" >修改</a>&nbsp;&nbsp;' +
-                    '<a class="w-btn w-btn-iron-red w-btn-opt delete">禁用</a>&nbsp;&nbsp;'
+                    'defaultContent': '<a class="btn-small a-btn-blue edit" >修改</a>&nbsp;&nbsp;' +
+                    '<a class="btn-small a-btn-red delete">禁用</a>&nbsp;&nbsp;'
                 }
             ]
         });

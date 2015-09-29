@@ -1,37 +1,46 @@
 .invisible{
     display: none;
 }
+.w-base-container .form-control{
+    padding: 20px 0px 20px 0px;
+}
+div.form-control{
+    padding: 20px 130px 20px 15px;
+}
 .form-control{
     padding:0px 80px 20px 60px;
+}
+.form-control-home{
+    margin: 0 auto;
 }
 .form-control .form-group {
     padding: 12px 0px;
 }
-.form-control input {
+.form-group input {
     width: 215px;
     border: 1px solid #dfdfdf;
     padding: 6px 12px;
     line-height: 16px;
 }
 
-.form-control input:focus {
+.form-group input:focus {
     border: 1px solid #7abd54;
 }
 
-.form-control select {
+.form-group select {
     width: 240px;
     border: 1px solid #dfdfdf;
     padding: 6px 12px;
     margin: 0 auto;
 }
-.form-control label{
+.form-group label{
     margin-right: 35px;
 }
-.form-control textarea{
+.form-group textarea{
     width: 400px;
     border: 1px solid #dfdfdf;
 }
-.form-control textarea:focus{
+.form-group textarea:focus{
     border: 1px solid #72c02c;
 }
 .error {
@@ -43,4 +52,13 @@
 }
 .btn-position{
     text-align: right;
+}
+.btn-location{
+    margin-left: 104px;
+}
+.lable-location{
+    float: left;
+}
+.textarea-location{
+    margin-left: 5px;
 }

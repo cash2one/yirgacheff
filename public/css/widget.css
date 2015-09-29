@@ -70,7 +70,7 @@
 }
 
 .w-green {
-    color: #6bc30d;
+    color: #54c865;
 }
 
 .w-blue {
@@ -86,7 +86,7 @@
 }
 
 .w-orange {
-    color: #fdad00;
+    color: #f8d053;
 }
 
 .w-onEvent {
@@ -937,7 +937,6 @@ a:hover .w-icon-arrow-lRight {
 }
 
 .w-base-border {
-    border: 1px solid #dfdfdf;
 }
 
 .w-base-ext {
@@ -982,9 +981,13 @@ a:hover .w-icon-arrow-lRight {
 .w-base-switch{
     margin-top: 0;
     margin-right: 0;
+    float: left;
+}
+.w-base-switchup{
+    margin-top: 0;
+    margin-right: 0;
     float: right;
 }
-
 .w-base .w-base-title .w-base-right a.w-btn {
     float: left;
     margin-left: 15px;
@@ -1008,7 +1011,7 @@ a:hover .w-icon-arrow-lRight {
 
 .w-base .w-base-title .w-base-more a:hover {
     background-color: #f5fbff;
-    color: #50a200
+    color: #72d26e
 }
 
 .w-base .w-base-title .w-base-ext {
@@ -1184,7 +1187,6 @@ a:hover .w-icon-arrow-lRight {
 }
 
 .w-base .w-base-switch li .h-arrow {
-    background-color: #50a200;
     width: 100%;
     font: 1px/3px arial;
     position: absolute;
@@ -1203,17 +1205,17 @@ a:hover .w-icon-arrow-lRight {
 }
 
 .w-base .w-base-switch li a:hover {
-    background-color: #f8f8f8;
+    background-color: #fff;
 }
 
 .w-base .w-base-switch li.active a {
-    background-color: #f8f8f8;
+    background-color: #fff;
     border: solid #dfdfdf;
     border-width: 0 1px;
 }
 
 .w-base .w-base-switch li.active a {
-    color: #50a200;
+    color: #72d26e;
 }
 
 .w-base .w-base-switch li a:hover .h-arrow .w-icon-arrow {
@@ -2453,6 +2455,7 @@ select.w-int {
 .w-datepicker {
     position: relative;
     width: 160px;
+    height: 25px;
     border: 1px solid #dfdfdf;
     cursor: pointer;
     background: #fff;
@@ -2488,8 +2491,8 @@ select.w-int {
 }
 
 .w-quiz-type-container {
+    width: 600px;
     text-align: center;
-    margin-left: 27%;
 }
 
 .w-homework-total-title {
@@ -2570,7 +2573,7 @@ select.w-int {
 
 .select-quiz-dialog .quiz-item-title .sequence {
     float: left;
-    background-color: #47da26;
+    background-color: #72d26e;
     width: 24px;
     height: 24px;
     margin-top: 5px;
@@ -3191,7 +3194,7 @@ div.w-homework-store .ext {
 }
 
 div.w-homework-store .jqibuttons {
-    background-color: #50c200;
+    background-color: #72d26e;
     color: #fff;
     display: inline-block;
     padding: 8px 35px;
@@ -3206,7 +3209,7 @@ div.w-homework-store .jqibuttons {
 }
 
 div.w-homework-store .jqibuttons:hover {
-    background-color: #50c400;
+    opacity: 0.9;
     color: #fff;
 }
 
@@ -3484,7 +3487,7 @@ ul.pupil-messages .message-content {
     bottom: 272px;
     width: 116px;
     height: 29px;
-    background-color: #50c400;
+    background-color: #72d26e;
     color: #fff;
     border-radius: 3px;
     text-align: center;
@@ -3493,7 +3496,7 @@ ul.pupil-messages .message-content {
 }
 
 .continue-add-homework:hover {
-    background-color: #50c200;
+    opacity: 0.9;
 }
 
 .continue-add-homework .title{
@@ -4009,7 +4012,7 @@ ul.pupil-messages .message-content {
 }
 
 .opts-area .selected{
-    background-color: #6bc30d;
+    background-color: #72d26e;
     color: #fff;
     border-radius:2px
 }

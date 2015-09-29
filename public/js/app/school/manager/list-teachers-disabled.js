@@ -25,7 +25,7 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'layerWrapper', 'd
                 {'data': 'department'},
                 {
                     'data': null,
-                    'defaultContent': '<a class="w-btn w-btn-green w-btn-opt enable">启用</a>'
+                    'defaultContent': '<a class="btn-small a-btn-blue enable">启用</a>'
                 }
             ]
         });

@@ -19,9 +19,9 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'validator', 'laye
                 {'data': 'postCount'},
                 {
                     'data': null,
-                    'defaultContent': '<a class="w-btn-light w-btn-opt edit">修改</a>&nbsp;&nbsp;' +
-                    '<a class="w-btn-light w-btn-opt detail">查看</a>&nbsp;&nbsp;' +
-                    '<a class="w-btn w-btn-iron-red w-btn-opt delete">删除</a>&nbsp;&nbsp;'
+                    'defaultContent': '<a class="btn-small a-btn-blue edit">修改</a>&nbsp;&nbsp;' +
+                    '<a class="btn-small a-btn-blue detail">查看</a>&nbsp;&nbsp;' +
+                    '<a class="btn-small a-btn-red delete">删除</a>&nbsp;&nbsp;'
                 }
             ],
             "aoColumnDefs": [
@@ -45,6 +45,7 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'validator', 'laye
             $("#category_form")[0].reset();
             $('#passage-oper').hide();
             layer.ajaxForm({
+                title:'栏目信息',
                 container: 'add-category-dialog',
                 form: 'category_form',
                 validator: formValidator,
@@ -66,6 +67,7 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'validator', 'laye
             $("#category_form").renderForm(category);
             $('#passage-oper').show();
             layer.ajaxForm({
+                title:'栏目信息',
                 container: 'add-category-dialog',
                 form: 'category_form',
                 validator: formValidator,

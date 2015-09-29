@@ -1,26 +1,36 @@
 "use strict";
 
 define(['jquery', 'restfulClient', 'layer', 'underscore', 'jqueryExt'], function ($, $http, layer, _) {
-        function open(contentId, okCallback, cancelCallback) {
-            var $content;
-            if (typeof contentId === 'object') {
-                $content = contentId;
-            } else {
-                $content = $('#' + contentId);
+
+
+        function open(options) {
+            options = options || {};
+            var $content = options.contentId;
+            if(!$content){
+                throw 'options must have a content';
             }
-            var height = $content.height() + 'px',
-                width = $content.width() + 'px',
-                configs = {
-                    type: 1,
-                    area: [width, height],
-                    title: false,
-                    shift: 5,
-                    closeBtn: false,
-                    zIndex: 5000,
-                    content: $content
-                };
+            if (typeof $content === 'string') {
+                $content =  $('#' + $content);
+            }
+            var width = $content.width() + 'px';
+            var configs = {
+                type: 1,
+                area: width,
+                title: options.title||'',
+                shift: 5,
+                zIndex:5000,
+                content: $content
+            };
+            if(options.closeBtn === false){
+                configs.closeBtn = false;
+            }
 
             var index = layer.open(configs);
+            var cancelCallback = options.cancelCallback;
+            var okCallback = options.okCallback;
+            if(!okCallback || typeof okCallback !== 'function'){
+                throw 'okCallback can not be null or not be a function';
+            }
             $content.off('click.layer-close').on('click.layer-close', '.layer-close-btn', function () {
                 if (cancelCallback && typeof cancelCallback === 'function') {
                     cancelCallback();
@@ -30,9 +40,8 @@ define(['jquery', 'restfulClient', 'layer', 'underscore', 'jqueryExt'], function
             $content.off('click.layer-ok').on('click.layer-ok', '.layer-ok-btn', function () {
                 okCallback(index);
             });
-            return index;
-        }
 
+        }
 
         function ajaxForm(options) {
             var ops = options || {};
@@ -83,7 +92,6 @@ define(['jquery', 'restfulClient', 'layer', 'underscore', 'jqueryExt'], function
                     return $form.serializeObject();
                 }
             }
-            var height = $container.height() + 'px';
             var width = $container.width() + 'px';
             var configs = {
                 type: 1,

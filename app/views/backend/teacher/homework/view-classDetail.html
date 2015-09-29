@@ -101,7 +101,7 @@
                         </td>
                         <td>
                             {% if performance.state !== 0 %}
-                            <a class="w-btn-light w-btn-mini w-btn-opt w-btn-large"
+                            <a class="btn-small a-btn-blue w-btn-opt"
                                href="/teacher/homework/{{homework._id.toString()}}/students/{{performance.student._id.toString()}}">详情</a>
                             {% endif %}
                         </td>
@@ -113,9 +113,9 @@
         </div>
         <div class="w-base" style="height: 70px;padding-top: 15px">
             <div style="margin: 0 auto;width: 365px;">
-                <a class="w-btn w-btn-green complete-check-btn" style="float:left;width:135px;font-size: 15px"
+                <a class="btn-big solid-btn-green complete-check-btn" style="float:left;width:135px;font-size: 15px"
                    href="/teacher/homework">返回列表</a>
-                <a class="w-btn w-btn-iron-red complete-check-btn"
+                <a class="btn-big solid-btn-red complete-check-btn"
                    style="float:left;width:135px;margin-left: 50px;font-size: 15px"
                    href="javascript:void(0);" id="close-homework-btn">关闭作业</a>
             </div>
