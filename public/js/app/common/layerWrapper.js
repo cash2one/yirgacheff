@@ -1,15 +1,15 @@
 "use strict";
 
 define(['jquery', 'restfulClient', 'layer', 'underscore', 'jqueryExt'], function ($, $http, layer, _) {
-        function open(contentId, okCallback, cancelCallback) {
-            var $content;
-            if (typeof contentId === 'object') {
-                $content = contentId;
-            } else {
-                $content = $('#' + contentId);
+        function open(options) {
+            var $content = options.contentId;
+            var okCallback = options.okCallback;
+            var cancelCallback = options.cancelCallback;
+            if (typeof $content === 'string') {
+                $content = $('#' + $content);
             }
             var height = $content.height() + 'px',
-                width = $content.width() + 'px',
+                width = $content.width() + 1 + 'px',
                 configs = {
                     type: 1,
                     area: [width, height],
@@ -84,13 +84,13 @@ define(['jquery', 'restfulClient', 'layer', 'underscore', 'jqueryExt'], function
                 }
             }
             var height = $container.height() + 'px';
-            var width = $container.width() + 'px';
+            var width = $container.width() + 1 + 'px';
             var configs = {
                 type: 1,
                 area: width,
                 title: title,
                 shift: 5,
-                zIndex:5000,
+                zIndex: 5000,
                 content: $container
             };
             var index = layer.open(configs);
