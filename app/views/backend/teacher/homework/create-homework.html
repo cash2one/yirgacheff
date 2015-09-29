@@ -31,41 +31,42 @@
         <h3><i class="fa fa-info-circle mr-5"></i>作业信息</h3>
     </div>
     <div class="form-control">
-            <div class="form-group">
-                <label for="homework-title">作业标题：</label>
-                <input id="homework-title" type="text" placeholder="比如：新概念英语第一单元单词巩固练习" value="{{homework.title}}"/>
+        <div class="form-group">
+            <label for="homework-title">作业标题：</label>
+            <input id="homework-title" type="text" placeholder="比如：新概念英语第一单元单词巩固练习" value="{{homework.title}}"/>
 
-            </div>
-        <div class="form-group" >
-            <label for="homework-title">加入题库：</label>
-            <select name="question">
-                <option value="是">是</option>
-                <option value="否">否</option>
+        </div>
+        <div class="form-group">
+            <label for="addQuizBase">加入题库：</label>
+            <select name="addQuizBase" id="addQuizBase">
+                <option value="1">是</option>
+                <option value="0">否</option>
             </select>
         </div>
-            <div class="form-group">
-                <label for="finishAward">完成奖励：</label>
-                <input id="finishAward" type="text" placeholder="0"/>
+        <div class="form-group">
+            <label for="finishAward">完成奖励：</label>
+            <input id="finishAward" type="text" placeholder="0"/>
 
-            </div>
-            <div class="form-group">
-                <label for="performanceAward">满分奖励：</label>
-                <input id="performanceAward" type="text" placeholder="0"/>
+        </div>
+        <div class="form-group">
+            <label for="performanceAward">满分奖励：</label>
+            <input id="performanceAward" type="text" placeholder="0"/>
 
-            </div>
-            <div class="form-group">
-                <label for="keyPoint" class="lable-location">知识重点：</label>
-                <textarea class="textarea-location" rows="3" id="keyPoint" name="keyPoint"></textarea>
-                <input type="hidden" value="" id="keyPointRecord" name="keyPointRecord"/>
-            </div>
-            <div class="form-group btn-location">
+        </div>
+        <div class="form-group">
+            <label for="keyPoint" class="lable-location">知识重点：</label>
+            <textarea class="textarea-location" rows="3" id="keyPoint" name="keyPoint"></textarea>
+            <input type="hidden" value="" id="keyPointRecord" name="keyPointRecord"/>
+        </div>
+        <div class="form-group btn-location">
             <a class="btn-middle a-btn-green" href="javascript:void(0);" id="localAudioUploadButton">
                 <i class="fa fa-cloud-upload"></i>上传录音</a>
-            <span class="upload-local-audio-button"><a href="/teacher/guider" target="_blank">如何上传录音</a><i class="fa fa-question-circle"></i></span>
-            </div>
+            <span class="upload-local-audio-button"><a href="/teacher/guider" target="_blank">如何上传录音</a><i
+                    class="fa fa-question-circle"></i></span>
+        </div>
 
 
-            <div style="margin-left: -96px" id="keypoint-recording-display"></div>
+        <div style="margin-left: -96px" id="keypoint-recording-display"></div>
     </div>
 </div>
 <div id="Anchor3" class="w-base w-base-extraction  w-base-border">
@@ -110,7 +111,7 @@
                         class="w-icon-arrow-blue"></i></span><strong>填空题</strong></a></li>
                 <li class=""><a href="javascript:void(0)"><span class="h-arrow"><i
                         class="w-icon-arrow-blue"></i></span><strong>语音题</strong></a></li>
-                <li style="margin-left:236px; "><a href="javascript:void(0);" class="msgclose layer-close-btn">&times;</a></li>
+                <li style="margin-left:235px; "><a href="javascript:void(0);" class="msgclose layer-close-btn">&times;</a></li>
 
             </ul>
         </div>
@@ -124,48 +125,50 @@
             <!-- 文字选择题-->
             <div class="w-quiz-type-container form-control">
                 <input type="hidden" name="eType" value="0">
+
                 <div class="form-group">
-                        <label>题目个数：</label>
-                        <select name="quiz-count">
-                            <option value="0">请选择</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
+                    <label>题目个数：</label>
+                    <select name="quiz-count">
+                        <option value="0">请选择</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                        <label>选项个数：</label>
-                        <select name="quiz-options">
-                            <option value="0">请选择</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
+                    <label>选项个数：</label>
+                    <select name="quiz-options">
+                        <option value="0">请选择</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
                 </div>
             </div>
 
             <!--  图片选择题 -->
             <div class="w-quiz-type-container form-control" style="display: none">
                 <input type="hidden" name="eType" value="1">
+
                 <div class="form-group">
-                        <label>题目个数：</label>
-                        <select name="quiz-count">
-                            <option value="0">请选择</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
+                    <label>题目个数：</label>
+                    <select name="quiz-count">
+                        <option value="0">请选择</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                        <label>选项个数：</label>
-                        <select name="quiz-options">
-                            <option value="0">请选择</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
+                    <label>选项个数：</label>
+                    <select name="quiz-options">
+                        <option value="0">请选择</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
                 </div>
             </div>
 
@@ -174,14 +177,14 @@
                 <input type="hidden" name="eType" value="2">
 
                 <div class="form-group">
-                        <label>题目个数：</label>
-                        <select name="quiz-count">
-                            <option value="0">请选择</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
+                    <label>题目个数：</label>
+                    <select name="quiz-count">
+                        <option value="0">请选择</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
                 </div>
             </div>
 
@@ -190,14 +193,14 @@
                 <input type="hidden" name="eType" value="3">
 
                 <div class="form-group">
-                        <label>题目个数：</label>
-                        <select name="quiz-count">
-                            <option value="0">请选择</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
+                    <label>题目个数：</label>
+                    <select name="quiz-count">
+                        <option value="0">请选择</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -212,27 +215,27 @@
 </div>
 
 <div class="invisible" id="forward-to-classes">
-        <form class="form-control">
-            <div class="form-group location">
-                <span>现在还没有班级，不能布置作业！</span>
-            </div>
+    <form class="form-control">
+        <div class="form-group location">
+            <span>现在还没有班级，不能布置作业！</span>
+        </div>
 
-            <div class="form-group btn-position">
-                <a class="btn-middle solid-btn-blue layer-ok-btn">去新建班级</a>
-            </div>
-        </form>
+        <div class="form-group btn-position">
+            <a class="btn-middle solid-btn-blue layer-ok-btn">去新建班级</a>
+        </div>
+    </form>
 </div>
 
 <div class="invisible" id="add-homework-to-quizzes">
-        <form class="form-control">
-            <div class="form-group">
-                <span style="font-size: 16px">是否将本次作业添加到题库，以便后续使用？</span>
-            </div>
-            <div class="form-group btn-position">
-                <a class="btn-middle solid-btn-blue layer-ok-btn" href="javascript:void(0);">确定</a>
-                <a class="btn-middle solid-btn-gray layer-close-btn" href="javascript:void(0);">取消</a>
-            </div>
-        </form>
+    <form class="form-control">
+        <div class="form-group">
+            <span style="font-size: 16px">是否将本次作业添加到题库，以便后续使用？</span>
+        </div>
+        <div class="form-group btn-position">
+            <a class="btn-middle solid-btn-blue layer-ok-btn" href="javascript:void(0);">确定</a>
+            <a class="btn-middle solid-btn-gray layer-close-btn" href="javascript:void(0);">取消</a>
+        </div>
+    </form>
 
 </div>
 

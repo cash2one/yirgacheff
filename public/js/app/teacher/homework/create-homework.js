@@ -17,12 +17,12 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'exerciseBuilder',
         var classes = $('#level_and_clazzs').find('ul li');
         if (classes.length == 0) {
             layer.open({
-               title:'提示',
-               contentId:'forward-to-classes',
-               okCallback:function(index){
-                   layer.close(index);
-                   self.location.href = '/teacher/classes';
-               }
+                title: '提示',
+                contentId: 'forward-to-classes',
+                okCallback: function (index) {
+                    layer.close(index);
+                    self.location.href = '/teacher/classes';
+                }
             });
 
         }
@@ -147,6 +147,7 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'exerciseBuilder',
             var keyPointRecord = $('#keyPointRecord').val();
             var finishAward = $('#finishAward').val();
             var performanceAward = $('#performanceAward').val();
+            var addQuizBase = $('#addQuizBase').val();
             var classIds = [];
             classes.each(function () {
                 classIds.push($(this).attr('id'));
@@ -158,6 +159,9 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'exerciseBuilder',
                 finishAward: finishAward,
                 performanceAward: performanceAward
             };
+            if (addQuizBase === '1') {
+                assignInfo.addQuizBase = true;
+            }
             if (keyPointRecord && keyPointRecord !== "") {
                 assignInfo.keyPointRecord = keyPointRecord;
             }
@@ -214,28 +218,12 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'exerciseBuilder',
             }, 100);
         }
 
-        function saveHomework(data) {
-            $http.post('/api/v1/homework', data, function () {
-               location.href = '/teacher/homework';
-            });
-        }
-
         //保存作业
         $('#save-homework').on('click', function () {
             var data = gtHomeworkData();
             if (!data) return false;
-            layer.open({
-                title:'提示',
-                contentId: 'add-homework-to-quizzes',
-                okCallback: function (index) {
-                    layer.close(index);
-                    data.addQuizBase = true;
-                    saveHomework(data);
-                },
-                cancelCallback: function () {
-                    saveHomework(data);
-                }
-
+            $http.post('/api/v1/homework', data, function () {
+                location.href = '/teacher/homework';
             });
         });
     });
