@@ -103,20 +103,23 @@ define(['jquery', 'restfulClient', 'layerWrapper', 'upload'],
             var multi = ops.multi || false;
             var onSelected = ops.onSelected;
             $('.frm_checkbox_label').removeClass('selected');
-            layer.open('imageLibrary', function () {
-                var keys = [];
-                $('#img_list').find('.selected').each(function (index, elem) {
-                    keys.push($(elem).attr('id'));
-                });
-                if (!multi && keys.length > 1) {
-                    layer.msg('只能选择一张图片');
-                    keys = [];
-                    return;
+            layer.open({
+                contentId: 'imageLibrary',
+                okCallback: function () {
+                    var keys = [];
+                    $('#img_list').find('.selected').each(function (index, elem) {
+                        keys.push($(elem).attr('id'));
+                    });
+                    if (!multi && keys.length > 1) {
+                        layer.msg('只能选择一张图片');
+                        keys = [];
+                        return;
+                    }
+                    if (onSelected && typeof onSelected === 'function') {
+                        onSelected(keys);
+                    }
+                    layer.closeAll();
                 }
-                if (onSelected && typeof onSelected === 'function') {
-                    onSelected(keys);
-                }
-                layer.closeAll();
             });
         }
 
