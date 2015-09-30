@@ -4662,20 +4662,19 @@ ul.pupil-messages .message-content {
 }
 
 .wx-tasks .type-list ul li{
-    width: 271px;
+    width: 269px;
     height: 220px;
     float: left;
-    border: 1px solid #dfdfdf;
+    border: 2px solid #dfdfdf;
     margin-right: 19px;
     margin-top: 30px;
-    cursor: pointer;
 }
 
 .wx-tasks .type-list ul li:hover{
-    background-color:#d9d9d9;
+    border: 2px #72d26e solid;
     cursor: pointer;
+    color: #999;
 }
-
 .wx-tasks .type-list .task-icon{
     height:120px;
     text-align: center;
@@ -4686,17 +4685,21 @@ ul.pupil-messages .message-content {
 }
 
 .wx-tasks .type-list .task-icon .task-title{
+    color: #999;
     text-align: center;
     font-size: 18px;
-    padding-top: 18px;
+    margin-top: 28px;
 }
 .wx-tasks .type-list .task-icon .task-content{
     ext-align: center;
-    padding-top: 16px;
+    margin-top: 26px;
     font-size: 14px;
     color: #999;
 }
 
+.no-task:hover{
+    cursor: not-allowed;
+}
 .icon_radio {
     background: url("/images/base_icon.png") 0 -182px no-repeat;
     width: 16px;
