@@ -19,18 +19,22 @@ requirejs(['jquery', 'vdatePicker', 'leftMenu', 'headMenu', 'layerWrapper', 'ric
                 layer.msg('最多只能设置 5 项报名信息');
                 return false;
             }
-            layer.open('add-title-info-dialog', function (index) {
-                var infoName = $('#titleInfoName').val();
-                if (!infoName || infoName.trim() === '') {
-                    layer.msg('信息名称不能为空');
-                    return;
+            layer.open({
+                title:'',
+                contentId:'add-title-info-dialog',
+                okCallback: function (index) {
+                    var infoName = $('#titleInfoName').val();
+                    if (!infoName || infoName.trim() === '') {
+                        layer.msg('信息名称不能为空');
+                        return;
+                    }
+                    var li_content = '<li class="item">' + infoName +
+                        '<input type="hidden" name="infoCollect" value="' + infoName + '">' +
+                        '<img src="/images/delete-icon.png" class="infoCollect-close-btn deleteInfo" ' +
+                        'width="11px" height="11px"></li>';
+                    $('#add-title-info').before(li_content);
+                    layer.close(index);
                 }
-                var li_content = '<li class="item">' + infoName +
-                    '<input type="hidden" name="infoCollect" value="' + infoName + '">' +
-                    '<img src="http://static.hizuoye.com/images/delete-icon.png" class="infoCollect-close-btn deleteInfo" ' +
-                    'width="11px" height="11px"></li>';
-                $('#add-title-info').before(li_content);
-                layer.close(index);
             });
         });
         $('#infoList').on('click', '.deleteInfo', function () {
