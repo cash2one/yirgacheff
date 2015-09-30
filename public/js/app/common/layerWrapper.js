@@ -13,7 +13,7 @@ define(['jquery', 'restfulClient', 'layer', 'underscore', 'jqueryExt'], function
                 configs = {
                     type: 1,
                     area: [width, height],
-                    title: false,
+                    title: options.title || false,
                     shift: 5,
                     closeBtn: false,
                     zIndex: 5000,
