@@ -644,24 +644,25 @@
 
     color:#50B432
 }
-
+.smart_clazz_list li .title{
+    margin-top: 20px;
+}
 .smart_clazz_list li .title, .quantity {
     background-color: #fff;
     font-family: '微软雅黑', Arail, Helvetica, sans-serif;
     height: 25px;
-    width: 199px;
+    width: 192px;
 }
 
 .smart_clazz_list li .righter-del{
     float: right;
-    margin-top: -6px;
 }
 
 .smart_clazz_list li h3 {
     overflow: hidden;
     white-space: nowrap;
     margin: 0;
-    font: normal 13px/50px "";
+    font: normal 13px/1.125 "";
     font-family:Arail,Helvetica,"微软雅黑","Microsoft Yahei";
 }
 
