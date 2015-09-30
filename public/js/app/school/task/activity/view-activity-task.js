@@ -19,17 +19,22 @@ requirejs(['jquery', 'restfulClient', 'vdatePicker', 'leftMenu', 'headMenu', 'la
                 layer.msg('最多只能设置 5 项报名信息');
                 return false;
             }
-            layer.open('add-title-info-dialog', function (index) {
-                var infoName = $('#titleInfoName').val();
-                if (!infoName || infoName.trim() === '') {
-                    layer.msg('信息名称不能为空');
-                    return;
+
+            layer.open({
+                title: '报名信息',
+                contentId: 'add-title-info-dialog',
+                okCallback: function (index) {
+                    var infoName = $('#titleInfoName').val();
+                    if (!infoName || infoName.trim() === '') {
+                        layer.msg('信息名称不能为空');
+                        return;
+                    }
+                    var li_content = '<li class="item">' + infoName +
+                        '<input type="hidden" name="infoCollect" value="' + infoName + '">' +
+                        '<i class="fa fa-times deleteInfo"></i></li>';
+                    $('#add-title-info').before(li_content);
+                    layer.close(index);
                 }
-                var li_content = '<li class="item">' + infoName +
-                    '<input type="hidden" name="infoCollect" value="' + infoName + '">' +
-                    '<i class="fa fa-times deleteInfo"></i></li>';
-                $('#add-title-info').before(li_content);
-                layer.close(index);
             });
         });
         $('#infoList').on('click', '.deleteInfo', function () {
