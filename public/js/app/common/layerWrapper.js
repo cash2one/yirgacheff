@@ -14,7 +14,7 @@ define(['jquery', 'restfulClient', 'layer', 'underscore', 'jqueryExt'], function
                 area: width,
                 title: options.title || false,
                 shift: 5,
-                closeBtn: options.closeBtn ? options.closeBtn : true,
+                closeBtn: options.closeBtn ? options.closeBtn : 1,
                 zIndex: 5000,
                 content: $content
             };
