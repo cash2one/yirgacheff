@@ -3,6 +3,13 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'exerciseBuilder',
     function ($, $http, leftMenu, headMenu, exerciseBuilder, layer, upload, validator) {
         leftMenu.init();
         headMenu.init();
+        var classes = $('#level_and_clazzs').find('ul li');
+        if (classes.length === 0) {
+            layer.confirm('没有班级，去添加新班级', function () {
+                self.location = '/teacher/classes';
+            });
+            return false;
+        }
         upload.audioUploader({
             onComplete: function (file, done) {
                 var _audiojs = '<audio src="' + file.url +
@@ -13,19 +20,6 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'exerciseBuilder',
                 done();
             }
         });
-
-        var classes = $('#level_and_clazzs').find('ul li');
-        if (classes.length == 0) {
-            layer.open({
-                title: '提示',
-                contentId: 'forward-to-classes',
-                okCallback: function (index) {
-                    layer.close(index);
-                    self.location.href = '/teacher/classes';
-                }
-            });
-
-        }
 
         //班级选择
         classes.bind('click', function () {

@@ -5,7 +5,6 @@
 
 define(['jquery', 'qiniu', 'layerWrapper'], function ($, Qiniu, layer) {
 
-
     var uploadProgress = $('<div class="upload-progress-layout" id="upload-progress-layout"> ' +
         '<div class="header"> <div class="caption"><i class="fa fa-cloud-upload"></i>文件上传列表</div></div>' +
         '<ul></ul>' +
@@ -127,26 +126,7 @@ define(['jquery', 'qiniu', 'layerWrapper'], function ($, Qiniu, layer) {
                             up.splice(0); // 删除队列中所有文件
                         }
                     });
-//                    layer.open(uploadProgress, function (index) {
-//                        var files = up.files;
-//                        if (files.length === 0) {
-//                            layer.close(index);
-//                            return;
-//                        }
-//                        if (ops.onComplete) {
-//                            if (!ops.multi) {
-//                                files = files[0];
-//                            }
-//                            ops.onComplete(files, function () {
-//                                layer.close(index);
-//                                up.splice(0); // 删除队列中所有文件
-//                                uploadProgress.find('ul').empty();
-//                            });
-//                        }
-//                    }, function () {
-//                        uploadProgress.find('ul').empty();
-//                        up.splice(0); // 删除队列中所有文件
-//                    });
+
                 },
 
                 'UploadProgress': function (up, file) {
