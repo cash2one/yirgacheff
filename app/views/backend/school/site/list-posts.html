@@ -61,7 +61,7 @@
                                 <div class="date">{{post.createdTime | date('Y-m-d',-480)}}</div>
                             </a>
 
-                            <div class="del_btn" data-tooltip="删除" id="{{post._id.toString()}}"></div>
+                            <a class="btn-small a-btn-red del_btn" style="margin:15px 0px 0px 22px" data-tooltip="删除" id="{{post._id.toString()}}">删除</a>
                         </li>
                         {% endfor %}
                         {% if !posts || posts.length == 0 %}

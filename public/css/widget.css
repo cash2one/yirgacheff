@@ -4102,19 +4102,6 @@ ul.pupil-messages .message-content {
     width:52px
 }
 
-.passage-list .del_btn{
-    float: left;
-    margin-top: 18px;
-    width: 18px;
-    height: 18px;
-    margin-left: 46px;
-    cursor: pointer;
-    background: url("/base_icon.png") 0 -4610px no-repeat;
-}
-
-.passage-list .del_btn:hover{
-    background: url("/images/base_icon.png") 0 -4638px no-repeat;
-}
 
 .tasks-list{
 
