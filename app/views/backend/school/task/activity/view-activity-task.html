@@ -131,7 +131,7 @@
                                 </div>
                             </form>
                             <div class="p-activity-storage">
-                                <a class="btn-middle solid-btn-green" id="activity-share-save"
+                                <a class="btn-big solid-btn-green" id="activity-share-save"
                                    href="javascript:void(0);">保存</a>
                             </div>
                         </div>
@@ -194,25 +194,20 @@
     </div>
 </div>
 
-<div class="jqi" id="add-title-info-dialog" style="display: none;">
-    <div class="jqiclose layer-close-btn">×</div>
-    <div class="jqistates">
-        <div class="jqistate" style="">
-            <div class="lead jqititle ">新建报名填写信息</div>
-            <div class="jqimessage ">
-                <div class="define">
-                    <div class="location">
-                        <label for="titleInfoName">名称：</label>
-                        <input class="input-area" type="text" name="titleInfoName"
-                               id="titleInfoName" placeholder="比如：联系地址">
-                    </div>
-                </div>
-            </div>
-            <div class="jqibuttons ">
-                <button class="layer-ok-btn">保存</button>
-            </div>
+<div class="invisible" id="add-title-info-dialog">
+    <form class="form-control">
+        <div class="form-group">
+            <label for="titleInfoName">名称：</label>
+            <input class="input-area" type="text" name="titleInfoName"
+                   id="titleInfoName" placeholder="比如：联系地址">
+
         </div>
-    </div>
+        <div class="form-group btn-position">
+            <a class="btn-middle solid-btn-blue layer-ok-btn">确定</a>
+            <a class="btn-middle solid-btn-gray layer-close-btn">取消</a>
+        </div>
+    </form>
+
 </div>
 {% include '../../../common/media-lib.html' %}
 {% endblock %}

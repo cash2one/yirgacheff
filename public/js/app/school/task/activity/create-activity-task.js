@@ -20,7 +20,7 @@ requirejs(['jquery', 'vdatePicker', 'leftMenu', 'headMenu', 'layerWrapper', 'ric
                 return false;
             }
             layer.open({
-                title:'',
+                title:'报名信息',
                 contentId:'add-title-info-dialog',
                 okCallback: function (index) {
                     var infoName = $('#titleInfoName').val();
