@@ -8,17 +8,16 @@ define(['jquery', 'restfulClient', 'layer', 'underscore', 'jqueryExt'], function
             if (typeof $content === 'string') {
                 $content = $('#' + $content);
             }
-            var height = $content.height() + 'px',
-                width = $content.width() + 1 + 'px',
-                configs = {
-                    type: 1,
-                    area: [width, height],
-                    title: options.title || false,
-                    shift: 5,
-                    closeBtn: false,
-                    zIndex: 5000,
-                    content: $content
-                };
+            var width = $content.width() + 1 + 'px';
+            var configs = {
+                type: 1,
+                area: width,
+                title: options.title || false,
+                shift: 5,
+                closeBtn: options.closeBtn ? options.closeBtn : true,
+                zIndex: 5000,
+                content: $content
+            };
 
             var index = layer.open(configs);
             $content.off('click.layer-close').on('click.layer-close', '.layer-close-btn', function () {
@@ -83,7 +82,6 @@ define(['jquery', 'restfulClient', 'layer', 'underscore', 'jqueryExt'], function
                     return $form.serializeObject();
                 }
             }
-            var height = $container.height() + 'px';
             var width = $container.width() + 1 + 'px';
             var configs = {
                 type: 1,
