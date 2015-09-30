@@ -1,60 +1,59 @@
 @charset "UTF-8";
-html, body, div, span, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, address, big, cite, code, del, em, font, img, ins, small, strong,
-var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend {
-    margin: 0;
-    padding: 0
-}
-
-ol, ul {
-    list-style: none
-}
 
 body {
-    background: transparent;
     background: url('/images/login/login_bg.jpg') no-repeat fixed transparent;
     -webkit-background-size: cover;
-    font: 14px '微软雅黑',Arial,Helvetica,sans-serif;
+    font-size: 14px;
+    font-family: "Helvetica Neue",Helvetica,"Hiragino Sans GB","Segoe UI","Microsoft Yahei",Tahoma,Arial,STHeiti,sans-serif;
     padding: 0;
     margin: 0 auto;
 }
 
-.main{
+.main {
     width: 420px;
     height: 270px;
     margin: 0 auto;
 }
-.main-bg{
+
+.main-bg {
     background: url("/images/login/login-mask.png") no-repeat;
 }
-.form-control{
-    padding:30px 60px 30px 60px;
+
+.form-control {
+    padding: 30px 60px 30px 60px;
 }
+
 .form-control .form-group {
-    padding: 15px 0px;
+    padding: 15px 0;
     position: relative;
 }
-.form-group img{
+
+.form-group img {
     margin-left: 20px;
 }
+
 .form-group input {
     width: 248px;
     height: 32px;
     line-height: 20px;
-    border: 1px #353539 solid;
+    border: 1px #72d26e solid;
     color: #fff;
     padding-left: 30px;
     background: url('/images/login/input-mask.png') no-repeat;
 }
-.form-group input:focus{
-    outline:none;
-    border: 1px #72d26e solid;
+
+.form-group input:focus {
+    outline: none;
 }
-.form-group .prompt-user{
+
+.form-group .prompt-user {
     background: url("/images/login/iconfont-user.png") no-repeat;
 }
-.form-group .prompt-pwd{
+
+.form-group .prompt-pwd {
     background: url("/images/login/iconfont-lock.png") no-repeat;
 }
+
 .form-group .prompt {
     width: 15px;
     height: 15px;
@@ -62,20 +61,25 @@ body {
     top: 25px;
     left: 10px;
 }
-.ls-5{
-    letter-spacing:5px;
+
+.ls-5 {
+    letter-spacing: 5px;
 }
-.ls-10{
-    letter-spacing:10px;
+
+.ls-10 {
+    letter-spacing: 10px;
 }
-.ml-10{
+
+.ml-10 {
     margin-left: 10px;
 }
-.mt-100{
+
+.mt-100 {
     margin-top: 100px;
 }
+
 /* button*/
-.btn-superbig{
+.btn-superbig {
     display: inline-block;
     text-decoration: none;
     width: 280px;
@@ -87,12 +91,13 @@ body {
     font-size: 20px;
     font-weight: 500;
 }
+
 .solid-btn-green {
     background: #72d26e;
     color: #fff;
 }
 
-.error-explanation{
+.error-explanation {
     z-index: 99;
     font-size: 13px;
     color: #ffeaeb;
@@ -101,10 +106,11 @@ body {
     height: 40px;
     margin-left: 10px;
     text-align: center;
-    padding: 0px 5px;
+    padding: 0 5px;
     line-height: 38px;
     border-color: red !important;
 }
+
 /* footer */
 .footer {
     color: #fff;
@@ -116,19 +122,32 @@ body {
 .footer .w {
     text-align: center;
 }
+
 .footerText {
-    width:600px;
-    margin:60px auto;
-    text-align:center;
-    padding-top:80px;
+    width: 600px;
+    margin: 60px auto;
+    text-align: center;
+    padding-top: 80px;
 }
-.footerText>span {
-    margin:10px;
-    color:#dfdfdf;
-    line-height:2;
-    font-size:14px;
+
+.footerText > span {
+    margin: 10px;
+    color: #dfdfdf;
+    line-height: 2;
+    font-size: 14px;
 }
-.footerText>span>a{
-    color:#dfdfdf;
-    text-decoration:none;
+
+.footerText > span > a {
+    color: #dfdfdf;
+    text-decoration: none;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #333 inset; /* Change the color to your own background color */
+    -webkit-text-fill-color: white;
+}
+
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px #333 inset;
+    -webkit-text-fill-color: white;
 }
