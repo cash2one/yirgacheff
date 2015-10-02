@@ -14,10 +14,14 @@ define(['jquery', 'restfulClient', 'layer', 'underscore', 'jqueryExt'], function
                 area: width,
                 title: options.title || false,
                 shift: 5,
-                closeBtn: options.closeBtn ? options.closeBtn : 1,
                 zIndex: 5000,
                 content: $content
             };
+            if (options.closeBtn === false) {
+                configs.closeBtn = false;
+            } else {
+                configs.closeBtn = 1;
+            }
 
             var index = layer.open(configs);
             $content.off('click.layer-close').on('click.layer-close', '.layer-close-btn', function () {
@@ -92,7 +96,6 @@ define(['jquery', 'restfulClient', 'layer', 'underscore', 'jqueryExt'], function
                 content: $container
             };
             var index = layer.open(configs);
-            //var lock = false;  // 防止重复提交
             var ok = function () {
                 var data;
                 if (typeof dataGen === 'function') {

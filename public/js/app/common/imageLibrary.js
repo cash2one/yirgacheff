@@ -104,6 +104,7 @@ define(['jquery', 'restfulClient', 'layerWrapper', 'upload'],
             var onSelected = ops.onSelected;
             $('.frm_checkbox_label').removeClass('selected');
             layer.open({
+                'title': '图库',
                 contentId: 'imageLibrary',
                 okCallback: function () {
                     var keys = [];
