@@ -42,7 +42,7 @@ define(['jquery', 'restfulClient', 'layerWrapper', 'upload'],
                     content += '<li class="img_item js_imageitem" >' +
                         '<label class="frm_checkbox_label img_item_bd" id="' + media.key + '">' +
                         '<img alt="' + media.name +
-                        '" class="pic" src="http://resource.hizuoye.com/' + media.key + '">' +
+                        '" class="pic" src="' + GLOBAL.visitUrl + '/' + media.key + '">' +
                         '<span class="lbl_content_ext">' + media.name + '</span>' +
                         '<div class="selected_mask">' +
                         '<div class="selected_mask_inner"></div>' +
