@@ -978,7 +978,10 @@ a:hover .w-icon-arrow-lRight {
     margin-top: 6px;
     margin-right: 20px;
 }
-
+.bg-c{
+    background: #fff;
+    border-bottom: 1px solid #dfdfdf;
+}
 .w-base-switch{
     margin-top: 0;
     margin-right: 0;
@@ -1178,8 +1181,8 @@ a:hover .w-icon-arrow-lRight {
 
 .w-base .w-base-switch li a {
     font-size: 14px;
-    color: #000;
-    padding: 15px;
+    color: #383a4c;
+    padding:12px 15px 12px 15px;
     display: block;
 }
 
@@ -1206,19 +1209,19 @@ a:hover .w-icon-arrow-lRight {
 }
 
 .w-base .w-base-switch li a:hover {
-    background-color: #fff;
-}
-
-.w-base .w-base-switch li.active a {
-    background-color: #fff;
-    border: solid #dfdfdf;
-    border-width: 0 1px;
-}
-
-.w-base .w-base-switch li.active a {
     color: #72d26e;
 }
 
+.w-base .w-base-switch li.active a {
+    background-color: #fff;
+    border-bottom:4px #fff solid;
+    color: #72d26e;
+}
+.bg-c .w-base-switch li.active a {
+    background-color: #fff;
+    border-bottom:3px #72d26e solid;
+    color: #72d26e;
+}
 .w-base .w-base-switch li a:hover .h-arrow .w-icon-arrow {
     display: none;
 }
@@ -4725,7 +4728,7 @@ ul.pupil-messages .message-content {
 }
 
 .passage-activity .container{
-    background-color: #f4f5f9;
+    /*background-color: #f4f5f9;*/
     /*height:700px;*/
     padding-bottom:50px;
 }
@@ -5063,7 +5066,7 @@ ul.pupil-messages .message-content {
 }
 
 .task-management-registration .counter{
-    margin-top: 5px;
+    margin-top: 10px;
     padding: 20px;
     font-size: 17px;
     letter-spacing: 1px;
