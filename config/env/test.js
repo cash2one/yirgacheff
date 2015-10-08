@@ -23,7 +23,7 @@ module.exports = {
         accessKey: 'SPJ9b_qmVxy0FQU-93J4xb5EbHv9Z4Jn_-78f8gr',
         secretKey: 'NOFnKRTsd1RjjYoyT1qPAgHyczBmAjl-s26GXpA4',
         bucket: 'yirgacheffe',
-        visitUrl: 'http://resource.hizuoye.com'
+        visitUrl: 'http://7rfll3.com1.z0.glb.clouddn.com'
     },
     apiBase: 'http://testapi.hizuoye.com'
 };

@@ -90,7 +90,7 @@ define(['jquery', 'qiniu', 'layerWrapper'], function ($, Qiniu, layer) {
             uptoken_url: ops.tokenURL || '/api/v1/imageToken',
             domain: 'http://resource.hizuoye.com',
             save_key: true,
-            x_vars: {schoolId: user.schoolId || user._id},
+            x_vars: {schoolId: GLOBAL.user.schoolId || GLOBAL.user._id},
             multi_selection: ops.multi || false,
             auto_start: true,
             init: {

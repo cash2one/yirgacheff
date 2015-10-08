@@ -84,63 +84,63 @@
 
 <!-- 创建分组 -->
 <div class="invisible" id="add-group-dialog">
-                <form class="form-control" id="group_form">
-                    <div class="form-group">
-                            <label for="groupName">组名：</label>
-                            <input  type="text" name="name" id="groupName">
-                    </div>
-                    <div class="form-group btn-position">
-                        <a class="btn-middle solid-btn-blue layer-ok-btn">确定</a>
-                        <a class="btn-middle solid-btn-gray layer-close-btn">取消</a>
-                    </div>
-                </form>
+    <form class="form-control" id="group_form">
+        <div class="form-group">
+            <label for="groupName">组名：</label>
+            <input type="text" name="name" id="groupName">
+        </div>
+        <div class="form-group btn-position">
+            <a class="btn-middle solid-btn-blue layer-ok-btn">确定</a>
+            <a class="btn-middle solid-btn-gray layer-close-btn">取消</a>
+        </div>
+    </form>
 </div>
 
 <!-- 修改文件组名称 -->
 <div class="invisible" id="edit-group-dialog">
-                <form class="form-control" id="edit_group_form">
-                    <div class="form-group">
-                            <label for="renameGroup">新名称：</label>
-                            <input  type="text" name="name" id="renameGroup">
-                    </div>
-                    <div class="form-group btn-position">
-                        <a class="btn-middle solid-btn-blue layer-ok-btn">确定</a>
-                        <a class="btn-middle solid-btn-gray layer-close-btn">取消</a>
-                    </div>
-                </form>
+    <form class="form-control" id="edit_group_form">
+        <div class="form-group">
+            <label for="renameGroup">新名称：</label>
+            <input type="text" name="name" id="renameGroup">
+        </div>
+        <div class="form-group btn-position">
+            <a class="btn-middle solid-btn-blue layer-ok-btn">确定</a>
+            <a class="btn-middle solid-btn-gray layer-close-btn">取消</a>
+        </div>
+    </form>
 </div>
 
 <!-- 修改单个文件名称 -->
 <div class="invisible" id="edit-single-file-dialog">
-                <form class="form-control" id="single_img_file_form">
-                    <div class="form-group">
-                            <label for="filename">新名称：</label>
-                            <input type="text" name="filename" id="filename">
-                    </div>
-                    <div class="form-group btn-position">
-                        <a class="btn-middle solid-btn-blue layer-ok-btn">确定</a>
-                        <a class="btn-middle solid-btn-gray layer-close-btn">取消</a>
-                    </div>
-                </form>
+    <form class="form-control" id="single_img_file_form">
+        <div class="form-group">
+            <label for="filename">新名称：</label>
+            <input type="text" name="filename" id="filename">
+        </div>
+        <div class="form-group btn-position">
+            <a class="btn-middle solid-btn-blue layer-ok-btn">确定</a>
+            <a class="btn-middle solid-btn-gray layer-close-btn">取消</a>
+        </div>
+    </form>
 </div>
 
 
 <!-- 移动分组 -->
-<div class="invisible" id="move-dialog" >
-            <form class="form-control">
-                <div class="form-group">
-                        <select id="movedGroup">
-                            {% for group in groups %}
-                            <option value="{{group._id.toString()}}">{{group.name}}</option>
-                            {% endfor %}
-                        </select>
+<div class="invisible" id="move-dialog">
+    <form class="form-control">
+        <div class="form-group">
+            <select id="movedGroup">
+                {% for group in groups %}
+                <option value="{{group._id.toString()}}">{{group.name}}</option>
+                {% endfor %}
+            </select>
 
-                </div>
-                <div class="form-group btn-position">
-                    <a class="btn-middle solid-btn-blue layer-ok-btn">确定</a>
-                    <a class="btn-middle solid-btn-gray layer-close-btn">取消</a>
-                </div>
-            </form>
+        </div>
+        <div class="form-group btn-position">
+            <a class="btn-middle solid-btn-blue layer-ok-btn">确定</a>
+            <a class="btn-middle solid-btn-gray layer-close-btn">取消</a>
+        </div>
+    </form>
 
 </div>
 

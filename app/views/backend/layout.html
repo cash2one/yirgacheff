@@ -7,13 +7,13 @@
     <link rel="icon" href="/images/favicon.ico" mce_href="/images/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/images/favicon.ico" mce_href="/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="//libs.useso.com/js/font-awesome/4.2.0/css/font-awesome.min.css">
-    <link href="/css/layout.css" rel="stylesheet" media="screen">
+    <link href="/css/layout.css?v=1" rel="stylesheet" media="screen">
     {% block css %}
     {% endblock %}
     <script type="text/javascript">
         var GLOBAL = {};
-        var user = {{user | json | safe}};
-        GLOBAL.user = user;
+        GLOBAL.user = {{user | json | safe}};
+        GLOBAL.visitUrl = "{{resourceURL}}";
     </script>
 </head>
 <body>
@@ -45,5 +45,7 @@
         dom[i].innerHTML = '<div class="loading-progressBar">数据加载中，请稍等...</div>';
     }
 </script>
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
 {% block javascript %}{% endblock %}
 </html>
