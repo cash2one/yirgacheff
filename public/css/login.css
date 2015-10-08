@@ -75,7 +75,7 @@ body {
 }
 
 .mt-100 {
-    margin-top: 100px;
+    margin-top: 40%;
 }
 
 /* button*/
@@ -127,7 +127,7 @@ body {
     width: 600px;
     margin: 60px auto;
     text-align: center;
-    padding-top: 80px;
+    padding-top: 120px;
 }
 
 .footerText > span {
