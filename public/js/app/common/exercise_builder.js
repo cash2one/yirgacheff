@@ -15,7 +15,7 @@ define(['jquery', 'underscore', 'layerWrapper', 'jqueryForm'], function ($, _, l
     //图片选择题[出题]
     function buildUpImageSel(optionCount, exercise) {
         var token = $('#imageToken').val();
-        var schoolId = window.user.schoolId;
+        var schoolId = GLOBAL.user.schoolId;
         exercise = exercise || {};
         var template = templates.imageSelectTemplate;
         if (!template) {
