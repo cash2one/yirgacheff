@@ -30,19 +30,19 @@
 
         </form>
     </div>
-<div class="footer">
-    <div class="footerText">
-        <span><a href="http://www.hizuoye.com">服务条款</a></span>
-        <span><a href="http://www.hizuoye.com">隐私协议</a></span>
-        <span><a href="http://www.hizuoye.com">免责声明</a></span>
-        <span><a href="http://www.hizuoye.com">使用条款</a></span>
-        <span><a href="http://www.hizuoye.com/about.html">关于我们</a></span>
-        <span><a href="http://www.hizuoye.com/about.html">加入我们</a></span>
-        <span><a href="http://www.hizuoye.com/about.html">联系我们</a></span>
-        <span><a style="font-size: 16px" href="http://www.hizuoye.com">www.hizuoye.com</a>&nbsp;©2010-2015</span>
-        <span>苏ICP备15025860号</span>
+    <div class="footer">
+        <div class="footerText">
+            <span><a href="http://www.hizuoye.com">服务条款</a></span>
+            <span><a href="http://www.hizuoye.com">隐私协议</a></span>
+            <span><a href="http://www.hizuoye.com">免责声明</a></span>
+            <span><a href="http://www.hizuoye.com">使用条款</a></span>
+            <span><a href="http://www.hizuoye.com/about.html">关于我们</a></span>
+            <span><a href="http://www.hizuoye.com/about.html">加入我们</a></span>
+            <span><a href="http://www.hizuoye.com/about.html">联系我们</a></span>
+            <span><a style="font-size: 16px" href="http://www.hizuoye.com">www.hizuoye.com</a>&nbsp;©2010-2015</span>
+            <span>苏ICP备15025860号</span>
+        </div>
     </div>
-</div>
 </div>
 </body>
 <script type="text/javascript" src="/js/lib/jquery.js"></script>
@@ -61,9 +61,7 @@
             if (message !== '') {
                 event.preventDefault();
                 $('.error-explanation').text(message).show();
-            } else {
-                $('#submit_loading').show();
-                $('#submit').hide();
+                return false;
             }
             $('#login-btn').text('登录中');
         });
