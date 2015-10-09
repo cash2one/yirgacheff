@@ -11,18 +11,15 @@
     <link href="/css/login.css?v=1" rel="stylesheet" media="screen">
 </head>
 <body>
-
 <div class="main">
     <div class="main-bg">
-        <form class="form-control mt-100" id="loginForm" method="post" action="/login" autocomplete="off">
-            <div class="form-group"><img src="/images/login/logo.png"></div>
+        <form class="form-control" id="loginForm" method="post" action="/login" autocomplete="off">
+            <div class="form-group"><img src="/images/login/yun-logo.png"></div>
             <div class="form-group ml-10">
                 <input id="username" name="username" placeholder="请输入账号" type="text" autocomplete="off">
-                <span class="prompt prompt-user"></span>
             </div>
             <div class="form-group ml-10">
                 <input id="password" name="password" placeholder="请输入密码" type="password" autocomplete="off">
-                <span class="prompt prompt-pwd"></span>
             </div>
             <div class="error-explanation ls-5" {% if !error %} style="display: none;" {% endif %}>
                 {{error}}
@@ -33,7 +30,6 @@
 
         </form>
     </div>
-</div>
 <div class="footer">
     <div class="footerText">
         <span><a href="http://www.hizuoye.com">服务条款</a></span>
@@ -46,6 +42,7 @@
         <span><a style="font-size: 16px" href="http://www.hizuoye.com">www.hizuoye.com</a>&nbsp;©2010-2015</span>
         <span>苏ICP备15025860号</span>
     </div>
+</div>
 </div>
 </body>
 <script type="text/javascript" src="/js/lib/jquery.js"></script>
