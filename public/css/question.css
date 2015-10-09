@@ -1,0 +1,116 @@
+
+.checkbox-que{
+    padding-top: 2px;
+    float: left;
+    margin-right: 10px;
+}
+.w-que-width{
+    width: 300px;
+}
+.w-base-container .t-del-question{
+    padding-left: 16px;
+    padding-top: 0px;
+}
+.w-base-container .t-del-question .question-tab{
+    border-color: gray;
+}
+.w-base-container .t-del-question .quest-list-tit{
+    text-align: left;
+}
+.quest-opts-area{
+    height: 40px;
+    margin: 0;
+}
+
+.quest-opts-area ul{
+    padding: 0px;
+}
+
+.quest-opts-area ul li{
+    display: inline-block;
+    padding: 0px;
+    margin: 0px;
+    zoom: 1;
+    font-size: 13px;
+    width: 100px;
+    height: 28px;
+    text-align: center;
+    line-height: 27px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.quest-opts-area ul li:hover{
+    /*color: rgb(255, 255, 255);
+    opacity: .6;
+    background-color: #000;
+    text-decoration: none;
+    -webkit-transition: all 0.8s;
+    transition: all 0.8s;
+    border-radius: 2px;*/
+}
+
+.quest-opts-area .selected{
+    background-color: #6bc30d;
+    color: #fff;
+    border-radius:2px
+}
+
+.quest-opts-area .selected:hover{
+
+}
+
+.question-tit{
+    padding-bottom:10px;
+}
+.question-p{
+    margin-bottom: 20px;
+}
+
+.w-base-container .question-img{
+    width:750px;
+    margin: 0 auto;
+    margin-top: 20px;
+    text-align: center;
+}
+.w-base-container .question-img .img{
+    max-width: 750px;
+}
+.w-base-container .question-info{
+    width:750px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.w-base-container .question-info .info-tit{
+    color:#1B1E24;
+    font-size: 16px;
+    padding-left: 10px;
+}
+.w-base-container .question-info .info-p{
+    width: 730px;
+    line-height: 30px;
+    padding: 10px 10px 10px 10px;
+}
+.teacher-msg{
+    margin-top: 15px;
+    padding-bottom: 50px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+.teacher-msg .msg-box{
+    float:left;
+    margin-bottom: 30px
+}
+.msg-box .w-que-answer{
+    border: 1px solid #dfdfdf;
+    width: 600px;
+    min-height:150px;
+    margin-top: 28px;
+    margin-left: 0;
+}
+.teacher-msg .msg-save{
+    text-align: center;
+}
+
+/* form */

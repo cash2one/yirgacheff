@@ -15,5 +15,6 @@ module.exports = _.extend(
     require('./teachers/homework.controller'),
     require('./teachers/manager.controller'),
     require('./teachers/quiz.controller'),
-    require('./teachers/schedule.controller')
+    require('./teachers/schedule.controller'),
+    require('./teachers/quest.controller')
 );
