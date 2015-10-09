@@ -24,7 +24,7 @@ requirejs(['jquery', 'leftMenu', 'headMenu', 'easyDropDown', 'datatables'],
                 {'data': 'phone'},
                 {
                     'data': null,
-                    'defaultContent': '<a class="btn-middle a-btn-blue detail">查看详情</a>'
+                    'defaultContent': '<a class="btn-small a-btn-blue detail">详情</a>'
                 }
             ]
         });

@@ -4960,7 +4960,7 @@ ul.pupil-messages .message-content {
 
 .upload-progress-layout .progress-frame .progress{
     height: 3px;
-    background-color: #72c02c;
+    background-color: #72d26e;
 }
 
 .upload-progress-layout .right-content{
@@ -4983,7 +4983,7 @@ ul.pupil-messages .message-content {
 }
 
 .materials-upload-btn button{
-    background-color: #72c02c;
+    background-color: #72d26e;
     color: #fff;
     display: inline-block;
     padding: 12px 35px;
