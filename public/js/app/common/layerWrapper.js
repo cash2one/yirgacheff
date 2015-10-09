@@ -13,6 +13,7 @@ define(['jquery', 'restfulClient', 'layer', 'underscore', 'jqueryExt'], function
                 type: 1,
                 area: width,
                 title: options.title || false,
+                cancel: options.cancel || null,
                 shift: 5,
                 zIndex: 5000,
                 content: $content

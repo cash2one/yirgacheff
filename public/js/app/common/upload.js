@@ -102,8 +102,8 @@ define(['jquery', 'qiniu', 'layerWrapper'], function ($, Qiniu, layer) {
                     });
 
                     layer.open({
-                        contentId:uploadProgress,
-                        title:'图片上传',
+                        contentId: uploadProgress,
+                        title: '图片上传',
                         okCallback: function (index) {
                             var files = up.files;
                             if (files.length === 0) {
@@ -121,7 +121,7 @@ define(['jquery', 'qiniu', 'layerWrapper'], function ($, Qiniu, layer) {
                                 });
                             }
                         },
-                        cancelCallback: function () {
+                        cancel: function () {
                             uploadProgress.find('ul').empty();
                             up.splice(0); // 删除队列中所有文件
                         }
