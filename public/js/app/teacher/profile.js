@@ -7,7 +7,7 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'layerWrapper', 'u
         upload.imgUploader({
             onComplete: function (file, done) {
                 $('img.avatar').attr('src', file.url);
-                var url = '/api/v1/teachers/' + user._id.toString() + '?me=true';
+                var url = '/api/v1/teachers/' + GLOBAL.user._id.toString() + '?me=true';
                 $http.put(url, {avatar: file.key}, function () {
                     layer.msg('修改成功');
                     done();
@@ -28,7 +28,7 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'layerWrapper', 'u
                 layer.msg('联系方式不能为空');
                 return;
             }
-            var url = '/api/v1/teachers/' + user._id.toString() + '?me=true';
+            var url = '/api/v1/teachers/' + GLOBAL.user._id.toString() + '?me=true';
             $http.put(url, data, function () {
                 layer.msg('修改信息成功!');
             });
