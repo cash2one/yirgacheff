@@ -70,16 +70,15 @@
 .w-base-container .question-img{
     width:750px;
     margin: 0 auto;
-    margin-top: 20px;
     text-align: center;
 }
-.w-base-container .question-img .img{
+.w-base-container .question-img img{
     max-width: 750px;
+    margin-bottom: 20px;
 }
 .w-base-container .question-info{
     width:750px;
     margin: 0 auto;
-    margin-top: 20px;
     margin-bottom: 20px;
 }
 .w-base-container .question-info .info-tit{
@@ -88,29 +87,43 @@
     padding-left: 10px;
 }
 .w-base-container .question-info .info-p{
-    width: 730px;
+    width: 750px;
+    text-align:justify;
+    text-justify:inter-ideograph;
     line-height: 30px;
-    padding: 10px 10px 10px 10px;
+}
+.quest-mt{
+    margin-top: 20px;
+}
+.quest-fl{
+    float: left;
+}
+.line{
+    width: 800px;
+    height: 100%;
+    margin: 0 auto;
+    border: 1px #dfdfdf solid;
 }
 .teacher-msg{
-    margin-top: 15px;
-    padding-bottom: 50px;
+    padding-bottom: 20px;
     margin-bottom: 30px;
     overflow: hidden;
 }
 .teacher-msg .msg-box{
-    float:left;
-    margin-bottom: 30px
+    margin-bottom: 20px
+}
+.teacher-msg .msg-box textarea:focus{
+    border: 1px #72d26e solid;
 }
 .msg-box .w-que-answer{
     border: 1px solid #dfdfdf;
-    width: 600px;
+    width: 640px;
+    color: #333;
     min-height:150px;
-    margin-top: 28px;
-    margin-left: 0;
+    margin: 30px 0px 0px 30px;
+    padding: 0px 5px 0px 5px;
 }
 .teacher-msg .msg-save{
     text-align: center;
+    margin-bottom: 20px;
 }
-
-/* form */

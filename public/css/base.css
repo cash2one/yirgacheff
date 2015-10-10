@@ -167,7 +167,7 @@ table tbody tr td {
 
 .m-header .link li .h-arrow {
     background-color: #72d26e;
-    width: 100%;
+    width: 100px;
     font: 1px/4px arial;
     position: absolute;
     left: 0;
@@ -245,7 +245,7 @@ table tbody tr td {
     margin: 0 auto;
     overflow: hidden;
     clear: both;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .m-main .m-column {
