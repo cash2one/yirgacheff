@@ -17,7 +17,7 @@ requirejs(['jquery', 'restfulClient', 'layerWrapper', 'laypage', 'leftMenu', 'he
                 + data.content
                 + '</div> </div> '
                 + '<div class="conn-recorder">'
-                + '<div style="margin-top: 12px;border-left: 1px solid #dfdfdf;padding-left: 6px">记录人：' + user.displayName + '</div></div>'
+                + '<div style="margin-top: 12px;border-left: 1px solid #dfdfdf;padding-left: 6px">记录人：' + GLOBAL.user.displayName + '</div></div>'
                 + '</li>';
             return result;
         }
