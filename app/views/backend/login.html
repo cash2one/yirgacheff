@@ -66,6 +66,13 @@
             $('#login-btn').text('登录中');
         });
         //提交表单
+        $(function(){
+            $(document).keydown(function(event){
+                if(event.keyCode==13){
+                    $form.submit();
+                }
+            });
+        });
         $('#login-btn').click(function () {
             $form.submit();
         });

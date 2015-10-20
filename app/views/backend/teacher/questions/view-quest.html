@@ -1,0 +1,49 @@
+{% extends '../base.html' %}
+
+{% block content %}
+<!-- 面包屑 -->
+{{ breadcrumb.init([{'url':'', 'title':'问题列表'},{'url':'','title':'问题详情'}]) }}
+<!-- END OF BREADCRUMBS -->
+
+
+<div class="w-base w-base-extraction w-base-border">
+    <div class="w-base-title">
+        <h3><i class="fa fa-list mr-5"></i>问题详情</h3>
+    </div>
+    <div class="w-base-container">
+        <div class="line"><img src="/images/question-icon.png">
+            <div class="question-img">
+                <img src="/images/20150921115455.png">
+            </div>
+            <div class="question-info">
+                <p class="info-p">Excuse me!这是常用于表示道歉的客套话，相当于汉语中的”劳驾”、”对不起”。当我们要引起别人的注意、
+                    要打搅别人或打断别人的话时，通常都可使用这一表达方式。在课文中，男士为了吸引女士的注意而使用了这句客套话。它也可用在下
+                    列场合：向陌生人问路，借用他人的电话，从别人身边挤过，在宴席或会议中途要离开一会儿等等。</p>
+            </div>
+        </div>
+        <div class="teacher-msg quest-mt">
+            <div class="line"><img src="/images/answer-icon.png" class="quest-fl">
+
+                <div class="msg-box">
+                    <textarea class="w-que-answer" rows="3"></textarea>
+                </div>
+                <div class="btn-areas msg-save">
+                    <a class="btn-middle solid-btn-green" href="">保存</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 题型模版 -->
+{% endblock %}
+
+{% block javascript %}
+
+<script type="text/javascript" src="/js/lib/require.js"></script>
+<script type="text/javascript" src="/js/config.js"></script>
+<script>
+    requirejs(['/js/app/teacher/questions/list-questions.js']);
+</script>
+
+
+{% endblock %}
