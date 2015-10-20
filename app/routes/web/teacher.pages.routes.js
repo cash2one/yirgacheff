@@ -38,6 +38,9 @@ module.exports = function (app) {
     teacher.get('/connections/:studentId([a-f0-9]{24})', teachers.connectionPipeDetail); // 家校通详情
     teacher.get('/schedules', teachers.listSchedulers);
 
+    teacher.get('/question', teachers.question); //在线答疑
+    teacher.get('/question/questioninfo', teachers.questioninfo);
+
     teacher.get('/guider', teachers.audioGuider);//录音说明
 
     app.use('/teacher', auth.requiresLogin, auth.requireTeacherRole, teacher);
