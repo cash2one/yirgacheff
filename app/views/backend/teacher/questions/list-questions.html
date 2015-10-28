@@ -9,12 +9,12 @@
         <h3><i class="fa fa-table mr-5"></i>问题列表</h3>
         <div class="w-base-right w-base-right-ext w-que-width">
             <div class="checkbox-que">
-                <input type="checkbox" name="student"><label>我的学生</label>
+                <input id="myStudent" type="checkbox" name="student"><label>我的学生</label>
             </div>
             <div class="quest-opts-area">
                 <ul>
-                    <li class="item selected">未解决问题</li>
-                    <li class="item">已解决问题</li>
+                    <li class="item selected" data-id="0">未解决问题</li>
+                    <li class="item" data-id="1">已解决问题</li>
                 </ul>
               </div>
         </div>
@@ -32,19 +32,9 @@
                     <th>操作</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td class="quest-list-tit">What must you do before you return a book to the library?</td>
-                    <td>李大</td>
-                    <td>1000126</td>
-                    <td>2015.9.15</td>
-                    <td><a href="/teacher/question/questioninfo" class="btn-small a-btn-blue w-btn-opt-large detail">查看</a></td>
-                </tr>
-                </tbody>
             </table>
         </div>
     </div>
-
 </div>
 {% endblock %}
 {% block javascript %}
