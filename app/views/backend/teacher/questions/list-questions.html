@@ -13,15 +13,9 @@
             </div>
             <div class="quest-opts-area">
                 <ul>
-                    {% if !state %}
-                    <li class="item selected" data-id="0">未解决问题</li>
-                    <li class="item" data-id="1">已解决问题</li>
-                    {% else %}
-                    <li class="item" data-id="0">未解决问题</li>
-                    <li class="item selected" data-id="1">已解决问题</li>
-                    {% endif %}
+                    <li class="item selected"><a href="#state0"  data-id="0">未解决问题</a></li>
+                    <li class="item"><a href="#state1"  data-id="1">已解决问题</a></li>
                 </ul>
-                <div id="state" style="display: none;">{{state}}</div>
               </div>
         </div>
     </div>
