@@ -39,7 +39,6 @@
     margin-left: 5px;
     cursor: pointer;
 }
-
 .quest-opts-area ul li:hover{
     /*color: rgb(255, 255, 255);
     opacity: .6;
@@ -49,6 +48,11 @@
     transition: all 0.8s;
     border-radius: 2px;*/
 }
+.quest-opts-area ul li a{
+    width: 100px;
+    height: 28px;
+    padding: 6px 16px;
+}
 
 .quest-opts-area .selected{
     background-color: #72d26e;
@@ -56,6 +60,8 @@
     border-radius:2px
 }
 .quest-opts-area .selected a{
+    width: 100px;
+    height: 28px;
     background-color: #72d26e;
     color: #fff;
     border-radius:2px
