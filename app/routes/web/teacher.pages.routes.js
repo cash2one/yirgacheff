@@ -39,7 +39,7 @@ module.exports = function (app) {
     teacher.get('/schedules', teachers.listSchedulers);
 
     teacher.get('/question', teachers.question); //在线答疑
-    teacher.get('/question/questioninfo', teachers.questioninfo);
+    teacher.get('/question/questionInfo/:questionId([a-f0-9]{24})', teachers.questioninfo);
 
     teacher.get('/guider', teachers.audioGuider);//录音说明
 
