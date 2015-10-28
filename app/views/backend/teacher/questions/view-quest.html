@@ -13,7 +13,9 @@
     <div class="w-base-container">
         <div class="line"><img src="/images/question-icon.png">
             <div class="question-img">
+                {% if question.questionImage %}
                 <img src="http://resource.hizuoye.com/{{question.questionImage}}">
+                {% endif %}
             </div>
             <div class="question-info">
                 <p class="info-p">{{question.questionText}}</p>
@@ -26,8 +28,8 @@
                     <textarea class="w-que-answer" rows="3" {% if question.state %} readonly {% endif %} >{{question.answer}}</textarea>
                 </div>
                 <div class="btn-areas msg-save">
-                    {% if question.state %}
-                    <a class="btn-middle solid-btn-green" href="/teacher/question">返回</a>
+                    {% if question.state === 1 %}
+                    <a class="btn-middle solid-btn-green" href="/teacher/question?state=1">返回</a>
                     {% else %}
                     <a class="btn-middle solid-btn-green">保存</a>
                     {% endif %}

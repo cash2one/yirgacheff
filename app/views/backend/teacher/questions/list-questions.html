@@ -13,9 +13,15 @@
             </div>
             <div class="quest-opts-area">
                 <ul>
+                    {% if !state %}
                     <li class="item selected" data-id="0">未解决问题</li>
                     <li class="item" data-id="1">已解决问题</li>
+                    {% else %}
+                    <li class="item" data-id="0">未解决问题</li>
+                    <li class="item selected" data-id="1">已解决问题</li>
+                    {% endif %}
                 </ul>
+                <div id="state" style="display: none;">{{state}}</div>
               </div>
         </div>
     </div>
@@ -29,6 +35,7 @@
                     <th>学生</th>
                     <th>学号</th>
                     <th>提问时间</th>
+                    <th>回答老师</th>
                     <th>操作</th>
                 </tr>
                 </thead>

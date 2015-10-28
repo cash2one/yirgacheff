@@ -7,7 +7,6 @@ var _ = require('lodash');
 var async = require('async');
 var models = require('../../models');
 var Question = models.Question;
-
 var api = exports = module.exports = {};
 
 /**
@@ -16,17 +15,21 @@ var api = exports = module.exports = {};
  * @param res
 */
 api.list = function( req, res, next ) {
-        Question.find({
+        let query =   Question.find({
             schoolId: req.user.schoolId,
             state: req.query.state
-        }).select('-answer  -schoolId').populate('student', 'displayName username')
-            .lean()
-            .exec(function (err, question) {
+        });
+        query.select('-answer  -schoolId');
+        query.populate('student', 'displayName username');
+        if(req.query.state && req.query.state === '1'){
+            query.populate('teacher','displayName');
+        }
+        query.lean().exec(function (err, question) {
                 if (err) {
                     return next(err);
                 }
                 res.json(question);
-            })
+         });
 };
 
 /**

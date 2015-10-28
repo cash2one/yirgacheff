@@ -12,6 +12,7 @@ var mongoose = require('mongoose'),
  */
 
 exports.question = function (req, res) {
+    res.locals.state = req.query.state || 0;
     return res.render('backend/teacher/questions/list-questions');
 };
 /**

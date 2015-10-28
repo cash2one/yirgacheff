@@ -5,7 +5,6 @@ requirejs(['jquery', 'leftMenu', 'headMenu','layer','easyDropDown', 'datatables'
         leftMenu.init();
         headMenu.init();
         //全局变量
-        var status = 0;
         var allStudent;
         function getAllStudent(){
             var url = "/api/v1/teachers/"+GLOBAL.user._id+"/students";
@@ -24,7 +23,28 @@ requirejs(['jquery', 'leftMenu', 'headMenu','layer','easyDropDown', 'datatables'
             var   minute = now.getMinutes();
             return   year+"-"+month+"-"+date+"   "+hour+":"+minute;
         }
+        //截取字符串，多余的部分用...代替
+        function setString(str, len) {
+            var strlen = 0;
+            var s = "";
+            for (var i = 0; i < str.length; i++) {
+                if (str.charCodeAt(i) > 128) {
+                    strlen += 2;
+                } else {
+                    strlen++;
+                }
+                s += str.charAt(i);
+                if (strlen >= len) {
+                    return s+"...";
+                }
+            }
+            return s;
+        }
+
+
         var list = $('#library-list');
+        //
+        var status = $('#state').text();
 
         var table = list.DataTable({
             'bAutoWidth': true,
@@ -33,7 +53,7 @@ requirejs(['jquery', 'leftMenu', 'headMenu','layer','easyDropDown', 'datatables'
                 'url': '/js/lib/plugins/dataTable/Chinese.lang'
             },
             'ajax': {
-                url: '/api/v1/question?state=0',
+                url: '/api/v1/question?state='+status,
                 dataSrc: ''
             },
             'order': [[1, "desc"]],
@@ -42,21 +62,35 @@ requirejs(['jquery', 'leftMenu', 'headMenu','layer','easyDropDown', 'datatables'
                 {'data': 'student.displayName'},
                 {'data': 'student.username'},
                 { 'data': 'createdTime'},
+                {'data': 'teacher.displayName'},
                 {
                     'data': null,
                     'defaultContent': '<a  class="btn-small a-btn-blue w-btn-opt-large detail">查看</a>&nbsp;&nbsp;'
                 }
             ],
-            'columnDefs':[{
-                'targets': [3],
-                'render': function(data, type, row){
-                    var date = (new Date(data)).getTime();
-                    return formatDate(date);
+            'columnDefs':[
+                {
+                    'targets': [0],
+                    'render': function(data,type,row){
+                        data = setString(data,20);
+                        return '<a class="detail">'+data+'</a>';
+                    }
+                },
+                {
+                    'targets': [3],
+                    'render': function(data, type, row){
+                        var date = (new Date(data)).getTime();
+                        return formatDate(date);
+                    }
+                },
+                {
+                    'targets': [4],
+                    'render': function(data, type, row){
+                        return data ? data : '-';
+                    }
                 }
-            }
             ]
         });
-
         //选择未解决的问题或已解决的问题
         $('.quest-opts-area').find('.item').each(function () {
             $(this).bind('click', function () {
@@ -66,7 +100,6 @@ requirejs(['jquery', 'leftMenu', 'headMenu','layer','easyDropDown', 'datatables'
                 }
                 $(this).addClass('selected').siblings().removeClass('selected');
                 status = $(this).data("id");
-
                 table.ajax.url('/api/v1/question?state='+status).load(function(){
                     if(document.getElementById('myStudent').checked){
                         filterMyStudent();
@@ -92,7 +125,6 @@ requirejs(['jquery', 'leftMenu', 'headMenu','layer','easyDropDown', 'datatables'
                 });
             //先清除数据，再将数据渲染
             table.clear().draw();
-            console.log(fliterData.length);
             for(var i=0; i<fliterData.length;i++ ){
                 table.row.add(fliterData[i]).draw();
             }
@@ -129,7 +161,7 @@ requirejs(['jquery', 'leftMenu', 'headMenu','layer','easyDropDown', 'datatables'
                     window.open('/teacher/question',"_self");
                 });
             }else{
-                alert('您答案还没有呢，怎么就着急提交呢');
+                layer.alert('请先作答，再提交哦！');
             }
         });
 
