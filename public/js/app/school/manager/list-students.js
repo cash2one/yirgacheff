@@ -13,9 +13,11 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'easyDropDown', 'd
             'language': {
                 'url': '/js/lib/plugins/dataTable/Chinese.lang'
             },
+            'processing':true,
+            'serverSide':true,
             'ajax': {
                 url: '/api/v1/students',
-                dataSrc: ''
+                dataSrc: 'data'
             },
             'order': [[1, "desc"]],
             'columns': [
