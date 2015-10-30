@@ -49,33 +49,34 @@ api.create = function (req, res, next) {
  */
 api.getByClass = function (req, res, next) {
 
-    if( req.query.draw && req.query.length){
-        var qs = new RegExp(req.query.search['value']);
+    var query = Student.find({classes: req.params.classId});
+
+    if (req.query.draw && req.query.length) {
+        let search = req.query.search.value;
+        if(search && search.trim()!=''){
+            let qs = new RegExp(search);
+            query.or([{displayName: qs}, {username: qs}]);
+        }
         async.parallel({
-            "count": cb => Student.count({
-                classes: req.params.classId,
-                "$or":[{displayName: qs}, {username: qs}]
-            },cb),
-            "students": cb => Student.find({classes: req.params.classId, "$or":[{displayName: qs}, {username: qs}]})
-                                    .skip(req.query.start)
-                                    .limit(req.query.length)
-                                    .lean()
-                                    .exec(cb)
-        },function(err,result){
-            if(err){
+            "count": cb => Student.count(query.getQuery(), cb),
+            "students": cb => query
+                .skip(req.query.start)
+                .limit(req.query.length)
+                .lean()
+                .exec(cb)
+        }, function (err, result) {
+            if (err) {
                 return next(err);
             }
-            var page_students = {
-                'draw': req.query.draw,
-                'recordsTotal': result.count,
-                'recordsFiltered': result.count,
-                'data': result.students
-            };
-            res.json(page_students);
+            res.json({
+                draw: req.query.draw,
+                recordsTotal: result.count,
+                recordsFiltered: result.count,
+                data: result.students
+            });
         });
-    }else{
-        Student.find({classes: req.params.classId})
-            .lean()
+    } else {
+        query.lean()
             .exec(function (err, students) {
                 if (err) {
                     return next(err);
@@ -116,42 +117,41 @@ api.getNoneClassStudents = function (req, res, next) {
  *
  */
 api.getByTeacher = function (req, res, next) {
-
-    if( req.query.draw && req.query.length){
-        var qs = new RegExp(req.query.search['value']);
+    function classFind(call){
         Class.find({owner: req.params.teacherId, state: 0}, '_id', function (err, classes) {
             if (err) {
                 return callback(err);
+            }
+            call(classes);
+    })};
+    if (req.query.draw && req.query.length) {
+        let search = req.query.search.value;
+        classFind(function(classes){
+            let query =  Student.find({classes: {$in: classes}}).select('username displayName password gender onSchool');
+            if(search && search.trim()!=''){
+                let qs = new RegExp(search);
+                query.or([{displayName: qs}, {username: qs}]);
             }
             async.parallel({
-                "count": cb => Student.count({
-                    classes: {$in: classes},
-                    "$or": [{displayName: qs}, {username: qs}]
-                },cb),
-                "students": cb =>  Student.find({classes: {$in: classes},"$or":[{displayName: qs}, {username: qs}]})
-                                     .select('username displayName password gender onSchool')
-                                     .skip(req.query.start)
-                                     .limit(req.query.length)
-                                     .lean().exec(cb)
-            },function(err,result){
-                if(err){
+                "count": cb => Student.count(query.getQuery(), cb),
+                "students": cb => query
+                    .skip(req.query.start)
+                    .limit(req.query.length)
+                    .lean().exec(cb)
+            }, function (err, result) {
+                if (err) {
                     return next(err);
                 }
-                var page_students = {
-                    'draw': req.query.draw,
-                    'recordsTotal': result.count,
-                    'recordsFiltered': result.count,
-                    'data': result.students
-                };
-                res.json(page_students);
+                res.json({
+                    draw: req.query.draw,
+                    recordsTotal: result.count,
+                    recordsFiltered: result.count,
+                    data: result.students
+                });
             });
-        });
-
-    }else{
-        Class.find({owner: req.params.teacherId, state: 0}, '_id', function (err, classes) {
-            if (err) {
-                return callback(err);
-            }
+         });
+    } else {
+        classFind(function(classes){
             Student.find({classes: {$in: classes}},
                 'username displayName password gender onSchool',
                 function (err, students) {
@@ -159,7 +159,7 @@ api.getByTeacher = function (req, res, next) {
                         return next(err);
                     }
                     res.json(students);
-                })
+                });
         });
     }
 };
@@ -170,37 +170,35 @@ api.getByTeacher = function (req, res, next) {
  * @param res
  */
 api.list = function (req, res, next) {
-
-    if( req.query.draw && req.query.length) {
-        var qs = new RegExp(req.query.search['value']);
+    let query = Student.find({schoolId: req.user.schoolId, state: 0});
+    query.select('username displayName password gender onSchool grade phone score');
+    console.log(query.getQuery());
+    if (req.query.draw && req.query.length) {
+        var search = req.query.search.value;
+        if (search && search.trim() !== '') {
+            let qs = new RegExp(search);
+            query.or([{displayName: qs}, {username: qs}]);
+        }
         async.parallel({
-            "count": cb => Student.count({
-                    schoolId: req.user.schoolId,
-                    state: 0,
-                    '$or': [{displayName: qs}, {username: qs}]
-                }, cb),
-            "students": cb => Student.find({schoolId: req.user.schoolId, state: 0,'$or': [{displayName: qs}, {username: qs}]})
-                    .select('username displayName password gender onSchool grade phone score')
-                    .skip(req.query.start)
-                    .limit(req.query.length)
-                    .lean().exec(cb)
+            "count": cb => Student.count(query.getQuery(), cb),
+            "students": cb => query
+                .skip(req.query.start)
+                .limit(req.query.length)
+                .lean().exec(cb)
         }, function (err, result) {
             if (err) {
                 return next(err);
             }
-            var page_students = {
-                'draw': req.query.draw,
-                'recordsTotal': result.count,
-                'recordsFiltered': result.count,
-                'data': result.students
-            };
-            res.json(page_students);
+            res.json({
+                draw: req.query.draw,
+                recordsTotal: result.count,
+                recordsFiltered: result.count,
+                data: result.students
+            });
         });
-    }else{
-        Student.find({schoolId: req.user.schoolId, state: 0})
-            .select('username displayName password gender onSchool grade phone score')
-            .lean().exec(function(err,data){
-                if(err){
+    } else {
+        query.lean().exec(function (err, data) {
+                if (err) {
                     return next(err);
                 }
                 res.json(data);

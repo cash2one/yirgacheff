@@ -13,5 +13,7 @@ module.exports = function (api) {
     //删除练习
     api.delete('/quizzes/:quizId([a-f0-9]{24})', quizBase.remove);
 
+    api.get('/quizzes',quizBase.list);
+
 };
 

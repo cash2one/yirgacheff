@@ -21,26 +21,6 @@
                     <th>操作</th>
                 </tr>
                 </thead>
-                <tbody>
-                {% for quiz in quizzes %}
-                <tr>
-                    <td>{{loop.index}}</td>
-                    <td style="text-align: left">{{quiz.title}}</td>
-                    <td>{{quiz.creatorDisplayName}}</td>
-                    <td>
-                        {{quiz.createdTime | date('Y-m-d',-480)}}
-                    </td>
-                    <td>
-                        {{quiz.usage}}
-                    </td>
-                    <td>
-                        <a class="btn-small a-btn-blue"
-                           href="/school/quizzes/{{quiz._id.toString()}}">详情</a>
-                        <a class="btn-small a-btn-red delete-btn" id="{{quiz._id.toString()}}">删除</a>
-                    </td>
-                </tr>
-                {% endfor %}
-                </tbody>
             </table>
         </div>
     </div>

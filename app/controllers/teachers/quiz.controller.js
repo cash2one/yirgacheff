@@ -22,20 +22,7 @@ exports.quizCreate = function (req, res) {
  * @returns {*}
  */
 exports.quizManager = function (req, res, next) {
-    Quiz.find({schoolId: req.user.schoolId})
-        .where('asTemplate', true)
-        .select('-exercises')
-        .populate('creator', 'displayName')
-        .sort('-createdTime')
-        .lean()
-        .exec(function (err, quizzes) {
-            if (err) {
-                return next(err);
-            }
-            return res.render('backend/teacher/quizBase/list-quizzes', _.assign({
-                quizzes: quizzes
-            }, teacherMenus.quizzes));
-        });
+            return res.render('backend/teacher/quizBase/list-quizzes',teacherMenus.quizzes);
 };
 
 /**
