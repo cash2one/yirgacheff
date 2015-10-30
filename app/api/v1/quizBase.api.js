@@ -42,12 +42,12 @@ api.list = function(req, res, next){
     let query =  Quiz.find({schoolId: req.user.schoolId})
         .where('asTemplate', true)
         .select('-exercises')
-        .populate('creator', 'displayName')
         .sort('-createdTime');
     if (req.query.draw && req.query.length) {
         let search = req.query.search.value;
         if (search && search.trim() != '') {
-            query.or([{'creator.displayName': qs}, {title: qs}]);
+            let qs = new RegExp(search);
+            query.or([{'creatorDisplayName': qs}, {title: qs}]);
         }
         async.parallel({
             count: cb => Quiz.count(query.getQuery(),cb),

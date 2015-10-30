@@ -31,7 +31,7 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'layerWrapper', 'e
             'columns':[
                 { 'data': 'title' },
                 { 'data': 'title'},
-                { 'data': 'creator.displayName'},
+                { 'data': 'creatorDisplayName'},
                 { 'data': 'createdTime' },
                 { 'data': 'usage' },
                 { 'data': '_id'}
