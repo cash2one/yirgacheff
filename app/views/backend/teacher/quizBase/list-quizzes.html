@@ -25,27 +25,6 @@
                     <th>操作</th>
                 </tr>
                 </thead>
-                <tbody>
-                {% for quiz in quizzes %}
-                <tr>
-                    <td>{{loop.index}}</td>
-                    <td style="text-align: left">{{quiz.title}}</td>
-                    <td>{{quiz.creator.displayName}}</td>
-                    <td>
-                        {{quiz.createdTime | date('Y-m-d')}}
-                    </td>
-                    <td>
-                        {{quiz.usage}}
-                    </td>
-                    <td>
-                        <a class="btn-small a-btn-blue"
-                           href="/teacher/quizzes/{{quiz._id.toString()}}">详情</a>
-                        <a class="btn-small a-btn-green enable-library"
-                           href="/teacher/homework/create?quizId={{quiz._id.toString()}}">使用</a>
-                    </td>
-                </tr>
-                {% endfor %}
-                </tbody>
             </table>
         </div>
     </div>

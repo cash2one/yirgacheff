@@ -3,7 +3,7 @@
  */
 requirejs.config({
     baseUrl: '/js',
-    urlArgs: 'v=1',
+    urlArgs: 'v=2',
     paths: {
         // lib
         'jquery': ['//cdn.staticfile.org/jquery/1.11.1/jquery.min', 'lib/jquery'],
