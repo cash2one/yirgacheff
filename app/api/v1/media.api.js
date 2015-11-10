@@ -16,7 +16,7 @@ function makeKey(schoolId) {
 }
 
 
-api.batchAddMedias = function (req, res) {
+api.batchAddMedias = function (req, res, next) {
     var data = req.body;
     var uploads = data.uploads;
     var group = data.group;
