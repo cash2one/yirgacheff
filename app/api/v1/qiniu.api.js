@@ -5,7 +5,6 @@
 
 
 exports.imageToken = function (req, res) {
-    console.log('xxxx');
     res.json({
         uptoken: req.token
     });

@@ -50,6 +50,21 @@ requirejs(['jquery', 'leftMenu', 'headMenu', 'layerWrapper', 'upload', 'imageLib
                 layer.msg('文章内容不能为空');
                 return false;
             }
+            var visitCount = $('#visitCount').val();
+            if (isNaN(visitCount)) {
+                layer.msg('阅读量必须为数字');
+                return false;
+            }
+            var shareCount = $('#shareCount').val();
+            if (isNaN(shareCount)) {
+                layer.msg('分享量必须为数字');
+                return false;
+            }
+            var like = $('#like').val();
+            if (isNaN(like)) {
+                layer.msg('点赞量必须为数字');
+                return false;
+            }
             return true;
         }
 

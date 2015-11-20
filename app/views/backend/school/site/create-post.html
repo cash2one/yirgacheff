@@ -67,12 +67,12 @@
                                     <option value="">选择栏目</option>
                                     {% for category in categories %}
                                     <option value="{{category._id.toString()}}"
-                                    {% if post && post.category.toString()=== category._id.toString() %}
-                                    selected{% endif %}
-                                    {% if currentCategory=== category._id.toString() %}
-                                    selected {%endif %}>
+                                            {% if post && post.category.toString()=== category._id.toString() %}
+                                            selected{% endif %}
+                                            {% if currentCategory=== category._id.toString() %}
+                                            selected {%endif %}>
 
-                                    {{category.name}}
+                                        {{category.name}}
                                     </option>
                                     {% endfor %}
                                     {% if categories.length === 0 %}
@@ -80,27 +80,36 @@
                                 </select>
                             </div>
                         </div>
+
                         <div class="title" style="padding-top: 30px">
-                            <div class="text"><label></label>阅读：</div>
+                            <div class="text"><label></label>阅读量：</div>
                             <div style="float: left">
                                 <span class="frm_input_box">
-                                    <input type="text" class="frm_input">
+                                    <input type="text" class="frm_input" name="visitCount"
+                                           id="visitCount"
+                                           value="{{post && post.visitCount || 0}}">
                                 </span>
                             </div>
                         </div>
+
                         <div class="title" style="padding-top: 30px">
-                            <div class="text"><label></label>分享：</div>
+                            <div class="text"><label></label>分享量：</div>
                             <div style="float: left">
                                 <span class="frm_input_box">
-                                    <input type="text" class="frm_input">
+                                    <input type="text" class="frm_input" name="shareCount"
+                                           id="shareCount"
+                                           value="{{post && post.shareCount || 0}}">
                                 </span>
                             </div>
                         </div>
+
                         <div class="title" style="padding-top: 30px">
-                            <div class="text"><label></label>点赞：</div>
+                            <div class="text"><label></label>点赞数：</div>
                             <div style="float: left">
                                 <span class="frm_input_box">
-                                    <input type="text" class="frm_input">
+                                    <input type="text" class="frm_input" name="like"
+                                           id="like"
+                                           value="{{post && post.like || 0}}">
                                 </span>
                             </div>
                         </div>
@@ -116,14 +125,14 @@
                             <div style="float: left;margin-top: 7px;margin-left: 10px;">
                                 <label class="frm_radio_label" for="useSlide">
                                     <input type="radio" class="" name="isSlide" id="useSlide" value="1"
-                                    {% if post && post.isSlide %} checked {% endif %}>
+                                           {% if post && post.isSlide %} checked {% endif %}>
                                     <span class="">是</span>
                                 </label>
                             </div>
                             <div style="float: left;margin-top: 7px;margin-left: 15px;">
                                 <label class="frm_radio_label" for="noSlide">
                                     <input type="radio" class="" name="isSlide" id="noSlide" value="0"
-                                    {% if !post || !post.isSlide %} checked {% endif %}>
+                                           {% if !post || !post.isSlide %} checked {% endif %}>
                                     <span class="">否</span>
                                 </label>
                             </div>

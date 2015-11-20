@@ -11,8 +11,6 @@ var validator = require('validator');
 var models = require('../../models');
 var schoolMenus = require('../../common/menus').schoolMenus;
 var redis = require('../../../db/redis');
-var Media = models.Media;
-var School = models.School;
 var MediaGroup = models.MediaGroup;
 var Category = models.Category;
 var Post = models.Post;
@@ -131,7 +129,7 @@ var siteController = {
          * @param req
          * @param res
          */
-        doCreatePost: function (req, res) {
+        doCreatePost: function (req, res, next) {
             var post = new Post(req.body);
             post.schoolId = req.user.schoolId;
             post.save(function (err) {
@@ -143,7 +141,7 @@ var siteController = {
             });
         },
 
-        doUpdatePost: function (req, res) {
+        doUpdatePost: function (req, res, next) {
             var post = req.post;
             var category = post.category;
             var newCategory = req.body.category;
