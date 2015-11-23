@@ -2,16 +2,16 @@
  * Created by Frank on 15/8/7.
  */
 
-define(['jquery', 'imageLibrary', 'redactor'],
-    function ($, imgLib) {
+define(['jquery', 'imageLibrary', 'layerWrapper', 'redactor'],
+    function ($, imgLib, layer) {
         var render = function (elemId) {
             $('#' + elemId).redactor({
-                buttons: ['bold', 'italic', 'deleted', 'fontcolor', 'backcolor', 'formatting', 'outdent', 'indent', 'file', 'alignment', 'video', 'horizontalrule'],
+                buttons: ['bold', 'italic', 'deleted', 'fontcolor', 'backcolor', 'formatting', 'outdent', 'indent', 'file', 'alignment', 'horizontalrule'],
                 focus: true,
                 formatting: ['p', 'blockquote', 'h1', 'h2'],
-                buttonsAdd: ['button1'],
+                buttonsAdd: ['addImage', 'addVideo'],
                 buttonsCustom: {
-                    button1: {
+                    addImage: {
                         title: '图库选择',
                         callback: function (obj) {
                             imgLib.selectCallback({
@@ -28,8 +28,23 @@ define(['jquery', 'imageLibrary', 'redactor'],
                                 }
                             });
                         }
+                    },
+                    addVideo: {
+                        title: '插入视频',
+                        callback: function (obj) {
+                            layer.open({
+                                title: '插入视频链接',
+                                contentId: 'insertVideo',
+                                okCallback: function (index) {
+                                    obj.insertHtml($('#videoLink').val());
+                                    layer.close(index);
+                                }
+                            });
+
+                        }
                     }
                 }
+
             });
         };
         return {

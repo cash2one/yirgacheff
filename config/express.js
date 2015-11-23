@@ -33,10 +33,12 @@ module.exports.initLocalVariables = function (app) {
 module.exports.initMiddleware = function (app) {
     app.set('showStackError', true);
     app.use(bodyParser.urlencoded({
+        limit: '2048kb',
         extended: true
     }));
-    app.use(bodyParser.json());
-
+    app.use(bodyParser.json({
+        limit: '2048kb'
+    }));
 };
 
 

@@ -177,7 +177,7 @@ var siteController = {
          */
         categoriesMiddleware: function (select) {
             return function (req, res, next) {
-                var query = Category.where('schoolId', req.user.schoolId);
+                var query = Category.where('schoolId', req.user.schoolId).sort('order');
                 if (select) {
                     query.select(select);
                 }
