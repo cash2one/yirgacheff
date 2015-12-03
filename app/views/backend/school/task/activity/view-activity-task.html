@@ -101,11 +101,8 @@
 
                                 <div class="title">
                                     <div class="title-content">活动详情：</div>
-                                    <div class="activity-detail-container">
-                            <textarea id="activity-detail" class="activity-detail" placeholder="请输入活动详情" name="content">
-                                {{task.item.content}}
-                            </textarea>
-                                    </div>
+                                    <div class="activity-detail-container" id="activity-detail"></div>
+                                    <input type="hidden" id="content" value="{{task.item.content}}">
                                 </div>
                                 <div class="title">
                                     <div class="title-content  title-content-ext">报名填写信息：</div>

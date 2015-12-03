@@ -111,9 +111,10 @@
                             </div>
                         </div>
                         <div class="content">
-                            <div class="textarea-container">
-                                <textarea id="postContent" name="content">{{post.content}}</textarea>
+                            <div class="textarea-container" id="postContent">
+                                <!--<textarea id="postContent" name="content">{{post.content}}</textarea>-->
                             </div>
+                            <input type="hidden" name="content" id="content" value="{{post.content}}">
                         </div>
                         <div class="cover">
                             <div class="text">设为首页文章：</div>

@@ -11,7 +11,7 @@ requirejs(['jquery', 'vdatePicker', 'leftMenu', 'headMenu', 'layerWrapper', 'ric
         );
         //日期控件的选择校验
         vdatePicker.init();
-        richEditor.render('activity-detail');
+        var editor = richEditor.render('activity-detail');
         //添加信息栏
         $('#add-title-info').click(function () {
             var size = $('#title-info-list').find('li').size();
@@ -20,8 +20,8 @@ requirejs(['jquery', 'vdatePicker', 'leftMenu', 'headMenu', 'layerWrapper', 'ric
                 return false;
             }
             layer.open({
-                title:'报名信息',
-                contentId:'add-title-info-dialog',
+                title: '报名信息',
+                contentId: 'add-title-info-dialog',
                 okCallback: function (index) {
                     var infoName = $('#titleInfoName').val();
                     if (!infoName || infoName.trim() === '') {
@@ -77,11 +77,13 @@ requirejs(['jquery', 'vdatePicker', 'leftMenu', 'headMenu', 'layerWrapper', 'ric
                 layer.msg('活动地点不能为空');
                 return;
             }
-            var content = $('#activity-detail').val();
-            if (isEmpty(content)) {
+            if (!editor.hasContents()) {
                 layer.msg('活动详情不能为空');
                 return;
+            } else {
+                $('#content').val(editor.getContent());
             }
+
             $('#activityForm').submit();
         });
 

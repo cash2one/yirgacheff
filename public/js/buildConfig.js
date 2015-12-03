@@ -26,10 +26,11 @@ requirejs.config({
         'jtip': 'lib/jquery.qtip.min',
         'qrcode': 'lib/qrcode.min',
         'darktooltip': 'lib/jquery.darktooltip.min',
-        'redactor': 'lib/redactor',
         'qiniu': 'lib/qiniu.min',
         'plupload': 'lib/plupload.full.min',
         'lightbox': 'lib/lightbox-2.6.min',
+        'ueditor': 'lib/ueditor/ueditor.all.min',
+        'ueditor-config': 'lib/ueditor/ueditor.config',
 
         // common modules
         'exerciseBuilder': 'app/common/exercise_builder',
@@ -51,6 +52,10 @@ requirejs.config({
     },
 
     shim: {
+        'ueditor': {
+            deps: ['ueditor-config'],
+            exports: 'UE'
+        },
         'jqueryForm': ['jquery'],
         'jqueryJson': ['jquery'],
         'easyDropDown': ['jquery'],
@@ -74,7 +79,6 @@ requirejs.config({
         'highcharts-theme': ['highcharts'],
         'validator': ['jquery'],
         'datepicker': ['jquery'],
-        'redactor': ['jquery'],
         'lightbox': ['jquery'],
         'darktooltip': ['jquery']
     }

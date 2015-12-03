@@ -5,7 +5,10 @@ requirejs(['jquery', 'leftMenu', 'headMenu', 'layerWrapper', 'upload', 'imageLib
         headMenu.init();
 
         // 富编辑器渲染
-        richEditor.render('postContent');
+        var editor = richEditor.render('postContent');
+        editor.ready(function () {
+            editor.setContent($('#content').val());
+        });
 
         // 本地上传
         upload.imgUploader({
@@ -45,8 +48,7 @@ requirejs(['jquery', 'leftMenu', 'headMenu', 'layerWrapper', 'upload', 'imageLib
                 layer.msg('栏目不能为空');
                 return false;
             }
-            var content = $('#postContent').val();
-            if (content.trim() === '') {
+            if (!editor.hasContents()) {
                 layer.msg('文章内容不能为空');
                 return false;
             }
@@ -71,6 +73,7 @@ requirejs(['jquery', 'leftMenu', 'headMenu', 'layerWrapper', 'upload', 'imageLib
         //文章发布
         $('#savePost').click(function () {
             if (validate()) {
+                $('#content').val(editor.getContent());
                 var postId = $('#postId').val();
                 var action = '';
                 if (postId && postId !== '') {

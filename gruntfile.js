@@ -7,7 +7,7 @@ module.exports = function (grunt) {
             'jqueryJson', 'jqueryForm', 'datepicker', 'layer',
             'datatables', 'audiojs', 'highcharts', 'highcharts-theme',
             'validator', 'lazyLoad', 'fullcalendar',
-            'fullcalendar-zh', 'moment', 'jtip', 'redactor',
+            'fullcalendar-zh', 'moment', 'jtip', 'ueditor',
             'qiniu', 'plupload', 'lightbox', 'darktooltip'];
 
         var fs = require('fs');

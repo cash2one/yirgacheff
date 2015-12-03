@@ -11,7 +11,10 @@ requirejs(['jquery', 'restfulClient', 'vdatePicker', 'leftMenu', 'headMenu', 'la
         );
         //日期控件的选择校验
         vdatePicker.init();
-        richEditor.render('activity-detail');
+        var editor = richEditor.render('activity-detail');
+        editor.ready(function () {
+            editor.setContent($("#content").val());
+        });
         //添加信息栏
         $('#add-title-info').click(function () {
             var size = $('#title-info-list').find('li').size();
