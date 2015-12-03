@@ -10,40 +10,37 @@
     </div>
     <div class="w-base-container">
         <div class="t-del-homework" style="padding-left: 16px;padding-top: 0px;padding-right: 10px;overflow: auto;">
-            <div class="coverpage-frame">
-                <div class="coverpage">
-                    <img width="258px" height="172px"
-                         {% if post %}
-                         src="http://resource.hizuoye.com/{{post.image}}"
-                         {% else %}
-                         src="http://static.hizuoye.com/images/coverpage_default.png"
-                         {% endif %}>
-                </div>
-                <div class="coverpage-upload">
-                    <div class="title">
-                        <span>上传封面图片<span class="tip">(建议尺寸: 900像素x500像素)</span></span>
-                    </div>
-                    <div class="buttons">
-                        <div id="container">
-                            <a id="local_image_upload" class="btn-small solid-btn-green posi-left"
-                               style="width: 60px" href="javascript:void(0);">
-                                上传
-                            </a>
-                        </div>
-                        <a class="btn-middle solid-btn-green posi-left"
-                           style="margin-left: 24px"
-                           href="javascript:void(0);"
-                           id="chooseFromLibrary">
-                            图片库选择
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="arrow-direction">
-                <div class="location"></div>
-            </div>
             <div class="appmsg_editor">
                 <div class="passage-container">
+                    <div class="coverpage-frame">
+                        <div class="coverpage">
+                            <img width="258px" height="172px"
+                                 {% if post %}
+                                 src="http://resource.hizuoye.com/{{post.image}}"
+                                 {% else %}
+                                 src="http://static.hizuoye.com/images/coverpage_default.png"
+                                 {% endif %}>
+                        </div>
+                        <div class="coverpage-upload">
+                            <div class="title">
+                                <span>上传封面图片<span class="tip">(建议尺寸: 900像素x500像素)</span></span>
+                            </div>
+                            <div class="buttons">
+                                <div id="container">
+                                    <a id="local_image_upload" class="btn-middle solid-btn-green posi-right"
+                                       style="width: 60px" href="javascript:void(0);">
+                                        上传
+                                    </a>
+                                </div>
+                                <a class="btn-middle solid-btn-green posi-left"
+                                   href="javascript:void(0);"
+                                   id="chooseFromLibrary">
+                                    图片库选择
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
                     <form action="" id="postForm" method="post">
                         <input type="hidden" name="image" id="coverImage" value="{{post.image}}"/>
                         <input type="hidden" value="{{post._id.toString()}}" id="postId"/>
@@ -114,12 +111,10 @@
                             </div>
                         </div>
                         <div class="content">
-                            <div class="text"><label for="postContent">正文：</label></div>
                             <div class="textarea-container">
                                 <textarea id="postContent" name="content">{{post.content}}</textarea>
                             </div>
                         </div>
-
                         <div class="cover">
                             <div class="text">设为首页文章：</div>
                             <div style="float: left;margin-top: 7px;margin-left: 10px;">

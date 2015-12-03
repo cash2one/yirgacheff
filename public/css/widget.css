@@ -4188,14 +4188,12 @@ ul.pupil-messages .message-content {
     min-height: 30px;
     line-height: 20px;
     border-color: #e7e7eb;
-    width:480px
+    width:450px
 }
 
 .passage-container{
-    border: 1px solid #e7e7eb;
-    background-color: #f4f5f9;
     overflow: auto;
-    width: 578px;
+    width: 860px;
     padding-bottom: 30px;
     float: right;
     margin-right: 3px;
@@ -4253,31 +4251,32 @@ ul.pupil-messages .message-content {
 
 .passage-container .title{
     margin: 25px auto;
-    margin-left: 15px;
 }
 
 
 .passage-container .cover{
-    width: 548px;
+    width: 840px;
     margin: 0 auto;
 }
 
 .passage-container .content{
     margin: 50px auto;
-    margin-left: 15px;
 }
 
 .passage-container .text{
     float: left;
     margin-top: 11px;
+    margin-right: 10px;
     font-size: 15px;
+    min-width: 85px;
+    text-align: right;
 }
 
 .passage-container .textarea-container{
     float: left;
     margin-top: 5px;
     margin-bottom: 24px;
-    width: 500px;
+    width: 840px;
     margin-left: 1px;
 }
 
