@@ -27,8 +27,8 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'layerWrapper', 'e
                 {'data': 'grade'},
                 {
                     'data': null,
-                    'defaultContent': '<a class="btn-small a-btn-blue detail" style="width:64px" >查看</a>&nbsp;&nbsp;' +
-                    '<a class="btn-small a-btn-red delete">删除</a>'
+                    'defaultContent': '<a class="btn btn-info btn-xs btn-custom detail">查看</a>&nbsp;&nbsp;' +
+                    '<a class="btn btn-pink btn-xs btn-custom delete">删除</a>'
                 }
             ]
         });

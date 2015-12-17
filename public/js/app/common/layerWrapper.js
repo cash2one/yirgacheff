@@ -8,7 +8,7 @@ define(['jquery', 'restfulClient', 'layer', 'underscore', 'jqueryExt'], function
             if (typeof $content === 'string') {
                 $content = $('#' + $content);
             }
-            var width = $content.width() + 1 + 'px';
+            var width = "500px";
             var configs = {
                 type: 1,
                 area: width,
@@ -87,7 +87,7 @@ define(['jquery', 'restfulClient', 'layer', 'underscore', 'jqueryExt'], function
                     return $form.serializeObject();
                 }
             }
-            var width = $container.width() + 1 + 'px';
+            var width = "500px";
             var configs = {
                 type: 1,
                 area: width,

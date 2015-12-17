@@ -4,59 +4,69 @@
 {{ breadcrumb.init([{'url':'','title':'教师管理'}]) }}
 <!-- END OF BREADCRUMBS -->
 
-<div class="w-base ng-scope w-base-extraction w-base-border">
-    <div class="w-base-title">
-        <h3><i class="fa  fa-table fa-fw mr-5"></i>教师管理</h3>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-white">
+            <div class="panel-heading clearfix">
+                <h4 class="panel-title"><i class="fa fa-clock-o m-r-xxs"></i>教师列表</h4>
 
-        <div class="w-base-right w-base-right-ext" style="padding: 0px 0px 0 0;">
-            <a class="v-add-student btn-middle solid-btn-green" href="javascript:void(0);"
-               id="add-teacher-btn">+添加老师</a>
-            <a class="v-add-student btn-middle solid-btn-red" href="/school/teachers/disabled">已禁用</a>
-
+                <div class="panel-control">
+                    <button class="btn btn-success btn-xs" id="add-teacher-btn">+添加老师</button>
+                    <a class="btn btn-pink btn-xs pull-right" href="/school/teachers/disabled">已禁用</a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <table id="teacher-list" class="display" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>姓名</th>
+                        <th>工号</th>
+                        <th>密码</th>
+                        <th>电话</th>
+                        <th>部门</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
-    </div>
-    <div class="w-base-container">
-
-        <!-- TABLE STARTS -->
-        <div class="t-del-homework" style="padding-left: 16px; padding-top: 0px">
-            <table id="teacher-list" class="display" width="100%" cellspacing="0" style="border-color: gray;">
-                <thead>
-                <tr>
-                    <th>姓名</th>
-                    <th>工号</th>
-                    <th>密码</th>
-                    <th>电话</th>
-                    <th>部门</th>
-                    <th>操作</th>
-                </tr>
-                </thead>
-            </table>
-        </div>
-        <!-- TABLE ENDS-->
     </div>
 </div>
+<div class="hides" id="add-teacher-dialog">
+    <form class="form-horizontal m-t-sm" id="teacher_form">
+        <div class="form-group">
+            <label for="displayName" class="col-xs-2 control-label">姓名</label>
 
-<div class="invisible" id="add-teacher-dialog">
-    <form class="form-control" id="teacher_form">
-        <div class="form-group">
-                <label for="displayName">姓名：</label>
-                <input class="input-area" type="text" name="displayName" id="displayName">
+            <div class="col-xs-9">
+                <input class="form-control" type="text" name="displayName" id="displayName">
+            </div>
         </div>
         <div class="form-group">
-                <label for="password">密码：</label>
-                <input class="input-area" type="text" name="password" value="123456" id="password">
+            <label for="password" class="col-xs-2 control-label">密码</label>
+
+            <div class="col-xs-9">
+                <input class="form-control" type="text" name="password" value="123456" id="password">
+            </div>
         </div>
         <div class="form-group">
-                <label for="contact">电话：</label>
-                <input class="input-area" type="text" name="contact" id="contact">
+            <label for="contact" class="col-xs-2 control-label">电话</label>
+
+            <div class="col-xs-9">
+                <input class="form-control" type="text" name="contact" id="contact">
+            </div>
         </div>
         <div class="form-group">
-                <label for="department">部门：</label>
-                <input class="input-area" type="text" name="department" id="department">
+            <label for="department" class="col-xs-2 control-label">部门</label>
+
+            <div class="col-xs-9">
+                <input class="form-control" type="text" name="department" id="department">
+            </div>
         </div>
-        <div class="form-group btn-position">
-            <a class="btn-middle solid-btn-blue layer-ok-btn">确定</a>
-            <a class="btn-middle solid-btn-gray layer-close-btn">取消</a>
+        <div class="form-group">
+            <div class="col-xs-offset-2 col-xs-9">
+            <button type="button" class="btn btn-info layer-ok-btn">确定</button>
+            <button type="button" class="btn btn-white layer-close-btn">取消</button>
+            </div>
         </div>
     </form>
     <!--</form>-->

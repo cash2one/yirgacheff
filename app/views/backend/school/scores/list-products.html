@@ -59,6 +59,49 @@
         </ul>
     </div>
 </div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-white">
+            <div class="panel-heading clearfix">
+                <h4 class="panel-title"><i class="fa fa-clock-o m-r-xxs"></i>商品列表</h4>
+
+                <div class="panel-control">
+                    <button class="v-add-student btn btn-success btn-xs" data-toggle="modal"
+                            data-target="#productModal">+添加商品
+                    </button>
+                </div>
+            </div>
+            <div class="panel-body">
+                {% if !exchanges || exchanges.length === 0%}
+                <div class="m-t-sm m-l-sm">
+                    <span>提示：当前商城没有任何商品，请点击 [添加商品] 创建商品列表！</span></div>
+                {% endif %}
+                <div class="list-products-hint">
+                    备注：微信端积分商城会根据积分数自动排序，设置时可以不用考虑顺序问题。
+                </div>
+                <ul class="cd-gallery" id="product-list">
+                    {% for exchange in exchanges %}
+                    <li id="{{exchange._id.toString()}}">
+                        <a href="#">
+                            <img class="lazy center-block" src="/images/loading.gif"
+                                 data-original="{{resourceURL}}/{{exchange.imageKey}}?imageView2/1/w/193/h/160/interlace/1">
+                        </a>
+
+                        <div class="cd-item-info">
+                            <b>{{exchange.productName}}</b>
+                            <b class="cd-price">积分：{{exchange.score}}</b>
+                        </div>
+                        <div class="cd-item-details">
+                            <a href="#" class="pull-left add-to-cart"><i class="fa fa-shopping-cart"></i>数量：{{exchange.stock}}</a>
+                            <button class="pull-right btn btn-danger btn-xs m-t-xs m-r-xs btn-delete">删除</button>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="invisible" id="add-product-dialog">
     <form class="form-control" id="product-form">

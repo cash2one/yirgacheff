@@ -78,6 +78,7 @@ module.exports.initViewEngine = function (app) {
     app.engine('html', swig.renderFile);
     // Set views path and view engine
     app.set('view engine', 'html');
+    app.set('view cache', false);
     app.set('views', './app/views');
 };
 
