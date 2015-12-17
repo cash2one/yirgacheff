@@ -15,7 +15,6 @@
                     </div>
                 </div>
             </li>
-
             <li class="w-analyse-data-home w-fl-left">
                 <div>
                     <div class="w-fl-left l-icon icon-gold">
@@ -42,62 +41,69 @@
         <div class="w-clear"></div>
     </div>
 </div>
-
-<div class="w-base w-base-extraction w-base-border" style="min-height: 453px;">
-    <div class="w-base-title">
-        <h3><i class="fa  fa-line-chart fa-fw mr-5"></i>招生统计</h3>
-
-        <div class="w-base-right">
-            <select class="dropdown" id="enrolTimeRange">
-                <option value="lastSixMonths">最近6个月</option>
-                <option value="lastTwelveMonths">最近12个月</option>
-                <option value="lastYear">去年</option>
-            </select>
-        </div>
+<div class="row">
+    <div class="col-xs-3">
+        1
     </div>
-
-    <div class="w-base-container">
-        <div id="enrolStudentChart"></div>
-    </div>
+    <div class="col-xs-3">2</div>
+    <div class="col-xs-3"></div>
+    <div class="col-xs-3"></div>
 </div>
+<!--<div class="w-base w-base-extraction w-base-border" style="min-height: 453px;">-->
+    <!--<div class="w-base-title">-->
+        <!--<h3><i class="fa  fa-line-chart fa-fw mr-5"></i>招生统计</h3>-->
 
-<div class="w-base-square w-fl-left">
-    <div class="w-base-title">
-        <h3><i class="fa  fa-trophy fa-fw mr-5"></i>教师所带班级数量 Top10</h3>
-    </div>
-    <div class="w-base-container">
-        <div id="classesCountOfTaughtRank" class="w-base-container">
+        <!--<div class="w-base-right">-->
+            <!--<select class="dropdown" id="enrolTimeRange">-->
+                <!--<option value="lastSixMonths">最近6个月</option>-->
+                <!--<option value="lastTwelveMonths">最近12个月</option>-->
+                <!--<option value="lastYear">去年</option>-->
+            <!--</select>-->
+        <!--</div>-->
+    <!--</div>-->
 
-        </div>
-    </div>
-</div>
-<div class="w-base-square w-fl-right">
-    <div class="w-base-title">
-        <h3><i class="fa  fa-pie-chart fa-fw mr-5"></i>教师所带班级数量分布</h3>
-    </div>
-    <div class="w-base-container">
-        <div id="classesCountOfTaughtBar"></div>
-    </div>
-</div>
+    <!--<div class="w-base-container">-->
+        <!--<div id="enrolStudentChart"></div>-->
+    <!--</div>-->
+<!--</div>-->
 
-<div class="w-base-square w-fl-left">
-    <div class="w-base-title">
-        <h3><i class="fa  fa-trophy fa-fw mr-5"></i>题库贡献 Top10</h3>
-    </div>
-    <div class="w-base-container">
-        <div id="teacherRankView" class="w-base-container">
+<!--<div class="w-base-square w-fl-left">-->
+    <!--<div class="w-base-title">-->
+        <!--<h3><i class="fa  fa-trophy fa-fw mr-5"></i>教师所带班级数量 Top10</h3>-->
+    <!--</div>-->
+    <!--<div class="w-base-container">-->
+        <!--<div id="classesCountOfTaughtRank" class="w-base-container">-->
 
-        </div>
-    </div>
-</div>
-<div class="w-base-square w-fl-right">
-    <div class="w-base-title">
-        <h3><i class="fa  fa-bar-chart fa-fw mr-5"></i>全校积分分布</h3>
-    </div>
-    <div class="w-base-container">
-        <div id="scoreBar"></div>
-    </div>
-</div>
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div class="w-base-square w-fl-right">-->
+    <!--<div class="w-base-title">-->
+        <!--<h3><i class="fa  fa-pie-chart fa-fw mr-5"></i>教师所带班级数量分布</h3>-->
+    <!--</div>-->
+    <!--<div class="w-base-container">-->
+        <!--<div id="classesCountOfTaughtBar"></div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<!--<div class="w-base-square w-fl-left">-->
+    <!--<div class="w-base-title">-->
+        <!--<h3><i class="fa  fa-trophy fa-fw mr-5"></i>题库贡献 Top10</h3>-->
+    <!--</div>-->
+    <!--<div class="w-base-container">-->
+        <!--<div id="teacherRankView" class="w-base-container">-->
+
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div class="w-base-square w-fl-right">-->
+    <!--<div class="w-base-title">-->
+        <!--<h3><i class="fa  fa-bar-chart fa-fw mr-5"></i>全校积分分布</h3>-->
+    <!--</div>-->
+    <!--<div class="w-base-container">-->
+        <!--<div id="scoreBar"></div>-->
+    <!--</div>-->
+<!--</div>-->
 
 {% include '../templates/quizzesContributionRankTemplate.html' %}
 {% include '../templates/classesCountOfTaughtRankTemplate.html' %}

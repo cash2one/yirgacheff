@@ -1,6 +1,6 @@
 'use strict';
 
-define(['jquery','layer'], function ($,layer) {
+define(['jquery','layer','bootstrap'], function ($,layer) {
     var init = function () {
         var $account = $('.m-header');
         $account.find('ul li.v-menu-hover').each(function () {

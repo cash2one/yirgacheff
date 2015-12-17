@@ -32,6 +32,7 @@ requirejs.config({
         'lightbox': 'lib/lightbox-2.6.min',
         'ueditor': 'lib/ueditor/ueditor.all.min',
         'ueditor-config': 'lib/ueditor/ueditor.config',
+        'bootstrap': 'lib/bootstrap',
 
         // common modules
         'exerciseBuilder': 'app/common/exercise_builder',
@@ -57,6 +58,7 @@ requirejs.config({
             deps: ['ueditor-config'],
             exports: 'UE'
         },
+        'bootstrap': ['jquery'],
         'jqueryForm': ['jquery'],
         'jqueryJson': ['jquery'],
         'easyDropDown': ['jquery'],

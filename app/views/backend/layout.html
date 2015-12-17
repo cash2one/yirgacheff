@@ -22,18 +22,22 @@
 {% endblock %}
 <!-- END OF HEAD -->
 
-<div class="m-main">
-    <!-- LEFT-SIDE -->
-    {% block left %}
-    {% endblock %}
-    <!-- END OF LEFT-SIDE -->
-
-    <!-- 右侧的主题内容 -->
-    <div class="m-container">
-        {% block content %}
-        {% endblock %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="page-sidebar">
+            <!-- LEFT-SIDE -->
+            {% block left %}
+            {% endblock %}
+            <!-- END OF LEFT-SIDE -->
+        </div>
+        <!-- 右侧的主题内容 -->
+        <div class="page-inner">
+            <div class="main-wrapper">
+            {% block content %}
+            {% endblock %}
+            </div>
+        </div>
     </div>
-
 </div>
 {% include './common/footer.html' %}
 
@@ -47,5 +51,6 @@
 </script>
 <script type="text/javascript" src="/js/lib/require.js"></script>
 <script type="text/javascript" src="/js/config.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 {% block javascript %}{% endblock %}
 </html>

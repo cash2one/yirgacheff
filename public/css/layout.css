@@ -1,3 +1,5 @@
+@import url("bootstrap.css");
+@import url("style.css");
 @import url("laypage.css");
 @import url("layer.css");
 @import url("base.css");
@@ -6,7 +8,7 @@
 @import url("credits.css");
 @import url("datetimepicker.css");
 @import url("jquery.dataTables.css");
-@import url("easy-dropdown.css");
+/*@import url("easy-dropdown.css");*/
 @import url("info-box.css");
 @import url("pagination.css");
 @import url("fullcalendar.min.css");
