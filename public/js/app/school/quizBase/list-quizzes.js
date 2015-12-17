@@ -52,8 +52,8 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'layerWrapper', 'e
                 {
                     'targets': [5],
                     'render': function(data,type,row,meta){
-                        return '<a class="btn-small a-btn-blue detail" href=" /school/quizzes/'+ data +'">查看</a> ' +
-                            '<a class="btn-small a-btn-red delete-btn" id='+ data +'>删除</a>';
+                        return '<a class="btn btn-info btn-xs btn-custom detail" href=" /school/quizzes/'+ data +'">查看</a> ' +
+                            '<a class="btn btn-pink btn-xs btn-custom delete-btn" id='+ data +'>删除</a>';
                     }
                 }
             ]
