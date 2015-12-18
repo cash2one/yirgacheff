@@ -1,6 +1,10 @@
 'use strict';
 
-define(['jquery', 'layer', 'lazyLoad'], function ($, layer) {
+define(['jquery', 'layer', 'lazyLoad','slimscroll'], function ($, layer) {
+    // Slimscroll
+    $('.slimscroll').slimscroll({
+        allowPageScroll: true
+    });
     var init = function () {
         $("img.lazy").lazyload({
             effect: "fadeIn"

@@ -33,6 +33,7 @@ requirejs.config({
         'ueditor': 'lib/ueditor/ueditor.all.min',
         'ueditor-config': 'lib/ueditor/ueditor.config',
         'bootstrap': 'lib/bootstrap',
+        'slimscroll': 'lib/jquery.slimscroll.min',
 
         // common modules
         'exerciseBuilder': 'app/common/exercise_builder',
@@ -59,6 +60,7 @@ requirejs.config({
             exports: 'UE'
         },
         'bootstrap': ['jquery'],
+        'slimscroll': ['jquery'],
         'jqueryForm': ['jquery'],
         'jqueryJson': ['jquery'],
         'easyDropDown': ['jquery'],
