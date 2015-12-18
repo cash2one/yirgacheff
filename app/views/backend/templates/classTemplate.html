@@ -1,5 +1,28 @@
 <script type="template" id="classTemplate">
-
+    <table class="table" id="<%= clazz._id %>" data-name="<%= clazz.className %>">
+        <thead>
+        <tr>
+            <th>班级名称</th>
+            <th>班级学生</th>
+            <th>班级教师</th>
+            <th>修改操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><%= clazz.className %></td>
+            <td><%= clazz.studentsCount || 0 %></td>
+            <td><%= clazz.owner.displayName %></td>
+            <td>
+                <a href="javascript:void(0);" class="exchange-class">转让班级</a>
+                <a href="javascript:void(0);" class="delete-class">删除班级</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <ul>
+        <li></li>
+    </ul>
     <div class="w-base w-base-extraction w-base-border classItem" style="border-top: 1px solid #dfdfdf;"
          id="<%= clazz._id %>"
          data-name="<%= clazz.className %>">

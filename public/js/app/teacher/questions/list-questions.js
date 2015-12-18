@@ -81,7 +81,7 @@ requirejs(['jquery', 'leftMenu', 'headMenu','layer','easyDropDown', 'datatables'
                 {'data': 'teacher.displayName'},
                 {
                     'data': null,
-                    'defaultContent': '<a  class="btn-small a-btn-blue w-btn-opt-large detail">查看</a>&nbsp;&nbsp;'
+                    'defaultContent': '<a  class="btn btn-info btn-xs btn-custom detail">查看</a>&nbsp;&nbsp;'
                 }
             ],
             'columnDefs':[

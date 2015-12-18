@@ -7,14 +7,14 @@
 .w-que-width{
     width: 300px;
 }
-.w-base-container .t-del-question{
+.t-del-question{
     padding-left: 16px;
     padding-top: 0px;
 }
-.w-base-container .t-del-question .question-tab{
+.t-del-question .question-tab{
     border-color: gray;
 }
-.w-base-container .t-del-question .quest-list-tit{
+.t-del-question .quest-list-tit{
     text-align: left;
 }
 .quest-opts-area{
@@ -28,8 +28,8 @@
 
 .quest-opts-area ul li{
     display: inline-block;
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
     zoom: 1;
     font-size: 13px;
     width: 100px;
@@ -51,7 +51,8 @@
 .quest-opts-area ul li a{
     width: 100px;
     height: 28px;
-    padding: 6px 16px;
+    padding: 2px 16px;
+    color: #212121!important;
 }
 
 .quest-opts-area .selected{
@@ -63,7 +64,7 @@
     width: 100px;
     height: 28px;
     background-color: #72d26e;
-    color: #fff;
+    color: #fff!important;
     border-radius:2px
 }
 
@@ -78,26 +79,26 @@
     margin-bottom: 20px;
 }
 
-.w-base-container .question-img{
+.question-img{
     width:750px;
     margin: 0 auto;
     text-align: center;
 }
-.w-base-container .question-img img{
+.question-img img{
     max-width: 750px;
     margin-bottom: 20px;
 }
-.w-base-container .question-info{
+.question-info{
     width:750px;
     margin: 0 auto;
     margin-bottom: 20px;
 }
-.w-base-container .question-info .info-tit{
+.question-info .info-tit{
     color:#1B1E24;
     font-size: 16px;
     padding-left: 10px;
 }
-.w-base-container .question-info .info-p{
+.question-info .info-p{
     width: 750px;
     text-align:justify;
     text-justify:inter-ideograph;

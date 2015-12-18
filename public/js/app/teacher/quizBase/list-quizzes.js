@@ -51,8 +51,8 @@ requirejs(['jquery', 'leftMenu', 'headMenu', 'easyDropDown', 'datatables'],
                 {
                     'targets': [5],
                     'render': function (data, type, row, meta) {
-                        return '<a class="btn-small a-btn-blue detail" href=" /teacher/quizzes/' + data + '">查看</a> ' +
-                            '<a class="btn-small a-btn-red delete-btn" href="/teacher/homework/create?quizId=' + data + '">使用</a>';
+                        return '<a class="btn btn-info btn-xs btn-custom detail" href=" /teacher/quizzes/' + data + '">查看</a> ' +
+                            '<a class="btn btn-default btn-xs btn-custom delete-btn" href="/teacher/homework/create?quizId=' + data + '">使用</a>';
                     }
                 }
             ]

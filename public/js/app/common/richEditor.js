@@ -65,8 +65,10 @@ define(['jquery', 'imageLibrary', 'ueditor'], function ($, imgLib) {
                 'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', '|', 'preview'
             ]],
             initialFrameHeight: 480,
-            autoHeightEnabled: true,
-            elementPathEnabled : false
+            autoHeightEnabled: false,
+            elementPathEnabled : false,
+            autoFloatEnabled:false,
+            textarea:'content'
         });
     };
     return {

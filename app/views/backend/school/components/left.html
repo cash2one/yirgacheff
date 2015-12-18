@@ -1,82 +1,82 @@
 <div class="page-sidebar-inner">
-<div class="user-info bg-dark">
-    <div class="img m-b-xs">
-        <img src="http://resource.hizuoye.com/{{user.avatar | default('images/default/avatar.jpg')}}"
-                          width="85" height="85">
+    <div class="user-info">
+        <div class="img m-b-xs pull-left">
+            <img src="http://resource.hizuoye.com/{{user.avatar | default('images/default/avatar.jpg')}}"
+                 width="48" height="48">
+        </div>
+        <p class="username">{{user.displayName}}</p>
+        <p class="userNumber">{{user.username}}</p>
     </div>
-    <span class="username">{{user.displayName}}</span>
-    <span class="username">{{user.username}}</span>
-</div>
-<ul class="nav nav-pills nav-stacked bg-dark">
-    <li class="{% if active === '0' %}active{% endif %}">
-        <a href="/school">
-            <i class="fa fa-home fa-fw m-r-xxs"></i>首页
-        </a>
-    </li>
-    <li class="{% if active === '1' %}active{% endif %}">
-        <a href="/school/teachers">
-            <i class="fa fa-user fa-fw m-r-xxs"></i>教师管理
-        </a>
-    </li>
-    <li class="{% if active === '2' %}active{% endif %}">
-        <a href="/school/classes">
-            <i class="fa fa-sitemap fa-fw m-r-xxs"></i>班级管理
-        </a>
-    </li>
-    <li class="{% if active === '3' %}active{% endif %}">
-        <a href="/school/students">
-            <i class="fa fa-child fa-fw m-r-xxs"></i>学生管理
-        </a>
-    </li>
-    <li class="left-menu {% if active[0] === '4' %}active{% endif %}">
-        <a href="#Score" data-toggle="collapse">
-            <i class="fa fa-database fa-fw m-r-xxs"></i>积分管理
-            <i class="pull-right fa fa-caret-down"></i>
-        </a>
-        <ul id="Score" class="nav nav-list collapse secondMenu">
-            <li><a href="/school/scores/instruction" class="{% if active === '4-1' %}current{% endif %}">兑换说明</a></li>
-        </ul>
-    </li>
-    <li class="{% if active === '5' %}active{% endif %}">
-        <a href="/school/scores/mall">
-            <i class="fa fa-shopping-cart fa-fw m-r-xxs"></i>积分商城
-        </a>
-    </li>
-    <li class="{% if active === '6' %}active{% endif %}">
-        <a href="/school/schedules">
-            <i class="fa fa-calendar fa-fw m-r-xxs"></i>日程管理
-        </a>
-    </li>
-    <li class="{% if active === '7' %}active{% endif %}">
-        <a href="/school/quizzes">
-            <i class="fa fa-cubes fa-fw m-r-xxs"></i>题库资源
-        </a>
-    </li>
-    <li class="left-menu {% if active === '9' %}active{% endif %}">
-        <a href="#Web" data-toggle="collapse">
-            <i class="fa fa-weixin fa-fw m-r-xxs"></i>微网站
-            <i class="pull-right fa fa-caret-down"></i>
-        </a>
-        <ul id="Web" class="nav nav-list collapse secondMenu">
-            <li><a href="/school/posts" class="{% if active === '9-0' %}current{% endif %}">所有文章</a></li>
-            <li><a href="/school/posts/create" class="{% if active === '9-0' %}current{% endif %}">文章发布</a></li>
-            <li><a href="/school/categories" class="{% if active === '9-0' %}current{% endif %}">栏目管理</a></li>
-            <li><a href="/school/materials" class="{% if active === '9-0' %}current{% endif %}">图片库</a></li>
-        </ul>
-    </li>
-    <li class="left-menu {% if active === '6' %}active{% endif %}">
-        <a href="#Tasks" data-toggle="collapse">
-            <i class="fa fa-share-alt-square fa-fw m-r-xxs"></i>营销中心
-            <i class="pull-right fa fa-caret-down"></i>
-        </a>
-        <ul id="Tasks" class="nav nav-list collapse secondMenu">
-            <li><a href="/school/tasks">任务管理</a></li>
-            <li><a href="/school/tasks/create">任务发布</a></li>
-        </ul>
-    </li>
-</ul>
-<div class="m-synthesize">
+    <ul class="nav nav-pills nav-stacked">
+        <li class="{% if active === '0' %}active{% endif %}">
+            <a href="/school">
+                <i class="fa fa-home fa-fw m-r-xxs"></i>首页
+            </a>
+        </li>
+        <li class="{% if active === '1' %}active{% endif %}">
+            <a href="/school/teachers">
+                <i class="fa fa-user fa-fw m-r-xxs"></i>教师管理
+            </a>
+        </li>
+        <li class="{% if active === '2' %}active{% endif %}">
+            <a href="/school/classes">
+                <i class="fa fa-sitemap fa-fw m-r-xxs"></i>班级管理
+            </a>
+        </li>
+        <li class="{% if active === '3' %}active{% endif %}">
+            <a href="/school/students">
+                <i class="fa fa-child fa-fw m-r-xxs"></i>学生管理
+            </a>
+        </li>
+        <li class="left-menu {% if active[0] === '4' %}active{% endif %}">
+            <a href="#Score" data-toggle="collapse">
+                <i class="fa fa-database fa-fw m-r-xxs"></i>积分管理
+                <i class="pull-right fa fa-caret-down"></i>
+            </a>
+            <ul id="Score" class="nav nav-list collapse secondMenu">
+                <li><a href="/school/scores/instruction" class="{% if active === '4-1' %}current{% endif %}">兑换说明</a></li>
+            </ul>
+        </li>
+        <li class="{% if active === '5' %}active{% endif %}">
+            <a href="/school/scores/mall">
+                <i class="fa fa-shopping-cart fa-fw m-r-xxs"></i>积分商城
+            </a>
+        </li>
+        <li class="{% if active === '6' %}active{% endif %}">
+            <a href="/school/schedules">
+                <i class="fa fa-calendar fa-fw m-r-xxs"></i>日程管理
+            </a>
+        </li>
+        <li class="{% if active === '7' %}active{% endif %}">
+            <a href="/school/quizzes">
+                <i class="fa fa-cubes fa-fw m-r-xxs"></i>题库资源
+            </a>
+        </li>
+        <li class="left-menu {% if active === '9' %}active{% endif %}">
+            <a href="#Web" data-toggle="collapse">
+                <i class="fa fa-weixin fa-fw m-r-xxs"></i>微网站
+                <i class="pull-right fa fa-caret-down"></i>
+            </a>
+            <ul id="Web" class="nav nav-list collapse secondMenu">
+                <li><a href="/school/posts" class="{% if active === '9-0' %}current{% endif %}">所有文章</a></li>
+                <li><a href="/school/posts/create" class="{% if active === '9-0' %}current{% endif %}">文章发布</a></li>
+                <li><a href="/school/categories" class="{% if active === '9-0' %}current{% endif %}">栏目管理</a></li>
+                <li><a href="/school/materials" class="{% if active === '9-0' %}current{% endif %}">图片库</a></li>
+            </ul>
+        </li>
+        <li class="left-menu {% if active === '6' %}active{% endif %}">
+            <a href="#Tasks" data-toggle="collapse">
+                <i class="fa fa-share-alt-square fa-fw m-r-xxs"></i>营销中心
+                <i class="pull-right fa fa-caret-down"></i>
+            </a>
+            <ul id="Tasks" class="nav nav-list collapse secondMenu">
+                <li><a href="/school/tasks">任务管理</a></li>
+                <li><a href="/school/tasks/create">任务发布</a></li>
+            </ul>
+        </li>
+    </ul>
+    <div class="m-synthesize">
 
-    {% include '../../common/response.html' %}
-</div>
+        {% include '../../common/response.html' %}
+    </div>
 </div>

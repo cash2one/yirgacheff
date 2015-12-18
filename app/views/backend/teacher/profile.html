@@ -4,75 +4,93 @@
 {% endblock %}
 {% block content %} <!-- 面包屑 -->
 {{ breadcrumb.init([{'url':'','title':'个人中心'},{'url':'','title':'基本信息'}]) }}
-
-<div class="w-base w-base-extraction w-base-border" id="t-center-img-upload">
-    <div class="w-base-title">
-        <h3><i class="fa fa-picture-o mr-5"></i>修改头像</h3>
-    </div>
-    <div class="t-center" style="padding-bottom: 50px">
-        <div class="t-center-image">
-            <img class="avatar"
-                 {% if user.avatar %} src="{{resourceURL}}/{{user.avatar}}?imageView2/1/w/180/h/180" {% else %}
-                 src="/images/default_head.jpg" {% endif %}
-                 width="180px" height="180px">
-            <div class="t-center-image-upload">
-                <a class="btn-middle solid-btn-green"
-                   href="javascript:void(0);" id="local_image_upload">修改头像</a>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-white">
+            <div class="panel-heading clearfix">
+                <h4 class="panel-title"><i class="fa fa-picture-o m-r-xs"></i>修改头像</h4>
             </div>
-        </div>
-        <p style="float: left;margin-top: 176px;margin-left: 16px">注：仅支持JPG, JPEG, GIF, PNG图像文件, 且文件小于2MBK</p>
-    </div>
-</div>
-
-<div id="update-information" class="w-base w-base-extraction w-base-border">
-    <div class="w-base-title">
-        <h3><i class="fa fa-info-circle mr-5"></i>个人资料</h3>
-    </div>
-    <div class="t-security">
-        <div class="myData">
-            <div class="w-form-table">
-                <form id="infoForm">
-                    <dl>
-                        <dt>我的姓名：</dt>
-                        <dd><input type="text" class="w-int" value="{{user.displayName}}" name="displayName"></dd>
-                        <dt>工号：</dt>
-                        <dd><input type="text" class="w-int dark-tip-show" value="{{user.username}}" data-tooltip="工号不可修改" readonly ></dd>
-                        <dt>联系方式：</dt>
-                        <dd><input type="text" class="w-int" value="{{user.contact}}" name="contact"></dd>
-                    </dl>
-                </form>
-            </div>
-            <div class="w-homework-store">
-                <div class="btn-areas-ext ext">
-                    <a class="jqibuttons" style="margin-left: 39px;" id="info-save-btn">保存</a>
+            <div class="panel-body">
+                <div class="col-xs-3">
+                    <img
+                            {% if user.avatar %} src="{{resourceURL}}/{{user.avatar}}?imageView2/1/w/180/h/180" {% else %}
+                            src="/images/default_head.jpg" {% endif %}
+                            width="180px"
+                            height="180px" class="center-block m-t-lg">
+                    <button type="button" class="btn btn-success m-t-lg center-block"
+                            href="javascript:void(0);" id="local_image_upload">修改头像</button>
+                </div>
+                <div class="col-xs-9">
+                    <p style="float: left;margin-top: 176px;">注：仅支持JPG, JPEG, GIF, PNG图像文件, 且文件小于2MB</p>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<div class="w-base w-base-extraction w-base-border" id="modify-panel">
-    <div class="w-base-title">
-        <h3><i class="fa fa-key mr-5"></i>修改密码</h3>
-    </div>
-    <div class="t-security">
-        <div class="myData">
-            <div class="w-form-table">
-                <form id="passwordForm">
-                    <dl>
-                        <dt>原始密码：</dt>
-                        <dd><input type="password" class="w-int" name="password"></dd>
-                        <dt>新的密码：</dt>
-                        <dd><input type="password" class="w-int" name="newPassword"></dd>
-                        <dt>再次输入：</dt>
-                        <dd><input type="password" class="w-int" name="confirmPassword"></dd>
-                    </dl>
+    <div class="col-xs-12">
+        <div class="panel panel-white">
+            <div class="panel-heading clearfix">
+                <h4 class="panel-title"><i class="fa fa-info-circle m-r-xs"></i>个人资料</h4>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" id="infoForm">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">我的姓名：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" type="text" value="{{user.displayName}}" name="displayName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">我的工号：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" type="text" value="{{user.username}}"  disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">联系方式：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" type="text" value="{{user.contact}}" name="contact">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="button" class="btn btn-success" id="info-save-btn">保存</button>
+                        </div>
+                    </div>
                 </form>
             </div>
-            <div class="w-homework-store">
-                <div class="btn-areas-ext ext">
-                    <a class="jqibuttons" style="margin-left: 39px;" id="change-psw-btn">保存</a>
-                </div>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <div class="panel panel-white">
+            <div class="panel-heading clearfix">
+                <h4 class="panel-title"><i class="fa fa-info-circle m-r-xs"></i>个人资料</h4>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" id="passwordForm">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">原始密码：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" type="password" name="password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">新的密码：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" type="password" name="newPassword">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">再次输入：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" type="password" name="confirmPassword">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6">
+                            <button type="button" class="btn btn-success" id="change-psw-btn">保存</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -7,49 +7,77 @@
 <!-- END OF BREADCRUMBS -->
 
 <!-- 班级列表 -->
-<div class="w-base w-base-extraction w-base-border">
-    <div class="w-base-title" style="border-bottom: 0">
-        <h3><i class="fa fa-list mr-5"></i>班级列表</h3>
 
-        <div class="w-base-right" style="margin-right: 10px;">
-            <a class="v-add-student btn-middle solid-btn-green"
-               href="javascript:void(0);" id="addClazz">+添加班级</a>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-white">
+            <div class="panel-heading clearfix">
+                <h4 class="panel-title"><i class="fa fa-list m-r-xxs"></i>班级列表</h4>
+
+                <div class="panel-control">
+                    <button class="btn btn-success btn-xs" id="addClazz">+添加班级</button>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div id="classList">
+                    <div class="hides">
+                        <div class="tip-content">提示：当前没有任何班级，请点击 [添加班级] 创建班级！</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<div id="classList">
-    <div class="class-empty-tips" style="display: none">
-        <div class="tip-content">提示：当前没有任何班级，请点击 [添加班级] 创建班级！</div>
-    </div>
-</div>
+<!--<div class="w-base w-base-extraction w-base-border">-->
+    <!--<div class="w-base-title" style="border-bottom: 0">-->
+        <!--<h3><i class="fa fa-list mr-5"></i>班级列表</h3>-->
+
+        <!--<div class="w-base-right" style="margin-right: 10px;">-->
+            <!--<a class="v-add-student btn-middle solid-btn-green"-->
+               <!--href="javascript:void(0);" id="addClazz">+添加班级</a>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div id="classList">-->
+    <!--<div class="hides">-->
+        <!--<div class="tip-content">提示：当前没有任何班级，请点击 [添加班级] 创建班级！</div>-->
+    <!--</div>-->
+<!--</div>-->
 
 
 <!-- 添加b班级提示框-->
-<div class="invisible " id="class-dialog">
-    <form class="form-control" id="class-form">
+<div class="hides" id="class-dialog">
+    <form class="form-horizontal m-t-sm" id="class-form">
         <div class="form-group">
-            <label>请输入班级名称：</label>
-            <input type="text" placeholder="比如：新概念英语1班" value="" name="className">
+            <label class="col-xs-4 control-label">请输入班级名称：</label>
+            <div class="col-xs-7">
+                <input class="form-control" type="text" placeholder="比如：新概念英语1班" value="" name="className">
+            </div>
         </div>
-        <div class="form-group btn-position">
-            <a class="btn-middle solid-btn-blue layer-ok-btn">确定</a>
-            <a class="btn-middle solid-btn-gray layer-close-btn">取消</a>
+        <div class="form-group">
+            <div class="col-xs-offset-4 col-xs-7">
+                <button type="button" class="btn btn-info layer-ok-btn">确定</button>
+                <button type="button" class="btn btn-white layer-close-btn">取消</button>
+            </div>
         </div>
     </form>
     <!--</form>-->
 </div>
 
 <!-- 转让班级DIV -->
-<div class="invisible" id="exchange-class">
-    <form class="form-control" id="exchange-form">
+<div class="hides" id="exchange-class">
+    <form class="form-horizontal m-t-sm" id="exchange-form">
         <div class="form-group">
-            <label>请输入将要更换的老师工号：</label>
-            <input type="text" name="username" id="username">
+            <label class="col-xs-4 control-label">请输入老师工号：</label>
+            <div class="col-xs-7">
+                <input class="form-control" type="text" name="username" id="username">
+            </div>
         </div>
-
-        <div class="form-group btn-position">
-            <a class="btn-middle solid-btn-blue layer-ok-btn">确定</a>
-            <a class="btn-middle solid-btn-gray layer-close-btn">取消</a>
+        <div class="form-group">
+            <div class="col-xs-offset-4 col-xs-7">
+                <button type="button" class="btn btn-info layer-ok-btn">确定</button>
+                <button type="button" class="btn btn-white layer-close-btn">取消</button>
+            </div>
         </div>
     </form>
 </div>

@@ -4,100 +4,110 @@
 {{ breadcrumb.init([{'url':'','title':'营销活动'}]) }}
 <!-- END OF BREADCRUMBS -->
 <input type="hidden" id="homeworkId" value="">
-<div class="w-base w-base-extraction w-base-border">
-    <div class="w-base-title">
-        <h3><i class="fa fa-list-ul fa-fw mr-5"></i>任务列表
-            <span style="margin-left: 30px;font-size: 11px;letter-spacing: 1px">共<span
-                    id="tasks-count">0</span>条记录</span>
-        </h3>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-white">
+            <div class="panel-heading clearfix">
+                <h4 class="panel-title"><i class="fa fa-list-ul fa-fw m-r-xxs"></i>任务列表</h4>
 
-        <div class="w-base-right w-base-right-ext" style="padding: 0px 0px 0 0;margin-right: 23px;">
-            <a class="btn-middle solid-btn-green" href="/school/tasks/create"
-               id="add-passage-btn" style="margin-right:22px; ">创建新任务</a>
+                <div class="panel-control">
+                    <a class="btn btn-success btn-xs" href="/school/tasks/create"
+                       id="add-passage-btn">+添加任务</a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div  role="tabpanel">
+                    <!-- Nav tabs -->
+                    <div class="opts-area">
+                    <ul class="nav nav-pills" role="tablist">
+                        <li data-state = "" class="item active"><a role="tab" data-toggle="tab">全部</a></li>
+                        <li class="item" data-state = "0"><a role="tab" data-toggle="tab">进行中</a></li>
+                        <li class="item" data-state = "1"><a role="tab" data-toggle="tab">已关闭</a></li>
+                    </ul>
+                    </div>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active fade in" id="tab25">
+                            <div class="table-responsive">
+                                <table id="" class="table">
+                                    <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>标题</th>
+                                        <th>状态</th>
+                                        <th>时间</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="list-posts">
+                                    {% for task in tasks %}
+                                    <tr id="{{task._id.toString()}}" data-state="{{task.state}}">
+                                        <td>
+                                            {% if task.taskType === 0 %}
+                                            {% if task.state === 0 %}
+                                            <img src="http://static.hizuoye.com/images/passage.png" width="75px" height="75px"
+                                                 style="display: inline;">
+                                            {% else %}
+                                            <img src="http://static.hizuoye.com/images/passage-expire.png" width="75px"
+                                                 height="75px"
+                                                 style="display: inline;">
+                                            {% endif %}
+                                            {% else %}
+                                            <div style="width: 75px;">
+                                                {% if task.state === 0 %}
+                                                <img src="http://static.hizuoye.com/images/activity.png" width="60px" height="60px"
+                                                     style="display: inline; margin-top: 12px;">
+                                                {% else %}
+                                                <img src="http://static.hizuoye.com/images/activity-expire.png" width="60px"
+                                                     height="60px"
+                                                     style="display: inline; margin-top: 12px;">
+                                                {% endif %}
+
+                                            </div>
+                                            {% endif%}
+                                        </td>
+                                        <td>{{task.name}}</td>
+                                        <td>{% if task.state === 0
+                                            %} 进行中 {% else %} 已结束 {% endif %}</td>
+                                        <td>{{task.createdTime | date('Y-m-d',-480)}}</td>
+                                        <td>
+                                            {% if task.state === 0 %}
+                                            <div class="">
+                                                <a class="btn-middle a-btn-blue"
+                                                   href="/school/tasks/{{task._id.toString()}}">管理任务</a>
+                                            </div>
+                                            {% else %}
+                                            <div class="">
+                                                <a class="btn-middle a-btn-blue"
+                                                   href="/school/tasks/{{task._id.toString()}}">查看任务</a>
+                                            </div>
+                                            {% endif %}
+
+                                            {% if task.state === 0 %}
+                                            <div style="margin-top: 15px">
+                                                <a class="btn-middle a-btn-red close-task">关闭任务</a>
+                                            </div>
+                                            {% else %}
+                                            <div style="margin-top: 15px">
+                                                <a class="btn-middle btn-cursor closed-task-btn">已关闭</a>
+                                            </div>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="tab26">
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="tab27">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="w-base-container">
-        <div class="t-del-homework"
-             style="padding-left: 33px; padding-top: 0px; padding-right: 23px;padding-bottom: 60px">
-            <div class="opts-area">
-                <ul>
-                    <li title="全部" class="item selected" data-state = "">全部</li>
-                    <li title="进行中" class="item" data-state="0">进行中</li>
-                    <li title="已结束" class="item" data-state="1">已关闭</li>
-                </ul>
-            </div>
-            <div class="tasks-list container">
-                <ul id="list-posts">
-                    {% for task in tasks %}
-                    <li class="data" id="{{task._id.toString()}}" data-state="{{task.state}}">
-                        <a href="javascript:void(0);">
-                            <div class="thumb thumb-ext">
-                                {% if task.taskType === 0 %}
-                                {% if task.state === 0 %}
-                                <img src="http://static.hizuoye.com/images/passage.png" width="75px" height="75px"
-                                     style="display: inline;">
-                                {% else %}
-                                <img src="http://static.hizuoye.com/images/passage-expire.png" width="75px"
-                                     height="75px"
-                                     style="display: inline;">
-                                {% endif %}
-                                {% else %}
-                                <div style="width: 75px;">
-                                    {% if task.state === 0 %}
-                                    <img src="http://static.hizuoye.com/images/activity.png" width="60px" height="60px"
-                                         style="display: inline; margin-top: 12px;">
-                                    {% else %}
-                                    <img src="http://static.hizuoye.com/images/activity-expire.png" width="60px"
-                                         height="60px"
-                                         style="display: inline; margin-top: 12px;">
-                                    {% endif %}
-
-                                </div>
-                                {% endif%}
-
-                            </div>
-                            <div class="title">
-                                <div class="title-content">{{task.name}}</div>
-                                <div class="title-content title-size">发布时间：{{task.createdTime | date('Y-m-d',-480)}}
-                                </div>
-                                <div class="title-content title-state"><span class="">状态：</span>{% if task.state === 0
-                                    %} 进行中 {% else %} 已结束 {% endif %}
-                                </div>
-                            </div>
-                            <div class="management">
-                                {% if task.state === 0 %}
-                                <div class="">
-                                    <a class="btn-middle a-btn-blue"
-                                       href="/school/tasks/{{task._id.toString()}}">管理任务</a>
-                                </div>
-                                {% else %}
-                                <div class="">
-                                    <a class="btn-middle a-btn-blue"
-                                       href="/school/tasks/{{task._id.toString()}}">查看任务</a>
-                                </div>
-                                {% endif %}
-
-                                {% if task.state === 0 %}
-                                <div style="margin-top: 15px">
-                                    <a class="btn-middle a-btn-red close-task">关闭任务</a>
-                                </div>
-                                {% else %}
-                                <div style="margin-top: 15px">
-                                    <a class="btn-middle btn-cursor closed-task-btn">已关闭</a>
-                                </div>
-                                {% endif %}
-                            </div>
-                        </a>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div style="" class="customize-pagination">
-                <div id="pagination" class="content"></div>
-            </div>
-        </div>
-    </div>
-
 </div>
 {% endblock %}
 {% block javascript %}

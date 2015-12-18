@@ -35,22 +35,15 @@
             <div class="main-wrapper">
             {% block content %}
             {% endblock %}
+                {% include './common/footer.html' %}
             </div>
         </div>
     </div>
 </div>
-{% include './common/footer.html' %}
+
 
 </body>
-<script type="text/javascript">
-    var dom = document.querySelectorAll('.async-loading');
-    for (var i = 0; i < dom.length; i++) {
-        dom[i].style.height = '400px';
-        dom[i].innerHTML = '<div class="loading-progressBar">数据加载中，请稍等...</div>';
-    }
-</script>
 <script type="text/javascript" src="/js/lib/require.js"></script>
 <script type="text/javascript" src="/js/config.js"></script>
-<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 {% block javascript %}{% endblock %}
 </html>

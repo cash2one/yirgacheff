@@ -5,7 +5,10 @@ define(['jquery', 'layer', 'lazyLoad'], function ($, layer) {
         $("img.lazy").lazyload({
             effect: "fadeIn"
         });
-
+        $(document).ready(function(){
+            var height = document.body.offsetHeight;
+            $(".page-sidebar").height(height);
+        });
         //处理左侧菜单栏的选中状态
         var sideMenu = $(".m-side-menu");
 

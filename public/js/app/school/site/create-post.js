@@ -13,7 +13,7 @@ requirejs(['jquery', 'leftMenu', 'headMenu', 'layerWrapper', 'upload', 'imageLib
         // 本地上传
         upload.imgUploader({
             onComplete: function (file, done) {
-                $('.coverpage img').attr('src', file.url);
+                $('#indexImage').attr('src', file.url);
                 $('#coverImage').val(file.key);
                 done();
             }
