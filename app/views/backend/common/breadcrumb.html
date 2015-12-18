@@ -1,14 +1,14 @@
 {% macro init(links) %}
-<!--<ol class="breadcrumb">-->
-    <!--<li><a href="/">首页</a></li>-->
-    <!--{% for link in links %}-->
-    <!--{% if loop.last%}-->
-    <!--<li class="active">{{link.title}}</li>-->
-    <!--{% else %}-->
-    <!--<li><a href="{{link.url}}">{{link.title}}</a></li>-->
-    <!--{% endif %}-->
-    <!--{% endfor %}-->
-<!--</ol>-->
+<ol class="breadcrumb">
+    <li><a href="/">首页</a></li>
+    {% for link in links %}
+    {% if loop.last%}
+    <li class="active">{{link.title}}</li>
+    {% else %}
+    <li><a href="{{link.url}}">{{link.title}}</a></li>
+    {% endif %}
+    {% endfor %}
+</ol>
 <!--<div class="w-breadcrumb">-->
     <!--<ul>-->
         <!--<li><a href="/">首页</a> <span class="divider">&gt;</span></li>-->
