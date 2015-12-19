@@ -1,5 +1,5 @@
 <script type="template" id="mediaListTemplate">
-    <ul id="list-materials" class="img-list">
+    <ul id="list-materials" class="img-list list-unstyled">
         <% for(var i = 0 ;i < medias.length; i++){ var media = medias[i]; %>
         <li class="img-item data" id="<%= media._id.toString() %>" title="<%= media.name %>">
             <div class="img_item_bd">
@@ -24,7 +24,7 @@
             </div>
 
             <div class="msg_card_ft">
-                <ul class="grid_line msg_card_opr_list">
+                <ul class="grid_line msg_card_opr_list list-unstyled">
                     <li class="grid_item size1of3 msg_card_opr_item">
                         <a class="js_edit js_tooltip js_popover" href="javascript:void(0);"
                            data-tooltip="编辑">

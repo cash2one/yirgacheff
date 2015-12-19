@@ -1,61 +1,24 @@
 <script type="template" id="quizContributionRankTemplate">
-
     <div id="teacherRankTable">
-        <div class="t-del-homework backend-score-rank">
-            <div class="rank-title">
-                <ul>
-                    <li>
-                        <div class="item">
-                            <span class="content">排名</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item">
-                            <span class="content">姓名</span>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="item">
-                            <span class="content">出题数</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item">
-                            <span class="content">百分比</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div id="quizContributionRankList">
-                <% for(var i = 0; i < rankList.length; i++){ var teacher = rankList[i]; %>
-                <div class="rank-content">
-                    <ul>
-                        <li>
-                            <div class="item">
-                                <span class="content"><%= i + 1 %></span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item">
-                                <span class="content"><%= teacher.displayName %></span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item">
-                                <span class="content"><%= teacher.quizzesCount %></span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item">
-                                <span class="content"><%= (teacher.quizzesPercent * 100).toFixed(1) %>%</span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <% } %>
-            </div>
-        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>排名</th>
+                <th>姓名</th>
+                <th>出题数</th>
+                <th>百分比</th>
+            </tr>
+            </thead>
+            <tbody id="quizContributionRankList">
+            <% for(var i = 0; i < rankList.length; i++){ var teacher = rankList[i]; %>
+            <tr>
+                <td><%= i + 1 %></td>
+                <td><%= teacher.displayName %></td>
+                <td><%= teacher.quizzesCount %></td>
+                <td><%= (teacher.quizzesPercent * 100).toFixed(1) %>%</td>
+            </tr>
+            <% } %>
+            </tbody>
+        </table>
     </div>
-
 </script>

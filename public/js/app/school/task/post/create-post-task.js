@@ -7,7 +7,7 @@ requirejs(['jquery', 'leftMenu', 'headMenu', 'layerWrapper', 'easyDropDown'],
         var nonePosts = $('#none-posts');
 
         $('#post-category').change(function () {
-            postList.find('li').hide();
+            postList.find('tr').hide();
             var category = $(this).val();
             var posts = null;
             if (category === '') {

@@ -1365,7 +1365,7 @@ opacity: 1;
     position: fixed;
     top: 0;
     bottom: 0;
-    padding-top: 60px;
+    padding-top: 50px;
 }
 .page-sidebar {
     width: 240px;
@@ -1378,6 +1378,7 @@ opacity: 1;
 }
 .page-sidebar .page-sidebar-inner{
     height: 100%!important;
+    padding-bottom: 50px;
 }
 .page-sidebar .user-info{
     padding: 20px;
@@ -1421,11 +1422,13 @@ opacity: 1;
     position: relative;
     display: block;
     padding: 15px 15px;
+    border-left: 3px solid transparent;
 }
 .page-sidebar .nav > li > a:hover,
 .page-sidebar .nav > li > a:focus {
     text-decoration: none;
-    background: #666E76;
+    background: none;
+    color: #2ab27b;
 }
 .page-sidebar .nav-pills > li {
     float: left;
@@ -1441,6 +1444,7 @@ opacity: 1;
 .page-sidebar .nav-pills > li.active > a:focus {
     color: #2ab27b;
     background-color: #666E76;
+    border-left: 3px solid #2ab27b;
 }
 .page-sidebar .nav-stacked > li {
     float: none;

@@ -1,60 +1,24 @@
 <script type="template" id="classesCountOfTaughtRankTemplate">
-
     <div id="teacherRankTable">
-        <div class="t-del-homework backend-score-rank">
-            <div class="rank-title">
-                <ul>
-                    <li>
-                        <div class="item">
-                            <span class="content">排名</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item">
-                            <span class="content">姓名</span>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="item">
-                            <span class="content">班级数</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item">
-                            <span class="content">百分比</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div>
-                <% for(var i = 0; i < rankList.length; i++){ var teacher = rankList[i]; %>
-                <div class="rank-content">
-                    <ul>
-                        <li>
-                            <div class="item">
-                                <span class="content"><%= i + 1 %></span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item">
-                                <span class="content"><%= teacher.displayName %></span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item">
-                                <span class="content"><%= teacher.classesCount %></span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item">
-                                <span class="content"><%= (teacher.classesCountPercent * 100).toFixed(1) %>%</span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <% } %>
-            </div>
-        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>排名</th>
+                <th>姓名</th>
+                <th>班级数</th>
+                <th>百分比</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% for(var i = 0; i < rankList.length; i++){ var teacher = rankList[i]; %>
+            <tr>
+                <td><%= i + 1 %></td>
+                <td><%= teacher.displayName %></td>
+                <td><%= teacher.classesCount %></td>
+                <td><%= (teacher.classesCountPercent * 100).toFixed(1) %>%</td>
+            </tr>
+            <% } %>
+            </tbody>
+        </table>
     </div>
 </script>
