@@ -63,8 +63,14 @@
                                 {% for post in posts %}
                                 <tr data-category="{{post.category.toString()}}">
                                     <td>
-                                        <input type="radio" name="item"
-                                               value="{{post._id.toString()}}" id="{{post._id.toString()}}" checked>
+                                        <div class="radio c-radio">
+                                            <label class="m-t-md">
+                                            <input type="radio" name="item"
+                                                   value="{{post._id.toString()}}" id="{{post._id.toString()}}" checked>
+                                            <span class="fa fa-circle"></span>
+                                            </label>
+                                        </div>
+
 
                                     </td>
                                     <td>

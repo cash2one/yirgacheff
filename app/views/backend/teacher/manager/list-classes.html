@@ -19,11 +19,26 @@
                 </div>
             </div>
             <div class="panel-body">
-                <div id="classList">
-                    <div class="hides">
-                        <div class="tip-content">提示：当前没有任何班级，请点击 [添加班级] 创建班级！</div>
-                    </div>
+                <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>班级名称</th>
+                        <th>班级学生</th>
+                        <th>班级教师</th>
+                        <th>修改操作</th>
+                    </tr>
+                    </thead>
+                    <tbody id="classList">
+
+                    </tbody>
+                </table>
                 </div>
+                <!--<div id="classList">-->
+                    <!--<div class="hides">-->
+                        <!--<div class="tip-content">提示：当前没有任何班级，请点击 [添加班级] 创建班级！</div>-->
+                    <!--</div>-->
+                <!--</div>-->
             </div>
         </div>
     </div>
@@ -47,7 +62,7 @@
 
 <!-- 添加b班级提示框-->
 <div class="hides" id="class-dialog">
-    <form class="form-horizontal m-t-sm" id="class-form">
+    <form class="form-horizontal m-t-md" id="class-form">
         <div class="form-group">
             <label class="col-xs-4 control-label">请输入班级名称：</label>
             <div class="col-xs-7">
