@@ -3,47 +3,45 @@
 <!-- 面包屑 -->
 {{ breadcrumb.init([{'url':'','title':'作业管理'}]) }}
 <!-- END OF BREADCRUMBS -->
-
-<div id="Anchor" class="w-base w-base-extraction w-base-border">
-    <div class="w-base-title">
-        <h3><i class="fa fa-table mr-5"></i>管理作业</h3>
-    </div>
-    <div class="w-base-container">
-
-        <!-- TABLE STARTS -->
-        <div class="t-del-homework" style="padding-left: 16px; padding-top: 0px">
-            <table id="homework-list" class="display" width="100%" cellspacing="0" style="border-color: gray;">
-                <thead>
-                <tr>
-                    <th>作业名称</th>
-                    <th>班级</th>
-                    <th>总人数</th>
-                    <th>完成人数</th>
-                    <th>创建时间</th>
-                    <th>操作</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for homework in homeworkList %}
-                <tr>
-                    <td style="text-align: left" title="{{homework.title}}">{{homework.title | subTitle(6)}}</td>
-                    <td title="{{homework.clazz.className}}">{{homework.clazz.className | subTitle(6)}}</td>
-                    <td>{{homework.statistics.studentCount}}</td>
-                    <td>{{homework.statistics.studentCountOfFinished}} 人</td>
-                    <td>{{homework.createdTime | date('Y-m-d',-480)}}</td>
-                    <td>
-                        <a class="btn-small a-btn-blue w-btn-opt"
-                           href="/teacher/homework/{{homework._id.toString()}}">检查</a>
-                        <a class="btn-small a-btn-red w-btn-opt delete"
-                           href="javascript:void(0);"
-                           id="{{homework._id.toString()}}">删除</a>
-                    </td>
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-white">
+            <div class="panel-heading clearfix">
+                <h4 class="panel-title"><i class="fa fa-table m-r-xxs"></i>管理作业</h4>
+            </div>
+            <div class="panel-body">
+                <table id="homework-list" class="display" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>作业名称</th>
+                        <th>班级</th>
+                        <th>总人数</th>
+                        <th>完成人数</th>
+                        <th>创建时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for homework in homeworkList %}
+                    <tr>
+                        <td class="text-left" title="{{homework.title}}">{{homework.title | subTitle(6)}}</td>
+                        <td title="{{homework.clazz.className}}">{{homework.clazz.className | subTitle(6)}}</td>
+                        <td>{{homework.statistics.studentCount}}</td>
+                        <td>{{homework.statistics.studentCountOfFinished}} 人</td>
+                        <td>{{homework.createdTime | date('Y-m-d',-480)}}</td>
+                        <td>
+                            <a class="btn btn-default btn-custom btn-xs"
+                               href="/teacher/homework/{{homework._id.toString()}}">检查</a>
+                            <a class="btn btn-pink btn-xs btn-custom delete"
+                               href="javascript:void(0);"
+                               id="{{homework._id.toString()}}">删除</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <!-- TABLE ENDS-->
     </div>
 </div>
 {% endblock %}

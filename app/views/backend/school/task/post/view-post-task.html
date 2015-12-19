@@ -4,6 +4,61 @@
 {{ breadcrumb.init([{'url':'','title':'营销活动'}]) }}
 <!-- END OF BREADCRUMBS -->
 <input type="hidden" id="taskId" value="{{task._id.toString()}}">
+<div class="row m-t-xs">
+    <div class="col-xs-3">
+        <div class="panel info-box panel-green">
+            <div class="panel-body">
+                <div class="info-box-stats">
+                    <p class="counter">{{task.participants}}</p>
+                    <span class="info-box-title">参与</span>
+                </div>
+                <div class="info-box-icon">
+                    <i class="fa fa-users"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-3">
+        <div class="panel info-box panel-yellow">
+            <div class="panel-body">
+                <div class="info-box-stats">
+                    <p class="counter">{{task.item.visitCount}}</p>
+                    <span class="info-box-title">阅读</span>
+                </div>
+                <div class="info-box-icon">
+                    <i class="fa fa-eye"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-3">
+        <div class="panel info-box panel-blue">
+            <div class="panel-body">
+                <div class="info-box-stats">
+                    <p class="counter">{{task.item.shareCount}}</p>
+                    <span class="info-box-title">分享</span>
+                </div>
+                <div class="info-box-icon">
+                    <i class="fa fa-share-alt"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-3">
+        <div class="panel info-box panel-red">
+            <div class="panel-body">
+                <div class="info-box-stats">
+                    <p class="counter">{{task.item.like}}</p>
+                    <span class="info-box-title">赞</span>
+                </div>
+                <div class="info-box-icon">
+                    <i class="fa fa-thumbs-up"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-xs-12">
         <div class="panel panel-white">
@@ -11,65 +66,6 @@
                 <h4 class="panel-title"><i class="fa fa-share-alt-square fa-fw m-r-xxs"></i>营销活动</h4>
             </div>
             <div class="panel-body">
-                <div class="row m-t-xs">
-                    <div class="col-xs-offset-1 col-xs-10">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <div class="panel info-box panel-green">
-                                    <div class="panel-body">
-                                        <div class="info-box-stats">
-                                            <p class="counter">{{task.participants}}</p>
-                                            <span class="info-box-title">参与</span>
-                                        </div>
-                                        <div class="info-box-icon">
-                                            <i class="fa fa-users"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-3">
-                                <div class="panel info-box panel-yellow">
-                                    <div class="panel-body">
-                                        <div class="info-box-stats">
-                                            <p class="counter">{{task.item.visitCount}}</p>
-                                            <span class="info-box-title">阅读</span>
-                                        </div>
-                                        <div class="info-box-icon">
-                                            <i class="fa fa-eye"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-3">
-                                <div class="panel info-box panel-blue">
-                                    <div class="panel-body">
-                                        <div class="info-box-stats">
-                                            <p class="counter">{{task.item.shareCount}}</p>
-                                            <span class="info-box-title">分享</span>
-                                        </div>
-                                        <div class="info-box-icon">
-                                            <i class="fa fa-share-alt"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-3">
-                                <div class="panel info-box panel-red">
-                                    <div class="panel-body">
-                                        <div class="info-box-stats">
-                                            <p class="counter">{{task.item.like}}</p>
-                                            <span class="info-box-title">赞</span>
-                                        </div>
-                                        <div class="info-box-icon">
-                                            <i class="fa fa-thumbs-up"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
                 <form class="form-horizontal m-t-sm" action="" method="post" id="post-task-form">
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">任务名称：</label>
