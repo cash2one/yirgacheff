@@ -3,11 +3,10 @@
 /**
  * Module dependencies.
  */
-var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var models = require('../../app/models');
 
-module.exports = function () {
+module.exports = function (passport) {
     // Use local strategy
     passport.use(new LocalStrategy({
             usernameField: 'username',

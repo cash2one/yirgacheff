@@ -1,9 +1,10 @@
 'use strict';
 
-var mongoose = require('mongoose'),
-    roles = require('../../common/constants').roles,
-    crypto = require('crypto'),
-    Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const crypto = require('crypto');
+const jwt = require('jsonwebtoken');
+const roles = require('../../common/constants').roles;
+const Schema = mongoose.Schema;
 
 /**
  * 学校数据模型Schema
@@ -128,6 +129,16 @@ schoolSchema.methods.authenticate = function (password) {
 
 schoolSchema.methods.isDisabled = function () {
     return this.state === 1;
+};
+
+schoolSchema.methods.accessToken = function () {
+    return jwt.sign({
+        _id: this._id,
+        username: this.username,
+        state: this.state,
+        role: roles.HEADMASTER,
+        schoolId: this._id
+    }, 'secret');
 };
 
 schoolSchema.virtual('role').get(function () {

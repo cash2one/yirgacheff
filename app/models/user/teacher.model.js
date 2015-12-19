@@ -2,11 +2,11 @@
  * Created by Frank on 14/11/20.
  */
 'use strict';
-var mongoose = require('mongoose'),
-    roles = require('../../common/constants').roles,
-    Schema = mongoose.Schema,
-    ObjectId = Schema.Types.ObjectId;
-
+const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
+const roles = require('../../common/constants').roles;
+const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
 var teacherSchema = new Schema({
     // 用户名,用户登陆系统所用的名字
     username: {
@@ -65,6 +65,7 @@ var teacherSchema = new Schema({
     // 关联的学校
     schoolId: {
         type: ObjectId,
+        required: '学校不能为空',
         index: true
     }
 });
@@ -77,8 +78,22 @@ teacherSchema.methods.authenticate = function (password) {
     return this.password === password;
 };
 
+teacherSchema.methods.accessToken = function () {
+    return jwt.sign({
+        _id: this._id,
+        username: this.username,
+        state: this.state,
+        role: roles.TEACHER,
+        schoolId: this._id
+    }, 'secret');
+};
+
 teacherSchema.methods.isDisabled = function () {
     return this.state === 1;
+};
+
+teacherSchema.methods.setDisabled = function () {
+    this.state = 1;
 };
 
 teacherSchema.index({schoolId: 1, state: 1});

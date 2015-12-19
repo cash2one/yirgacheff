@@ -2,24 +2,23 @@
 /**
  * Module dependencies.
  */
-var config = require('../config/config');
-var redis = require('redis');
-var reconnect = 0;
 
-function connect() {
-    return redis.createClient(config.redis.port, config.redis.host, config.redis.options);
-}
-// 连接redis 用作session共享
-var redisClient = connect();
+const Redis = require('ioredis');
+const config = require('../config/config').redis;
 
 
-redisClient.on('connect', function () {
-    console.log('redis connect successfully');
+const redis = new Redis({
+
+    port: config.port,
+
+    host: config.host,
+
+    keyPrefix: config.keyPrefix,
+
+    retryStrategy(times) {
+        return Math.min(times * 2, 2000);
+    }
+
 });
 
-redisClient.on('error', function (err) {
-    console.log('reconnect : ', reconnect++);
-    console.error(err);
-});
-
-module.exports = redisClient;
+module.exports = redis;

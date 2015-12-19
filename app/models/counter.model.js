@@ -24,15 +24,14 @@ var counterSchema = new Schema({
 
 counterSchema.index({schoolId: 1, cType: 1});
 
-counterSchema.statics.generateSequence = function (type, schoolId, callback) {
+counterSchema.statics.generateSequence = function (type, schoolId) {
     var query = {cType: type},
         update = {$inc: {seq: 1}},
         options = {upsert: true};
     if (schoolId) {
         query.schoolId = schoolId;
     }
-
-    this.findOneAndUpdate(query, update, options, callback);
+    return this.findOneAndUpdate(query, update, options).exec();
 };
 
 module.exports = {Counter: mongoose.model('Counter', counterSchema)};
