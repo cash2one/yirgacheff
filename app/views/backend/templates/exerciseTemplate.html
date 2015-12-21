@@ -178,8 +178,8 @@
 <!--</script>-->
 
 <script type="template" id="exerciseTemplate">
-    <div class="col-md-offset-1 col-md-10">
-        <div class="panel paper-shadow" data-z="0.5">
+    <div class="col-xs-offset-1 col-xs-10">
+        <div class="panel b">
             <div class="panel-heading">
                 <div class="quest-number">1</div>
                 <!--<h3 class="panel-title"><i class="fa fa-file-o m-r-xs"></i>题目一</h3>-->
@@ -192,11 +192,11 @@
                 <form class="form-horizontal">
                     <% if (type === 0)  { %>
                     <div class="row">
-                        <div class="col-md-12 m-b-md">
+                        <div class="col-xs-12 m-b-md">
                             <div class="input-group">
                                 <input placeholder="这是一个单选题目" type="text" class="form-control" aria-label="...">
                                 <div class="input-group-btn">
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">选择答案</button><span class="caret answerIcon"></span>
+                                    <button type="button" class="btn btn-white btn-option dropdown-toggle" data-toggle="dropdown" aria-expanded="false">选择答案</button><span class="caret answerIcon"></span>
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a class="answer">A</a></li>
                                         <li><a class="answer">B</a></li>
@@ -204,31 +204,31 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-xs-12">
                             <div class="input-group m-b-md">
                                 <span class="input-group-addon">A</span>
                                 <input type="text" class="form-control" placeholder="请填写选项内容">
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-xs-12">
                             <div class="input-group m-b-md">
                                 <span class="input-group-addon">B</span>
                                 <input type="text" class="form-control" placeholder="请填写选项内容">
                             </div>
                         </div>
-                        <div class="col-md-12 m-b-md">
-                            <a class="f-s-26 f-green btn a-btn-blue btn-block b-d addoption" data-id="text"><i class="fa fa-plus m-r-xs"></i>添加选项</a>
+                        <div class="col-xs-12 m-b-md">
+                            <a class="f-s-16 f-info btn btn-info btn-home btn-custom btn-block b-d addoption" data-id="text"><i class="fa fa-plus m-r-xs"></i>添加选项</a>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-xs-12">
                             <textarea placeholder="答案解析" class="form-control" rows="3"></textarea>
                         </div>
                     </div>
                     <% } else if (type === 1) { %>
-                    <div class="col-md-12 m-b-md">
+                    <div class="col-xs-12 m-b-md">
                         <div class="input-group">
                             <input placeholder="这是一个图片题目" type="text" class="form-control" aria-label="...">
                             <div class="input-group-btn">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">选择答案</button><span class="caret answerIcon"></span>
+                                <button type="button" class="btn btn-white btn-option dropdown-toggle" data-toggle="dropdown" aria-expanded="false">选择答案</button><span class="caret answerIcon"></span>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a class="answer">A</a></li>
                                     <li><a class="answer">B</a></li>
@@ -236,37 +236,37 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12 m-b-md">
+                    <div class="col-xs-12 m-b-md">
                         <div class="row images-que">
-                            <div class="col-md-3">
+                            <div class="col-xs-3">
                                 <span>A</span>
                                 <a href="javascript:void(0)"><div class="images-upload m-t-xs"></div></a>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-xs-3">
                                 <span>B</span>
                                 <a href="javascript:void(0)"><div class="images-upload m-t-xs"></div></a>
                             </div>
-                            <div class="col-md-12 m-t-lg">
-                                <a class="f-s-26 f-green btn a-btn-blue btn-block b-d addoption" data-id="image"><i class="fa fa-plus m-r-xs"></i>添加选项</a>
+                            <div class="col-xs-12 m-t-lg">
+                                <a class="f-s-16 f-info btn btn-info btn-custom btn-home btn-block b-d addoption" data-id="image"><i class="fa fa-plus m-r-xs"></i>添加选项</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12 m-t-xs">
+                    <div class="col-xs-12 m-t-xs">
                         <textarea placeholder="答案解析" class="form-control" rows="3"></textarea>
                     </div>
 
                     <% } else if (type === 2) { %>
-                    <div class="col-md-12 m-b-md">
+                    <div class="col-xs-12 m-b-md">
                         <input placeholder="这是一个填空题目" type="text" class="form-control" aria-label="...">
                     </div>
-                    <div class="col-md-12 m-b-md">
+                    <div class="col-xs-12 m-b-md">
                         <input placeholder="答案" type="text" class="form-control" aria-label="...">
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-xs-12">
                         <textarea placeholder="答案解析" class="form-control" rows="3"></textarea>
                     </div>
                     <% } else if (type === 3) { %>
-                    <div class="col-md-12">
+                    <div class="col-xs-12">
                         <textarea placeholder="例：请背诵新概念英语第一单元课文" class="form-control" rows="3"></textarea>
                     </div>
                     <% } else{ %>
@@ -283,17 +283,17 @@
 
 <script type="template" id="optionTemplate">
     <% if (type === "text")  { %>
-    <div class="col-md-12 new-option">
+    <div class="col-xs-12 new-option">
         <div class="input-group m-b-md">
             <span class="input-group-addon option-title"><%= option %></span>
             <input type="text" class="form-control" placeholder="请填写选项内容">
         </div>
-        <span><a class="f-s-18 f-gray m-r-lg m-t-n-xlg del-option" style="display: block; position: absolute; z-index: 1000;right: 0;"><i class="fa fa-times"></i></a></span>
+        <span><a class="f-s-18 f-gray m-r-lg input-times del-option"><i class="fa fa-times"></i></a></span>
     </div>
     <% } else if (type === "image") { %>
-    <div class="col-md-3 new-option">
+    <div class="col-xs-3 new-option">
         <span class="option-title"><%= option %></span>
-        <span style="width: 20px; margin:-3px 0px 0px 72px; text-align: right;position: absolute; float: right"><a class="f-s-16 f-gray del-option"><i class="fa fa-times"></i></a></span>
+        <span class="images-times"><a class="f-s-16 f-gray del-option"><i class="fa fa-times"></i></a></span>
         <a href="javascript:void(0)"><div class="images-upload m-t-xs"></div></a>
     </div>
     <% } %>

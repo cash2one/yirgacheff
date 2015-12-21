@@ -13,15 +13,15 @@
                 <i class="fa fa-home fa-fw m-r-sm"></i>首页
             </a>
         </li>
-        <li class="left-menu {% if active[0] === '1' %}active{% endif %}">
+        <li class="left-menu">
             <a href="#homework" data-toggle="collapse">
                 <i class="fa fa-database fa-fw m-r-sm"></i>作业
                 <i class="pull-right fa fa-caret-down"></i>
             </a>
             <ul id="homework" class="nav nav-list collapse secondMenu">
-                <li><a href="/teacher/homework/create" class="{% if active === '1-0' %}current{% endif %}">布置作业</a></li>
-                <li><a href="/teacher/homework" class="{% if active === '1-1' %}current{% endif %}">管理作业</a></li>
-                <li><a href="/teacher/homework/history" class="{% if active === '1-2' %}current{% endif %}">管理作业</a></li>
+                <li class="{% if active === '1-0' %}active{% endif %}"><a href="/teacher/homework/create">布置作业</a></li>
+                <li class="{% if active === '1-1' %}active{% endif %}"><a href="/teacher/homework">管理作业</a></li>
+                <li class="{% if active === '1-2' %}active{% endif %}"><a href="/teacher/homework/history">作业历史</a></li>
             </ul>
         </li>
         <li class="{% if active === '3' %}active{% endif %}">

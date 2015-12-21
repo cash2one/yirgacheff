@@ -1,174 +1,325 @@
 <script type="template" id="textSelectTemplate">
-    <li class="buildUp">
-        <div class="select-quiz-dialog">
-
-            <div class="quiz-item-title">
-                <div class="sequence">
-                    <div class="number"><span style="color: #ffffff" class="seq-val"><%= exercise.sequence %> </span>
-                    </div>
-                </div>
+    <div class="col-xs-offset-1 col-xs-10">
+        <div class="panel b">
+            <div class="panel-heading">
+                <div class="quest-number"><%= exercise.sequence %></div>
                 <% if(exercise.wrongAnswer) { %>
                 <div class="result-flag-w"></div>
                 <% } %>
             </div>
-            <div class="main-title">
-                <div class="title-info">题目：</div>
-                <textarea rows="3" class="question" readonly><%= exercise && exercise.question %></textarea>
+            <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12 m-b-md">
+                            <div class="input-group">
+                                <input type="text" class="form-control"
+                                        value="<%= exercise && exercise.question %>" disabled>
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-white btn-option dropdown-toggle" data-toggle="dropdown" aria-expanded="false">正确答案：<%= exercise.answer %></button>
 
-                <% _.each(exercise.choices,function(choice){ %>
-                <div class="option-whole">
-                    <div class="option-info">选项<%= choice.title %></div>
-                    <input readonly class="option-input" value="<%= choice.content %>">
-                </div>
-                <% }); %>
-
-                <div class="option-info"><span style="letter-spacing: 10px">答案</span></div>
-                <div class="option-info-select">
-                    <input style="width: 216px;border: 1px solid #dfdfdf;padding: 6px; margin-top: -5px" type="text"
-                           readonly value="<%= exercise.answer %>">
-                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% _.each(exercise.choices,function(choice){ %>
+                        <div class="col-xs-12">
+                            <div class="input-group m-b-md">
+                                <span class="input-group-addon"><%= choice.title %></span>
+                                <input type="text" class="form-control" value="<%= choice.content %>" disabled>
+                            </div>
+                        </div>
+                        <% }); %>
+                        <% if (exercise.wrongAnswer) { %>
+                        <div class="col-xs-12">
+                            <div class="input-group m-b-md">
+                                <span class="input-group-addon">学生答案：</span>
+                                <input type="text" class="form-control" value="<%= exercise.wrongAnswer %>" disabled>
+                            </div>
+                        </div>
+                        <% } %>
+                        <div class="col-xs-12 ">
+                            <label class="col-xs-1 control-label">解析：</label>
+                            <div class="col-xs-11 no-p">
+                                <textarea class="form-control" rows="3"><%= exercise.analysis %></textarea>
+                            </div>
+                        </div>
+                    </div>
             </div>
-            <div style="margin-top: 60px;margin-left: 35px;">
-                <div><span style="letter-spacing: 10px">解析</span></div>
-            </div>
-            <div style="margin-left: 89px; margin-top: -33px;">
-                <textarea readonly rows="3" class="analysis"><%= exercise.analysis %></textarea>
-            </div>
-            <% if (exercise.wrongAnswer) { %>
-            <div class="rectification-line"></div>
-            <div class="rectification-right">
-                <div class="title">学生答案</div>
-                <div class="content"><input class="" type="text" readonly value="<%= exercise.wrongAnswer %>"></div>
-            </div>
-            <% } %>
         </div>
-    </li>
+    </div>
+    <!--<li class="buildUp">-->
+        <!--<div class="select-quiz-dialog">-->
+
+            <!--<div class="quiz-item-title">-->
+                <!--<div class="sequence">-->
+                    <!--<div class="number"><span style="color: #ffffff" class="seq-val"><%= exercise.sequence %> </span>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<% if(exercise.wrongAnswer) { %>-->
+                <!--<div class="result-flag-w"></div>-->
+                <!--<% } %>-->
+            <!--</div>-->
+            <!--<div class="main-title">-->
+                <!--<div class="title-info">题目：</div>-->
+                <!--<textarea rows="3" class="question" readonly><%= exercise && exercise.question %></textarea>-->
+
+                <!--<% _.each(exercise.choices,function(choice){ %>-->
+                <!--<div class="option-whole">-->
+                    <!--<div class="option-info">选项<%= choice.title %></div>-->
+                    <!--<input readonly class="option-input" value="<%= choice.content %>">-->
+                <!--</div>-->
+                <!--<% }); %>-->
+
+                <!--<div class="option-info"><span style="letter-spacing: 10px">答案</span></div>-->
+                <!--<div class="option-info-select">-->
+                    <!--<input style="width: 216px;border: 1px solid #dfdfdf;padding: 6px; margin-top: -5px" type="text"-->
+                           <!--readonly value="<%= exercise.answer %>">-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div style="margin-top: 60px;margin-left: 35px;">-->
+                <!--<div><span style="letter-spacing: 10px">解析</span></div>-->
+            <!--</div>-->
+            <!--<div style="margin-left: 89px; margin-top: -33px;">-->
+                <!--<textarea readonly rows="3" class="analysis"><%= exercise.analysis %></textarea>-->
+            <!--</div>-->
+            <!--<% if (exercise.wrongAnswer) { %>-->
+            <!--<div class="rectification-line"></div>-->
+            <!--<div class="rectification-right">-->
+                <!--<div class="title">学生答案</div>-->
+                <!--<div class="content"><input class="" type="text" readonly value="<%= exercise.wrongAnswer %>"></div>-->
+            <!--</div>-->
+            <!--<% } %>-->
+        <!--</div>-->
+    <!--</li>-->
 </script>
 
 
 <script type="template" id="imageSelectTemplate">
-    <li class="buildUp">
-        <div class="select-quiz-dialog">
-            <div class="quiz-item-title">
-                <div class="sequence">
-                    <div class="number"><span style="color: #ffffff" class="seq-val"><%= exercise.sequence %> </span>
+        <div class="col-xs-offset-1 col-xs-10">
+            <div class="panel b">
+                <div class="panel-heading">
+                    <div class="quest-number"><%= exercise.sequence %></div>
+                    <% if(exercise.wrongAnswer) { %>
+                    <div class="result-flag-w"></div>
+                    <% } %>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12 m-b-md">
+                            <div class="input-group">
+                                <input type="text" class="form-control"
+                                        value="<%= exercise && exercise.question %>" disabled>
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-white btn-option">正确答案：<%= exercise.answer %></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 m-b-md">
+                            <div class="row images-que">
+                                <% _.each(exercise.choices,function(choice){ %>
+                                <div class="col-xs-3">
+                                    <span><%= choice.title %></span>
+                                    <div class="m-t-xs">
+                                        <img src="http://resource.hizuoye.com/<%= choice.content %>?imageView2/1/w/100/h/100/interlace/1">
+                                    </div>
+                                </div>
+                                <% }); %>
+                            </div>
+                        </div>
+                        <% if (exercise.wrongAnswer) { %>
+                        <div class="col-xs-12 m-b-md">
+                            <div class="input-group">
+                                <span class="input-group-addon">学生答案：</span>
+                                <input type="text" class="form-control" value="<%= exercise.wrongAnswer %>" disabled>
+                            </div>
+                        </div>
+                        <% } %>
+                        <div class="col-xs-12 ">
+                            <label class="col-xs-1 control-label">解析：</label>
+                            <div class="col-xs-11 no-p">
+                                <textarea class="form-control" rows="3"><%= exercise.analysis %></textarea>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <% if(exercise.wrongAnswer) { %>
-                <div class="result-flag-w"></div>
-                <% } %>
             </div>
-            <div class="main-title">
-                <div class="title-info">题目：</div>
-                <textarea readonly class="question" rows="3"><%= exercise && exercise.question %></textarea></div>
-            <div class="select-quiz-imgs-area">
-                <ul class="option-whole">
-                    <% _.each(exercise.choices,function(choice){ %>
-                    <li>
-                        <div class="img-option"><span class="label-title"><%= choice.title %></span></div>
-                        <div class="img-content">
-                            <span>
-                                <img src="http://resource.hizuoye.com/<%= choice.content %>?imageView2/1/w/100/h/100/interlace/1">
-                            </span>
-                        </div>
-                    </li>
-                    <% }); %>
-                </ul>
-            </div>
-            <div style="margin-top: -20px">
-                <div class="option-info"><span style="letter-spacing: 10px">答案</span></div>
-                <div class="option-info-select">
-                    <input style="width: 216px;border: 1px solid #dfdfdf;padding: 6px; margin-top: -5px;margin-left: 6px;
-                    " type="text" readonly value="<%= exercise.answer %>">
-                </div>
-            </div>
-            <div style="float: left; margin-left: -110px; margin-top: 71px;">
-                <div style="margin-left: 4px"><span style="letter-spacing: 10px">解析</span></div>
-            </div>
-            <div style="margin-left: 89px;">
-                <textarea readonly rows="3" style="margin-top: 58px;margin-left: -46px;" class="analysis"><%=exercise.analysis %></textarea>
-            </div>
-            <% if (exercise.wrongAnswer) { %>
-            <div class="rectification-line"></div>
-            <div class="rectification-right">
-                <div class="title">学生答案</div>
-                <div class="content"><input class="" type="text" readonly value="<%= exercise.wrongAnswer %>"></div>
-            </div>
-            <% } %>
         </div>
-    </li>
+    <!--<li class="buildUp">-->
+        <!--<div class="select-quiz-dialog">-->
+            <!--<div class="quiz-item-title">-->
+                <!--<div class="sequence">-->
+                    <!--<div class="number"><span style="color: #ffffff" class="seq-val"><%= exercise.sequence %> </span>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<% if(exercise.wrongAnswer) { %>-->
+                <!--<div class="result-flag-w"></div>-->
+                <!--<% } %>-->
+            <!--</div>-->
+            <!--<div class="main-title">-->
+                <!--<div class="title-info">题目：</div>-->
+                <!--<textarea readonly class="question" rows="3"><%= exercise && exercise.question %></textarea></div>-->
+            <!--<div class="select-quiz-imgs-area">-->
+                <!--<ul class="option-whole">-->
+                    <!--<% _.each(exercise.choices,function(choice){ %>-->
+                    <!--<li>-->
+                        <!--<div class="img-option"><span class="label-title"><%= choice.title %></span></div>-->
+                        <!--<div class="img-content">-->
+                            <!--<span>-->
+                                <!--<img src="http://resource.hizuoye.com/<%= choice.content %>?imageView2/1/w/100/h/100/interlace/1">-->
+                            <!--</span>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<% }); %>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<div style="margin-top: -20px">-->
+                <!--<div class="option-info"><span style="letter-spacing: 10px">答案</span></div>-->
+                <!--<div class="option-info-select">-->
+                    <!--<input style="width: 216px;border: 1px solid #dfdfdf;padding: 6px; margin-top: -5px;margin-left: 6px;-->
+                    <!--" type="text" readonly value="<%= exercise.answer %>">-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div style="float: left; margin-left: -110px; margin-top: 71px;">-->
+                <!--<div style="margin-left: 4px"><span style="letter-spacing: 10px">解析</span></div>-->
+            <!--</div>-->
+            <!--<div style="margin-left: 89px;">-->
+                <!--<textarea readonly rows="3" style="margin-top: 58px;margin-left: -46px;" class="analysis"><%=exercise.analysis %></textarea>-->
+            <!--</div>-->
+            <!--<% if (exercise.wrongAnswer) { %>-->
+            <!--<div class="rectification-line"></div>-->
+            <!--<div class="rectification-right">-->
+                <!--<div class="title">学生答案</div>-->
+                <!--<div class="content"><input class="" type="text" readonly value="<%= exercise.wrongAnswer %>"></div>-->
+            <!--</div>-->
+            <!--<% } %>-->
+        <!--</div>-->
+    <!--</li>-->
 
 </script>
 
 
 <script type="template" id="blankTemplate">
-    <li class="buildUp">
-        <div class="select-quiz-dialog">
-            <div class="quiz-item-title">
-                <div class="sequence">
-                    <div class="number"><span style="color: #ffffff" class="seq-val"><%= exercise.sequence %> </span>
+        <div class="col-xs-offset-1 col-xs-10">
+            <div class="panel b">
+                <div class="panel-heading">
+                    <div class="quest-number"><%= exercise.sequence %></div>
+                    <% if(exercise.wrongAnswer) { %>
+                    <div class="result-flag-w"></div>
+                    <% } %>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12 m-b-md">
+                            <input type="text" class="form-control" value="<%= exercise && exercise.question %>" disabled>
+                        </div>
+                        <div class="col-xs-12 m-b-md">
+                            <input type="text" class="form-control" value="<%= exercise && exercise.answer %>" disabled>
+                        </div>
+                        <% if (exercise.wrongAnswer) { %>
+                        <div class="col-xs-12 m-b-md">
+                            <div class="input-group">
+                                <span class="input-group-addon">学生答案：</span>
+                                <input type="text" class="form-control" value="<%= exercise.wrongAnswer %>" disabled>
+                            </div>
+                        </div>
+                        <% } %>
+                        <div class="col-xs-12 ">
+                            <label class="col-xs-1 control-label">解析：</label>
+                            <div class="col-xs-11 no-p">
+                                <textarea class="form-control" rows="3"><%= exercise && exercise.analysis %></textarea>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <% if(exercise.wrongAnswer) { %>
-                <div class="result-flag-w"></div>
-                <% } %>
             </div>
-            <div class="main-title">
-                <div class="title-info">题目：</div>
-                <textarea readonly rows="4" class="question"
-                          style="height: 60px"><%= exercise && exercise.question %></textarea></div>
-            <div>
-                <div class="" style="margin-top: 28px; margin-left: 36px"><span style="letter-spacing: 10px">说明</span>
-                </div>
-                <div class="" style="margin-left: 94px; margin-top: -21px">
-                    <input readonly type="text" class="blanks-info-text description"
-                           value="<%= exercise && exercise.description %>">
-                </div>
-            </div>
-            <div>
-                <div class="option-info" style="margin-top: 28px;margin-left: 36px"><span style="letter-spacing: 10px">答案</span>
-                </div>
-                <div class="option-info-select">
-                    <input readonly type="text" class="blanks-info-text answer" style="margin-left: 3px"
-                           value="<%= exercise && exercise.answer %>"></div>
-            </div>
-            <div style="float: left; margin-left: -110px; margin-top: 71px;">
-                <div style="margin-left: 4px"><span style="letter-spacing: 10px">解析</span></div>
-            </div>
-            <div style="margin-left: 89px;">
-                <textarea readonly rows="3" class="analysis" style="margin-top: 65px;margin-left: -49px;"><%= exercise && exercise.analysis %></textarea>
-            </div>
-            <% if (exercise.wrongAnswer) { %>
-            <div class="rectification-line"></div>
-            <div class="rectification-right">
-                <div class="title">学生答案</div>
-                <div class="content"><input class="" type="text" readonly value="<%= exercise.wrongAnswer %>"></div>
-            </div>
-            <% } %>
         </div>
+    <!--<li class="buildUp">-->
+        <!--<div class="select-quiz-dialog">-->
+            <!--<div class="quiz-item-title">-->
+                <!--<div class="sequence">-->
+                    <!--<div class="number"><span style="color: #ffffff" class="seq-val"><%= exercise.sequence %> </span>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<% if(exercise.wrongAnswer) { %>-->
+                <!--<div class="result-flag-w"></div>-->
+                <!--<% } %>-->
+            <!--</div>-->
+            <!--<div class="main-title">-->
+                <!--<div class="title-info">题目：</div>-->
+                <!--<textarea readonly rows="4" class="question"-->
+                          <!--style="height: 60px"><%= exercise && exercise.question %></textarea></div>-->
+            <!--<div>-->
+                <!--<div class="" style="margin-top: 28px; margin-left: 36px"><span style="letter-spacing: 10px">说明</span>-->
+                <!--</div>-->
+                <!--<div class="" style="margin-left: 94px; margin-top: -21px">-->
+                    <!--<input readonly type="text" class="blanks-info-text description"-->
+                           <!--value="<%= exercise && exercise.description %>">-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div>-->
+                <!--<div class="option-info" style="margin-top: 28px;margin-left: 36px"><span style="letter-spacing: 10px">答案</span>-->
+                <!--</div>-->
+                <!--<div class="option-info-select">-->
+                    <!--<input readonly type="text" class="blanks-info-text answer" style="margin-left: 3px"-->
+                           <!--value="<%= exercise && exercise.answer %>"></div>-->
+            <!--</div>-->
+            <!--<div style="float: left; margin-left: -110px; margin-top: 71px;">-->
+                <!--<div style="margin-left: 4px"><span style="letter-spacing: 10px">解析</span></div>-->
+            <!--</div>-->
+            <!--<div style="margin-left: 89px;">-->
+                <!--<textarea readonly rows="3" class="analysis" style="margin-top: 65px;margin-left: -49px;"><%= exercise && exercise.analysis %></textarea>-->
+            <!--</div>-->
+            <!--<% if (exercise.wrongAnswer) { %>-->
+            <!--<div class="rectification-line"></div>-->
+            <!--<div class="rectification-right">-->
+                <!--<div class="title">学生答案</div>-->
+                <!--<div class="content"><input class="" type="text" readonly value="<%= exercise.wrongAnswer %>"></div>-->
+            <!--</div>-->
+            <!--<% } %>-->
+        <!--</div>-->
 </script>
 
 <script type="template" id="voiceTemplate">
-    <li class="buildUp">
-        <div class="select-quiz-dialog">
-            <div class="quiz-item-title">
-                <div class="sequence">
-                    <div class="number"><span style="color: #ffffff" class="seq-val"><%= exercise.sequence %> </span>
+        <div class="col-xs-offset-1 col-xs-10">
+            <div class="panel b">
+                <div class="panel-heading">
+                    <div class="quest-number"><%= exercise.sequence %></div>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12 ">
+                            <label class="col-xs-1 control-label">题目：</label>
+                            <div class="col-xs-11 no-p">
+                                <textarea class="form-control" rows="3"><%= exercise && exercise.question %></textarea>
+                            </div>
+                        </div>
+                        <% if(exercise.audioAnswer) { %>
+                        <div style="margin-left: 72px; margin-top: 26px;">
+                            <audio src="http://resource.hizuoye.com/<%= exercise.audioAnswer %>" preload="none"></audio>
+                        </div>
+                        <% } %>
                     </div>
                 </div>
             </div>
-            <div class="main-title">
-                <div class="title-info">题目：</div>
-                <textarea readonly rows="4" class="question" style="height: 60px" placeholder=" 请背诵新概念英语第一单元课文"><%= exercise && exercise.question %></textarea>
-            </div>
-            <% if(exercise.audioAnswer) { %>
-            <div style="margin-left: 72px; margin-top: 26px;">
-                <audio src="http://resource.hizuoye.com/<%= exercise.audioAnswer %>" preload="none"></audio>
-            </div>
-            <% } %>
-            <div style="height: 20px;"></div>
         </div>
+    <!--<li class="buildUp">-->
+        <!--<div class="select-quiz-dialog">-->
+            <!--<div class="quiz-item-title">-->
+                <!--<div class="sequence">-->
+                    <!--<div class="number"><span style="color: #ffffff" class="seq-val"><%= exercise.sequence %> </span>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="main-title">-->
+                <!--<div class="title-info">题目：</div>-->
+                <!--<textarea readonly rows="4" class="question" style="height: 60px" placeholder=" 请背诵新概念英语第一单元课文"><%= exercise && exercise.question %></textarea>-->
+            <!--</div>-->
+            <!--<% if(exercise.audioAnswer) { %>-->
+            <!--<div style="margin-left: 72px; margin-top: 26px;">-->
+                <!--<audio src="http://resource.hizuoye.com/<%= exercise.audioAnswer %>" preload="none"></audio>-->
+            <!--</div>-->
+            <!--<% } %>-->
+            <!--<div style="height: 20px;"></div>-->
+        <!--</div>-->
 
-        <div style="height: 20px;"></div>
-    </li>
+        <!--<div style="height: 20px;"></div>-->
+    <!--</li>-->
 </script>

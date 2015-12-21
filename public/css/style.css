@@ -1305,7 +1305,6 @@ a.bg-pink:focus {
     -moz-border-radius: 5px;
     background-clip: padding-box;
     border-width: 1px !important;
-    font-weight: 600;
     transition: all 400ms ease-in-out;
     background-clip: inherit;
 }
@@ -1466,14 +1465,16 @@ opacity: 1;
     font-size: 13px;
     color: #fff;
     padding-left: 60px!important;
+    border-left: 3px solid transparent;
     text-align: left;
 }
 .secondMenu li.active > a,
 .secondMenu li.active > a:hover,
 .secondMenu li.active > a:focus{
-    color: #212121;
+    color: #2ab27b;
     font-weight: 600;
-    background: #eeeeee;
+    background: #666e76;
+    border-left: 3px solid #2ab27b;
 }
 
 
@@ -1615,8 +1616,8 @@ border-radius: 100px;
 .panel .panel-heading .panel-title {
     font-size: 14px;
     float: left;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     font-weight: 600;
 }
 .panel .panel-heading .panel-icon{

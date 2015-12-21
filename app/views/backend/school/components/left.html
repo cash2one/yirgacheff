@@ -28,13 +28,13 @@
                 <i class="fa fa-child fa-fw m-r-sm"></i>学生管理
             </a>
         </li>
-        <li class="left-menu {% if active[0] === '4' %}active{% endif %}">
+        <li class="left-menu">
             <a href="#Score" data-toggle="collapse">
                 <i class="fa fa-database fa-fw m-r-sm"></i>积分管理
                 <i class="pull-right fa fa-caret-down"></i>
             </a>
             <ul id="Score" class="nav nav-list collapse secondMenu">
-                <li><a href="/school/scores/instruction" class="{% if active === '4-1' %}current{% endif %}">兑换说明</a></li>
+                <li class="{% if active === '4-1' %}active{% endif %}"><a href="/school/scores/instruction">兑换说明</a></li>
             </ul>
         </li>
         <li class="{% if active === '5' %}active{% endif %}">
@@ -58,10 +58,10 @@
                 <i class="pull-right fa fa-caret-down"></i>
             </a>
             <ul id="Web" class="nav nav-list collapse secondMenu">
-                <li><a href="/school/posts" class="{% if active === '9-0' %}current{% endif %}">所有文章</a></li>
-                <li><a href="/school/posts/create" class="{% if active === '9-0' %}current{% endif %}">文章发布</a></li>
-                <li><a href="/school/categories" class="{% if active === '9-0' %}current{% endif %}">栏目管理</a></li>
-                <li><a href="/school/materials" class="{% if active === '9-0' %}current{% endif %}">图片库</a></li>
+                <li class="{% if active === '9-0' %}active{% endif %}"><a href="/school/posts">所有文章</a></li>
+                <li class="{% if active === '9-1' %}active{% endif %}"><a href="/school/posts/create">文章发布</a></li>
+                <li class="{% if active === '9-2' %}active{% endif %}"><a href="/school/categories">栏目管理</a></li>
+                <li class="{% if active === '9-3' %}active{% endif %}"><a href="/school/materials">图片库</a></li>
             </ul>
         </li>
         <li class="left-menu {% if active === '6' %}active{% endif %}">
@@ -70,8 +70,8 @@
                 <i class="pull-right fa fa-caret-down"></i>
             </a>
             <ul id="Tasks" class="nav nav-list collapse secondMenu">
-                <li><a href="/school/tasks">任务管理</a></li>
-                <li><a href="/school/tasks/create">任务发布</a></li>
+                <li class="{% if active === '6-0' %}active{% endif %}"><a href="/school/tasks">任务管理</a></li>
+                <li class="{% if active === '6-1' %}active{% endif %}"><a href="/school/tasks/create">任务发布</a></li>
             </ul>
         </li>
     </ul>

@@ -827,3 +827,56 @@
 .t-homeworkClass-list li.hover {
     text-align: center;
 }
+/*³öÌâ*/
+.btn-home{
+    border: 1px dashed #439fe0!important;
+}
+.btn-home:hover{
+    box-shadow: none;
+}
+.btn-option:hover{
+    box-shadow: none;
+}
+.images-upload{
+    width: 100px;
+    height: 100px;
+    border: 1px solid #dfdfdf;
+    background: url("/images/icon-upload.png") no-repeat center;
+}
+.quest-number{
+    margin: -5px 10px 0px -20px;
+    text-align: center;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 18px;
+    color: #fff;
+    float:left;
+    background: #2ab27b;
+}
+.answerIcon{
+    position: absolute;
+    z-index: 2;
+    margin-left: -12px;
+    margin-top: 15px;
+}
+.input-times{
+    display: block;
+    position: absolute;
+    z-index: 1000;
+    right: 0;
+    margin-top: -50px
+}
+.images-times{
+    width: 20px; margin:-3px 0 0 72px; text-align: right;position: absolute; float: right
+}
+.result-flag-w {
+    float: right;
+    width: 40px;
+    height: 40px;
+    background: url("/images/e-icon.png") no-repeat;
+    z-index: 99;
+    position: absolute;
+    margin-top: -10px;
+    margin-left: 730px;
+}
