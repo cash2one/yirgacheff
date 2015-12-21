@@ -1465,7 +1465,7 @@ opacity: 1;
 .secondMenu li a {
     font-size: 13px;
     color: #fff;
-    padding-left: 40px!important;
+    padding-left: 60px!important;
     text-align: left;
 }
 .secondMenu li.active > a,
@@ -1580,12 +1580,12 @@ border-radius: 100px;
 /* Panel */
 
 .panel {
-    border: 1px #e2e9e6 solid!important;
+    border: none;
     margin-bottom: 20px;
     border-radius: 0;
-    -webkit-box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.17);
-    -moz-box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.17);
-    box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.17);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
 }
 
 @media (min-width: 768px) {
@@ -1869,10 +1869,6 @@ border-radius: 100px;
     border: 2px dashed #ddd;
     margin-bottom: 20px;
 }
-.panel {
-    box-shadow: none;
-    border-radius: 0;
-}
 .panel-default{
     border: 1px #e2e9e6 solid;
 }
@@ -2126,6 +2122,29 @@ background-color:#212122
 -o-transition:width 6s ease-in-out;
 transition:width 6s ease-in-out
 }
+/*面包屑*/
+.breadcrumb {
+    padding: 8px 2px;
+    margin-bottom: 15px;
+    list-style: none;
+    background: none;
+    border-radius: 0;
+}
+.breadcrumb >li a{
+    color: #2ab27b;
+    font-size: 16px;
+}
+.breadcrumb > li {
+    display: inline-block;
+}
+.breadcrumb > li + li:before {
+    content: "/\00a0";
+    padding: 0 5px;
+    color: #cccccc;
+}
+.breadcrumb > .active {
+    color: #777777;
+}
 
 .footer{
 background:#111;
@@ -2141,7 +2160,7 @@ color: #fff;
     overflow: hidden;
 }
 
-/*��������*/
+/*任务创建列表*/
 .type-list{
     margin-top: 15px;
     overflow: hidden;

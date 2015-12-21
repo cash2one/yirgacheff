@@ -29,7 +29,7 @@ define(['jquery','layer','bootstrap'], function ($,layer) {
                 type: 1, //page层
                 area: ['530px', ''],
                 title: '添加下面的联系方式，方便和您及时沟通',
-                shade: 0.6, //遮罩透明度
+                shade: 0, //遮罩透明度
                 moveType: 1, //拖拽风格，0是默认，1是传统拖动
                 shift: -1, //0-6的动画形式，-1不开启
                 content: $('#online-consultation-dialog')

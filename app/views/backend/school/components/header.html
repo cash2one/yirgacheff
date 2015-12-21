@@ -3,18 +3,31 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="#"><img src="/images/y-logo.png"></a>
         </div>
+        <ul class="nav navbar-nav">
+            <li><a href="/school/profile"><i class="fa fa-cog f-s-18"></i></a></li>
+        </ul>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.displayName}} <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/school/profile"><i class="fa fa-user f-default m-r-xxs"></i>个人中心</a></li>
-                        <li><a href="/school/qrcode"><i class="fa fa-qrcode f-default m-r-xxs"></i>二维码</a></li>
-                        <li><a href="javascript:void(0);" id="help">帮助与支持</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="/logout" class="sign-out">退出</a></li>
-                    </ul>
+                <li><a href="/school/qrcode"><i class="fa fa-qrcode f-s-18"></i></a></li>
+                <li><a href="javascript:void(0)" id="help"><i class="fa fa-info-circle f-s-18"></i></a></li>
+                <li>
+                    <a href="/school/profile">
+                        {{user.displayName}}
+                        <img class="pull-right m-t-n-xxs img-circle m-l-xxs" src="http://resource.hizuoye.com/{{user.avatar | default('images/default/avatar.jpg')}}"
+                             width="30" height="30">
+                    </a>
                 </li>
+                <li><a href="/logout"><i class="fa fa-sign-out f-pink f-s-18"></i></a></li>
+                <!--<li class="dropdown">-->
+                    <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.displayName}} <span class="caret"></span></a>-->
+                    <!--<ul class="dropdown-menu">-->
+                        <!--<li><a href="/school/profile"><i class="fa fa-user f-default m-r-xxs"></i>个人中心</a></li>-->
+                        <!--<li><a href="/school/qrcode"><i class="fa fa-qrcode f-default m-r-xxs"></i>二维码</a></li>-->
+                        <!--<li><a href="javascript:void(0);" id="help">帮助与支持</a></li>-->
+                        <!--<li role="separator" class="divider"></li>-->
+                        <!--<li><a href="/logout" class="sign-out">退出</a></li>-->
+                    <!--</ul>-->
+                <!--</li>-->
             </ul>
         </div>
     </div>
