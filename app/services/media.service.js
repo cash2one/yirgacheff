@@ -82,8 +82,8 @@ module.exports = {
     /**
      * 根据媒体分组查询媒体列表
      */
-    findMediaByGroupId: co.wrap(function*(id) {
-        let group = id || null;
+    findMediaByGroup: co.wrap(function*(schoolId, groupId) {
+        let group = groupId || null;
         return yield Media.find({
             group: group,
             state: 0
@@ -141,13 +141,18 @@ module.exports = {
     /**
      * 媒体分组数量映照表
      */
-    mediasCountMapper: co.wrap(function*(school) {
-        let schoolId = new mongoose.Types.ObjectId(schoolId);
+    mediasCountMapper: co.wrap(function*(schoolId) {
+        schoolId = new mongoose.Types.ObjectId(schoolId);
         let aggregate = yield Media.aggregate()
-            .match({schoolId: schoolId})
+            .match({schoolId: schoolId, state: 0})
             .project({
                 group: 1
-            }).exec();
+            })
+            .group({
+                _id: '$group',
+                count: {$sum: 1}
+            })
+            .exec();
         let mapper = {};
         _.forEach(aggregate, agg=> {
             let id = agg._id || 'unGroup';

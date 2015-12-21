@@ -12,5 +12,6 @@ module.exports = {
     schedules: require('./schedule.service'),
     quizzes: require('./quiz.service'),
     posts: require('./post.service'),
-    categories: require('./category.service')
+    categories: require('./category.service'),
+    medias: require('./media.service')
 };

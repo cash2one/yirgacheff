@@ -3,8 +3,15 @@
  */
 'use strict';
 
-const _ = require('lodash');
+const service = require('../../services');
 
-let a = {name: 'mooc'};
-_.defaultsDeep(a, {where: {name: 'ss', age: 23}});
-console.log(a);
+module.exports = function (router) {
+
+    router.get('/', function*() {
+        let user = this.user;
+        this.state.selected = this.query.selected || null;
+        this.state.groups = yield service.medias.findGroupBySchool(user.schoolId);
+        yield this.render('backend/school/site/list-materials');
+    });
+};
+

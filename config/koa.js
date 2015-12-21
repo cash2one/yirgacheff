@@ -77,6 +77,7 @@ function initViewEngine(app) {
     app.context.render = swig({
         root: path.resolve(__dirname, '../app/views'),
         autoescape: true,
+        filters: require('./swigFilters'),
         cache: false, // disable, set to false
         ext: 'html'
     });
@@ -106,7 +107,7 @@ function initServerModels(app) {
  */
 function initServerRoutes(app) {
     app.use(router({
-        directory: 'app/controller'
+        directory: 'app/controllers'
     }));
 }
 

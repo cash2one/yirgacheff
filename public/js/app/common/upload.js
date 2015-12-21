@@ -165,7 +165,7 @@ define(['jquery', 'qiniu', 'layerWrapper'], function ($, Qiniu, layer) {
         var ops = options || {};
         ops.browseButton = options.browseButton || 'local_image_upload';
         ops.mimeTypes = [{title: "Image files", extensions: "jpg,jpeg,gif,png"}];
-        ops.tokenURL = '/api/v1/imageToken';
+        ops.tokenURL = '/api/v1/qiniu/imageToken';
         ops.maxFileSize = '2mb';
         return uploader(ops);
     };
@@ -174,7 +174,7 @@ define(['jquery', 'qiniu', 'layerWrapper'], function ($, Qiniu, layer) {
         var ops = options || {};
         ops.browseButton = options.browseButton || 'localAudioUploadButton';
         ops.mimeTypes = [{title: "Audio files", extensions: "mp3"}];
-        ops.tokenURL = '/api/v1/audioToken';
+        ops.tokenURL = '/api/v1/qiniu/audioToken';
         ops.maxFileSize = '5mb';
         return uploader(ops);
     };
