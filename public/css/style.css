@@ -1424,7 +1424,7 @@ opacity: 1;
 }
 .page-sidebar a{
     color: #fff;
-    font-size: 16px;
+    font-size: 15px;
 }
 .page-sidebar .nav > li > a {
     position: relative;
@@ -1576,16 +1576,17 @@ color: #dddddd;
 .form-control-rounded {
 border-radius: 100px;
 }
-
-/* Panel */
-
-.panel {
-    border: none;
-    margin-bottom: 20px;
-    border-radius: 0;
+/* shadow */
+.shadow{
     -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.15);
     -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.15);
     box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+/* Panel */
+
+.panel {
+    margin-bottom: 20px;
+    border-radius: 0;
 }
 
 @media (min-width: 768px) {
@@ -2132,7 +2133,6 @@ transition:width 6s ease-in-out
 }
 .breadcrumb >li a{
     color: #2ab27b;
-    font-size: 16px;
 }
 .breadcrumb > li {
     display: inline-block;

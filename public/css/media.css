@@ -759,3 +759,71 @@
 .w-top:hover {
     background: url("/images/w-top-hover.png") no-repeat;
 }
+
+/*°à¼¶Ñ¡Ôñ*/
+.t-homeworkClass-list {
+    margin: 0;
+    float: left;
+}
+
+.t-homeworkClass-list li {
+    float: left;
+    border: 1px solid #cccccc;
+    background-color: #fff;
+    padding: 8px 10px;
+    text-align: center;
+    cursor: pointer;
+    margin-right:10px;
+    font-size: 14px;
+    height: 36px;
+    width: 100px;
+}
+.t-homeworkClass-list li p{
+    width: 80px;
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+/*.t-homeworkClass-list .pull-down {*/
+    /*width: 689px;*/
+    /*_width: 688px;*/
+    /*float: none;*/
+    /*clear: both;*/
+    /*position: relative;*/
+    /*top: -1px;*/
+    /*overflow: hidden;*/
+    /*zoom: 1;*/
+    /*background-color: #f5fbff;*/
+    /*padding: 0;*/
+/*}*/
+
+/*.t-homeworkClass-list .pull-down p {*/
+    /*float: left;*/
+    /*padding: 12px 0;*/
+    /*width: 80px;*/
+    /*text-align: left;*/
+    /*margin: 0 2px 0 10px;*/
+    /*line-height: 100%;*/
+/*}*/
+
+/*.t-homeworkClass-list .pull-down p .w-icon-md {*/
+    /*white-space: nowrap;*/
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*width: 62px;*/
+/*}*/
+
+/*.t-homeworkClass-list .pull-down .active {*/
+    /*color: #189cfb;*/
+/*}*/
+
+.t-homeworkClass-list li.active {
+    background-color: #2ab27b;
+    color: #fff;
+    z-index: 2;
+}
+
+.t-homeworkClass-list li.hover {
+    text-align: center;
+}
