@@ -72,6 +72,8 @@ module.exports = {
         if (_.isEmpty(filter)) {
             return query.where('state', 0).exec();
         }
+        //如果没有设置状态位,默认设置位0
+        _.defaultsDeep(filter, {where: {state: 0}});
         query = queryBuilder(query, filter);
         return yield query.exec();
     }),
@@ -98,12 +100,14 @@ module.exports = {
     /**
      *  获取指定学校的教师数量
      */
-    getCountBySchool: co.wrap(function* (schoolId) {
-        return yield Teacher.count({
-            schoolId: schoolId,
-            state: 0
-        }).exec();
-
+    countBySchool: co.wrap(function* (schoolId, filter) {
+        let query = Teacher.where('schoolId', schoolId);
+        if (_.isEmpty(filter)) {
+            return yield query.where('state', 0).count();
+        }
+        _.defaultsDeep(filter, {where: {state: 0}}); //如果没有设置状态位,默认设置位0
+        queryBuilder(query, filter);
+        return yield query.count();
     }),
 
 

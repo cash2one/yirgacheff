@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const co = require('co');
 const moment = require('moment');
 const _ = require('lodash');
+const math = require('mathjs');
 require('moment-range');
 const queryBuilder = require('../functions/queryBuilder');
 const Student = mongoose.model('Student');
@@ -17,12 +18,14 @@ module.exports = {
     /**
      *  获取指定学校的学生数量
      */
-    getCountBySchool: co.wrap(function* (schoolId) {
-        return yield Student.count({
-            schoolId: schoolId,
-            state: 0
-        }).exec();
-
+    countBySchool: co.wrap(function* (schoolId, filter) {
+        let query = Student.where('schoolId', schoolId);
+        if (_.isEmpty(filter)) {
+            return yield query.where('state', 0).count();
+        }
+        _.defaultsDeep(filter, {where: {state: 0}}); //如果没有设置状态位,默认设置位0
+        queryBuilder(query, filter);
+        return yield query.count();
     }),
 
     /**
@@ -30,7 +33,7 @@ module.exports = {
      * 获取指定教师的学生数量
      *
      */
-    getCountByTeacher: co.wrap(function*(teacherId) {
+    countByTeacher: co.wrap(function*(teacherId) {
         let classes = yield Class.find({
             owner: teacherId
         }).select('_id').exec();
@@ -44,7 +47,7 @@ module.exports = {
     /**
      * 根据班级ID 获取学生数量
      */
-    getCountByClass: co.wrap(function*(classId) {
+    countByClass: co.wrap(function*(classId) {
         return yield Student.count({classes: classId}).exec();
     }),
 
@@ -58,6 +61,7 @@ module.exports = {
         if (_.isEmpty(filter)) {
             return yield query.where('state', 0).lean().exec();
         }
+        _.defaultsDeep(filter, {where: {state: 0}}); //如果没有设置状态位,默认设置位0
         queryBuilder(query, filter);
         return yield query.lean().exec();
     }),
@@ -76,6 +80,7 @@ module.exports = {
         queryBuilder(query, filter);
         return yield query.exec();
     }),
+
 
     /**
      * 根据教师ID获取学生列表

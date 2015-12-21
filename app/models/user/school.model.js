@@ -135,6 +135,7 @@ schoolSchema.methods.accessToken = function () {
     return jwt.sign({
         _id: this._id,
         username: this.username,
+        displayName: this.displayName,
         state: this.state,
         role: roles.HEADMASTER,
         schoolId: this._id

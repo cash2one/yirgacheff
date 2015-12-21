@@ -17,7 +17,7 @@ module.exports = {
     /**
      *  获取指定学校的班级数量
      */
-    getCountBySchool: co.wrap(function* (schoolId) {
+    countBySchool: co.wrap(function* (schoolId) {
         return yield Class.count({
             schoolId: schoolId,
             state: 0
@@ -30,7 +30,7 @@ module.exports = {
      * 获取指定教师的班级数量
      *
      */
-    getCountByTeacher: co.wrap(function*(teacherId) {
+    countByTeacher: co.wrap(function*(teacherId) {
         return yield Class.count({
             owner: teacherId
         });
@@ -47,6 +47,23 @@ module.exports = {
         if (_.isEmpty(filter)) {
             return query.where('state', 0).lean().exec();
         }
+        _.defaultsDeep(filter, {where: {state: 0}});
+        queryBuilder(query, filter);
+        return query.lean().exec();
+    }),
+
+
+    /**
+     * 根据学校ID查询班级列表
+     */
+    findByTeacher: co.wrap(function*(teacherId, filter) {
+        let query = Class.find({
+            owner: teacherId
+        });
+        if (_.isEmpty(filter)) {
+            return query.where('state', 0).lean().exec();
+        }
+        _.defaultsDeep(filter, {where: {state: 0}});
         queryBuilder(query, filter);
         return query.lean().exec();
     }),

@@ -28,7 +28,7 @@ function where(query, where) {
     _.forOwn(where, (value, key)=> {
         if (_.isObject(value)) {
             let opt = Object.keys(value)[0];
-            Query.prototype[opt].call(query, value[opt]);
+            Query.prototype[opt].call(query.where(key), value[opt]);
         } else {
             query.where(key, value);
         }
@@ -40,14 +40,24 @@ function fields(query, fields) {
     if (_.isEmpty(fields)) {
         return query;
     }
-    query.select(fields.join(' '));
-    return query;
+    return query.select(fields.join(' '));
 }
 
 function include(query, include) {
     if (_.isEmpty(include)) {
         return query;
     }
+    if (!_.isArray(include)) {
+        include = [include];
+    }
+    _.forEach(include, field => {
+        if (_.isObject(field)) {
+            let fieldName = Object.keys(field)[0];
+            query.populate(fieldName, field[fieldName]);
+        } else {
+            query.populate(field);
+        }
+    });
     return query;
 }
 
@@ -55,22 +65,20 @@ function order(query, order) {
     if (_.isEmpty(order)) {
         return query;
     }
-    return query;
+    return query.sort(order.join(' '));
 }
 
 function limit(query, limit) {
     if (_.isEmpty(limit)) {
         return query;
     }
-    query.limit(limit);
-    return query;
+    return query.limit(limit);
 }
 
 function skip(query, skip) {
     if (_.isEmpty(skip)) {
         return query;
     }
-    query.skip(skip);
-    return query;
+    return query.skip(skip);
 }
 
