@@ -12,6 +12,7 @@ const error = require('koa-error');
 const passport = require('koa-passport');
 const flash = require('koa-flash');
 const swig = require('koa-swig');
+const forward = require('koa-forward-request');
 const config = require('./config');
 const router = require('./router');
 const jwt = require('../app/middleware/jwt');
@@ -39,6 +40,7 @@ function initLocalVariables(app) {
  */
 function initMiddleware(app) {
     app.use(flash());
+    forward(app, {debug: true});
     app.use(bodyParser());
 
 }

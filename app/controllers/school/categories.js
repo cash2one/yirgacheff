@@ -3,7 +3,7 @@
  */
 'use strict';
 
-const service = require('../../services');
+
 
 module.exports = function (router) {
 
