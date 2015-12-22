@@ -843,6 +843,15 @@
     border: 1px solid #dfdfdf;
     background: url("/images/icon-upload.png") no-repeat center;
 }
+.images-que-list{
+    padding: 20px 0 10px 0;
+    text-align: center;
+    border: 1px solid #dfdfdf;
+}
+.images-group{
+    width: 102px;
+    height: 102px;
+}
 .quest-number{
     margin: -5px 10px 0px -20px;
     text-align: center;
@@ -870,13 +879,59 @@
 .images-times{
     width: 20px; margin:-3px 0 0 72px; text-align: right;position: absolute; float: right
 }
+.images-que{
+    padding-left: 0;
+    padding-right: 15px;
+}
+.images-que .success{
+    border: 2px solid #2ab27b;
+    color: #2ab27b;
+}
+.images-que .error{
+    border: 2px solid #fb6d9d;
+    color: #fb6d9d;
+}
+/*解析*/
+.analysis-que{
+    background: #f7f6f2;
+    padding-top: 10px;
+    font-size: 14px;
+    color: #999;
+    min-height: 70px;
+}
+/*题目正确错误*/
 .result-flag-w {
-    float: right;
     width: 40px;
     height: 40px;
-    background: url("/images/e-icon.png") no-repeat;
     z-index: 99;
     position: absolute;
-    margin-top: -10px;
-    margin-left: 730px;
+    right: 0;
+    margin-top: -13px;
+    margin-right: 20px;
+    background: url("/images/e-icon.png") no-repeat;
+}
+.result-flag-r {
+    width: 40px;
+    height: 40px;
+    z-index: 99;
+    position: absolute;
+    right: 0;
+    margin-top: -13px;
+    margin-right: 20px;
+    background: url("/images/r-icon.png") no-repeat;
+}
+.quizzes-list .result-flag-r{
+    background:none;
+}
+.quizzes-title{
+    font-weight: 600;
+    padding: 10px;
+}
+.quizzes-title p{
+    display: inline-block;
+}
+.homework-area label{
+    width: 80px;
+    float: left;
+    text-align: right;
 }
