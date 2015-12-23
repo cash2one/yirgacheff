@@ -26,7 +26,7 @@
                     <!--<select class="dropdown answer" style="height: 24px">-->
                         <!--<option value="">请选择</option>-->
                         <!--<% _(optionCount).times(function(i){ var title = titles[i]; %>-->
-                        <!--<option-->
+                        <!--<option>-->
                         <!--<% if(exercise && exercise.answer === title){ %> selected <% } %> value="<%= title %>" >-->
                         <!--<%= title%>-->
                         <!--</option>-->
@@ -178,11 +178,22 @@
 <!--</script>-->
 
 <script type="template" id="exerciseTemplate">
-    <div class="col-xs-offset-1 col-xs-10">
+    <div class="col-xs-offset-1 col-xs-10 buildUp">
         <div class="panel b">
             <div class="panel-heading">
-                <div class="quest-number">1</div>
-                <!--<h3 class="panel-title"><i class="fa fa-file-o m-r-xs"></i>题目一</h3>-->
+                <div class="quest-title">
+                    <div class="quest-number">1</div>
+                    <% if (type === 0)  { %>
+                    单项选择题
+                    <% } else if (type === 1) { %>
+                    图片题
+                    <% } else if (type === 2) { %>
+                    填空题
+                    <% } else if (type === 3) { %>
+                    语音题
+                    <% } else{ %>
+                    <% } %>
+                </div>
                 <div class="panel-control">
                     <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Expand/Collapse" class="panel-collapse"><i class="fa fa-arrow-circle-o-down"></i></a>
                     <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Remove" class="panel-remove"><i class="fa fa-times-circle-o"></i></a>
@@ -257,14 +268,15 @@
 
                     <% } else if (type === 2) { %>
                     <div class="col-xs-12 m-b-md">
-                        <input placeholder="这是一个填空题目" type="text" class="form-control" aria-label="...">
+                        <input placeholder="这是一个填空题目" type="text" class="form-control question">
                     </div>
                     <div class="col-xs-12 m-b-md">
-                        <input placeholder="答案" type="text" class="form-control" aria-label="...">
+                        <input placeholder="答案" type="text" class="form-control answer">
                     </div>
                     <div class="col-xs-12">
-                        <textarea placeholder="答案解析" class="form-control" rows="3"></textarea>
+                        <textarea placeholder="答案解析" class="form-control analysis" rows="3"></textarea>
                     </div>
+                    <input type="hidden" name="current-type" value="2">
                     <% } else if (type === 3) { %>
                     <div class="col-xs-12">
                         <textarea placeholder="例：请背诵新概念英语第一单元课文" class="form-control" rows="3"></textarea>

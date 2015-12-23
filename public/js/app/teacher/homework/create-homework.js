@@ -1,5 +1,5 @@
 'use strict';
-requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'exerciseBuilder', 'layerWrapper', 'upload', 'validator', 'audiojs', 'easyDropDown'],
+requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'exerciseBuilder', 'layerWrapper', 'upload', 'validator', 'audiojs'],
     function ($, $http, leftMenu, headMenu, exerciseBuilder, layer, upload, validator) {
         leftMenu.init();
         headMenu.init();
@@ -224,7 +224,10 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'exerciseBuilder',
         var exerciseTemplate = _.template($('#exerciseTemplate').html());
         var optionTemplate = _.template($('#optionTemplate').html());
         var $exerciseList = $('#exerciseList');
-
+        var exercises = window.exercises;
+        if (exercises) {
+            $('#exerciseList-area').html(exerciseBuilder.buildExercisesWithData(exercises));
+        }
         //班级选择
         var classes = $('#level_and_clazzs').find('ul li');
         if (classes.length == 0) {
@@ -328,24 +331,24 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'exerciseBuilder',
         function gtHomeworkData() {
             var assignInfo = getAssignInfo();
             if (assignInfo.classIds.length === 0) {
-                notify.success('请选择要布置作业的班级！');
+                layer.msg('请选择要布置作业的班级！');
                 return false;
             }
             if (assignInfo.title === '') {
-                notify.success('请填写作业标题！');
+                layer.msg('请填写作业标题！');
                 return false;
             }
             if (!validator.isInt(assignInfo.finishAward, {min: 0, max: 9999})) {
-                notify.success('完成奖励分数必须为0-9999的数字');
+                layer.msg('完成奖励分数必须为0-9999的数字');
                 return false;
             }
             if (!validator.isInt(assignInfo.performanceAward, {min: 0, max: 9999})) {
-                notify.success('成绩奖励分数必须为0-9999的数字');
+                layer.msg('成绩奖励分数必须为0-9999的数字');
                 return false;
             }
             var exercises = [];
-            $('#questions-area')
-                .find('li.buildUp')
+            $('#exerciseList-area')
+                .find('.buildUp')
                 .each(function () {
                     exercises.push(exerciseBuilder.makeExerciseObject($(this)));
                 });
@@ -358,7 +361,7 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'exerciseBuilder',
                 }
             }
             if (message) {
-                notify.success(message);
+                layer.msg(message);
                 return false;
             }
             assignInfo.exercises = exercises;

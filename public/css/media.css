@@ -774,6 +774,7 @@
     text-align: center;
     cursor: pointer;
     margin-right:10px;
+    margin-bottom: 10px;
     font-size: 14px;
     height: 36px;
     width: 100px;
@@ -846,22 +847,29 @@
 .images-que-list{
     padding: 20px 0 10px 0;
     text-align: center;
-    border: 1px solid #dfdfdf;
+    border: 1px solid #d1d1d1;
+    border-radius: 5px;
 }
 .images-group{
-    width: 102px;
-    height: 102px;
+
 }
 .quest-number{
-    margin: -5px 10px 0px -20px;
-    text-align: center;
-    width: 25px;
-    height: 25px;
-    line-height: 25px;
+    width: 32px;
+    height: 32px;
+    float: left;
     font-size: 18px;
-    color: #fff;
-    float:left;
-    background: #2ab27b;
+    font-weight: bold;
+    text-align: center;
+    margin-right: 10px;
+}
+.quest-title{
+    background: url("/images/icon-quest-title.png") no-repeat;
+    width: 141px;
+    height: 34px;
+    font-size: 14px;
+    color: #686868;
+    line-height: 34px;
+    float: left;
 }
 .answerIcon{
     position: absolute;
@@ -880,8 +888,7 @@
     width: 20px; margin:-3px 0 0 72px; text-align: right;position: absolute; float: right
 }
 .images-que{
-    padding-left: 0;
-    padding-right: 15px;
+    padding: 0 10px;
 }
 .images-que .success{
     border: 2px solid #2ab27b;
@@ -890,6 +897,10 @@
 .images-que .error{
     border: 2px solid #fb6d9d;
     color: #fb6d9d;
+}
+.homework-area .form-group{
+    margin-left: 0;
+    margin-right: 0;
 }
 /*½âÎö*/
 .analysis-que{
@@ -925,7 +936,6 @@
 }
 .quizzes-title{
     font-weight: 600;
-    padding: 10px;
 }
 .quizzes-title p{
     display: inline-block;

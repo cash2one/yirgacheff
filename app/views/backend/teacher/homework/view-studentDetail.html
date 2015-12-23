@@ -62,23 +62,23 @@
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-xs-offset-1 col-xs-10">
-                        <form class="form-horizontal m-t-md">
+                    <div class="col-xs-10">
+                        <form class="form-horizontal">
                             <div class="form-group col-xs-4">
                                 <div>
-                                    <i class="fa fa-smile-o f-default f-s-24 m-l-lg m-r-md"></i>
+                                    <i class="fa fa-smile-o f-default f-s-24 m-r-md"></i>
                                     姓名：{{student.displayName}}
                                 </div>
                             </div>
                             <div class="form-group col-xs-4">
                                 <div>
-                                    <i class="fa fa-phone-square f-info f-s-24 m-l-lg m-r-md"></i>
+                                    <i class="fa fa-phone-square f-info f-s-24 m-r-md"></i>
                                     电话：{{student.phone}}
                                 </div>
                             </div>
                             <div class="form-group col-xs-4">
                                 <div>
-                                    <i class="fa fa-clock-o f-purple f-s-24 m-l-lg m-r-md"></i>
+                                    <i class="fa fa-clock-o f-purple f-s-24 m-r-md"></i>
                                     时间：
                                     <span class="">{{ performance.spendSeconds | caculateTime('hour')}}:</span>
                                     <span class="">{{ performance.spendSeconds | caculateTime('minute')}}:</span>
@@ -87,13 +87,13 @@
                             </div>
                             <div class="form-group col-xs-4">
                                 <div>
-                                    <i class="fa fa-file-text-o f-pink f-s-24 m-l-lg m-r-md"></i>
+                                    <i class="fa fa-file-text-o f-pink f-s-24 m-r-md"></i>
                                     错题数：<span class="f-pink f-s-24">{{performance.wrongCollect.length || 0}}</span>
                                 </div>
                             </div>
                             <div class="form-group col-xs-4">
                                 <div>
-                                    <i class="fa fa fa-database f-yellow f-s-24 m-l-lg m-r-md"></i>
+                                    <i class="fa fa fa-database f-yellow f-s-24 m-r-md"></i>
                                     总积分：<span class="f-yellow f-s-24">{{student.score}}</span>
                                 </div>
                             </div>

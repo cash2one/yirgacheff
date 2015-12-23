@@ -1,11 +1,11 @@
 body {
-background: #F1F4F9 !important;
+background: #ebeff2 !important;
 margin: 0 !important;
 font-size: 14px !important;
 font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
 .page-inner{
-    background: #F1F4F9;
+    background: #ebeff2;
     overflow: hidden;
     margin-top: 50px;
     margin-left: 240px;
@@ -1242,6 +1242,12 @@ opacity: 1;
 .form-control {
 border-radius: 0;
 }
+.form-group {
+    margin-bottom: 20px;
+}
+label {
+    color: #999999;
+}
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
     background-color: #fff;
     opacity: 1;
@@ -1358,29 +1364,14 @@ color: #dddddd;
 .form-control-rounded {
 border-radius: 100px;
 }
-/* shadow */
-.shadow{
-    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-}
+
 /* Panel */
 
 .panel {
+    border: none;
     margin-bottom: 20px;
     border-radius: 0;
-}
-
-@media (min-width: 768px) {
-    .panel > .row > div:first-child {
-        padding-left: 15px;
-        padding-right: 0;
-    }
-
-    .panel > .row > div:last-child {
-        padding-left: 0;
-        padding-right: 15px;
-    }
+    box-shadow: none;
 }
 
 .panel .panel-heading {
@@ -1440,14 +1431,10 @@ border-radius: 100px;
     border-bottom-right-radius: 0;
 }
 
-.panel .panel-heading + .panel-body {
-    padding: 0 20px 20px 20px;
-}
 .panel-default .panel-heading {
-    background: #f1f1f1;
-    border-color: #e7e7e7;
+    background-color: #f4f8fb;
+    border-bottom: none;
 }
-
 .panel-default .panel-heading .panel-control a {
     color: #bbb;
 }
@@ -1539,7 +1526,10 @@ border-radius: 100px;
 .panel-white {
     background: #fff;
 }
-
+.panel-white .panel-heading {
+    background-color: #fff;
+    border-bottom: none;
+}
 .panel-white .panel-heading .panel-control a {
     color: #ccc;
 }
@@ -1652,12 +1642,15 @@ border-radius: 100px;
     border: 2px dashed #ddd;
     margin-bottom: 20px;
 }
-.panel-default{
-    border: 1px #e2e9e6 solid;
-}
 .panel-height{
     height: 480px;
 }
+
+/* shadow */
+.shadow{
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
 /* Dashboard */
 
 .info-box .progress {
