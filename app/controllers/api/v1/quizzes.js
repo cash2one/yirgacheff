@@ -16,7 +16,9 @@ module.exports = function (router) {
         let query = this.query;
         let schoolId = this.user.schoolId;
         let filter = {
-            where: {}
+            where: {},
+            fields: ['-exercises'],
+            order: ['-createdTime']
         };
         let isPage = false;
         //说明是服务器分页处理
@@ -27,8 +29,8 @@ module.exports = function (router) {
                 let regx = new RegExp(search);
                 filter.where.or = [{'creatorDisplayName': regx}, {title: regx}];
             }
-            filter.where.limit = query.length;
-            filter.where.skip = query.start
+            filter.limit = query.length;
+            filter.skip = query.start
         }
         let quizzes = yield service.quizzes.findBySchool(schoolId, filter);
         if (isPage) {

@@ -85,7 +85,7 @@ teacherSchema.methods.accessToken = function () {
         displayName: this.displayName,
         state: this.state,
         role: roles.TEACHER,
-        schoolId: this._id
+        schoolId: this.schoolId
     }, 'secret');
 };
 

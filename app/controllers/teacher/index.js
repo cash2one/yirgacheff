@@ -3,7 +3,9 @@
  */
 'use strict';
 
-module.exports = function (router) {
+const auth = require('../../middleware/auth');
 
-    return router;
-};
+module.exports = [
+    auth.requireLogin,
+    auth.userByToken
+];

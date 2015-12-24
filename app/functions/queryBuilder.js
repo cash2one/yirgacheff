@@ -12,7 +12,7 @@ module.exports = function (query, filter) {
         return query;
     }
     where(query, filter.where);
-    include(query, filter.where);
+    include(query, filter.include);
     order(query, filter.order);
     fields(query, filter.fields);
     limit(query, filter.limit);
@@ -72,13 +72,13 @@ function limit(query, limit) {
     if (_.isEmpty(limit)) {
         return query;
     }
-    return query.limit(limit);
+    return query.limit(parseInt(limit));
 }
 
 function skip(query, skip) {
     if (_.isEmpty(skip)) {
         return query;
     }
-    return query.skip(skip);
+    return query.skip(parseInt(skip));
 }
 

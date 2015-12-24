@@ -21,8 +21,8 @@ module.exports = function (router) {
                 let regx = new RegExp(search);
                 filter.where.or = [{'displayName': regx}, {username: regx}];
             }
-            filter.where.limit = query.length;
-            filter.where.skip = query.start
+            filter.limit = query.length;
+            filter.skip = query.start
         }
         let students = yield service.students.findBySchool(schoolId, filter);
         if (isPage) {
@@ -36,6 +36,19 @@ module.exports = function (router) {
             };
         }
         this.body = students;
+    });
+
+
+    router.put('/:id', function*() {
+        let studentId = this.params.id;
+        this.body = yield service.students.updateById(studentId, this.request.body);
+
+    });
+
+    router.put('/:id/score', function*() {
+        let studentId = this.params.id;
+        this.body = yield service.students.scoreAward(studentId, this.request.body);
+
     });
 
 

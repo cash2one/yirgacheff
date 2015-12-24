@@ -8,12 +8,46 @@ const moment = require('moment');
 const _ = require('lodash');
 const math = require('mathjs');
 require('moment-range');
+const createError = require('http-errors');
 const queryBuilder = require('../functions/queryBuilder');
+const roles = require('../common/constants').roles;
 const Student = mongoose.model('Student');
 const Class = mongoose.model('Class');
+const School = mongoose.model('School');
+const Counter = mongoose.model('Counter');
 const ObjectId = mongoose.Types.ObjectId;
 
 module.exports = {
+
+
+    createStudent: co.wrap(function*(classId, data) {
+        let clazz = yield Class.findById(classId).select('_id schoolId').exec();
+        if (!clazz) {
+            throw createError(400, '班级不存在');
+        }
+        let school = yield School.findById(clazz.schoolId).select('username').exec();
+        let counter = yield Counter.generateSequence('student', clazz.schoolId);
+        let student = new Student(data);
+        student.username = school.username + roles.STUDENT + counter.seq;
+        student.schoolId = school;
+        student.classes = clazz;
+        if (student.gender === '男') {
+            data.avatar = '/images/avatar/children/default8.png';
+        } else {
+            data.avatar = '/images/avatar/children/default6.png';
+        }
+        return yield student.save();
+
+    }),
+
+
+    findById: co.wrap(function*(id, isLean) {
+        let query = Student.findById(id);
+        if (isLean === true) {
+            query.lean();
+        }
+        return yield query.exec();
+    }),
 
     /**
      *  获取指定学校的学生数量
@@ -213,6 +247,34 @@ module.exports = {
             series[parseInt(result._id)] = result.value;
         });
         return {categories: categories, series: series};
+    }),
+
+    updateById: co.wrap(function*(id, data) {
+        let student = yield Student.findById(id).exec();
+        if (!student) {
+            throw createError(400, '学生不存在');
+        }
+        _.assign(student, data);
+        return yield student.save();
+    }),
+
+    scoreAward: co.wrap(function*(studentId, data) {
+        let opt = parseInt(data.operation);
+        let value = parseInt(data.value);
+        if (_.isNaN(opt) || _.isNaN(value)) {
+            throw createError(400, '非法参数');
+        }
+        value = opt === 0 ? value : (0 - value);
+        let student = yield Student.findById(studentId, 'score').exec();
+        if (!student) {
+            throw createError(400, '学生不存在');
+        }
+        let score = student.score + value;
+        if (score < 0) {
+            score = 0;
+        }
+        student.score = score;
+        return yield student.save();
     })
 
 };

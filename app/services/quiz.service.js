@@ -33,6 +33,7 @@ module.exports = {
         if (!_.isEmpty(filter)) {
             queryBuilder(query, filter);
         }
+        console.log(query.getQuery());
         return yield query.lean().exec();
     }),
 
@@ -44,17 +45,24 @@ module.exports = {
         return yield query.exec();
     }),
 
+    useById: co.wrap(function*(id) {
+        return yield Quiz.findByIdAndUpdate(id, {
+            $inc: {usage: 1}
+        }).lean().exec();
+
+    }),
+
     deleteById: co.wrap(function*(id) {
-        let query = Quiz.find(id).select('_id').exec();
-        if (!query) {
+        let quiz = yield Quiz.findById(id).select('_id').exec();
+        if (!quiz) {
             throw createError(400, '套题不存在');
         }
-        let count = yield Homework.count({quiz: query}).exec();
+        let count = yield Homework.count({quiz: quiz}).exec();
         if (count > 0) {
             query.asTemplate = false;
-            return yield query.save();
+            return yield quiz.save();
         }
-        return yield query.remove();
+        return yield quiz.remove();
     }),
 
     countBySchool: co.wrap(function*(schoolId) {

@@ -15,5 +15,7 @@ module.exports = {
     categories: require('./category.service'),
     medias: require('./media.service'),
     tasks: require('./task/task.service'),
-    activities: require('./task/activity.service')
+    activities: require('./task/activity.service'),
+    connections: require('./connection.service'),
+    question: require('./question.service')
 };

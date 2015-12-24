@@ -10,9 +10,22 @@ const createError = require('http-errors');
 const queryBuilder = require('../functions/queryBuilder');
 const Class = mongoose.model('Class');
 const Teacher = mongoose.model('Teacher');
+const Student = mongoose.model('Student');
 
 
 module.exports = {
+
+    create: co.wrap(function*(user, data) {
+        let clazz = new Class(data);
+        _.assign(clazz, {
+            owner: user._id,
+            ownerDisplayName: user.displayName,
+            ownerUsername: user.username,
+            schoolId: user.schoolId
+        });
+        return yield clazz.save();
+
+    }),
 
     /**
      *  获取指定学校的班级数量
@@ -98,5 +111,67 @@ module.exports = {
             }
         }).exec();
         return true;
+    }),
+
+
+    updateById: co.wrap(function*(id, data) {
+        let clazz = yield Class.findById(id).exec();
+        if (!clazz) {
+            throw createError(400, '班级不存在');
+        }
+        let newName = data.className && data.className.trim();
+        if (clazz.className !== newName) {
+            clazz.className = newName;
+            yield clazz.save();
+        }
+        return clazz;
+    }),
+
+
+    deleteById: co.wrap(function*(id) {
+        let clazz = yield Class.findById(id).exec();
+        if (!clazz) {
+            throw createError(400, '班级不存在');
+        }
+        let studentCount = yield Student.count({classes: clazz}).exec();
+        if (studentCount > 0) {
+            throw createError(400, '班级拥有学生,无法删除');
+        }
+        clazz.state = 1;
+        yield clazz.remove();
+        return clazz;
+
+    }),
+
+    deleteStudentById: co.wrap(function*(classId, studentId) {
+        let student = yield Student.findById(studentId).exec();
+        student.classes.pull(classId);
+        return yield student.save();
+
+    }),
+
+    addStudent: co.wrap(function*(classId, data) {
+        let username = data.username;
+        if (!username) {
+            throw createError(400, '缺少学生信息');
+        }
+        let clazz = yield Class.findById(classId).select('schoolId').lean().exec();
+        if (!clazz) {
+            throw createError(400, '班级不存在');
+        }
+        let student = yield Student.findOne({
+            username: username,
+            schoolId: clazz.schoolId,
+            state: 0
+        }).select('classes').exec();
+        if (!student) {
+            throw createError(400, '学生不存在');
+        }
+        if (student.classes.indexOf(clazz._id) !== -1) {
+            throw createError(400, '学生已经在该班级');
+        }
+        student.classes.addToSet(clazz);
+        return yield student.save();
+
     })
 };

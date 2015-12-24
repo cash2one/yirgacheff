@@ -50,8 +50,8 @@ module.exports = function (router) {
                 let regx = new RegExp(search);
                 filter.where.or = [{'displayName': regx}, {username: regx}];
             }
-            filter.where.limit = query.length;
-            filter.where.skip = query.start
+            filter.limit = query.length;
+            filter.skip = query.start
         }
         let students = yield service.students.findByTeacher(teacherId, filter);
         if (isPage) {

@@ -2,14 +2,32 @@
  * Created by Frank on 15/12/19.
  */
 'use strict';
+const _ = require('lodash');
 const service = require('../../../services');
 
 module.exports = function (router) {
+
+    //TODO 修改为通过ID获取
+    router.get('/me', function*() {
+        let owner = this.user;
+        let classes = yield service.classes.findByTeacher(owner._id);
+        let counts = yield _.map(classes, clazz => {
+            return service.students.countByClass(clazz._id);
+        });
+        _.forEach(classes, (clazz, index) => {
+            clazz.studentsCount = counts[index];
+        });
+        this.body = classes;
+    });
 
     router.put('/:id/changeOwner', function*() {
         let owner = this.request.body.username;
         let classId = this.params.id;
         this.body = yield service.classes.changeOwner(classId, owner);
+    });
+
+    router.delete('/:id', function*() {
+        this.body = yield service.classes.deleteById(this.params.id);
     });
 
     router.get('/:id/students', function*() {
@@ -27,8 +45,8 @@ module.exports = function (router) {
                 let regx = new RegExp(search);
                 filter.where.or = [{'displayName': regx}, {username: regx}];
             }
-            filter.where.limit = query.length;
-            filter.where.skip = query.start
+            filter.limit = query.length;
+            filter.skip = query.start
         }
         let students = yield service.students.findByClass(classId, filter);
         if (isPage) {
@@ -41,6 +59,33 @@ module.exports = function (router) {
             };
         }
         this.body = students;
+    });
+
+    router.post('/', function*() {
+        let user = this.user;
+        this.body = yield service.classes.create(user, this.request.body);
+    });
+
+    router.put('/:id', function*() {
+        this.body = yield service.classes.updateById(this.params.id, this.request.body);
+    });
+
+    router.delete('/:classId/students/:studentId', function*() {
+        let classId = this.params.classId;
+        let studentId = this.params.studentId;
+        this.body = yield service.classes.deleteStudentById(classId, studentId);
+    });
+
+    router.post('/:classId/students', function*() {
+        let classId = this.params.classId;
+        this.body = yield service.students.createStudent(classId, this.request.body);
+
+    });
+
+    router.put('/:classId/students', function*() {
+        let classId = this.params.classId;
+        this.body = yield service.classes.addStudent(classId, this.request.body);
+
     });
 
     return router;
