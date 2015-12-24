@@ -389,7 +389,6 @@
     _zoom: 1;
     _display: inline;
 }
-
 .w-border-list li {
     float: left;
     border: 1px solid #dfdfdf;
@@ -402,14 +401,12 @@
     font-size: 14px;
     height: 36px;
 }
-
 .w-border-list li .b-select {
     position: absolute;
     left: 3px;
     top: 1px;
     _top: 3px;
 }
-
 .w-border-list li .b-new {
     position: absolute;
     left: 30px;
@@ -417,25 +414,21 @@
     _top: 10px;
     z-index: 999;
 }
-
 .w-border-list li .b-next {
     position: absolute;
     right: 4px;
     top: 4px;
     display: none;
 }
-
 .w-border-list li .b-number {
     display: inline;
 }
-
 .w-border-list li .b-text {
     height: 33px;
     display: block;
     margin-right: 46px;
     line-height: 33px;
 }
-
 .w-border-list li .b-icon {
     position: absolute;
     top: -1px;
@@ -443,7 +436,6 @@
     display: block;
     z-index: 11;
 }
-
 .w-border-list li .b-icon strong {
     position: absolute;
     top: 0;
@@ -457,58 +449,46 @@
     text-align: center;
     display: none;
 }
-
 .w-border-list li.active {
     color: #fff;
     position: relative;
 }
-
 .w-border-list li.active .b-select .w-checkbox {
     background-position: -15px -17px;
 }
-
 .w-border-list li.current {
     background-color: #f5fbff;
     border-color: #72d26e;
     position: relative;
     z-index: 5;
 }
-
 .w-border-list li.hover {
     background-color: #f5fbff;
     text-align: left;
 }
-
 .w-border-list li.hover .b-next {
     display: block;
 }
-
 .w-border-list li.hover .b-number {
     display: none;
 }
-
 .w-border-list li.hover .b-text {
     margin-left: 15px;
 }
-
 .w-border-list li.mathItem {
     text-align: left;
 }
-
 .w-border-list li.mathItem .b-next {
     display: block;
     padding-top: 10px;
     right: 70px;
 }
-
 .w-border-list li.mathItem .b-next .w-select .current {
     width: 80px;
 }
-
 .w-border-list li.mathItem .b-next .w-select ul {
     width: 94px;
 }
-
 .w-border-list li.mathItem .b-text {
     margin-left: 15px;
 }

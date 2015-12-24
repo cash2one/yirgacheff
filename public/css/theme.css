@@ -25,44 +25,8 @@ font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft
 .hides{
     display: none;
 }
-.home {
-border-bottom: 3px solid #ddd;
-}
-.container > header {
-margin: 0 auto;
-padding: 10em 0em;
-text-align: center;	
-}
-.container > header h1 {
-font-size: 70px;
-margin: 0;
-font-weight: bold;
-font-family: 'Open Sans', Arial, sans-serif;
-color: #212121;
-}
-.container > header span {
-display: block;
-font-size: 30px;
-color: #89949A;
-font-family: 'Open Sans', Arial, sans-serif;
-width: 100%;
-}
-.smart-body {
-margin-bottom: 20px;
-}
-
 
 /* Typography */
-/*p {*/
-    /*display: block;*/
-    /*font-size: 13px;*/
-    /*font-weight: normal;*/
-    /*letter-spacing: normal;*/
-    /*line-height: 22px;*/
-    /*margin: 0 0 10px 0;*/
-    /*font-style: normal;*/
-    /*white-space: normal;*/
-/*}*/
 a{
     cursor: pointer;
     color: #212121;
@@ -264,8 +228,8 @@ ul li{
 /* Margins & Paddings */
 
 .no-s {
-    margin: 0px!important;
-    padding: 0px!important;
+    margin: 0!important;
+    padding: 0!important;
 }
 
 .no-m {
@@ -1921,11 +1885,4 @@ transition:width 6s ease-in-out
     color: #777777;
 }
 
-.footer{
-background:#111;
-padding-top:25px;
-padding-bottom:0;
-text-align:center;
-color: #fff;
-}
 
