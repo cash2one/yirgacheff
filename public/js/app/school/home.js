@@ -54,7 +54,7 @@ requirejs(['jquery', 'restfulClient', 'easyDropDown', 'headMenu', 'leftMenu', 'u
         });
 
         // 教师教学生数量排行及数量分布
-        $http.get('/api/v1/statics/teachers/studentsCountOfTaughtRank',
+        $http.get('/api/v1/statics/teachers/classCountOfTaughtRank',
             function (data) {
                 var template = _.template($("#classesCountOfTaughtRankTemplate").html());
                 $('#classesCountOfTaughtRank').html(template({rankList: data.teachers}));
