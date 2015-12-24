@@ -1,12 +1,12 @@
-<nav class="navbar navbar-default bg-white navbar-fixed-top">
-    <div class="container-fluid">
+<nav class="navbar navbar-inner navbar-fixed-top">
+    <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="#"><img src="/images/y-logo.png"></a>
         </div>
         <ul class="nav navbar-nav">
             <li><a href="/school/profile"><i class="fa fa-cog f-s-18"></i></a></li>
         </ul>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/school/qrcode"><i class="fa fa-qrcode f-s-18"></i></a></li>
                 <li><a href="javascript:void(0)" id="help"><i class="fa fa-info-circle f-s-18"></i></a></li>
@@ -17,18 +17,45 @@
                              width="30" height="30">
                     </a>
                 </li>
-                <li><a href="/logout"><i class="fa fa-sign-out f-pink f-s-18"></i></a></li>
-                <!--<li class="dropdown">-->
-                    <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.displayName}} <span class="caret"></span></a>-->
-                    <!--<ul class="dropdown-menu">-->
-                        <!--<li><a href="/school/profile"><i class="fa fa-user f-default m-r-xxs"></i>个人中心</a></li>-->
-                        <!--<li><a href="/school/qrcode"><i class="fa fa-qrcode f-default m-r-xxs"></i>二维码</a></li>-->
-                        <!--<li><a href="javascript:void(0);" id="help">帮助与支持</a></li>-->
-                        <!--<li role="separator" class="divider"></li>-->
-                        <!--<li><a href="/logout" class="sign-out">退出</a></li>-->
-                    <!--</ul>-->
-                <!--</li>-->
+                <li><a href="/logout"><i class="fa fa-sign-out f-s-18"></i></a></li>
             </ul>
         </div>
     </div>
 </nav>
+<nav class="navbar inner-menu bg-white">
+    <div class="container">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="{% if active === '0' %}active{% endif %}">
+                    <a href="/school/home">
+                        <i class="fa fa-home f-s-16 m-r-xs"></i>首页
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">教务管理 <span class="caret"></span></a>
+                    <ul class="dropdown-menu m-t-xs">
+                        <li><a href="/school/teachers">教务管理</a></li>
+                        <li><a href="/school/classes">班级管理</a></li>
+                        <li><a href="/school/students">学生管理</a></li>
+                    </ul>
+                </li>
+                <li class="{% if active === '5' %}active{% endif %}">
+                    <a href="/school/scores/mall">积分&商城</a>
+                </li>
+                <li class="{% if active === '6' %}active{% endif %}">
+                    <a href="/school/schedules">日程管理</a>
+                </li>
+                <li class="{% if active === '7' %}active{% endif %}">
+                    <a href="/school/quizzes">题库资源</a>
+                </li>
+                <li class="left-menu {% if active === '9' %}active{% endif %}">
+                    <a href="/school/posts">微网站</a>
+                </li>
+                <li class="left-menu {% if active === '6' %}active{% endif %}">
+                    <a href="/school/tasks">营销中心</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% include '../../common/response.html' %}

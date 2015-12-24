@@ -7,8 +7,6 @@ font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft
 .page-inner{
     background: #ebeff2;
     overflow: hidden;
-    margin-top: 50px;
-    margin-left: 240px;
 }
 .main-wrapper{
     margin: 20px 20px 0 20px;
@@ -25,6 +23,7 @@ font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft
 .hides{
     display: none;
 }
+
 
 /* Typography */
 a{
@@ -636,6 +635,21 @@ ul li{
     background: transparent!important;
 }
 
+.bg-default{
+    background-color: #2ab27b;
+    color: #fff;
+}
+
+.bg-default.dark {
+    background-color: #2ab27b;
+    color: #fff;
+}
+
+.bg-default.light {
+    background-color: #2ab27b;
+    color: #fff;
+}
+
 .bg-primary {
     background-color: #7a6fbe;
     color: #fff;
@@ -1063,32 +1077,125 @@ a.bg-pink:focus {
     margin-bottom: 0;
     border: none;
 }
+/*nanbar-inner*/
 .navbar-brand {
     float: left;
-    height: 50px;
-    padding: 10px 12px;
+    height: 60px;
+    padding: 15px 10px;
     font-size: 18px;
     line-height: 20px;
     width: 240px;
-    background-color: #36404a;
-}
-.navbar-default{
-    box-shadow: 0 2px 3px -2px rgba(0, 0, 0, 0.15);
-}
-.navbar-default .navbar-brand:hover,
-.navbar-default .navbar-brand:focus {
-    color: #5e5e5e;
-    background-color: #36404a;
 }
 @media (min-width: 768px) {
-.navbar.open-hover .navbar-nav > .dropdown:hover > .dropdown-menu,
-.navbar.open-hover .navbar-nav > .dropdown > .dropdown-menu:hover {
-display: block;
-margin-top: 0;
-visibility: visible;
-opacity: 1;
+    .navbar > .container .navbar-brand,
+    .navbar > .container-fluid .navbar-brand {
+        margin-left: 0;
+    }
 }
+.navbar-inner{
+    background: #2ab27b;
+    height: 60px;
 }
+.navbar-inner .navbar-nav > li > a {
+    color: #fff;
+    padding: 20px;
+}
+.navbar-inner .navbar-nav > li > a:hover,
+.navbar-inner .navbar-nav > li > a:focus {
+    color: #fff;
+    opacity: 0.9;
+    background-color: transparent;
+}
+/*header-menu*/
+.inner-menu{
+    margin-top: 60px;
+}
+.inner-menu .navbar-nav > li{
+    margin-right: 15px;
+}
+.inner-menu .navbar-nav > li > a {
+    color: #999999;
+    border-bottom: 2px solid transparent;
+}
+.inner-menu .navbar-nav > li > a:hover,
+.inner-menu .navbar-nav > li > a:focus {
+    color: #2ab27b;
+    background-color: transparent;
+}
+.inner-menu .navbar-nav > .active > a,
+.inner-menu .navbar-nav > .active > a:hover,
+.inner-menu .navbar-nav > .active > a:focus {
+    color: #2ab27b;
+    font-weight: 600;
+    border-bottom: 2px solid #2ab27b;
+    background:none;
+}
+.nav .open > a,
+.nav .open > a:hover,
+.nav .open > a:focus {
+    background:none;
+    border-color: #fff;
+}
+.navbar-nav > li > .dropdown-menu {
+    margin-top: 5px;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 140px;
+    padding: 10px;
+    margin: 2px 0 0;
+    margin-top: 10px;
+    list-style: none;
+    font-size: 13px;
+    text-align: left;
+    background-color: #ffffff;
+    border: 1px solid rgb(216, 222, 228);
+    border-radius: 0;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+}
+.dropdown-menu > li > a {
+    display: block;
+    padding: 8px 16px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: #333333;
+    white-space: nowrap;
+}
+.dropdown-menu:before {
+    position: absolute;
+    top: -8px;
+    left: 9px;
+    display: inline-block !important;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #d8dee4;
+    border-left: 8px solid transparent;
+    content: '';
+}
+.dropdown-menu:after {
+    position: absolute;
+    top: -7px;
+    left: 10px;
+    display: inline-block !important;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #fff;
+    border-left: 7px solid transparent;
+    content: '';
+}
+/*.navbar .nav > li .dropdown-menu {*/
+    /*margin: 0;*/
+/*}*/
+/*.navbar .nav > li:hover .dropdown-menu {*/
+    /*display: block;*/
+/*}*/
 /*left*/
 .sidebar {
     position: fixed;
