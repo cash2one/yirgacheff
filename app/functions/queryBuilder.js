@@ -6,7 +6,6 @@ const _ = require('lodash');
 const mongoose = require('mongoose');
 const Query = mongoose.Query;
 
-
 module.exports = function (query, filter) {
     if (_.isEmpty(filter)) {
         return query;
