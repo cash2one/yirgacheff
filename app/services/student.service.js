@@ -144,7 +144,7 @@ module.exports = {
         let aggregates = yield Student.aggregate()
             .match({
                 schoolId: new ObjectId(schoolId),
-                createdTime: {$gte: start, $lte: end}
+                createdTime: {$gte: start.toDate(), $lte: end.toDate()}
             })
             .project({
                 _id: 0,
