@@ -234,7 +234,7 @@ module.exports = {
                 interval: interval
             },
             map: function () {
-                let index = Math.floor(this.score / interval);
+                var index = Math.floor(this.score / interval);
                 emit(index + '', 1);
             },
 
