@@ -1,10 +1,9 @@
 'use strict';
 
-var passport = require('passport');
 var models = require('../app/models');
 var roles = require('../app/common/constants').roles;
 
-module.exports = function () {
+module.exports = function (passport) {
 
     // Serialize sessions
     passport.serializeUser(function (user, done) {
@@ -13,6 +12,7 @@ module.exports = function () {
 
     // Deserialize sessions
     passport.deserializeUser(function (user, done) {
+        console.log('execute deserializeUser .. ');
         var userProxy = user.role === roles.HEADMASTER ? models.School : models.Teacher;
         userProxy.findById(user.id, function (err, userInfo) {
             if (!userInfo) {
@@ -23,5 +23,5 @@ module.exports = function () {
         });
     });
 
-    require('./strategies/local.js')();
+    require('./strategies/local.js')(passport);
 };
