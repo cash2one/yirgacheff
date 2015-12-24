@@ -1,5 +1,5 @@
 @import url("bootstrap.css");
-@import url("style.css");
+@import url("theme.css");
 @import url("shop.css");
 @import url("laypage.css");
 @import url("layer.css");
@@ -19,5 +19,4 @@
 @import url("lightbox.css");
 /*@import url("form.css");*/
 /*@import url("button.css");*/
-@import url("question.css");
 @import url("media.css");
