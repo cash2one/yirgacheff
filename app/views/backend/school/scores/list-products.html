@@ -3,62 +3,6 @@
 <!-- 面包屑 -->
 {{ breadcrumb.init([{'url':'','title':'积分商城'}]) }}
 <!-- END OF BREADCRUMBS -->
-<!--<div class="w-base ng-scope w-base-extraction w-base-border">-->
-    <!--<div class="w-base-title">-->
-        <!--<h3><i class="fa  fa-list  fa-fw mr-5"></i>所有商品</h3>-->
-
-        <!--<div class="w-base-right w-base-right-ext" style="padding: 0px 11px 0 0;">-->
-            <!--<a class="v-add-student btn-middle solid-btn-green" href="javascript:void(0);"-->
-               <!--style="margin-right: -8px;"-->
-               <!--id="add-product-btn">+添加商品</a>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<div class="smart_clazz_list" id="product-list">-->
-        <!--{% if !exchanges || exchanges.length === 0%}-->
-        <!--<div style="margin-left: 18px;margin-top: 15px">-->
-            <!--<span>提示：当前商城没有任何商品，请点击 [添加商品] 创建商品列表！</span></div>-->
-        <!--{% endif %}-->
-        <!--<div class="list-products-hint">-->
-            <!--备注：微信端积分商城会根据积分数自动排序，设置时可以不用考虑顺序问题。-->
-        <!--</div>-->
-
-        <!--<ul>-->
-            <!--{% for exchange in exchanges %}-->
-
-            <!--<li id="{{exchange._id.toString()}}">-->
-                <!--<div class="ground_color ground_color_0"-->
-                     <!--style="width:220px;text-align: center;vertical-align: middle;display: table-cell">-->
-                    <!--<a class="product-photo-thumb" href="{{resourceURL}}/{{exchange.imageKey}}" target="_blank"-->
-                       <!--data-lightbox="zoom-photo">-->
-                        <!--<img class="lazy" style="vertical-align: middle;margin-top: 20px"-->
-                             <!--src="/images/loading.gif"-->
-                             <!--data-original="{{resourceURL}}/{{exchange.imageKey}}?imageView2/1/w/192/h/160/interlace/1">-->
-
-                        <!--<div class="product-hover-mask">-->
-                            <!--<i class="fa fa fa-search-plus fa-4x" style="margin-top: 50px"></i>-->
-                        <!--</div>-->
-                    <!--</a>-->
-                <!--</div>-->
-                <!--<div class="title">-->
-                    <!--<h3>名称：&nbsp;{{exchange.productName}}</h3>-->
-                <!--</div>-->
-                <!--<div class="quantity">-->
-                    <!--<h3>数量：&nbsp;{{exchange.stock}}</h3>-->
-                <!--</div>-->
-                <!--<div class="quantity">-->
-                    <!--<h3>积分：&nbsp;{{exchange.score}}-->
-                        <!--<div class="righter-del">-->
-                            <!--<a class="btn-small a-btn-red delete-btn">删除</a>-->
-                        <!--</div>-->
-                    <!--</h3>-->
-
-                <!--</div>-->
-            <!--</li>-->
-
-            <!--{% endfor %}-->
-        <!--</ul>-->
-    <!--</div>-->
-<!--</div>-->
 <div class="row">
     <div class="col-xs-12">
         <div class="panel panel-default shadow">

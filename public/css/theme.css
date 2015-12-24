@@ -1136,9 +1136,6 @@ a.bg-pink:focus {
     background:none;
     border-color: #fff;
 }
-.navbar-nav > li > .dropdown-menu {
-    margin-top: 5px;
-}
 .dropdown-menu {
     position: absolute;
     top: 100%;
@@ -1190,19 +1187,13 @@ a.bg-pink:focus {
     border-left: 7px solid transparent;
     content: '';
 }
-/*.navbar .nav > li .dropdown-menu {*/
-    /*margin: 0;*/
-/*}*/
-/*.navbar .nav > li:hover .dropdown-menu {*/
-    /*display: block;*/
-/*}*/
-/*left*/
-.sidebar {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    padding-top: 50px;
+.navbar .nav > li .dropdown-menu {
+    margin: 0;
 }
+.navbar .nav > li:hover .dropdown-menu {
+    display: block;
+}
+/*left*/
 .page-sidebar {
     width: 240px;
     display: block;
@@ -1210,7 +1201,7 @@ a.bg-pink:focus {
     float: left;
     height: auto!important;
     overflow: visible!important;
-    background: #36404a;
+    background: #fff;
 }
 .page-sidebar .page-sidebar-inner{
     height: 100%!important;
