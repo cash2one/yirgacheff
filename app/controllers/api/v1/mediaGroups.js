@@ -33,6 +33,11 @@ module.exports = function (router) {
 
     });
 
+    router.delete('/:groupId', function*() {
+        let groupId = this.params.groupId;
+        this.body = yield service.medias.deleteGroupById(groupId);
+    });
+
 
     return router;
 };
