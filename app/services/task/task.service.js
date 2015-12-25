@@ -65,6 +65,7 @@ module.exports = {
         yield activity.save();
         task.item = activity;
         task.taskType = 1;
+        task.schoolId = schoolId;
         try {
             yield task.save();
         } catch (err) {
