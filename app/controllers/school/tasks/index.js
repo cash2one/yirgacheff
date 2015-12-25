@@ -8,7 +8,9 @@ module.exports = function (router) {
 
     router.get('/', function*() {
         let user = this.user;
-        this.state.tasks = yield service.tasks.findBySchool(user.schoolId);
+        this.state.tasks = yield service.tasks.findBySchool(user.schoolId, {
+            order: ['-createdTime']
+        });
         yield this.render('backend/school/task/list-tasks');
     });
 
