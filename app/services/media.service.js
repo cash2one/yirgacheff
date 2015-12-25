@@ -27,7 +27,7 @@ module.exports = {
      */
     createGroup: co.wrap(function*(schoolId, data) {
         let group = new MediaGroup(data);
-        data.schoolId = schoolId;
+        group.schoolId = schoolId;
         return yield group.save();
 
     }),
