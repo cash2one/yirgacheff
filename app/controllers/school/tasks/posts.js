@@ -17,7 +17,7 @@ module.exports = function (router) {
         yield this.render('backend/school/task/post/create-post-task');
     });
 
-    router.post('/', function*() {
+    router.post('/create', function*() {
         let user = this.user;
         yield service.tasks.createPostTask(user.schoolId, this.request.body);
         this.redirect('/school/tasks');
