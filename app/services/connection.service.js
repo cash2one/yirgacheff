@@ -22,7 +22,7 @@ module.exports = {
     }),
 
     createRecord: co.wrap(function*(creator, studentId, data) {
-        let student = yield Student.findById(studentId).select('_id').exec();
+        let student = yield Student.findById(studentId).select('_id schoolId').exec();
         if (!student) {
             throw createError(400, '学生不存在');
         }

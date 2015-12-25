@@ -86,3 +86,5 @@ config/env/production.js
 config/env/development.js
 
 src/sample
+
+assets
