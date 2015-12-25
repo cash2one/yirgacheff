@@ -62,6 +62,7 @@ module.exports = {
     createActivityTask: co.wrap(function*(schoolId, data) {
         let activity = new Activity(data);
         let task = new Task(data);
+        activity.schoolId = schoolId;
         yield activity.save();
         task.item = activity;
         task.taskType = 1;
