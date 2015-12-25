@@ -4,8 +4,9 @@
 
 'use strict';
 
+var _path = __dirname + "/public/js/app";
 var entryMap = {
-    "/assets/bundles/views/backend/school/home":                          __dirname + "/entry/views/backend/school/home.entry",
-    "/assets/bundles/views/backend/school/manager/list-classes":          __dirname + "/entry/views/backend/school/manager/list-classes.entry",
+    "/assets/bundles/views/backend/school/home":                     _path + "/school/home",
+    "/assets/bundles/views/backend/school/manager/list-classes":     _path + "/school/manager/list-classes",
 }
 module.exports = entryMap;

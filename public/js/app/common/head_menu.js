@@ -1,5 +1,7 @@
 'use strict';
 
+var window = require("window");
+window.jQuery = jQuery;
 
 var layer = require('layer');
 var bootstrap = require('bootstrap');
