@@ -49,6 +49,7 @@ function loaders() {
     return [
         {   test: /\.(png|jpg|jpeg|gif)$/, loader: "url-loader"},
         {   test: /\.js$/,  loader: 'babel', exclude: /node_modules/},
+        {   test: require.resolve('highcharts'), loader: 'expose?Highcharts'},
         {   test: /\.css$/, loader: "style-loader!css-loader?minimize!autoprefixer-loader"},
     ]
 }
