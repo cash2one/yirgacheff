@@ -5,6 +5,7 @@ requirejs(['jquery', 'restfulClient', 'easyDropDown', 'headMenu', 'leftMenu', 'u
     function ($, $http, easyDropDown, headMenu, leftMenu, utils, _) {
         headMenu.init();
         leftMenu.init();
+
         // 学生数
         $http.get('/api/v1/statics/students/count', function (data) {
             $('#student-count').html(data);
