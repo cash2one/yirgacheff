@@ -11,6 +11,11 @@ module.exports = function (router) {
         this.body = yield service.medias.findGroupBySchool(user.schoolId);
     });
 
+    router.post('/', function*() {
+        let user = this.user;
+        this.body = yield service.medias.createGroup(user.schoolId, this.request.body);
+    });
+
     router.get('/unGroup/medias', function*() {
         let user = this.user;
         this.body = yield service.medias.findMediaByGroup(user.schoolId, null);
