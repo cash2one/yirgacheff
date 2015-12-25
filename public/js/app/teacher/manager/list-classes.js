@@ -46,7 +46,7 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'layerWrapper', 'u
 
         //修改班级
         classList.on('click', '.modify-class', function () {
-            var currentClass = $(this).closest('div.classItem');
+            var currentClass = $(this).closest('tr.classItem');
             var className = currentClass.attr('data-name');
             var classId = currentClass.attr('id');
             $classForm.find('input[name="className"]').val(className);
@@ -69,7 +69,7 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'layerWrapper', 'u
 
         //转让班级
         classList.on('click', '.exchange-class', function () {
-            var currentClass = $(this).closest('div.classItem'),
+            var currentClass = $(this).closest('tr.classItem'),
                 className = currentClass.attr('data-name'),
                 url = '/api/v1/classes/' + currentClass.attr('id') + '/changeOwner';
 
@@ -97,7 +97,7 @@ requirejs(['jquery', 'restfulClient', 'leftMenu', 'headMenu', 'layerWrapper', 'u
         });
 
         classList.on('click', '.delete-class', function () {
-            var currentClass = $(this).closest('div.classItem');
+            var currentClass = $(this).closest('tr.classItem');
             layer.confirm('确定要删除班级?', function () {
                 var url = '/api/v1/classes/' + currentClass.attr('id');
                 $http.del(url, function () {

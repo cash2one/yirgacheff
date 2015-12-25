@@ -5,19 +5,19 @@ requirejs(['jquery', 'restfulClient', 'layerWrapper', 'laypage', 'leftMenu', 'he
         var studentId = $('#studentId').val();
         leftMenu.init();
         headMenu.init();
-
+        alert(studentId);
         function makeRecord(data) {
             var timeStr = data.createdTime.substr(0, 10);
-            var result = '<li class="data">';
-            result += '<div class="cal">'
-                + '<div class="year-month">' + timeStr.substr(0, 7) + '</div>'
-                + '<div class="day">' + timeStr.substr(8) + '</div></div>'
-                + '<div class="conn-content">'
-                + '<div class="words">'
+            var result = '<li>';
+            result += '<div>'
+                + '<div>' + timeStr.substr(0, 7) + '</div>'
+                + '<div>' + timeStr.substr(8) + '</div></div>'
+                + '<div>'
+                + '<div>'
                 + data.content
                 + '</div> </div> '
-                + '<div class="conn-recorder">'
-                + '<div style="margin-top: 12px;border-left: 1px solid #dfdfdf;padding-left: 6px">记录人：' + GLOBAL.user.displayName + '</div></div>'
+                + '<div>'
+                + '<div>记录人：' + GLOBAL.user.displayName + '</div></div>'
                 + '</li>';
             return result;
         }
@@ -32,7 +32,7 @@ requirejs(['jquery', 'restfulClient', 'layerWrapper', 'laypage', 'leftMenu', 'he
             var url = '/api/v1/connections/students/' + studentId;
             $http.post(url, {content: content}, function (data) {
                 var record = makeRecord(data);
-                var $first = $('#record-list').find('li:first-child');
+                var $first = $('#record-list').find('tr:first-child');
                 $(record).insertBefore($first);
                 $('#connection-content').val('');
                 initPaging();
