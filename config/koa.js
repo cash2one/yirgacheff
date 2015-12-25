@@ -91,7 +91,7 @@ function initViewEngine(app) {
  * @param app
  */
 function initStatic(app) {
-    let staticPath = path.resolve(__dirname, '../public');
+    let staticPath = path.resolve(__dirname, '../assets'); // '../public'
     app.use(require('koa-static')(staticPath));
 }
 

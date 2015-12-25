@@ -121,8 +121,11 @@
 
 {% endblock %}
 {% block javascript %}
-<script>
+<!--<script>
     requirejs(['/js/app/school/home.js']);
+</script>-->
+<script type="text/javascript"
+        src="/bundles/views/backend/school/home.bundle.js" charset="UTF-8">
 </script>
 
 {% endblock %}
