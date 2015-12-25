@@ -1,42 +1,55 @@
 {% extends './base.html' %}
 
 {% block content %}
-<div class="row">
+<div class="row m-t-md">
     <div class="col-xs-3">
-        <div class="panel info-box panel-green">
+        <div class="panel info-box info-box-info shadow">
             <div class="panel-body">
                 <div class="info-box-stats">
                     <p class="counter" id="teacher-count">0</p>
                     <span class="info-box-title">教师人数</span>
                 </div>
                 <div class="info-box-icon">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-users f-info"></i>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-xs-3">
-        <div class="panel info-box panel-yellow">
+        <div class="panel info-box info-box-warning shadow">
             <div class="panel-body">
                 <div class="info-box-stats">
                     <p class="counter" id="class-count">0</p>
                     <span class="info-box-title">班级数量</span>
                 </div>
                 <div class="info-box-icon">
-                    <i class="fa fa-sitemap"></i>
+                    <i class="fa fa-sitemap f-warning"></i>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-xs-3">
-        <div class="panel info-box panel-blue">
+        <div class="panel info-box info-box-pink shadow">
             <div class="panel-body">
                 <div class="info-box-stats">
                     <p class="counter" id="student-count">0</p>
                     <span class="info-box-title">学生人数</span>
                 </div>
                 <div class="info-box-icon">
-                    <i class="fa fa-child"></i>
+                    <i class="fa fa-child f-pink"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-3">
+        <div class="panel info-box info-box-default shadow">
+            <div class="panel-body">
+                <div class="info-box-stats">
+                    <p class="counter" id="quizBase-count">0</p>
+                    <span class="info-box-title">学生人数</span>
+                </div>
+                <div class="info-box-icon">
+                    <i class="fa fa-tasks f-default"></i>
                 </div>
             </div>
         </div>
