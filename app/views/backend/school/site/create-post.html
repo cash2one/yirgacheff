@@ -68,14 +68,14 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="wx-editor-template-content p-h-xs">
+                            <div class="wx-editor-template-content">
                                 <div class="tab-content">
                                     <div class="tab-pane fade in active" id="tab1">1</div>
                                     <div class="tab-pane fade" id="tab2">2</div>
                                     <div class="tab-pane fade" id="tab3">3</div>
                                     <div class="tab-pane fade" id="tab4">4</div>
                                     <div class="tab-pane fade" id="tab5">
-                                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                                        <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#myModal">
                                             上传图片
                                         </button>
                                     </div>
@@ -166,7 +166,7 @@
                 </div>
                 <div class="row m-t-lg">
                     <div class="col-md-offset-5 col-md-2">
-                        <button class="btn btn-success btn-block" id="savePost">
+                        <button class="btn btn-default btn-block" id="savePost">
                             {% if update %} 修改 {% else %} 发布 {% endif %}
                         </button>
                     </div>
@@ -177,20 +177,37 @@
 </div>
 
 
-<!-- Modal -->
+<!-- 文件上传 -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                <h4 class="modal-title" id="myModalLabel">文件上传</h4>
             </div>
             <div class="modal-body">
-                ...
+                <div class="alert alert-warning">
+                    <p>1.单张图片最大不要超过2M，不要发布涉嫌违法的图片。</p>
+                    <p>2.在上传过程中，请不要刷新页面，以免导致上传图片失败。</p>
+                    <p>3.如您对添加的图片不满意，可点击图片右侧的删除图标，将其从上传队列中删除。</p>
+                </div>
+                <div class="upload-area slimscroll">
+                    <ul class="list-unstyled">
+                        <li>
+                            <div class="uploadifive-queue-item complete" id="uploadifive-imageUpload-file-0"><a
+                                    class="close" href="#">X</a>
+                                <div><span class="filename">new_logo.png</span><span class="fileinfo"> - 完成</span></div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-default pull-left">上传</button>
+                <button type="button" class="btn btn-default">确定</button>
             </div>
         </div>
     </div>

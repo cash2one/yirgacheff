@@ -527,6 +527,7 @@
 .editor .wx-editor-template-content{
     width: 438px;
     height: 502px;
+    padding: 20px;
     border: 1px solid #d4d4d4;
     border-top:none;
     border-radius: 0 0 4px 4px;
@@ -579,6 +580,11 @@
     cursor: default;
     background: none;
     border-bottom: 2px solid #2ab27b;
+}
+.upload-area{
+    height: 300px;
+    border: 2px dashed #d4d4d4;
+    padding: 10px;
 }
 /*报名名单*/
 .task-management-registration{
