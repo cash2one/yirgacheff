@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="name" class="col-xs-2 control-label">活动时间：</label>
+                        <label for="start" class="col-xs-2 control-label">活动时间：</label>
                         <div class="col-xs-4">
                             <input class="form-control w-datepicker" id="date-picker-start" type="text" name="startTime"/>
                         </div>
@@ -43,12 +43,7 @@
                             <input class="form-control w-datepicker" id="date-picker-end" type="text" name="endTime"/>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="name" class="col-xs-2 control-label">截止时间：</label>
-                        <div class="col-xs-9">
-                            <input class="form-control w-datepicker" type="text" id="expire-picker-end" name="deadline">
-                        </div>
-                    </div>
+
                     <div class="form-group">
                         <label for="name" class="col-xs-2 control-label">活动地点：</label>
                         <div class="col-xs-9">
@@ -105,6 +100,8 @@
 {% include '../../../common/media-lib.html' %}
 {% endblock %}
 {% block javascript %}
-<script src="/js/entries/school/task/post/create-activity-tasks.js"></script>>>>
+<script src="/js/lib/ueditor/ueditor.config.js"></script>
+<script src="/js/lib/ueditor/ueditor.all.js"></script>
+<script src="/js/entries/school/task/activity/create-activity-task.js"></script>>>>
 
 {% endblock %}

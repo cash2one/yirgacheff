@@ -13,14 +13,15 @@
             <div class="panel-body">
                 <div class="col-xs-3">
                     <img
-                            {% if user.avatar %} src="{{resourceURL}}/{{user.avatar}}?imageView2/1/w/180/h/180" {% else
-                            %}
+                            {% if user.avatar %}
+                            src="{{resourceURL}}/{{user.avatar}}?imageView2/1/w/180/h/180"
+                            {% else %}
                             src="/images/default_head.jpg" {% endif %}
                             width="180px"
-                            height="180px" class="center-block">
+                            height="180px" class="center-block avatar">
                 </div>
                 <div class="col-xs-9">
-                    <button type="button" class="btn btn-default m-t-lg" id="local_image_upload">修改头像</button>
+                    <input type="file" id="imageUpload">
                     <p class="m-t-lg">注：仅支持JPG, JPEG, GIF, PNG图像文件, 且文件小于2MB</p>
                 </div>
             </div>

@@ -17,5 +17,6 @@ module.exports = {
     tasks: require('./task/task.service'),
     activities: require('./task/activity.service'),
     connections: require('./connection.service'),
-    question: require('./question.service')
+    question: require('./question.service'),
+    schools: require('./school.service')
 };
