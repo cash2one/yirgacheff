@@ -102,10 +102,9 @@ function genEntries(srcDir) {
                 if (!m) {
                     return next();
                 }
-                let entry = m[1];
                 let relativePath = path.relative(srcDir, root);
-                let relativeName = relativePath.replace(/\//g, '.');
-                map[`${relativeName}.${entry}`] = `${relativePath}/${name}`;
+                let entry = path.join(relativePath, m[1]);
+                map[entry] = path.join(relativePath, name);
                 next();
             },
             errors: function (root, nodeStatsArray, next) {
