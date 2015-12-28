@@ -53,7 +53,8 @@ singleUpload = (opts)->
 multiUpload = (opts)->
   $('body').append($(modal));
   $('.slimscroll').slimscroll({
-    allowPageScroll: true
+    allowPageScroll: true,
+    height: 300
   })
   btn = opts.button
   done = opts.done
