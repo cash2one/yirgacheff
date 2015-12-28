@@ -5,6 +5,7 @@ var validator = require('validator');
 var app = require('../../../common/app');
 var layer = require('../../../common/layerWrapper');
 var $http = require('../../../common/restfulClient');
+
 $(document).ready(function () {
     //表格
     var rawTable = $('#category-list');

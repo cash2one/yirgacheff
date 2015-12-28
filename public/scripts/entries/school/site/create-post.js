@@ -2,7 +2,6 @@
 
 var app = require('../../../common/app');
 var layer = require('../../../common/layerWrapper');
-var imgLib = require('../../../common/imageLibrary');
 var upload = require('../../../common/uploadifive');
 var richEditor = require('../../../common/richEditor');
 
@@ -21,16 +20,12 @@ $(document).ready(function () {
         }
     });
 
-    // 图库
-    imgLib.selectBind({
-        bindButton: 'chooseFromLibrary',
-        onSelected: function (keys) {
-            if (keys.length === 0) {
-                return;
-            }
-            var key = keys[0];
-            $('.coverpage img').attr('src', 'http://resource.hizuoye.com/' + key);
-            $('#coverImage').val(key);
+    //图库上传
+    upload({
+        button: 'uploadButton',
+        multi: true,
+        done: function (queue) {
+            console.log(queue.length);
         }
     });
 
