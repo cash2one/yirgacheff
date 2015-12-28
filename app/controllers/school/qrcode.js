@@ -6,7 +6,8 @@ const qrcode = require('../../middleware/qrcode');
 
 module.exports = function (router) {
 
-    router.get('/', qrcode, function*() {
+    router.get('/', qrcode(), function*() {
+        this.state.qrcode = this.qrcode;
         yield this.render('backend/school/qrcode');
     });
 
