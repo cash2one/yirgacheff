@@ -42,11 +42,6 @@ body,
 }
 
 /* Demonstrate the grids */
-.col-xs-6 {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
 .container .navbar-header,
 .container .navbar-collapse {
   margin-right: 0;
@@ -112,7 +107,7 @@ body,
 .navbar .navbar-nav .open .dropdown-menu > .active > a,
 .navbar .navbar-nav .open .dropdown-menu > .active > a:hover,
 .navbar .navbar-nav .open .dropdown-menu > .active > a:focus {
-  color: #2ab27b !important;
+  color: #2aabe6 !important;
   background: none !important;
 }
 .navbar .navbar-nav .open .dropdown-menu > .disabled > a,
