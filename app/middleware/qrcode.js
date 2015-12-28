@@ -12,33 +12,35 @@ const redis = require('../../db/redis');
 
 const School = mongoose.model('School');
 
-module.exports = function* (next) {
-    if (!this.user) {
-        this.throw(400, 'not login');
-    }
-    let schoolId = this.user.schoolId;
-    let key = 'qrcode:' + schoolId;
-    let qrcode = yield redis.get(key);
-    if (qrcode) {
-        this.state.qrcode = qrcode;
-        return yield next;
-    }
-    let school = yield School.findById(schoolId)
-        .select('qrcode username')
-        .lean().exec();
-    if (!school) {
-        this.throw(400, '学校不存在');
-    }
-    if (school.qrcode) {
-        this.state.qrcode = school.qrcode;
-        return yield next;
-    }
-    qrcode = yield generateQrcode(school);
-    yield School.update({_id: this.school._id}, {$set: {qrcode: qrcode}}).exec();
-    this.state.qrcode = qrcode;
-    yield next;
-};
+module.exports = function (opts) {
+    return function* (next) {
+        if (!this.user) {
+            this.throw(400, 'not login');
+        }
+        let schoolId = this.user.schoolId;
+        let key = 'qrcode:' + schoolId;
+        let qrcode = yield redis.get(key);
+        if (qrcode) {
+            this.state.qrcode = qrcode;
+            return yield next;
+        }
+        let school = yield School.findById(schoolId)
+            .select('qrcode username')
+            .lean().exec();
+        if (!school) {
+            this.throw(400, '学校不存在');
+        }
+        if (school.qrcode) {
+            this.state.qrcode = school.qrcode;
+            return yield next;
+        }
+        qrcode = yield generateQrcode(school);
+        yield School.update({_id: this.school._id}, {$set: {qrcode: qrcode}}).exec();
+        this.qrcode = qrcode;
+        yield next;
+    };
 
+};
 
 /**
  * 生成二维码
