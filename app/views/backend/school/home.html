@@ -26,8 +26,8 @@
     <div class="col-xs-3">
         <div class="widget-panel widget-style-2 bg-white shadow">
             <i class="fa fa-tasks f-default"></i>
-            <p class="f-s-30" id="student-count">0</p>
-            <div class="f-gray">学生人数</div>
+            <p class="f-s-30">0</p>
+            <div class="f-gray">题库数量</div>
         </div>
     </div>
 </div>
@@ -109,12 +109,7 @@
 {% include '../templates/classesCountOfTaughtRankTemplate.html' %}
 
 {% endblock %}
-{% block javascript %}
-<!--<script>
-    requirejs(['/js/app/school/home.js']);
-</script>-->
-<script type="text/javascript"
-        src="/bundles/views/backend/school/home.bundle.js" charset="UTF-8">
-</script>
 
+{% block javascript %}
+<script src="/js/entries/school.home.js"></script>
 {% endblock %}

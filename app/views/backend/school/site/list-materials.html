@@ -21,7 +21,8 @@
                                 <button class="btn btn-white m-t-xs" id="del-group">删除分组</button>
                                 <div class="tip-btn">
                                     <div class="bubble_tips bubble_right warn">
-                                        <div class="bubble_tips_inner">大小: 不超过2M,&nbsp;&nbsp;&nbsp;&nbsp;格式: bmp, png, jpeg, jpg, gif
+                                        <div class="bubble_tips_inner">大小: 不超过2M,&nbsp;&nbsp;&nbsp;&nbsp;格式: bmp, png,
+                                            jpeg, jpg, gif
                                         </div>
                                         <i class="bubble_tips_arrow out"></i>
                                         <i class="bubble_tips_arrow in"></i>
@@ -168,10 +169,6 @@
 
 {% endblock %}
 {% block javascript %}
-<script type="text/javascript" src="/js/lib/require.js"></script>
-<script type="text/javascript" src="/js/config.js"></script>
-<script>
-    requirejs(['/js/app/school/site/list-materials.js']);
-</script>
+<script src="/js/entries/school.site.list-materials.js"></script>
 
 {% endblock %}

@@ -13,7 +13,8 @@
             <div class="panel-body">
                 <div class="col-xs-3">
                     <img
-                            {% if user.avatar %} src="{{resourceURL}}/{{user.avatar}}?imageView2/1/w/180/h/180" {% else %}
+                            {% if user.avatar %} src="{{resourceURL}}/{{user.avatar}}?imageView2/1/w/180/h/180" {% else
+                            %}
                             src="/images/default_head.jpg" {% endif %}
                             width="180px"
                             height="180px" class="center-block">
@@ -120,8 +121,5 @@
 {% endblock %}
 
 {% block javascript %}
-<script>
-    requirejs(['/js/app/school/profile.js']);
-</script>
-
+<script src="/js/entries/school.profile.js"></script>
 {% endblock %}

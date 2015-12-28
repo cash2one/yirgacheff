@@ -59,7 +59,7 @@ module.exports = {
         }
         let count = yield Homework.count({quiz: quiz}).exec();
         if (count > 0) {
-            query.asTemplate = false;
+            quiz.asTemplate = false;
             return yield quiz.save();
         }
         return yield quiz.remove();

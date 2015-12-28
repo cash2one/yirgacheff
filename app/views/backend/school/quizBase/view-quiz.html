@@ -35,8 +35,6 @@
 <script>
     window.exercises = {{ quiz.exercises | json | safe}};
 </script>
-<script>
-    requirejs(['/js/app/school/quizBase/view-quiz.js']);
-</script>
+<script src="/js/entries/school.quizBase.view-quiz.js"></script>
 
 {% endblock %}

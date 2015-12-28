@@ -115,6 +115,16 @@ module.exports = {
         return yield query.exec();
     }),
 
+    /**
+     * 获取无班级学生
+     */
+    findByNoneClass: co.wrap(function*(schoolId) {
+        let query = Student.find({
+            schoolId: schoolId,
+            state: 0
+        }).where('classes').size(0);
+        return yield query.lean().exec();
+    }),
 
     /**
      * 根据教师ID获取学生列表

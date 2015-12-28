@@ -16,10 +16,10 @@
                 </div>
             </div>
             <div class="panel-body">
-                <div  role="tabpanel">
+                <div role="tabpanel">
                     <div class="opts-area">
                         <ul>
-                            <li title="全部" class="item selected" data-state = "">全部</li>
+                            <li title="全部" class="item selected" data-state="">全部</li>
                             <li title="进行中" class="item" data-state="0">进行中</li>
                             <li title="已结束" class="item" data-state="1">已关闭</li>
                         </ul>
@@ -28,59 +28,63 @@
                         <ul id="list-posts">
                             {% for task in tasks %}
                             <li class="data" id="{{task._id.toString()}}" data-state="{{task.state}}">
-                                    <div class="thumb thumb-ext">
-                                        {% if task.taskType === 0 %}
+                                <div class="thumb thumb-ext">
+                                    {% if task.taskType === 0 %}
+                                    {% if task.state === 0 %}
+                                    <img src="http://static.hizuoye.com/images/passage.png" width="75px" height="75px">
+                                    {% else %}
+                                    <img src="http://static.hizuoye.com/images/passage-expire.png" width="75px"
+                                         height="75px">
+                                    {% endif %}
+                                    {% else %}
+                                    <div style="width: 75px;">
                                         {% if task.state === 0 %}
-                                        <img src="http://static.hizuoye.com/images/passage.png" width="75px" height="75px">
+                                        <img class="m-t-xs" src="http://static.hizuoye.com/images/activity.png"
+                                             width="60px" height="60px">
                                         {% else %}
-                                        <img  src="http://static.hizuoye.com/images/passage-expire.png" width="75px"
-                                             height="75px">
-                                        {% endif %}
-                                        {% else %}
-                                        <div style="width: 75px;">
-                                            {% if task.state === 0 %}
-                                            <img class="m-t-xs" src="http://static.hizuoye.com/images/activity.png" width="60px" height="60px">
-                                            {% else %}
-                                            <img class="m-t-xs" src="http://static.hizuoye.com/images/activity-expire.png" width="60px"
-                                                 height="60px">
-                                            {% endif %}
-
-                                        </div>
-                                        {% endif%}
-
-                                    </div>
-                                    <div class="title">
-                                        <div class="row m-t-lg">
-                                            <div class="col-xs-7"><p class="task-name" title="{{task.name}}">{{task.name}}</p></div>
-                                            <div class="col-xs-3">发布时间：{{task.createdTime | date('Y-m-d',-480)}}</div>
-                                            <div class="col-xs-2">{% if task.state === 0
-                                                %} <span class="label label-success">进行中</span> {% else %}
-                                                <span class="label label-warning">已结束</span> {% endif %}</div>
-                                        </div>
-                                    </div>
-                                    <div class="management">
-                                        {% if task.state === 0 %}
-                                        <div class="">
-                                            <a class="btn btn-default btn-custom btn-sm"
-                                               href="/school/tasks/{{task._id.toString()}}">管理任务</a>
-                                        </div>
-                                        {% else %}
-                                        <div class="">
-                                            <a class="btn btn-info btn-custom btn-sm"
-                                               href="/school/tasks/{{task._id.toString()}}">查看任务</a>
-                                        </div>
+                                        <img class="m-t-xs" src="http://static.hizuoye.com/images/activity-expire.png"
+                                             width="60px"
+                                             height="60px">
                                         {% endif %}
 
-                                        {% if task.state === 0 %}
-                                        <div class="m-t-sm">
-                                            <button class="btn btn-pink btn-custom btn-sm close-task">关闭任务</button>
-                                        </div>
-                                        {% else %}
-                                        <div class="m-t-sm">
-                                            <button class="btn btn-white btn-sm closed-task-btn" disabled>已经关闭</button>
-                                        </div>
-                                        {% endif %}
                                     </div>
+                                    {% endif%}
+
+                                </div>
+                                <div class="title">
+                                    <div class="row m-t-lg">
+                                        <div class="col-xs-7"><p class="task-name" title="{{task.name}}">
+                                            {{task.name}}</p></div>
+                                        <div class="col-xs-3">发布时间：{{task.createdTime | date('Y-m-d',-480)}}</div>
+                                        <div class="col-xs-2">{% if task.state === 0
+                                            %} <span class="label label-success">进行中</span> {% else %}
+                                            <span class="label label-warning">已结束</span> {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="management">
+                                    {% if task.state === 0 %}
+                                    <div class="">
+                                        <a class="btn btn-default btn-custom btn-sm"
+                                           href="/school/tasks/{{task._id.toString()}}">管理任务</a>
+                                    </div>
+                                    {% else %}
+                                    <div class="">
+                                        <a class="btn btn-info btn-custom btn-sm"
+                                           href="/school/tasks/{{task._id.toString()}}">查看任务</a>
+                                    </div>
+                                    {% endif %}
+
+                                    {% if task.state === 0 %}
+                                    <div class="m-t-sm">
+                                        <button class="btn btn-pink btn-custom btn-sm close-task">关闭任务</button>
+                                    </div>
+                                    {% else %}
+                                    <div class="m-t-sm">
+                                        <button class="btn btn-white btn-sm closed-task-btn" disabled>已经关闭</button>
+                                    </div>
+                                    {% endif %}
+                                </div>
                             </li>
                             {% endfor %}
                         </ul>
@@ -95,8 +99,5 @@
 </div>
 {% endblock %}
 {% block javascript %}
-<script>
-    requirejs(['/js/app/school/task/list-tasks.js']);
-</script>
-
+<script src="/js/entries/school.task.list-tasks.js"></script>>
 {% endblock %}

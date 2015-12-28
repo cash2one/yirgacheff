@@ -5,9 +5,11 @@
 const qn = require('qiniu');
 const _ = require('lodash');
 const config = require('../../config/config');
+const DEFAULT_LIMIT = 1024 * 1024 * 5;
 
 qn.conf.ACCESS_KEY = config.qn.accessKey;
 qn.conf.SECRET_KEY = config.qn.secretKey;
+
 
 /**
  * 生成token
@@ -48,5 +50,23 @@ module.exports = {
         };
         this.token = generateToken(policy);
         yield next;
+    },
+
+    token: function (opts) {
+        opts = opts || {};
+        let limit = opts.limit || DEFAULT_LIMIT;
+        let mimeLimit = opts.mimeLimit;
+        return function*(next) {
+            let policy = {
+                fsizeLimit: limit,  //10M
+                saveKey: '$(etag)$(ext)'
+            };
+            if (mimeLimit) {
+                policy.mimeLimit = mimeLimit;
+            }
+            this.token = generateToken(policy);
+            ;
+            yield next;
+        }
     }
 };

@@ -30,6 +30,11 @@ module.exports = function (router) {
         this.body = yield service.classes.deleteById(this.params.id);
     });
 
+    router.get('/empty/students', function*() {
+        let user = this.user;
+        this.body = yield service.students.findByNoneClass(user.schoolId);
+    });
+
     router.get('/:id/students', function*() {
         let query = this.query;
         let classId = this.params.id;
