@@ -2,7 +2,6 @@
 
 var app = require('../../../common/app');
 var layer = require('../../../common/layerWrapper');
-var imgLib = require('../../../common/imageLibrary');
 var upload = require('../../../common/uploadifive');
 var richEditor = require('../../../common/richEditor');
 

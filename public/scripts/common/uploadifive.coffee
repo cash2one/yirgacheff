@@ -1,5 +1,6 @@
 require '../lib/uploadifive'
 require '../lib/uploadifive/uploadifive.css'
+notify = require './notify'
 
 VISIT_URL = "http://7rfll3.com1.z0.glb.clouddn.com/"
 TOKEN_API = "/api/v1/qiniu/token"
@@ -51,25 +52,34 @@ singleUpload = (opts)->
 #多文件同时上传
 multiUpload = (opts)->
   $('body').append($(modal));
+  $('.slimscroll').slimscroll({
+    allowPageScroll: true
+  })
   btn = opts.button
   done = opts.done
   $btn = if typeof btn is 'object' then btn else $('#' + btn)
   uploaded = []
   uploader = $("#_upload_file")
+  isComplete = false
   opts =
     file: uploader
     multi: true
     queueID: "uploadifive-queue"
     done: (uploads, queue)->
       uploaded = queue
+      isComplete = true
 
   $("#_upload_save").click ()->
-    done(uploaded)
-    $('#_uploadFiveModal').modal('hide')
-    uploader.uploadifive("clearQueue") #先清空上传队列
+    if isComplete or uploaded.length is 0
+      done(uploaded)
+      $('#_uploadFiveModal').modal('hide')
+      uploader.uploadifive("clearQueue") #先清空上传队列
+    else
+      notify.warning "图片正在上传中..."
 
   bindUpload opts
   $btn.click ()->
+    isComplete = false
     uploader.uploadifive("clearQueue") #先清空上传队列
     $('#_uploadFiveModal').modal()
 
