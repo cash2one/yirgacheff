@@ -505,6 +505,81 @@
     margin-left: 5px;
     margin-top: -5px;
 }
+
+/*发布文章*/
+.images-cover{
+    height: 318px;
+    overflow: hidden;
+}
+/*微信编辑器*/
+.editor .wx-editor-template-list{
+    width: 438px;
+    height: 79px;
+    background-color: #fafafa;
+    background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
+    background-repeat: repeat-x;
+    border: 1px solid #d4d4d4;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
+    *zoom: 1;
+    border-radius: 4px 4px 0 0;
+}
+
+.editor .wx-editor-template-content{
+    width: 438px;
+    height: 502px;
+    border: 1px solid #d4d4d4;
+    border-top:none;
+    border-radius: 0 0 4px 4px;
+}
+.editor .wx-editor-template-list ul{
+}
+.editor .wx-editor-template-list .nav li{
+    border: none;
+    text-align: center;
+    margin:0 10px;
+}
+.editor .wx-editor-template-list .nav li i{
+    display: block;
+    line-height: 36px;
+    font-size: 14px;
+}
+.editor .wx-editor-template-list .nav li .bg-color{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+}
+.editor .wx-editor-template-list .nav-tabs {
+    border-bottom: none;
+}
+.editor .wx-editor-template-list .nav > li > a {
+    position: relative;
+    display: block;
+    font-size: 13px;
+    padding: 7px 3px;
+    border: 2px solid transparent;
+    border-radius: 0;
+}
+.editor .wx-editor-template-list .nav-tabs > li {
+    margin-bottom: 1px;
+}
+.editor .wx-editor-template-list .nav-tabs > li > a {
+    color: #666;
+    margin-right: 0;
+    border-radius: 0;
+}
+.editor .wx-editor-template-list .nav-tabs > li > a:hover {
+    background: transparent;
+    opacity: 0.8;
+}
+.editor .wx-editor-template-list .nav-tabs > li.active > a,
+.editor .wx-editor-template-list .nav-tabs > li.active > a:hover,
+.editor .wx-editor-template-list .nav-tabs > li.active > a:focus {
+    border-radius: 0;
+    cursor: default;
+    background: none;
+    border-bottom: 2px solid #2ab27b;
+}
 /*报名名单*/
 .task-management-registration{
     overflow: hidden;
