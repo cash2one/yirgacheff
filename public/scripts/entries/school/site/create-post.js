@@ -106,7 +106,6 @@ $(document).ready(function () {
 
     //内容插入
     $("#gallery").on('click','.item', function () {
-        console.log($(this).html());
         editor.execCommand("insertHtml", "<div>" + $(this).html() + "</div><br />")
     });
     $("#tab1").on("click",".item", function() {
