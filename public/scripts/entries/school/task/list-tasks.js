@@ -3,6 +3,7 @@
 var app = require('../../../common/app');
 var layer = require('../../../common/layerWrapper');
 var $http = require('../../../common/restfulClient');
+var list = require('../../../lib/list');
 
 $(document).ready(function () {
     app();

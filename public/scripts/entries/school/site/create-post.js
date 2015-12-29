@@ -10,7 +10,13 @@ $(document).ready(function () {
 
     //富编辑器渲染
     var editor = richEditor.render('postContent');
+    $(function(){
+        var content = $("#content").val();
+        editor.addListener("ready", function () {
+            editor.setContent(content);
 
+        });
+    });
     //本地上传
     upload({
         file: 'imageUpload',
@@ -96,7 +102,7 @@ $(document).ready(function () {
             className = [];
         $.each(border,
             function(a) {
-                className.push(".itembox .wxqq-" + border[a])
+                className.push(".item .wxqq-" + border[a])
         });
         $.each(className,
             function(position) {
@@ -111,5 +117,4 @@ $(document).ready(function () {
     $("#tab1").on("click",".item", function() {
         editor.execCommand("insertHtml", "<div>" + $(this).html() + "</div><br />")
     });
-
 });

@@ -214,9 +214,8 @@
                             <div class="form-group">
                                 <div class="col-xs-12">
                                     <div class="textarea-container" id="postContent">
-                                        <!--<textarea id="postContent" name="content">{{post.content}}</textarea>-->
                                     </div>
-                                    <input type="hidden" name="content" id="content" value="{{post.content}}">
+                                    <input type="hidden" id="content" value="{{post.content}}">
                                 </div>
                             </div>
                         </form>
@@ -224,7 +223,7 @@
 
                 </div>
                 <div class="row m-t-lg">
-                    <div class="col-md-offset-5 col-md-2">
+                    <div class="col-md-offset-4 col-xs-4">
                         <button class="btn btn-default btn-block" id="savePost">
                             {% if update %} 修改 {% else %} 发布 {% endif %}
                         </button>

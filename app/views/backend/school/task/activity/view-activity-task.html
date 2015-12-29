@@ -6,14 +6,14 @@
 <input type="hidden" id="taskId" value="{{task._id.toString()}}"/>
 <div class="row">
     <div class="col-xs-12">
-        <div class="panel panel-white">
+        <div class="panel panel-default shadow">
             <div class="panel-heading clearfix">
                 <h4 class="panel-title"><i class="fa fa-share-alt-square fa-fw m-r-xxs"></i>营销活动</h4>
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-xs-offset-1 col-xs-10">
-                        <ul id="myTab" class="nav nav-tabs m-t-md">
+                    <div class="col-xs-10">
+                        <ul id="myTab" class="nav nav-tabs">
                             <li class="active"><a href="#Info" data-toggle="tab">基本信息</a></li>
                             <li><a href="#Enroll" data-toggle="tab">管理报名</a></li>
                         </ul>
@@ -21,96 +21,68 @@
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane fade in active" id="Info">
-                        <div class="row m-t-md">
-                            <div class="col-xs-offset-1 col-xs-2">
-                                <div class="panel info-box panel-green">
-                                    <div class="panel-body">
-                                        <div class="info-box-stats">
-                                            <p class="counter">{{task.participants}}</p>
-                                            <span class="info-box-title">参与</span>
-                                        </div>
-                                        <div class="info-box-icon">
-                                            <i class="fa fa-users"></i>
-                                        </div>
+                        <div class="card-box widget-inline m-t-xs">
+                            <div class="row">
+                                <div class="col-xs-2">
+                                    <div class="widget-inline-box text-center">
+                                        <h3><i class="fa fa-users f-info m-r-xs"></i> <span>{{task.participants}}</span></h3>
+                                        <h4 class="f-gray">参与人数</h4>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xs-2">
-                                <div class="panel info-box panel-purple">
-                                    <div class="panel-body">
-                                        <div class="info-box-stats">
-                                            <p class="counter">{{collect.length}}</p>
-                                            <span class="info-box-title">报名</span>
-                                        </div>
-                                        <div class="info-box-icon">
-                                            <i class="fa fa-pencil-square-o"></i>
-                                        </div>
+
+                                <div class="col-xs-2">
+                                    <div class="widget-inline-box text-center">
+                                        <h3><i class="fa fa-pencil-square-o f-warning m-r-xs"></i> <span>{{collect.length}}</span></h3>
+                                        <h4 class="f-gray">报名人数</h4>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xs-2">
-                                <div class="panel info-box panel-yellow">
-                                    <div class="panel-body">
-                                        <div class="info-box-stats">
-                                            <p class="counter">{{task.item.visitCount}}</p>
-                                            <span class="info-box-title">阅读</span>
-                                        </div>
-                                        <div class="info-box-icon">
-                                            <i class="fa fa-eye"></i>
-                                        </div>
+
+                                <div class="col-xs-2">
+                                    <div class="widget-inline-box text-center">
+                                        <h3><i class="fa fa-eye f-pink m-r-xs"></i> <span>{{task.item.visitCount}}</span></h3>
+                                        <h4 class="text-muted">阅读次数</h4>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xs-2">
-                                <div class="panel info-box panel-blue">
-                                    <div class="panel-body">
-                                        <div class="info-box-stats">
-                                            <p class="counter">{{task.item.shareCount}}</p>
-                                            <span class="info-box-title">分享</span>
-                                        </div>
-                                        <div class="info-box-icon">
-                                            <i class="fa fa-share-alt"></i>
-                                        </div>
+
+                                <div class="col-xs-2">
+                                    <div class="widget-inline-box text-center">
+                                        <h3><i class="fa fa-share-alt f-default m-r-xs"></i> <span>{{task.item.shareCount}}</span></h3>
+                                        <h4 class="text-muted">分享次数</h4>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xs-2">
-                                <div class="panel info-box panel-red">
-                                    <div class="panel-body">
-                                        <div class="info-box-stats">
-                                            <p class="counter">{{task.item.like}}</p>
-                                            <span class="info-box-title">赞</span>
-                                        </div>
-                                        <div class="info-box-icon">
-                                            <i class="fa fa-thumbs-up"></i>
-                                        </div>
+
+                                <div class="col-xs-2">
+                                    <div class="widget-inline-box text-center no-b">
+                                        <h3><i class="fa fa-thumbs-up f-purple m-r-xs"></i> <span>{{task.item.like}}</span></h3>
+                                        <h4 class="text-muted">点赞人数</h4>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                         <form class="form-horizontal" method="post" action="" id="activityForm">
                             <div class="form-group">
-                                <label for="name" class="col-xs-2 control-label">任务名称：</label>
+                                <label for="name" class="col-xs-1 control-label">任务名称</label>
                                 <div class="col-xs-9">
                                     <input class="form-control" id="name" type="text" name="name"
                                            value="{{task.name}}" placeholder="比如：分享活动，赚积分，得礼包">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="scoreAward" class="col-xs-2 control-label">奖励积分：</label>
+                                <label for="scoreAward" class="col-xs-1 control-label">奖励积分</label>
                                 <div class="col-xs-9">
                                     <input class="form-control" id="scoreAward" type="text" name="scoreAward"
                                            value="{{task.scoreAward}}" placeholder="请填入分享本次活动奖励的积分数">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="name" class="col-xs-2 control-label">活动主题：</label>
+                                <label for="name" class="col-xs-1 control-label">活动主题</label>
                                 <div class="col-xs-9">
                                     <input class="form-control" id="theme" value="{{task.item.theme}}" type="text" name="theme">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="name" class="col-xs-2 control-label">活动时间：</label>
+                                <label for="name" class="col-xs-1 control-label">活动时间</label>
                                 <div class="col-xs-4">
                                     <input class="form-control w-datepicker" id="date-picker-start"
                                            value="{{task.item.startTime | date('Y-m-d',-480)}}" type="text" name="startTime"/>
@@ -124,27 +96,13 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="name" class="col-xs-2 control-label">截止时间：</label>
-                                <div class="col-xs-9">
-                                    <input class="form-control w-datepicker" type="text"
-                                           value="{{task.item.deadline | date('Y-m-d',-480)}}" id="expire-picker-end" name="deadline">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="name" class="col-xs-2 control-label">活动地点：</label>
+                                <label for="name" class="col-xs-1 control-label">活动地点</label>
                                 <div class="col-xs-9">
                                     <input class="form-control" id="activity-location" value="{{task.item.address}}" type="text" name="address">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="name" class="col-xs-2 control-label">活动详情：</label>
-                                <div class="col-xs-9">
-                                    <div class="activity-detail-container" id="activity-detail"></div>
-                                    <input type="hidden" id="content" value="{{task.item.content}}">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="name" class="col-xs-2 control-label">报名填写信息：</label>
+                                <label for="name" class="col-xs-1 control-label">报名信息</label>
                                 <div class="col-xs-9">
                                     <div class="title-info-list w-border-list" id="title-info-list">
                                         <ul class="list-unstyled" id="infoList">
@@ -161,6 +119,14 @@
                                             </li>
                                         </ul>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-xs-1 control-label">活动详情</label>
+                                <div class="col-xs-9">
+                                    <div class="activity-detail-container" id="activity-detail">
+                                    </div>
+                                    <input type="hidden" id="content" value="{{task.item.content}}">
                                 </div>
                             </div>
                         </form>
