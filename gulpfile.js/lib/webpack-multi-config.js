@@ -25,10 +25,15 @@ function makeConf(env) {
             extensions: [''].concat(extensions),
             alias: {
                 'bootstrap': 'bootstrap/dist/js/bootstrap',
-                'slimscroll': 'jquery-slimscroll/jquery.slimscroll.min'
+                'slimscroll': 'jquery-slimscroll/jquery.slimscroll.min',
+                'moment': 'moment/moment.js',
+                'highcharts': 'highcharts/highcharts.js',
+                'datatables': 'datatables/media/js/jquery.dataTables.js',
+                'bootstrap-notify':'bootstrap-notify/bootstrap-notify.min.js'
             }
         },
         module: {
+            noParse: [/moment/, /underscore/, /jquery/, /datatables/, /fullcalendar/,/bootstrap/,/bootstrap-notify/],
             loaders: [
                 {test: require.resolve('jquery'), loader: 'expose?jQuery'},
                 {test: require.resolve('jquery'), loader: 'expose?$'},

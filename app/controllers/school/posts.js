@@ -37,7 +37,7 @@ module.exports = function (router) {
     });
 
 
-    router.post('/', function*() {
+    router.post('/create', function*() {
         let user = this.user;
         yield service.posts.createPost(user.schoolId, this.request.body);
         this.redirect('/school/posts');
