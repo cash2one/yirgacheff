@@ -1,4 +1,4 @@
-require 'bootstrap-notify/bootstrap-notify'
+require 'bootstrap-notify'
 
 template = """ 
  <div data-notify="container" class="col-xs-6 alert alert-{0}" role="alert">
