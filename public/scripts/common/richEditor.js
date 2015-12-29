@@ -63,7 +63,7 @@ module.exports.render = function (elemId) {
             'horizontal', 'spechars', '|',
             'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', '|', 'preview'
         ]],
-        initialFrameHeight: 480,
+        initialFrameHeight: 550,
         autoHeightEnabled: false,
         elementPathEnabled: false,
         autoFloatEnabled: false,

@@ -4,7 +4,8 @@ require './jqueryExtend';
 
 module.exports = ()->
   $('.slimscroll').slimscroll({
-    allowPageScroll: true
+    alwaysVisible: false
+    allowPageScroll: false
     height:"auto"
   })
 

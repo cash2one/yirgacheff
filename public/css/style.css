@@ -526,7 +526,7 @@
 
 .editor .wx-editor-template-content{
     width: 438px;
-    height: 502px;
+    height: 572px;
     padding: 20px;
     border: 1px solid #d4d4d4;
     border-top:none;
@@ -581,11 +581,65 @@
     background: none;
     border-bottom: 2px solid #2ab27b;
 }
+.colorpick-w{
+    width: 230px;
+    height: 160px;
+}
+.editor .colorpick{
+    width: 240px;
+    height: 160px;
+    padding: 2px 0 0 2px;
+    margin-right: -1px;
+    float: left;
+}
+.editor .nav .colorpick-w .colorpick ul{
+    width: 200px;
+}
+.editor .nav .colorpick ul li {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin: 5px 6px 8px 0;
+    border-radius: 3px;
+    transition: all 0.3s ease 0s;
+}
+.editor .nav .colorpick ul li:hover{
+    box-shadow: 1px 1px 4px #444 inset,0 0 5px #60d0ff;
+}
 .upload-area{
     height: 300px;
     border: 2px dashed #d4d4d4;
     padding: 10px;
 }
+
+/*图库列表*/
+.images-list{
+    width: 430px;
+}
+.images-list li{
+    float: left;
+    width: 190px;
+    height: 160px;
+    margin-right: 16px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+.images-list li:hover{
+    opacity: 0.7;
+}
+.images-list li img{
+    width: 190px;
+    height: 160px;
+}
+.upload-btn{
+    width: 190px;
+    height: 160px;
+    border: 2px dashed #dfdfdf;
+    background: url("/images/icon-upload.png") no-repeat center;
+    background-color: #f4f4f4;
+}
+
 /*报名名单*/
 .task-management-registration{
     overflow: hidden;

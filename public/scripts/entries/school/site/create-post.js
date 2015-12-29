@@ -9,7 +9,7 @@ $(document).ready(function () {
     app();
 
     //富编辑器渲染
-    richEditor.render('postContent');
+    var editor = richEditor.render('postContent');
 
     //本地上传
     upload({
@@ -70,7 +70,6 @@ $(document).ready(function () {
 //文章发布
     $('#savePost').click(function () {
         if (validate()) {
-            $('#content').val(editor.getContent());
             var postId = $('#postId').val();
             var action = '';
             if (postId && postId !== '') {
@@ -82,5 +81,36 @@ $(document).ready(function () {
         }
     });
 
+    //颜色修改
+    $(".colorpick").on("click","li", function(event) {
+        var colorValue = $(this).css('background-color');
+        event.stopPropagation();
+        $(this).closest(".dropdown").find('.bg-color').css('background-color',colorValue);
+        $(".itembox .wxqq-bg").css({
+            backgroundColor: colorValue
+        });
+        $(".itembox .wxqq-color").css({
+            color: colorValue
+        });
+        var border = ["borderTopColor", "borderRightColor", "borderBottomColor", "borderLeftColor"],
+            className = [];
+        $.each(border,
+            function(a) {
+                className.push(".itembox .wxqq-" + border[a])
+        });
+        $.each(className,
+            function(position) {
+                $(className[position]).css(border[position],colorValue)
+        })
+    });
+
+    //内容插入
+    $("#gallery").on('click','.item', function () {
+        console.log($(this).html());
+        editor.execCommand("insertHtml", "<div>" + $(this).html() + "</div><br />")
+    });
+    $("#tab1").on("click",".item", function() {
+        editor.execCommand("insertHtml", "<div>" + $(this).html() + "</div><br />")
+    });
 
 });
