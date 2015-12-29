@@ -5,6 +5,7 @@ require './jqueryExtend';
 module.exports = ()->
   $('.slimscroll').slimscroll({
     allowPageScroll: true
+    height:"auto"
   })
 
   $('#gotop').click ()->

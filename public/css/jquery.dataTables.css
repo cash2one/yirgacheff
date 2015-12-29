@@ -371,13 +371,21 @@ table.dataTable td {
     margin-left: -19px;
     float: left;
     color: white;
-    /* font-weight: bold; */
     height: 19px;
     padding: 7px 20px;
     display: inline-block;
-    margin-top: -1px;
+    margin-top: -7px;
 }
-
+.dataTables_wrapper .dataTables_length label,
+.dataTables_wrapper .dataTables_filter label{
+    font-weight: 400;
+    color: #333333;
+}
+.dataTables_wrapper .dataTables_length select{
+    height: 30px;
+    border: 1px solid #dfdfdf;
+    min-width: 70px;
+}
 .dataTables_wrapper .dataTables_filter {
     float: right;
     text-align: right;
