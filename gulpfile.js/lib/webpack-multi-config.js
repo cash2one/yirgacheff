@@ -33,7 +33,7 @@ function makeConf(env) {
             }
         },
         module: {
-            noParse: [/moment/, /underscore/, /jquery/, /datatables/, /fullcalendar/,/bootstrap/,/bootstrap-notify/],
+            noParse: [/moment/, /underscore/, /datatables/, /fullcalendar/,/bootstrap/,/bootstrap-notify/],
             loaders: [
                 {test: require.resolve('jquery'), loader: 'expose?jQuery'},
                 {test: require.resolve('jquery'), loader: 'expose?$'},
