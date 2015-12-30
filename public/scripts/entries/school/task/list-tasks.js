@@ -33,7 +33,7 @@ $(document).ready(function () {
             } else {
                 postList.find('li').show();
             }
-
+            new List('list', options);
             var temp = 0;
             $('#list-posts').find('li').each(function (index) {
                 var display = $(this).is(':hidden');

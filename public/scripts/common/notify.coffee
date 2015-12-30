@@ -1,7 +1,7 @@
 require 'bootstrap-notify'
 
 template = """ 
- <div data-notify="container" class="col-xs-6 alert alert-{0}" role="alert">
+ <div data-notify="container" class="col-xs-3 alert alert-{0}" role="alert">
       <button type="button" aria-hidden="true" class="close" data-notify="dismiss">&times;</button>
       <span data-notify="icon"></span>
       <span data-notify="title">{1}</span> 
@@ -25,24 +25,24 @@ optionOf = (type)->
 module.exports =
   success: (msg = "操作成功!")->
     $.notify({
-      icon: "glyphicon glyphicon-ok-circle",
+      icon: "fa fa-check-circle",
       message: msg
     }, optionOf "success")
 
   warning: (msg = "")->
     $.notify({
-      icon: "glyphicon glyphicon-exclamation-circle",
+      icon: "fa fa-exclamation-triangle",
       message: msg
     }, optionOf "warning")
 
   info: (msg = "")->
     $.notify({
-      icon: "glyphicon glyphicon-info-circle",
+      icon: "fa fa-info-circle",
       message: msg
     }, optionOf "info")
 
   danger: (msg = "操作失败!")->
     $.notify({
-      icon: "glyphicon glyphicon-remove-circle",
+      icon: "fa fa-times-circle",
       message: msg
     }, optionOf "danger")
