@@ -21,17 +21,17 @@ $.fn.extend
         display: $el.attr "data-display"
 
     validator = new FormValidator $this.attr('name'), fields, (errors, event) ->
-      console.log event
+
       if not submit
         event.preventDefault()
-
       $this.find(".error").removeClass "error"
       if errors.length > 0
         notify.danger errors[0].message
         $.each errors, (index, err)->
           $target = $this.find("*[id='" + err.id + "']")
           $target.closest(".control-group").removeClass("error").addClass "error"
-          return false
+        return false
+
       if typeof cb is "function"
         cb $this
 
@@ -46,16 +46,16 @@ messages =
   "default": 'The %s field is still set to default, please change.'
   valid_email: '%s不是邮箱格式'
   valid_emails: 'The %s field must contain all valid email addresses.'
-  min_length: '%s最小长度为%s'
-  max_length: '%s最大长度为%s'
+  min_length: '%s不能小于%s位'
+  max_length: '%s不能大于%s位'
   exact_length: 'The %s field must be exactly %s characters in length.'
-  greater_than: '%s 只能是大于 %s 的数字'
+  greater_than: '%s只能是大于%s的数字'
   less_than: '%s 只能是小于 %s 的数字'
   alpha: 'The %s field must only contain alphabetical characters.'
   alpha_numeric: 'The %s field must only contain alpha-numeric characters.'
   alpha_dash: 'The %s field must only contain alpha-numeric characters, underscores, and dashes.'
-  numeric: '%s 只能包含数字'
-  integer: '%s 只能是整数'
+  numeric: '%s只能包含数字'
+  integer: '%s只能是整数'
   decimal: 'The %s field must contain a decimal number.'
   is_natural: 'The %s field must contain only positive numbers.'
   is_natural_no_zero: 'The %s field must contain a number greater than zero.'
