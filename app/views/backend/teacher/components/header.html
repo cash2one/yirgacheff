@@ -7,9 +7,10 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="javascript:void(0)" id="help"><i class="fa fa fa-bell f-s-18"></i></a></li>
                 <li>
-                    <a href="/school/profile">
+                    <a href="/teacher/profile">
                         {{user.displayName}}
-                        <img class="pull-right m-t-n-xxs img-circle m-l-xxs" src="http://resource.hizuoye.com/{{user.avatar | default('images/default/avatar.jpg')}}"
+                        <img class="pull-right m-t-n-xxs img-circle m-l-xxs"
+                             src="http://resource.hizuoye.com/{{user.avatar | default('images/default/avatar.jpg')}}"
                              width="30" height="30">
                     </a>
                 </li>
@@ -28,7 +29,8 @@
                     </a>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">作业 <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">作业 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/teacher/homework/create">布置作业</a></li>
                         <li><a href="/teacher/homework">管理作业</a></li>
@@ -36,7 +38,8 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">教务管理 <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">教务管理 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/teacher/classes">班级管理</a></li>
                         <li><a href="/teacher/students">学生管理</a></li>
