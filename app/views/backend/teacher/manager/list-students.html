@@ -12,7 +12,8 @@
                         <option value="">暂无班级</option>
                         {% endif %}
                         {% for clazz in classes %}
-                        <option value="{{clazz._id.toString()}}" {% if selectedClass=== clazz._id.toString() %} selected {%
+                        <option value="{{clazz._id.toString()}}" {% if selectedClass=== clazz._id.toString() %} selected
+                                {%
                                 endif %}>
                             {{clazz.className}}
                         </option>
@@ -20,9 +21,14 @@
                     </select>
                 </h4>
                 <div class="panel-control">
-                    <button class="btn btn-success btn-xs" id="download-btn"><i class="fa fa-cloud-download m-r-xxs"></i>下载学生列表</button>
-                    <button class="btn btn-success btn-xs" id="add-student-btn"><i class="fa fa-plus-square m-r-xxs"></i>新建学生</button>
-                    <button class="btn btn-success btn-xs" id="add-username-btn">按学号添加</button>
+                    <button class="btn btn-success btn-xs" id="download-btn"><i
+                            class="fa fa-cloud-download m-r-xxs"></i>下载学生列表
+                    </button>
+                    <button class="btn btn-success btn-xs" id="add-student-btn">
+                        <i class="fa fa-plus-square m-r-xxs"></i>新建学生
+                    </button>
+                    <button class="btn btn-success btn-xs" id="add-username-btn" data-toggle="modal"
+                    data-target="#joinClassModal">按学号添加</button>
                 </div>
             </div>
             {% if classes.length !== 0 %}
@@ -44,110 +50,169 @@
         </div>
     </div>
 </div>
+
+
 <!--新建修改学生-->
-<div class="hides" id="student-dialog">
-    <form class="form-horizontal m-t-sm" id="student-form">
-        <div class="form-group">
-            <label for="displayName" class="col-xs-2 control-label">姓名：</label>
-            <div class="col-xs-9">
-                <input class="form-control" type="text" name="displayName" id="displayName">
+<!--<div class="hides" id="student-dialog">-->
+<div class="modal fade" id="studentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">学生信息</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal m-t-sm" id="studentForm" name="studentForm">
+                    <input type="hidden" name="_id" id="studentId">
+                    <div class="form-group">
+                        <label for="displayName" class="col-xs-2 control-label">姓名：</label>
+                        <div class="col-xs-9">
+                            <input class="form-control validate" type="text" name="displayName"
+                                   data-display="姓名"
+                                   id="displayName"
+                                   data-rules="required">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender" class="col-xs-2 control-label">性别：</label>
+                        <div class="col-xs-9">
+                            <select class="form-control validate" name="gender"
+                                    id="gender"
+                                    data-display="性别"
+                                    data-rules="required">
+                                <option value="男">男</option>
+                                <option value="女">女</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-xs-2 control-label">密码：</label>
+                        <div class="col-xs-9">
+                            <input class="form-control validate" type="text" name="password"
+                                   id="password"
+                                   data-display="密码"
+                                   data-rules="required">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" class="col-xs-2 control-label">电话：</label>
+                        <div class="col-xs-9">
+                            <input class="form-control validate"
+                                   type="text"
+                                   name="phone"
+                                   data-display="电话"
+                                   id="phone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="schoolName" class="col-xs-2 control-label">学校：</label>
+                        <div class="col-xs-9">
+                            <input class="form-control" type="text" name="onSchool" id="schoolName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="grade" class="col-xs-2 control-label">年级：</label>
+                        <div class="col-xs-9">
+                            <input class="form-control" type="text" name="grade" id="grade">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="remark" class="col-xs-2 control-label">备注：</label>
+                        <div class="col-xs-9">
+                            <input class="form-control" type="text" name="remark" id="remark">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-offset-2 col-xs-9">
+                            <button type="submit" class="btn btn-info " id="save-student">确定</button>
+                            <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="form-group">
-            <label for="gender" class="col-xs-2 control-label">性别：</label>
-            <div class="col-xs-9">
-                <select class="form-control" name="gender" id="gender">
-                    <option value="男">男</option>
-                    <option value="女">女</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="password" class="col-xs-2 control-label">密码：</label>
-            <div class="col-xs-9">
-                <input class="form-control" type="text" name="password" id="password">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="phone" class="col-xs-2 control-label">电话：</label>
-            <div class="col-xs-9">
-                <input class="form-control" type="text" name="phone" id="phone">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="schoolName" class="col-xs-2 control-label">学校：</label>
-            <div class="col-xs-9">
-                <input class="form-control" type="text" name="onSchool" id="schoolName">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="grade" class="col-xs-2 control-label">年级：</label>
-            <div class="col-xs-9">
-                <input class="form-control" type="text" name="grade" id="grade">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="remark" class="col-xs-2 control-label">备注：</label>
-            <div class="col-xs-9">
-                <input class="form-control" type="text" name="remark" id="remark">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-xs-offset-2 col-xs-9">
-                <button type="submit" class="btn btn-info layer-ok-btn">确定</button>
-                <button type="button" class="btn btn-white layer-close-btn">取消</button>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>
+<!--</div>-->
+
 <!--按学号添加学生-->
-<div class="hides" id="joinclass-dialog">
-    <form class="form-horizontal m-t-sm" id="username-form">
-        <div class="form-group">
-            <label for="displayName" class="col-xs-3 control-label">请输入学号：</label>
-            <div class="col-xs-8">
-                <input class="form-control" type="text" name="username" id="username">
+<div class="modal fade" id="joinClassModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">学生信息</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal m-t-sm" id="joinClassForm" name="joinClassForm">
+                    <div class="form-group">
+                        <label for="username" class="col-xs-3 control-label">请输入学号：</label>
+                        <div class="col-xs-8">
+                            <input class="form-control validate" type="text" name="username" id="username"
+                                   data-rules="required"
+                                   data-display="学号">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-offset-3 col-xs-8">
+                            <button type="submit" class="btn btn-info" id="add-student">确定</button>
+                            <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="form-group">
-            <div class="col-xs-offset-3 col-xs-8">
-                <button type="submit" class="btn btn-info layer-ok-btn">确定</button>
-                <button type="button" class="btn btn-white layer-close-btn">取消</button>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>
+
 <!--积分操作-->
-<div class="hides" id="score-dialog">
-    <form class="form-horizontal m-t-sm" id="score-form">
-        <div class="form-group">
-            <label for="displayName" class="col-xs-3 control-label">请输入操作：</label>
-            <div class="col-xs-8">
-                <select class="form-control" name="operation" id="scoreOpt">
-                    <option value="0">增加</option>
-                    <option value="1">减少</option>
-                </select>
+<div class="modal fade" id="scoreModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">学生信息</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal m-t-sm" id="scoreForm" name="scoreForm">
+                    <input type="hidden" name="studentId">
+                    <div class="form-group">
+                        <label for="scoreOpt" class="col-xs-3 control-label">请输入操作：</label>
+                        <div class="col-xs-8">
+                            <select class="form-control" name="operation" id="scoreOpt">
+                                <option value="0">增加</option>
+                                <option value="1">减少</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="scoreValue" class="col-xs-3 control-label">请输入积分：</label>
+                        <div class="col-xs-8">
+                            <input class="form-control validate" type="text" name="value"
+                                   id="scoreValue"
+                                   data-rules="required|integer"
+                                   data-display="积分">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-offset-3 col-xs-8">
+                            <button type="submit" class="btn btn-info" id="save-score">确定</button>
+                            <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="form-group">
-            <label for="scoreValue" class="col-xs-3 control-label">请输入积分：</label>
-            <div class="col-xs-8">
-                <input class="form-control" type="text" name="value" id="scoreValue">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-xs-offset-3 col-xs-8">
-                <button type="submit" class="btn btn-info layer-ok-btn">确定</button>
-                <button type="button" class="btn btn-white layer-close-btn">取消</button>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>
+
 
 {% endblock %}
 {% block javascript %}
-<script>
-    requirejs(['/js/app/teacher/manager/list-students.js']);
-</script>
+
+<script src="/js/entries/teacher/manager/list-students.js"></script>
 
 {% endblock %}

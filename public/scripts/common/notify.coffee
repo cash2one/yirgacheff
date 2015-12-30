@@ -19,6 +19,7 @@ optionOf = (type)->
     from: "top"
     align: "center"
   template: template
+  z_index:1060
   delay: 2000
 
 module.exports =
