@@ -3,7 +3,6 @@
 require('datatables');
 require('../../../common/formvalidator');
 var app = require('../../../common/app');
-var layer = require('../../../common/layerWrapper');
 var notify = require('../../../common/notify');
 
 $(document).ready(function () {
@@ -57,31 +56,30 @@ $(document).ready(function () {
         $studentForm[0].reset();
     });
 
-    $("#save-student").click(function () {
-        $studentForm.validate(function ($form) {
-            var student = $form.serializeObject();
-            var studentId = student._id;
-            if (!studentId || studentId === "") {
-                var classId = $('#class-list').val();
-                $.post('/api/v1/classes/' + classId + '/students', student).then(function (student) {
-                    notify.success("添加学生成功");
-                    dataTable.row.add(student).draw();
-                    $("#studentModal").modal('hide');
-                    $studentForm[0].reset();
-                });
-            } else {
-                $.ajax({
-                    url: '/api/v1/students/' + studentId,
-                    type: 'PUT',
-                    data: student
-                }).then(function (student) {
-                    $("#studentModal").modal('hide');
-                    notify.success("修改学生信息成功");
-                    dataTable.row("#" + studentId).data(student).draw();
-                    $studentForm[0].reset();
-                });
-            }
+    $studentForm.validate(function ($form) {
+        var student = $form.serializeObject();
+        var studentId = student._id;
+        if (!studentId || studentId === "") {
+            var classId = $('#class-list').val();
+            $.post('/api/v1/classes/' + classId + '/students', student).then(function (student) {
+                notify.success("添加学生成功");
+                dataTable.row.add(student).draw();
+                $("#studentModal").modal('hide');
+                $studentForm[0].reset();
+            });
+            return;
+        }
+        $.ajax({
+            url: '/api/v1/students/' + studentId,
+            type: 'PUT',
+            data: student
+        }).then(function (student) {
+            $("#studentModal").modal('hide');
+            notify.success("修改学生信息成功");
+            dataTable.row("#" + studentId).data(student).draw();
+            $studentForm[0].reset();
         });
+
     });
 
     // 修改学生
@@ -98,22 +96,20 @@ $(document).ready(function () {
         $scoreForm.find("[name='studentId']").val(student);
     });
 
-    $("#save-score").click(function () {
-        $scoreForm.validate(function ($form) {
-            var data = $form.serializeObject();
-            var studentId = data.studentId;
-            $.ajax({
-                url: '/api/v1/students/' + studentId + '/score',
-                type: 'PUT',
-                data: data
-            }).then(function (res) {
-                $("#scoreModal").modal("hide");
-                var row = dataTable.row("#" + studentId);
-                var student = row.data();
-                student.score = res.score;
-                row.data(student).draw();
-                notify.success("积分修改成功");
-            });
+    $scoreForm.validate(function ($form) {
+        var data = $form.serializeObject();
+        var studentId = data.studentId;
+        $.ajax({
+            url: '/api/v1/students/' + studentId + '/score',
+            type: 'PUT',
+            data: data
+        }).then(function (res) {
+            $("#scoreModal").modal("hide");
+            var row = dataTable.row("#" + studentId);
+            var student = row.data();
+            student.score = res.score;
+            row.data(student).draw();
+            notify.success("积分修改成功");
         });
     });
 
@@ -135,19 +131,17 @@ $(document).ready(function () {
         //});
     });
 
-    $("#add-student").click(function () {
-        $joinClassForm.validate(function ($form) {
-            var data = $form.serializeObject();
-            var classId = $('#class-list').val();
-            $.ajax({
-                url: '/api/v1/classes/' + classId + '/students',
-                data: data,
-                type: 'PUT'
-            }).then(function (student) {
-                notify.success("添加学生成功");
-                dataTable.row.add(student).draw();
-                $("#joinClassModal").modal("hide");
-            });
+    $joinClassForm.validate(function ($form) {
+        var data = $form.serializeObject();
+        var classId = $('#class-list').val();
+        $.ajax({
+            url: '/api/v1/classes/' + classId + '/students',
+            data: data,
+            type: 'PUT'
+        }).then(function (student) {
+            notify.success("添加学生成功");
+            dataTable.row.add(student).draw();
+            $("#joinClassModal").modal("hide");
         });
     });
 
