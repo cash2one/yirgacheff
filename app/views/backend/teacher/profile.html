@@ -13,7 +13,8 @@
             <div class="panel-body">
                 <div class="col-xs-3">
                     <img
-                            {% if user.avatar %} src="{{resourceURL}}/{{user.avatar}}?imageView2/1/w/180/h/180" {% else %}
+                            {% if user.avatar %} src="{{resourceURL}}/{{user.avatar}}?imageView2/1/w/180/h/180" {% else
+                            %}
                             src="/images/default_head.jpg" {% endif %}
                             width="180px"
                             height="180px" class="center-block m-t-lg avatar">
@@ -31,28 +32,36 @@
                 <h4 class="panel-title"><i class="fa fa-info-circle m-r-xs"></i>个人资料</h4>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal" id="infoForm">
+                <form class="form-horizontal" id="userForm" name="userForm">
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">我的姓名：</label>
+                        <label class="col-sm-1 control-label" for="displayName">我的姓名：</label>
                         <div class="col-sm-6">
-                            <input class="form-control" type="text" value="{{user.displayName}}" name="displayName">
+                            <input class="form-control validate" type="text" value="{{user.displayName}}"
+                                   name="displayName"
+                                   id="displayName">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">我的工号：</label>
+                        <label class="col-sm-1 control-label" for="username">我的工号：</label>
                         <div class="col-sm-6">
-                            <input class="form-control" type="text" value="{{user.username}}"  disabled>
+                            <input class="form-control validate" type="text"
+                                   id="username"
+                                   value="{{user.username}}" disabled>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">联系方式：</label>
+                        <label class="col-sm-1 control-label" for="contact">联系方式：</label>
                         <div class="col-sm-6">
-                            <input class="form-control" type="text" value="{{user.contact}}" name="contact">
+                            <input class="form-control validate" type="text" value="{{user.contact}}"
+                                   name="contact"
+                                   id="contact"
+                                   data-rules="required"
+                                   data-display="联系方式">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="button" class="btn btn-default" id="info-save-btn">保存</button>
+                            <button type="submit" class="btn btn-default">保存</button>
                         </div>
                     </div>
                 </form>
@@ -65,28 +74,46 @@
                 <h4 class="panel-title"><i class="fa fa-info-circle m-r-xs"></i>个人资料</h4>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal" id="passwordForm">
+                <form class="form-horizontal" id="passwordForm" name="passwordForm">
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">原始密码：</label>
-                        <div class="col-sm-6">
-                            <input class="form-control" type="password" name="password">
+                        <label class="col-xs-1 control-label" for="password">原始密码</label>
+
+                        <div class="col-xs-6">
+                            <input class="form-control validate"
+                                   type="password"
+                                   name="password"
+                                   id="password"
+                                   data-rules="required"
+                                   data-display="原密码">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">新的密码：</label>
-                        <div class="col-sm-6">
-                            <input class="form-control" type="password" name="newPassword">
+                        <label class="col-xs-1 control-label" for="newPassword">新的密码</label>
+
+                        <div class="col-xs-6">
+                            <input class="form-control validate"
+                                   type="password"
+                                   name="newPassword"
+                                   id="newPassword"
+                                   data-rules="required|min_length[6]"
+                                   data-display="新密码">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">再次输入：</label>
-                        <div class="col-sm-6">
-                            <input class="form-control" type="password" name="confirmPassword">
+                        <label class="col-xs-1 control-label" for="confirmPassword">再次输入</label>
+
+                        <div class="col-xs-6">
+                            <input class="form-control validate"
+                                   type="password"
+                                   name="confirmPassword"
+                                   id="confirmPassword"
+                                   data-rules="required|matches[newPassword]"
+                                   data-display="密码确认">
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-6">
-                            <button type="button" class="btn btn-default" id="change-psw-btn">保存</button>
+                        <div class="col-xs-offset-1 col-xs-6">
+                            <button type="submit" class="btn btn-default">保存</button>
                         </div>
                     </div>
                 </form>

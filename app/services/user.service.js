@@ -23,7 +23,7 @@ module.exports = {
         } else if (role === roles.TEACHER) {
             UserModel = Teacher;
         }
-        let user = UserModel.findById(userInfo._id).exec();
+        let user = yield UserModel.findById(userInfo._id).exec();
         if (!user.authenticate(password)) {
             throw createError(400, '原始密码错误');
         }

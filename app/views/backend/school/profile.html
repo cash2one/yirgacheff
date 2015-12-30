@@ -31,13 +31,16 @@
                 <h4 class="panel-title"><i class="fa fa-info-circle m-r-xs"></i>学校资料</h4>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal m-t-lg" id="infoForm">
+                <form class="form-horizontal m-t-lg" id="userForm" name="userForm">
                     <div class="form-group">
                         <label class="col-xs-1 control-label" for="schoolName">学校名称</label>
 
                         <div class="col-xs-6">
-                            <input class="form-control" type="text" value="{{user.schoolName}}"
+                            <input class="form-control validate" type="text"
+                                   value="{{user.schoolName}}"
                                    name="schoolName"
+                                   data-rules="required"
+                                   data-display="学校名称"
                                    id="schoolName">
                         </div>
                     </div>
@@ -45,34 +48,53 @@
                         <label class="col-xs-1 control-label" for="displayName">我的姓名</label>
 
                         <div class="col-xs-6">
-                            <input class="form-control" type="text"
-                                   value="{{user.displayName}}" name="displayName" id="displayName">
+                            <input class="form-control validate" type="text"
+                                   value="{{user.displayName}}"
+                                   name="displayName"
+                                   id="displayName"
+                                   data-rules="required"
+                                   data-display="姓名">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-1 control-label">联系方式</label>
+                        <label class="col-xs-1 control-label" for="contact">联系方式</label>
 
                         <div class="col-xs-6">
-                            <input class="form-control" type="text" value="{{user.contact}}" name="contact">
+                            <input class="form-control validate" type="text"
+                                   value="{{user.contact}}"
+                                   name="contact"
+                                   id="contact"
+                                   data-rules="required"
+                                   data-display="联系方式">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-1 control-label">学校地址</label>
+                        <label class="col-xs-1 control-label" for="address">学校地址</label>
 
                         <div class="col-xs-6">
-                            <input class="form-control" type="text" value="{{user.address}}" name="address">
+                            <input class="form-control validate" type="text"
+                                   value="{{user.address}}"
+                                   name="address"
+                                   id="address"
+                                   data-rules="required"
+                                   data-display="学校地址">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-1 control-label">学校规模</label>
-
+                        <label class="col-xs-1 control-label" for="scale">学校规模</label>
                         <div class="col-xs-6">
-                            <input class="form-control" type="text" value="{{user.scale}}" name="scale">
+                            <input class="form-control validate"
+                                   type="text"
+                                   value="{{user.scale}}"
+                                   name="scale"
+                                   id="scale"
+                                   data-rules="integer"
+                                   data-display="学校规模">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-offset-1 col-xs-10">
-                            <button type="button" id="info-save-btn" class="btn btn-default">保存</button>
+                            <button type="submit" class="btn btn-default">保存</button>
                         </div>
                     </div>
                 </form>
@@ -85,31 +107,46 @@
                 <h4 class="panel-title"><i class="fa fa-key m-r-xs"></i>修改密码</h4>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal" id="passwordForm">
+                <form class="form-horizontal" id="passwordForm" name="passwordForm">
                     <div class="form-group">
                         <label class="col-xs-1 control-label" for="password">原始密码</label>
 
                         <div class="col-xs-6">
-                            <input class="form-control" type="password" name="password" id="password">
+                            <input class="form-control validate"
+                                   type="password"
+                                   name="password"
+                                   id="password"
+                                   data-rules="required"
+                                   data-display="原密码">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-1 control-label" for="newPassword">新的密码</label>
 
                         <div class="col-xs-6">
-                            <input class="form-control" type="password" name="newPassword" id="newPassword">
+                            <input class="form-control validate"
+                                   type="password"
+                                   name="newPassword"
+                                   id="newPassword"
+                                   data-rules="required|min_length[6]"
+                                   data-display="新密码">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-1 control-label" for="confirmPassword">再次输入</label>
 
                         <div class="col-xs-6">
-                            <input class="form-control" type="password" name="confirmPassword" id="confirmPassword">
+                            <input class="form-control validate"
+                                   type="password"
+                                   name="confirmPassword"
+                                   id="confirmPassword"
+                                   data-rules="required|matches[newPassword]"
+                                   data-display="密码确认">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-offset-1 col-xs-6">
-                            <button type="button" class="btn btn-default" id="change-psw-btn">保存</button>
+                            <button type="submit" class="btn btn-default">保存</button>
                         </div>
                     </div>
                 </form>
