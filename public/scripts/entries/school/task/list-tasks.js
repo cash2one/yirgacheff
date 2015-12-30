@@ -3,11 +3,21 @@
 var app = require('../../../common/app');
 var layer = require('../../../common/layerWrapper');
 var $http = require('../../../common/restfulClient');
-var list = require('../../../lib/list');
+var List = require('expose?List!list.js/dist/list.js');
+var ListPagination = require('list.pagination.js/dist/list.pagination.js');
 
 $(document).ready(function () {
     app();
     var postList = $('#list-posts');
+
+    var options = {
+        valueNames: [ 'task-name', 'date' ],
+        page: 8,
+        plugins: [
+            ListPagination({})
+        ]
+    };
+    new List('list', options);
 
     //过滤条件
     $('.opts-area').find('.item').each(function () {

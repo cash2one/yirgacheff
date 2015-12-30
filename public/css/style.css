@@ -815,6 +815,11 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+.list-search{
+    width: 200px;
+    float: right;
+    margin-top: -42px
+}
 /*∞Ô÷˙”Î÷ß≥÷*/
 .consultation ul{
     padding-top: 40px;

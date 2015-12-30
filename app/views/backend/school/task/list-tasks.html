@@ -16,16 +16,19 @@
                 </div>
             </div>
             <div class="panel-body">
-                <div role="tabpanel">
+                <div>
                     <div class="opts-area">
                         <ul>
                             <li title="全部" class="item selected" data-state="">全部</li>
                             <li title="进行中" class="item" data-state="0">进行中</li>
-                            <li title="已结束" class="item" data-state="1">已关闭</li>
+                            <li title="已结束" class="item" data-state="1">已结束</li>
                         </ul>
                     </div>
-                    <div class="tasks-list">
-                        <ul id="list-posts">
+                    <div class="tasks-list" id="list">
+                        <div class="list-search">
+                                <input class="search form-control" placeholder="搜索" />
+                        </div>
+                        <ul class="list" id="list-posts">
                             {% for task in tasks %}
                             <li class="data" id="{{task._id.toString()}}" data-state="{{task.state}}">
                                 <div class="thumb thumb-ext">
@@ -55,7 +58,7 @@
                                     <div class="row m-t-lg">
                                         <div class="col-xs-7"><p class="task-name" title="{{task.name}}">
                                             {{task.name}}</p></div>
-                                        <div class="col-xs-3">发布时间：{{task.createdTime | date('Y-m-d',-480)}}</div>
+                                        <div class="col-xs-3 date">发布时间：{{task.createdTime | date('Y-m-d',-480)}}</div>
                                         <div class="col-xs-2">{% if task.state === 0
                                             %} <span class="label label-success">进行中</span> {% else %}
                                             <span class="label label-warning">已结束</span> {% endif %}
@@ -88,6 +91,7 @@
                             </li>
                             {% endfor %}
                         </ul>
+                        <ul class="pagination"></ul>
                     </div>
                     <div style="" class="customize-pagination m-t-lg text-center">
                         <div id="pagination" class="content"></div>
