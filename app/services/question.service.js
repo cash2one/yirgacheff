@@ -44,6 +44,7 @@ module.exports = {
             throw createError(400, '问题不存在');
         }
         question.answer = answer;
+        question.state = 1;
         return yield question.save();
     })
 

@@ -18,7 +18,7 @@ module.exports = function (router) {
     router.get('/:id([a-f0-9]{24})', function*() {
         let quizId = this.params.id;
         this.state.quiz = yield quizzes.findById(quizId, true);
-        yield this.render('backend/school/quizBase/view-quiz');
+        yield this.render('backend/teacher/quizBase/view-quiz');
     });
 
 

@@ -5,6 +5,7 @@
 
 const co = require('co');
 const _ = require('lodash');
+const createError = require('http-errors');
 const mongoose = require('mongoose');
 const Counter = mongoose.model('Counter');
 const School = mongoose.model('School');
@@ -27,6 +28,9 @@ module.exports = {
 
     updateById: co.wrap(function*(schoolId, data) {
         let school = yield School.findById(schoolId).exec();
+        if (!school) {
+            throw createError(400, '学校不存在');
+        }
         _.assign(school, _.omit(data, 'password', 'salt'));
         return yield school.save();
     })

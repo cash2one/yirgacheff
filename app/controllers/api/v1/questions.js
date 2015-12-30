@@ -24,15 +24,11 @@ module.exports = function (router) {
 
     });
 
-    router.post('/', function*() {
+    router.put('/:id', function*() {
         let user = this.user;
         let answer = this.request.body.answer;
-        let questionId = this.request.body.questionId;
-        this.body = yield service.question.addAnswer(user._id, questionId, answer);
+        this.body = yield service.question.addAnswer(user._id, this.params.id, answer);
     });
-
-
-
 
     return router;
 };
