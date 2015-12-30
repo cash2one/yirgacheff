@@ -9,6 +9,8 @@ const walk = require('walk');
 const webpack = require('webpack');
 const webpackManifest = require('./webpackManifest');
 
+const bower_modules = path.resolve(process.cwd(), './bower_components');
+const node_modules = path.resolve(process.cwd(), './node_modules');
 
 function makeConf(env) {
     var jsSrc = path.resolve(config.root.src, config.tasks.js.src);
@@ -18,8 +20,6 @@ function makeConf(env) {
     var extensions = config.tasks.js.extensions.map(function (extension) {
         return '.' + extension
     });
-    var bower_modules = path.resolve(process.cwd(), './bower_modules');
-    var node_modules = path.resolve(process.cwd(), './node_modules');
 
     var webpackConfig = {
         context: jsSrc,
