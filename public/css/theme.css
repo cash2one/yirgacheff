@@ -1929,6 +1929,10 @@ color:#fff
 }
 /* Popover & Tooltips
 =================================================================== */
+.popover{
+    border: none;
+    font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
 .popover,
 .popover-title{
 border-radius: 0;

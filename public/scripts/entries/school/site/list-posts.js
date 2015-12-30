@@ -27,5 +27,10 @@ $(document).ready(function () {
         });
     });
 
+    $(function () {
+        $(".delete").popover({html : true });
+    });
+
+
 });
 
