@@ -14,6 +14,7 @@
     "tests"
   ],
   "dependencies": {
-
+    "list.js": "~1.1.1",
+    "list.pagination.js": "~0.1.1"
   }
 }
