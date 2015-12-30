@@ -1,0 +1,19 @@
+{
+  "name": "yirga",
+  "version": "0.0.0",
+  "homepage": "https://github.com/kuando/yirgacheff",
+  "authors": [
+    "Frank <kuando@126.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+
+  }
+}

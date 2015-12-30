@@ -26,7 +26,7 @@
                     <div class="line"><img src="/images/answer-icon.png" class="quest-fl">
 
                         <div class="msg-box">
-                            <textarea class="w-que-answer" rows="3" {% if question.state %} readonly {% endif %} >{{question.answer}}</textarea>
+                            <textarea class="w-que-answer" rows="3" {% if question.state %} readonly {% endif %}>{{question.answer}}</textarea>
                         </div>
                         <div class="btn-areas msg-save">
                             {% if question.state === 1 %}
@@ -46,11 +46,7 @@
 
 {% block javascript %}
 
-<script type="text/javascript" src="/js/lib/require.js"></script>
-<script type="text/javascript" src="/js/config.js"></script>
-<script>
-    requirejs(['/js/app/teacher/questions/list-questions.js']);
-</script>
+<script src="'/js/entries/teacher/questions/list-questions.js'"></script>
 
 
 {% endblock %}

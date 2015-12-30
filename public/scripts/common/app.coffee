@@ -1,12 +1,13 @@
 require 'bootstrap'
 require 'slimscroll'
 require './jqueryExtend';
+require '../lib/confirm'
 
 module.exports = ()->
   $('.slimscroll').slimscroll({
     alwaysVisible: false
     allowPageScroll: false
-    height:"auto"
+    height: "auto"
   })
 
   $('#gotop').click ()->

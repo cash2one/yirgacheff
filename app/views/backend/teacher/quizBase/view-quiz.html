@@ -31,29 +31,7 @@
         </div>
     </div>
 </div>
-<!--<div id="Anchor3" class="w-base w-base-extraction w-base-border">-->
-    <!--<div class="w-base-title">-->
-        <!--<h3><i class="fa fa-list mr-5"></i>题目列表</h3>-->
-    <!--</div>-->
-    <!--<div class="w-base-container" style="margin-top: 15px;">-->
-        <!--<div class="w-homework-total-info" style="margin-left: 85px">-->
-            <!--<span class="w-homework-total-title">总计<span id="total-number"-->
-                                                         <!--class="w-homework-total-count">{{quiz.exercises.length}}</span>个题目</span>-->
-        <!--</div>-->
 
-        <!--&lt;!&ndash; 题目列表区域 START &ndash;&gt;-->
-        <!--<ul id="questions-area" style="margin-left: 18px">-->
-        <!--</ul>-->
-
-        <!--&lt;!&ndash; 题目列表区域 END &ndash;&gt;-->
-        <!--<div class="w-homework-store">-->
-            <!--<div class="btn-areas" style="text-align: center">-->
-                <!--<a class="jqibuttons" href="/teacher/homework/create?quizId={{quiz._id.toString()}}">使用</a>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div style="background-color: #fff; height: 20px;"></div>-->
-    <!--</div>-->
-<!--</div>-->
 <!-- 题型模版 -->
 {% include '../../templates/exerciseReadOnlyTemplate.html' %}
 {% endblock %}
@@ -62,9 +40,8 @@
 <script>
     window.exercises = {{ quiz.exercises | json | safe}};
 </script>
-<script>
-    requirejs(['/js/app/teacher/quizBase/view-quiz.js']);
-</script>
+
+<script src="/js/app/teacher/quizBase/view-quiz.js"></script>
 
 
 {% endblock %}

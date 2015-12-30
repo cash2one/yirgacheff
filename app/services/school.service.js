@@ -27,7 +27,7 @@ module.exports = {
 
     updateById: co.wrap(function*(schoolId, data) {
         let school = yield School.findById(schoolId).exec();
-        _.assign(school, data);
+        _.assign(school, _.omit(data, 'password', 'salt'));
         return yield school.save();
     })
 

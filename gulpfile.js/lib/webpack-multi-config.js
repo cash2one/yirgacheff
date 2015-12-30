@@ -9,6 +9,7 @@ const walk = require('walk');
 const webpack = require('webpack');
 const webpackManifest = require('./webpackManifest');
 
+
 function makeConf(env) {
     var jsSrc = path.resolve(config.root.src, config.tasks.js.src);
     var jsDest = path.resolve(config.root.dest, config.tasks.js.dest);
@@ -17,26 +18,19 @@ function makeConf(env) {
     var extensions = config.tasks.js.extensions.map(function (extension) {
         return '.' + extension
     });
+    var bower_modules = path.resolve(process.cwd(), './bower_modules');
+    var node_modules = path.resolve(process.cwd(), './node_modules');
 
     var webpackConfig = {
         context: jsSrc,
         resolve: {
-            root: jsSrc,
+            root: [jsSrc, node_modules, bower_modules],
             extensions: [''].concat(extensions),
-            alias: {
-                'bootstrap': 'bootstrap/dist/js/bootstrap',
-                'slimscroll': 'jquery-slimscroll/jquery.slimscroll.min',
-                'moment': 'moment/moment.js',
-                'highcharts': 'highcharts/highcharts.js',
-                'datatables': 'datatables/media/js/jquery.dataTables.js',
-                'bootstrap-notify':'bootstrap-notify/bootstrap-notify.min.js'
-            }
+            alias: sourceMap()
         },
         module: {
             noParse: [/moment/],
             loaders: [
-                {test: require.resolve('jquery'), loader: 'expose?jQuery'},
-                {test: require.resolve('jquery'), loader: 'expose?$'},
                 {test: /\.coffee$/, loader: "coffee-loader"},
                 {test: /\.(coffee\.md|litcoffee)$/, loader: "coffee-loader?literate"},
                 {test: /\.css$/, loader: "style-loader!css-loader?root=.."},
@@ -44,12 +38,11 @@ function makeConf(env) {
 
             ]
         },
+        externals: {
+            "jquery": "jQuery"
+        },
         plugins: [
-            new webpack.ProvidePlugin({
-                $: "jquery",
-                jQuery: "jquery",
-                "window.jQuery": "jquery"
-            })
+            new webpack.ProvidePlugin({})
         ]
     };
 
@@ -119,6 +112,17 @@ function genEntries(srcDir) {
         }
     });
     return map;
+}
+
+function sourceMap() {
+    return {
+        'bootstrap': 'bootstrap/dist/js/bootstrap',
+        'slimscroll': 'jquery-slimscroll/jquery.slimscroll.min',
+        'moment': 'moment/moment.js',
+        'highcharts': 'highcharts/highcharts.js',
+        'datatables': 'datatables/media/js/jquery.dataTables.js',
+        'bootstrap-notify': 'bootstrap-notify/bootstrap-notify.min.js'
+    };
 }
 
 module.exports = makeConf;
