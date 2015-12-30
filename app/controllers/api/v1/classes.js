@@ -20,10 +20,8 @@ module.exports = function (router) {
         this.body = classes;
     });
 
-    router.put('/:id/changeOwner', function*() {
-        let owner = this.request.body.username;
-        let classId = this.params.id;
-        this.body = yield service.classes.changeOwner(classId, owner);
+    router.put('/changeOwner', function*() {
+        this.body = yield service.classes.changeOwner(this.request.body);
     });
 
     router.delete('/:id', function*() {

@@ -1,13 +1,14 @@
 'use strict';
 
 require('datatables');
-var validator = require('validator');
+require('../../../common/formvalidator');
 var app = require('../../../common/app');
-var layer = require('../../../common/layerWrapper');
-var $http = require('../../../common/restfulClient');
+var notify = require('../../../common/notify');
 
 $(document).ready(function () {
+    app();
     //表格
+    var $categoryForm = $("#categoryForm");
     var rawTable = $('#category-list');
     var dataTable = rawTable.DataTable({
         'bAutoWidth': false,
@@ -17,6 +18,7 @@ $(document).ready(function () {
         },
         'ajax': {url: '/api/v1/categories', dataSrc: ''},
         'order': [[0, "asc"]],
+        'rowId': '_id',
         'columns': [
             {'data': 'order'},
             {'data': 'name'},
@@ -36,71 +38,58 @@ $(document).ready(function () {
         ]
     });
 
-    var formValidator = function (data) {
-        if (isEmpty(data.name)) {
-            return '分类名称不能为空';
-        }
-        if (isEmpty(data.order) || !validator.isInt(data.order)) {
-            return '分类序号不能为空或者非数字';
-        }
-    };
+    $("#add-category-btn").click(function () {
+        $categoryForm[0].reset();
+        $("#categoryModal").modal("show");
+    });
 
-    $('#add-category-btn').on('click', function () {
-        $("#category_form")[0].reset();
-        $('#passage-oper').hide();
-        layer.ajaxForm({
-            title: '栏目信息',
-            container: 'add-category-dialog',
-            form: 'category_form',
-            validator: formValidator,
-            ajax: {
-                type: 'POST',
-                url: '/api/v1/categories',
-                success: function (data, done) {
-                    done();
-                    dataTable.row.add(data).draw();
-                }
-            }
-        });
+    $categoryForm.validate(function ($form, data) {
+        var isModify = !!data._id;
+        if (isModify) {
+            $.ajax({
+                url: '/api/v1/categories/' + data._id,
+                method: 'PUT',
+                data: data
+            }).then(function () {
+                dataTable
+                    .row("#" + data._id)
+                    .data(data)
+                    .draw();
+                notify.success("修改分类成功");
+                $("#categoryModal").modal("hide");
+            });
+        } else {
+            delete data['_id'];
+            $.post('/api/v1/categories', data).then(function (data) {
+                dataTable.row.add(data).draw();
+                notify.success("添加分类成功");
+                $("#categoryModal").modal("hide");
+            });
+        }
     });
 
     rawTable.on('click', '.edit', function () {
         var category = dataTable.row($(this).parents('tr')).data();
-        var self = $(this);
-        var categoryId = category._id;
-        $("#category_form").renderForm(category);
-        $('#passage-oper').show();
-        layer.ajaxForm({
-            title: '栏目信息',
-            container: 'add-category-dialog',
-            form: 'category_form',
-            validator: formValidator,
-            ajax: {
-                type: 'PUT',
-                url: '/api/v1/categories/' + categoryId,
-                success: function (data, done) {
-                    done();
-                    dataTable
-                        .row(self.parents('tr'))
-                        .data(data)
-                        .draw();
-                }
-            }
-        });
+        $categoryForm.renderForm(category);
+        $("#categoryModal").modal("show");
     });
 
     rawTable.on('click', '.delete', function () {
         var category = dataTable.row($(this).parents('tr')).data();
         var self = $(this);
-        layer.confirm('确定要删除分类 ' + category.name + ' ?', function () {
+        if (confirm("确定要删除分类 " + category.name + " ?")) {
             var url = '/api/v1/categories/' + category._id;
-            $http.del(url, function () {
+            $.ajax({
+                url: url,
+                method: 'DELETE'
+            }).then(function () {
                 dataTable
                     .row(self.parents('tr'))
                     .remove()
                     .draw();
-            });
-        });
+                notify.success("删除分类成功");
+            })
+        }
     });
 
     rawTable.on('click', '.detail', function () {
@@ -109,8 +98,4 @@ $(document).ready(function () {
         self.location.href = '/school/posts?category=' + categoryId;
     });
 
-
-    function isEmpty(parameter) {
-        return !parameter || parameter === '';
-    }
 });

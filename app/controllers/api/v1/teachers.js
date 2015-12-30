@@ -13,6 +13,11 @@ module.exports = function (router) {
 
     router.post('/', function*() {
         let user = this.user;
+        let teacher = this.request.body;
+        if (teacher._id) {
+            this.body = yield service.teachers.updateById(teacher._id, teacher);
+            return;
+        }
         this.body = yield service.teachers.create(user.schoolId, this.request.body);
     });
 

@@ -1,11 +1,12 @@
 'use strict';
-var validator = require('validator');
+
+require('../../../common/formvalidator');
 var app = require('../../../common/app');
-var $http = require('../../../common/restfulClient');
-var layer = require('../../../common/layerWrapper');
+var notify = require('../../../common/notify');
 var uploader = require('../../../common/uploadifive');
 
 $(document).ready(function () {
+    var $productForm = $('#productForm');
     app();
     uploader({
         file: "imageUpload",
@@ -14,55 +15,27 @@ $(document).ready(function () {
             $('#imageKey').val(ret.key);
         }
     });
-    var $productForm = $('#product-form');
 
-    function formValidator(data) {
-        if (data.productName === "") {
-            return '商品名称不能为空';
-        }
-        if (data.stock === "" || !validator.isInt(data.stock)) {
-            return '商品存量不能为空或者非数字';
-        }
-        if (data.imageKey === "") {
-            return '商品图片不能为空';
-        }
-        if (data.score === "" || !validator.isInt(data.score)) {
-            return '兑换积分不能为空或者非数字';
-        }
-    }
-
-    //添加商品
-    $('#add-product-btn').click(function () {
-        layer.ajaxForm({
-            title: '添加商品',
-            container: 'add-product-dialog',
-            form: $productForm,
-            validator: formValidator,
-            ajax: {
-                type: 'POST',
-                url: '/api/v1/scores/scoreExchanges',
-                success: function (data, done) {
-                    done();
-                    self.location.href = '';
-                }
-            }
+    $productForm.validate(function ($form, data) {
+        $.post('/api/v1/scores/scoreExchanges', data).then(function () {
+            self.location.href = '';
         });
     });
+
 
     $('#product-list').on('click', '.delete-btn', function () {
         var self = $(this);
-        layer.confirm('确定删除该兑换商品?', function () {
+        if (confirm("确定删除该商品?")) {
             var current = self.closest('li');
             var url = '/api/v1/scores/scoreExchanges/' + current.attr('id');
-            $http.del(url, function () {
-                current.remove();
+            $.ajax({
+                url: url,
+                method: 'DELETE'
+            }).then(function () {
+                notify.success("删除商品成功");
+                self.remove();
             });
-        });
+        }
     });
 
-    $('.product-photo-thumb').hover(function () {
-        $('.product-hover-mask', this).show();
-    }, function () {
-        $('.product-hover-mask', this).hide();
-    });
 });

@@ -1,15 +1,15 @@
 'use strict';
-var validator = require('validator');
-require('datatables');
 
+require('datatables');
+require('../../../common/formvalidator');
+var notify = require('../../../common/notify');
 var app = require('../../../common/app');
-var layer = require('../../../common/layerWrapper');
-var $http = require('../../../common/restfulClient');
+
 
 $(document).ready(function () {
     app();
     var $table = $('#teacher-list');
-    var $teacherForm = $('#teacher_form');
+    var $teacherForm = $('#teacherForm');
     var dataTable = $table.DataTable({
         'bAutoWidth': false,
         'bSort': false,
@@ -20,6 +20,7 @@ $(document).ready(function () {
             url: '/api/v1/teachers',
             dataSrc: ''
         },
+        'rowId': '_id',
         'order': [[1, "desc"]],
         'columns': [
             {'data': 'displayName'},
@@ -30,95 +31,47 @@ $(document).ready(function () {
             {
                 'data': null,
                 'defaultContent': '<a class="btn btn-info btn-xs btn-custom edit" >修改</a>&nbsp;&nbsp;' +
-                '<a class="btn btn-pink btn-xs btn-custom delete">禁用</a>&nbsp;&nbsp;'
+                '<a class="btn btn-pink btn-xs btn-custom delete" data-toggle="confirmation">禁用</a>&nbsp;&nbsp;'
             }
         ]
     });
 
-    function isEmpty(parameter) {
-        return !parameter || parameter === '';
-    }
-
-    function formValidator(data) {
-        data = data || {};
-        if (isEmpty(data.displayName)) {
-            return '姓名不能为空';
-        }
-        if (data.displayName.trim().length > 5) {
-            return '姓名不能超过 5 个字符';
-        }
-        if (isEmpty(data.password) || !validator.isLength(data.password, 6, 20)) {
-            return '请输入密码(6 - 20位 )'
-        }
-        if (isEmpty(data.contact) || !validator.isMobilePhone(data.contact, 'zh-CN')) {
-            return '请输入正确格式的手机号码';
-        }
-        if (isEmpty(data.department)) {
-            return '请输入部门';
-        }
-        if (data.department.trim().length > 10) {
-            return '姓名不能超过 10 个字符';
-        }
-        return true;
-    }
-
-    //添加老师
-    $('#add-teacher-btn').on('click', function () {
-        $("#teacher_form")[0].reset();
-        var randomPassword = new Date().getTime().toString(16).substr(4);
-        $('#password').val(randomPassword);
-        layer.ajaxForm({
-            title: '新建教师',
-            container: 'add-teacher-dialog',
-            form: $teacherForm,
-            validator: formValidator,
-            ajax: {
-                url: '/api/v1/teachers',
-                type: 'POST',
-                success: function (data, done) {
-                    dataTable.row.add(data).draw();
-                    done();
-                }
+    $teacherForm.validate(function ($form, data) {
+        var isModify = !!data._id;
+        $.post('/api/v1/teachers', data).then(function (teacher) {
+            if (isModify) {
+                notify.success("修改教师成功");
+                dataTable.row("#" + data._id).data(teacher).draw();
+            } else {
+                notify.success("添加教师成功");
+                dataTable.row.add(teacher).draw();
             }
+            $("#teacherModal").modal("hide");
+            $teacherForm[0].reset();
         });
     });
 
-
     $table.on('click', '.delete', function () {
-        var teacher = dataTable.row($(this).parents('tr')).data();
-        var self = $(this);
-        layer.confirm('确定要禁用教师 ' + teacher.displayName + ' ?', function () {
-            var url = '/api/v1/teachers/' + teacher._id;
-            $http.del(url, function () {
+        var teacherId = $(this).parents('tr').attr("id");
+        if (confirm("确定禁用教师?")) {
+            $.ajax({
+                url: "/api/v1/teachers/" + teacherId,
+                method: "DELETE"
+            }).then(function (res) {
+                notify.success("禁用教师成功");
                 dataTable
-                    .row(self.parents('tr'))
+                    .row("#" + teacherId)
                     .remove()
                     .draw();
             });
-        });
+        }
     });
+
 
     $table.on('click', '.edit', function () {
         var teacher = dataTable.row($(this).parents('tr')).data();
-        var self = $(this);
-        $("#teacher_form").renderForm(teacher);
-        layer.ajaxForm({
-            title: '信息修改',
-            container: 'add-teacher-dialog',
-            form: $teacherForm,
-            validator: formValidator,
-            ajax: {
-                url: '/api/v1/teachers/' + teacher._id,
-                type: 'PUT',
-                success: function (data, done) {
-                    dataTable
-                        .row(self.parents('tr'))
-                        .data(data)
-                        .draw();
-                    done();
-                }
-            }
-        });
+        $teacherForm.renderForm(teacher);
+        $("#teacherModal").modal("show");
     });
 
 });

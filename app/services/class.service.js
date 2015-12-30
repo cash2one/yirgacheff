@@ -91,10 +91,14 @@ module.exports = {
     /**
      * 更换班级拥有者
      */
-    changeOwner: co.wrap(function*(classId, owner) {
+    changeOwner: co.wrap(function*(data) {
+
+        if (!data || !data.username || !data.classId) {
+            throw createError(400, '参数不完整');
+        }
 
         let teacher = yield Teacher
-            .findOne({username: owner})
+            .findOne({username: data.username})
             .select('_id state displayName username').exec();
 
         if (!teacher) {
@@ -103,7 +107,7 @@ module.exports = {
         if (teacher.isDisabled()) {
             throw createError(400, '教师已禁用');
         }
-        yield Class.update({_id: classId}, {
+        yield Class.update({_id: data.classId}, {
             $set: {
                 owner: teacher,
                 ownerDisplayName: teacher.displayName,

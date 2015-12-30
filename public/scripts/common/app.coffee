@@ -1,8 +1,7 @@
 require 'bootstrap'
 require 'slimscroll'
 require './jqueryExtend';
-require '../lib/confirm'
-notify = require './notify'
+notify = require "./notify"
 
 module.exports = ()->
   $.ajaxSetup({

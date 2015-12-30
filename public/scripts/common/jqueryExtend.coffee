@@ -23,7 +23,7 @@ $.fn.renderForm = (object)->
   $form = $(this)
   $.each ps, ()->
     name = this.name
-    input = $form.find "[name='" + name + "']"
+    input = $form.find "*[name='" + name + "']"
     if object[name]
       input.val object[name]
 
