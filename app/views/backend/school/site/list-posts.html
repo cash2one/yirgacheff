@@ -6,10 +6,11 @@
 
 <div class="row">
     <div class="col-xs-12">
-        <div class="panel panel-white">
+        <div class="panel panel-default shadow">
             <div class="panel-heading clearfix">
-                <h4 class="panel-title"><i class="fa fa-list-ul fa-fw m-r-xxs"></i>文章列表
-                    <select name="" id="selectCategory" class="m-l-xs">
+                <h4 class="panel-title">文章列表</h4>
+                <div class="panel-control">
+                    <select name="" id="selectCategory">
                         <option value="">所有栏目</option>
                         {% for category in categories %}
                         <option value="{{category._id.toString()}}"
@@ -18,10 +19,7 @@
                         </option>
                         {% endfor %}
                     </select>
-                </h4>
-
-                <div class="panel-control">
-                    <a class="btn btn-success btn-xs"
+                    <a class="btn btn-default btn-sm pull-right"
                        href="/school/posts/create{% if currentCategory %}?category={{currentCategory}}{% endif %}"
                        id="add-passage-btn">创建文章</a>
                 </div>
