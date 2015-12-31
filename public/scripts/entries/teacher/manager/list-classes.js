@@ -108,14 +108,14 @@ $(document).ready(function () {
         });
     });
 
-    var chars = ['72d26e','fff','72c02c'];
-    var num = Math.floor(Math.random() * chars.length + 1)-1;
-    console.log(chars[num]);
-
-    var classItem = $('.class-group');
-    console.log(classItem.length);
-    for(var i = 0; i < classItem.length; i++){
-        classItem[i].style.backgroundColor = "#" + chars[num];
-    }
+    //var chars = ['72d26e','fff','72c02c'];
+    //var num = Math.floor(Math.random() * chars.length + 1)-1;
+    //console.log(chars[num]);
+    //
+    //var classItem = $('.class-group');
+    //console.log(classItem.length);
+    //for(var i = 0; i < classItem.length; i++){
+    //    classItem[i].style.backgroundColor = "#" + chars[num];
+    //}
 
 });

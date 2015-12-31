@@ -2216,3 +2216,7 @@ transition:width 6s ease-in-out
     background-color: #5fbeaa;
     border-color: #5fbeaa;
 }
+/*modal*/
+.modal-content{
+    border-radius: 0;
+}

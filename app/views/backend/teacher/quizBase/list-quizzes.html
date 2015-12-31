@@ -1,17 +1,14 @@
 {% extends '../base.html' %}
 
 {% block content %}
-<!-- 面包屑 -->
-{{ breadcrumb.init([{'url':'', 'title':'题库'},{'url':'','title':'套题列表'}]) }}
-<!-- END OF BREADCRUMBS -->
 <div class="row">
     <div class="col-xs-12">
-        <div class="panel panel-white">
+        <div class="panel panel-default shadow">
             <div class="panel-heading clearfix">
-                <h4 class="panel-title"><i class="fa fa-table m-r-xxs"></i>题库列表</h4>
+                <h4 class="panel-title">题库列表</h4>
 
                 <div class="panel-control">
-                    <a class="btn btn-success btn-xs" href="/teacher/quizzes/create">出题</a>
+                    <a class="btn btn-default btn-sm" href="/teacher/quizzes/create">出题</a>
                 </div>
             </div>
             <div class="panel-body">
