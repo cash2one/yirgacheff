@@ -27,12 +27,12 @@ module.exports = {
 
 
     updateById: co.wrap(function*(schoolId, data) {
-        let school = yield School.findById(schoolId).exec();
+        let updatedData = _.omit(data, 'password', 'salt', '_');
+        let school = yield School.findByIdAndUpdate(schoolId, updatedData).exec();
         if (!school) {
             throw createError(400, '学校不存在');
         }
-        _.assign(school, _.omit(data, 'password', 'salt'));
-        return yield school.save();
+        return school;
     })
 
 };

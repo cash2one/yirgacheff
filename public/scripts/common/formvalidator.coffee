@@ -1,4 +1,5 @@
 require 'validate-js'
+require './formvalidator'
 notify = require './notify'
 
 $.fn.extend
@@ -21,7 +22,6 @@ $.fn.extend
         display: $el.attr "data-display"
 
     validator = new FormValidator $this.attr('name'), fields, (errors, event) ->
-
       if not submit
         event.preventDefault()
       $this.find(".error").removeClass "error"
@@ -33,7 +33,7 @@ $.fn.extend
         return false
 
       if typeof cb is "function"
-        cb $this
+        cb $this, $this.serializeObject()
 
     for own key,val of messages
       validator.setMessage key, val

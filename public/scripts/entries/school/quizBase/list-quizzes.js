@@ -1,8 +1,7 @@
 'use strict';
 require('datatables');
 var app = require('../../../common/app');
-var layer = require('../../../common/layerWrapper');
-var $http = require('../../../common/restfulClient');
+var notify = require('../../../common/notify');
 
 $(document).ready(function () {
     app();
@@ -61,18 +60,22 @@ $(document).ready(function () {
     });
 
     jqTable.on('click', '.delete-btn', function () {
-        var self = $(this),
-            quizId = self.attr('id');
-        layer.confirm('确定要删除该套题?', function () {
+        var self = $(this);
+        var quizId = self.attr('id');
+        if (confirm("确定要删除?")) {
             var url = '/api/v1/quizzes/' + quizId;
-            $http.del(url, function () {
+            $.ajax({
+                url: url,
+                method: 'DELETE'
+            }).then(function () {
+                notify.success("删除题目成功");
                 dataTable
                     .row(self.parents('tr'))
                     .remove()
                     .draw();
-                layer.msg('删除套题成功');
             });
-        });
+        }
+
     });
 
 });
