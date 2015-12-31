@@ -1,12 +1,16 @@
 <script type="template" id="classTemplate">
-    <tr class="classItem" id="<%= clazz._id %>" data-name="<%= clazz.className %>">
-        <td><%= clazz.className %></td>
-        <td><%= clazz.studentsCount || 0 %></td>
-        <td><%= clazz.owner.displayName %></td>
-        <td>
-            <a href="javascript:void(0);" class="btn btn-info btn-xs btn-custom modify-class">修改</a>
-            <a href="javascript:void(0);" class="btn btn-info btn-xs btn-custom exchange-class">转班</a>
-            <a href="javascript:void(0);" class="btn btn-pink btn-xs btn-custom delete-class">删除</a>
-        </td>
-    </tr>
+    <div class="col-xs-3 m-b-md" id="<%= clazz._id %>" data-name="<%= clazz.className %>">
+        <a class="class-item" href="/teacher/classes/<%=clazz._id.toString() %>">
+            <div class="class-group">
+                <div class="class-icon">
+                    <i class="fa fa-flag"></i>
+                </div>
+            </div>
+            <div class="class-title">
+                <p><%= clazz.className %></p>
+                <span class="count"><%= clazz.studentsCount || 0 %>个同学</span>
+            </div>
+        </a>
+    </div>
+
 </script>
