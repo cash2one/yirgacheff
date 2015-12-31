@@ -1286,3 +1286,18 @@
     text-align: center;
     margin-bottom: 20px;
 }
+
+/*∞‡º∂π‹¿Ì*/
+.class-item{
+
+}
+.class-item .class-group{
+    background: #60b9ff;
+    height: 210px;
+}
+.class-item .class-title{
+    background: #fff;
+    height: 50px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
