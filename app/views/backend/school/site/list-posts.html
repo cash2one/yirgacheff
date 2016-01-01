@@ -1,7 +1,6 @@
 {% extends '../base.html' %}
 {% block content %}
 <!-- 面包屑 -->
-{{ breadcrumb.init([{'url':'','title':'分类管理'},{'url':'','title':'文章列表'}]) }}
 <!-- END OF BREADCRUMBS -->
 
 <div class="row">
@@ -49,20 +48,15 @@
                             </td>
                             <td>{{post.title | subTitle(12)}}</td>
                             <td>{{post.category.name |
-                                subTitle(4)}}</td>
+                                subTitle(4)}}
+                            </td>
                             <td>{{post.visitCount}}</td>
                             <td>{{post.like}}</td>
                             <td>{{post.shareCount}}</td>
                             <td>{{post.createdTime | date('Y-m-d',-480)}}</td>
                             <td>
-                                <a class="btn btn-pink btn-xs btn-custom del_btn" data-tooltip="删除" id="{{post._id.toString()}}">删除</a>
-                                <button type="button" class="delete btn btn-pink" data-container="body" data-toggle="popover" data-placement="right"
-                                        data-content="<p class='f-black f-s-13 m-t-xs'>
-                                        <i class='fa fa-exclamation-triangle f-pink m-r-xs'></i>你确定要删除这个吗？</p>
-                                        <div class='text-right'><button class='btn btn-white btn-xs m-t-xxs m-r-xs'>取消</button>
-                                        <button class='btn btn-pink btn-xs m-t-xxs m-r-xs'>确定</button></div>">
-                                    删除
-                                </button>
+                                <a class="btn btn-pink btn-xs btn-custom del_btn" data-tooltip="删除"
+                                   id="{{post._id.toString()}}">删除</a>
                             </td>
                         </tr>
                         {% endfor %}
