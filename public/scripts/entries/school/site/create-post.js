@@ -2,6 +2,7 @@
 
 require('../../../common/formvalidator');
 var app = require('../../../common/app');
+var notify = require('../../../common/notify');
 var upload = require('../../../common/uploadifive');
 var richEditor = require('../../../common/richEditor');
 var weixinEditor = require('../../../common/weixinEditor');
@@ -12,14 +13,10 @@ $(document).ready(function () {
     //富编辑器渲染
     var editor = richEditor.render('postContent');
 
-    editor.ready(function () {
-        editor.setContent($("#content").val());
-    });
-
     //初始化微信编辑器
     weixinEditor({
         callback: function (content) {
-            editor.execCommand("insertHtml", "<div>" + content + "</div><br />")
+            editor.setValue("<div>" + content + "</div><br />");
         }
     });
 
@@ -43,7 +40,7 @@ $(document).ready(function () {
 
     //文章发布
     $("#postForm").validate(function ($form, data) {
-        if (!editor.hasContents()) {
+        if (!editor.getValue()) {
             return notify.danger("请填写文章内容")
         }
         $.post('/api/v1/posts', data).then(function (data) {

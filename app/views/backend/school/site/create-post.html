@@ -9,23 +9,24 @@
                 <h4 class="panel-title">新建文章</h4>
             </div>
             <div class="panel-body">
-                <div class="row">
-                    <div class="col-xs-5">
-                        <div class="images-cover">
-                            <img class="b" width="320px" height="200px" id="indexImage"
-                                 {% if post %}
-                                 src="http://resource.hizuoye.com/{{post.image}}"
-                                 {% else %}
-                                 src="http://static.hizuoye.com/images/coverpage_default.png"
-                                 {% endif %}>
-                            <p class="m-t-xs">上传封面图片<span class="tip">(建议尺寸: 900像素x500像素)</span></p>
-                            <input type="file" id="imageUpload" class="image-upload">
-                        </div>
+                <form class="form-horizontal" id="postForm" method="post" name="postForm">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <div class="images-cover">
+                                <img class="b" width="320px" height="200px" id="indexImage"
+                                     {% if post %}
+                                     src="http://resource.hizuoye.com/{{post.image}}"
+                                     {% else %}
+                                     src="http://static.hizuoye.com/images/coverpage_default.png"
+                                     {% endif %}>
+                                <p class="m-t-xs">上传封面图片<span class="tip">(建议尺寸: 900像素x500像素)</span></p>
+                                <input type="file" id="imageUpload" class="image-upload">
+                            </div>
 
-                        {%include '../../components/weixinEditor.html' %}
-                    </div>
-                    <div class="col-xs-7">
-                        <form class="form-horizontal" id="postForm" method="post" name="postForm">
+                            {%include '../../components/weixinEditor.html' %}
+                        </div>
+                        <div class="col-xs-7">
+
                             <input class="form-control validate"
                                    type="hidden" name="image" id="coverImage" value="{{post.image}}"
                                    data-display="封面图片"
@@ -108,25 +109,30 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-12">
-                                    <div class="textarea-container" id="postContent">
-                                    </div>
-                                    <input type="hidden" id="content" value="{{post.content}}">
+                                    <!--<div class="textarea-container" id="postContent">-->
+                                    <!--</div>-->
+                                    <textarea name="content"
+                                              id="postContent"
+                                              autofocus>{{post.content}}</textarea>
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <div class="col-xs-12">
-                                    <button type="submit" class="btn btn-default btn-block">
-                                        {% if update %} 修改 {% else %} 发布 {% endif %}
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+
+                        </div>
+
                     </div>
-
-                </div>
-
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-xs-4 m-t-md col-xs-offset-4">
+                                <button type="submit" class="btn btn-default btn-block">
+                                    {% if update %} 修改 {% else %} 发布 {% endif %}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
+
         </div>
     </div>
 </div>
@@ -136,8 +142,6 @@
 {% endblock %}
 
 {% block javascript %}
-<script src="/js/lib/ueditor/ueditor.config.js"></script>
-<script src="/js/lib/ueditor/ueditor.all.js"></script>
 <script src="/js/entries/school/site/create-post.js"></script>
 
 {% endblock %}
