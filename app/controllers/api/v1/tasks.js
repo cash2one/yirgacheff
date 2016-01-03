@@ -16,4 +16,9 @@ module.exports = function (router) {
         this.body = yield service.tasks.updateTaskById(taskId, this.request.body);
     });
 
+    router.post('/activity', function*() {
+        let user = this.user;
+        this.body = yield service.tasks.createActivityTask(user.schoolId, this.request.body);
+    });
+
 };

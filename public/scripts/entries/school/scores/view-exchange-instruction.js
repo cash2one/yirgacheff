@@ -1,7 +1,6 @@
 'use strict';
 var app = require('../../../common/app');
-var $http = require('../../../common/restfulClient');
-var layer = require('../../../common/layerWrapper');
+var notify = require('../../../common/notify');
 
 $(document).ready(function () {
     app();

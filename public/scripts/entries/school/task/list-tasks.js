@@ -1,8 +1,7 @@
 'use strict';
 
 var app = require('../../../common/app');
-var layer = require('../../../common/layerWrapper');
-var $http = require('../../../common/restfulClient');
+var notify = require('../../../common/notify');
 var List = require('expose?List!list.js/dist/list.js');
 var ListPagination = require('list.pagination.js/dist/list.pagination.js');
 
@@ -11,7 +10,7 @@ $(document).ready(function () {
     var postList = $('#list-posts');
 
     var options = {
-        valueNames: [ 'task-name', 'date' ],
+        valueNames: ['task-name', 'date'],
         page: 8,
         plugins: [
             ListPagination({})
@@ -51,34 +50,40 @@ $(document).ready(function () {
     $('.close-task').click(function () {
         var task = $(this).closest('li');
         if (task.attr('data-state') === '1') {
-            layer.msg('任务已经关闭');
+            notify.warning('任务已经关闭');
             return;
         }
         var taskId = task.attr('id');
-        layer.confirm('确定要关闭所选任务?', function () {
+        if (confirm("确定关闭任务?")) {
             var url = '/api/v1/tasks/' + taskId + '/close';
-            $http.put(url, function () {
-                layer.msg('关闭任务成功');
+            $.ajax({
+                url: url,
+                method: 'PUT'
+            }).then(function () {
+                notify.success("任务已经关闭");
                 self.location.href = '';
-            });
-        });
+            })
+        }
     });
 
     //删除任务
     $('.del_btn').click(function () {
         var task = $(this).closest('li');
         if (task.attr('data-state') === '0') {
-            layer.msg('任务进行中，不能删除，请先关闭任务');
+            notify.warning('任务进行中，不能删除，请先关闭任务');
             return;
         }
         var taskId = task.attr('id');
-        layer.confirm('确定要删除所选任务?', function () {
-            var url = '/api/v1/tasks/' + taskId;
-            $http.del(url, function () {
-                layer.msg('删除成功');
+        var url = '/api/v1/tasks/' + taskId;
+        if (confirm("确定要删除任务?")) {
+            $.ajax({
+                url: url,
+                method: 'DELETE'
+            }).then(function () {
+                notify.success("任务已经删除");
                 self.location.href = '';
-            });
-        });
+            })
+        }
     });
 
 

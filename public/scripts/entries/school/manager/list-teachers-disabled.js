@@ -2,8 +2,6 @@
 
 require('datatables');
 var app = require('../../../common/app');
-var layer = require('../../../common/layerWrapper');
-var $http = require('../../../common/restfulClient');
 
 $(document).ready(function () {
     var rawTable = $('#teacher-list');
@@ -17,6 +15,7 @@ $(document).ready(function () {
             url: '/api/v1/teachers/disabled',
             dataSrc: ''
         },
+        rowId: "_id",
         'order': [[1, "desc"]],
         'columns': [
             {'data': 'displayName'},
@@ -33,15 +32,15 @@ $(document).ready(function () {
 
     rawTable.on('click', '.enable', function () {
         var teacher = dataTable.row($(this).parents('tr')).data();
-        var self = $(this);
-        layer.confirm('确定要启用教师 ' + teacher.displayName + ' ?', function () {
-            var url = '/api/v1/teachers/' + teacher._id + '/enable';
-            $http.put(url, function () {
-                dataTable
-                    .row(self.parents('tr'))
-                    .remove()
-                    .draw();
-            });
+        var url = '/api/v1/teachers/' + teacher._id + '/enable';
+        $.ajax({
+            url: url,
+            method: "PUT"
+        }).then(function () {
+            dataTable
+                .row(teacher._id)
+                .remove()
+                .draw();
         });
     });
 });

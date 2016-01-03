@@ -1,6 +1,5 @@
 'use strict';
 var app = require('../../../../common/app');
-var layer = require('../../../../common/layerWrapper');
 $(document).ready(function () {
     app();
     var postList = $('#list-posts');
@@ -26,33 +25,6 @@ $(document).ready(function () {
         $(this).closest('li').addClass('selected');
     });
 
-    //保存文章分享
-    $('#post-share-save').click(function () {
-        var name = $('#name').val();
-        if (isEmpty(name)) {
-            layer.msg('请填写任务名称');
-            return;
-        }
-        var scoreAward = $('#scoreAward').val();
-        if (isEmpty(scoreAward)) {
-            layer.msg('请填写奖励积分');
-            return;
-        }
-        if (!scoreAward.match('^[1-9][0-9]*$')) {
-            layer.msg('积分必须为数字');
-            return;
-        }
-        var item = $('input:radio[name="item"]:checked').attr('id');
-        if (isEmpty(item)) {
-            layer.msg('请选择要分享的文章');
-            return;
-        }
-        $('#post-task-form').submit();
-    });
-
-    function isEmpty(parameter) {
-        return !parameter || parameter === '';
-    }
 
 });
 

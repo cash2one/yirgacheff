@@ -1,13 +1,13 @@
 require 'bootstrap'
 require 'slimscroll'
 require './jqueryExtend';
+
 notify = require "./notify"
 
 module.exports = ()->
   $.ajaxSetup({
     dataType: "json"
   })
-
   $(document).ajaxError (event, error) ->
     res = error.responseJSON or {};
     message = res.error
