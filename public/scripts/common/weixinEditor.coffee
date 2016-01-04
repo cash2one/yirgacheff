@@ -24,7 +24,7 @@ module.exports = (opts)->
   #绑定组件点击事件
   $('.wx-editor-template-content').on 'click', '.item', ()->
     content = $(this).html()
-    editor.execCommand('inserthtml', content);
+    editor.execCommand('insertHtml',content);
 
   $.get '/api/v1/medias', (images)->
     templates = images.map template
