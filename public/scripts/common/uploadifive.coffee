@@ -43,79 +43,78 @@ $.ajax(
 
 #单个文件上传
 singleUpload = (opts)->
-  opts =
-    file: opts.file
-    multi: false
-    done: opts.done
-  bindUpload opts
+  file = opts.file
+  $file = if typeof file is 'object' then file else $('#' + file)
+  done = opts.done
+  uploadOpts =
+    'uploadScript': UPLOAD_API
+    'fileObjName': "file"
+    'multi': false
+    'buttonText': opts.buttonText || '上传'
+    'removeCompleted':true
+    'formData':
+      'token': token
+
+    'onUploadComplete': (file, data) ->
+      ret = $.parseJSON(data)
+      ret.path = VISIT_URL + ret.key
+      ret.name = file.name
+      done(ret)
+
+  $file.uploadifive uploadOpts
+
 
 #多文件同时上传
 multiUpload = (opts)->
   $('body').append($(modal));
-  $('.slimscroll').slimscroll({
-    allowPageScroll: true,
+  $('.slimscroll').slimscroll(
+    allowPageScroll: true
     height: 300
-  })
+  )
   btn = opts.button
   done = opts.done
   $btn = if typeof btn is 'object' then btn else $('#' + btn)
   uploaded = []
-  uploader = $("#_upload_file")
   isComplete = false
-  opts =
-    file: uploader
-    multi: true
-    queueID: "uploadifive-queue"
-    done: (uploads, queue)->
-      uploaded = queue
+  uploadOpts =
+    'uploadScript': UPLOAD_API
+    'fileObjName': "file"
+    'multi': true
+    'queueID': "uploadifive-queue"
+    'buttonText': '上传'
+    'formData':
+      'token': token
+
+    'onUploadComplete': (file, data) ->
+      ret = $.parseJSON(data)
+      ret.path = VISIT_URL + ret.key
+      ret.name = file.name
+      uploaded.push(ret)
+
+    'onQueueComplete': () ->
       isComplete = true
+
+    'onCancel': (file)->
+      uploaded = (item for item in uploaded when item.name isnt file.name)
+
+    'onUpload': ()->
+      isComplete = false
+
+  uploader = $("#_upload_file").uploadifive(uploadOpts)
 
   $("#_upload_save").click ()->
     if isComplete or uploaded.length is 0
       done(uploaded)
       $('#_uploadFiveModal').modal('hide')
-      uploader.uploadifive("clearQueue") #先清空上传队列
+      uploader.uploadifive("clearQueue") #清空上传队列
     else
       notify.warning "图片正在上传中..."
 
-  bindUpload opts
   $btn.click ()->
+    uploaded = []
     isComplete = false
-    uploader.uploadifive("clearQueue") #先清空上传队列
+    uploader.uploadifive("clearQueue") #清空上传队列
     $('#_uploadFiveModal').modal()
-
-#绑定uploadifive
-bindUpload = (opts = {})->
-  queue = []
-  file = opts.file
-  done = opts.done
-  buttonText = opts.buttonText || "上传"
-  multi = opts.multi || false
-  queueID = opts.queueID
-  if typeof file isnt 'object'
-    file = $("#" + file)
-
-  uploadOptions =
-    'uploadScript': UPLOAD_API
-    'buttonText': buttonText
-    'fileObjName': "file"
-    'multi': multi
-    'queueID': queueID || null
-    'formData':
-      'token': token
-    'onUploadComplete': (file, data) ->
-      ret = $.parseJSON(data)
-      ret.path = VISIT_URL + ret.key
-      if(multi)
-        queue.push(ret)
-      else
-        done ret
-
-    'onQueueComplete': (uploads) ->
-      if multi
-        done(uploads, queue)
-
-  file.uploadifive(uploadOptions)
 
 
 module.exports = (opts = {})->

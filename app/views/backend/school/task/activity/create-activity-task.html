@@ -1,7 +1,5 @@
 {% extends '../../base.html' %}
 {% block content %}
-<!-- 面包屑 -->
-{{ breadcrumb.init([{'url':'','title':'营销活动'}]) }}
 <!-- END OF BREADCRUMBS -->
 <div class="row">
     <div class="col-xs-12">
@@ -10,98 +8,92 @@
                 <h4 class="panel-title">营销活动</h4>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal" method="post" action="" id="activityForm">
+                <form class="form-horizontal" id="activityForm" name="activityForm">
+
                     <div class="form-group">
                         <label for="name" class="col-xs-1 control-label">任务名称</label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="name" type="text" name="name"
+                            <input class="form-control validate" id="name" type="text" name="name"
+                                   data-rules="required"
+                                   data-display="任务名称"
                                    placeholder="比如：分享活动，赚积分，得礼包">
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label for="scoreAward" class="col-xs-1 control-label">奖励积分</label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="scoreAward" type="text" name="scoreAward"
+                            <input class="form-control validate" id="scoreAward" type="text" name="scoreAward"
+                                   data-rules="required|integer"
+                                   data-display="奖励积分"
                                    placeholder="请填入分享本次活动奖励的积分数">
                         </div>
                     </div>
+
                     <div class="form-group">
-                        <label for="name" class="col-xs-1 control-label">活动主题</label>
+                        <label for="theme" class="col-xs-1 control-label">活动主题</label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="theme" type="text" name="theme">
+                            <input class="form-control validate" id="theme" type="text" name="theme"
+                                   data-rules="required"
+                                   data-display="活动主题">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-1 control-label">活动时间</label>
+                        <label class="col-xs-1 control-label" for="startTime">活动时间</label>
                         <div class="col-xs-4">
-                            <input class="form-control w-datepicker" id="date-picker-start" type="text" name="startTime"/>
+                            <input class="form-control validate" id="startTime" type="text"
+                                   data-rules="required"
+                                   data-display="开始时间"
+                                   name="startTime"/>
                         </div>
                         <div class="col-xs-1 text-center">
                             <p class="m-t-xxs">至</p>
                         </div>
                         <div class="col-xs-4">
-                            <input class="form-control w-datepicker" id="date-picker-end" type="text" name="endTime"/>
+                            <input class="form-control validate" type="text" name="endTime"
+                                   id="endTime"
+                                   data-rules="required"
+                                   data-display="结束时间"/>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="name" class="col-xs-1 control-label">活动地点</label>
+                        <label for="address" class="col-xs-1 control-label">活动地点</label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="activity-location" type="text" name="address">
+                            <input class="form-control" id="address" type="text" name="address">
                         </div>
                     </div>
                     <div class="form-group">
-                    <label for="name" class="col-xs-1 control-label">报名信息</label>
-                    <div class="col-xs-9">
-                        <div class="title-info-list w-border-list" id="title-info-list">
-                            <ul class="list-unstyled" id="infoList">
-                                <li class="item">姓名</li>
-                                <li class="item">电话</li>
-                                <li class="item" style="background-color: #72d26e;color: #fff" id="add-title-info">+添加
-                                </li>
-                            </ul>
+                        <label for="name" class="col-xs-1 control-label">报名信息</label>
+                        <div class="col-xs-9">
+                            <select name="enrols" id="" class="form-control enrolls" multiple="multiple">
+                                <option value="姓名" selected>姓名</option>
+                                <option value="电话" selected>电话</option>
+                            </select>
                         </div>
                     </div>
-                </div>
                     <div class="form-group">
-                        <label for="name" class="col-xs-1 control-label">活动详情</label>
+                        <label for="content" class="col-xs-1 control-label">活动详情</label>
                         <div class="col-xs-9">
-                            <div class="activity-detail-container" id="activity-detail"></div>
-                            <input type="hidden" name="content" id="content">
+                            <div class="textarea-container" id="content"></div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-offset-5 col-xs-2">
+                            <button class="btn btn-default btn-block" type="submit">保存</button>
                         </div>
                     </div>
                 </form>
-                <div class="col-xs-12">
-                    <div class="col-xs-offset-5 col-xs-2">
-                        <button class="btn btn-default btn-block" id="activity-share-save">保存</button>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
 </div>
 
-<div class="hides" id="add-title-info-dialog">
-    <form class="form-horizontal m-t-md">
-        <div class="form-group">
-            <label for="titleInfoName" class="col-xs-2 control-label">姓名：</label>
-            <div class="col-xs-9">
-                <input class="form-control" type="text" name="titleInfoName" id="titleInfoName" placeholder="比如：联系地址">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-xs-offset-2 col-xs-9">
-                <button type="button" class="btn btn-info layer-ok-btn">确定</button>
-                <button type="button" class="btn btn-default layer-close-btn">取消</button>
-            </div>
-        </div>
-    </form>
-</div>
-{% include '../../../common/media-lib.html' %}
 {% endblock %}
 {% block javascript %}
 <script src="/js/lib/ueditor/ueditor.config.js"></script>
-<script src="/js/lib/ueditor/ueditor.all.js"></script>
+<script src="/js/lib/ueditor/ueditor.all.min.js"></script>
 <script src="/js/entries/school/task/activity/create-activity-task.js"></script>>>>
 
 {% endblock %}

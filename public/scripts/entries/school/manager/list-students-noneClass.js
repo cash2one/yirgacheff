@@ -2,8 +2,6 @@
 
 require('datatables');
 var app = require('../../../common/app');
-var layer = require('../../../common/layerWrapper');
-var $http = require('../../../common/restfulClient');
 
 $(document).ready(function () {
     var jqTable = $('#students-list');
@@ -18,6 +16,7 @@ $(document).ready(function () {
             url: '/api/v1/classes/empty/students',
             dataSrc: ''
         },
+        rowId: "_id",
         'order': [[1, "desc"]],
         'columns': [
             {'data': 'displayName'},
@@ -36,16 +35,19 @@ $(document).ready(function () {
 
     jqTable.on('click', '.delete', function () {
         var student = dataTable.row($(this).parents('tr')).data();
-        var self = $(this);
-        layer.confirm('确定删除学生 ' + student.displayName + ' ?', function () {
+        if (confirm("确定删除学生" + student.displayName + "?")) {
             var url = '/api/v1/students/' + student._id;
-            $http.del(url, function () {
+            $.ajax({
+                url: url,
+                method: 'DELETE'
+            }).then(function () {
                 dataTable
-                    .row(self.parents('tr'))
+                    .row("#" + student._id)
                     .remove()
                     .draw();
-            });
-        });
+            })
+
+        }
     });
 
     jqTable.on('click', '.detail', function () {

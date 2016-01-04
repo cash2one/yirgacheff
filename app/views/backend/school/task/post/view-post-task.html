@@ -1,7 +1,5 @@
 {% extends '../../base.html' %}
 {% block content %}
-<!-- 面包屑 -->
-{{ breadcrumb.init([{'url':'','title':'营销活动'}]) }}
 <!-- END OF BREADCRUMBS -->
 <input type="hidden" id="taskId" value="{{task._id.toString()}}">
 <div class="row m-t-xs">
@@ -58,14 +56,16 @@
                 <h4 class="panel-title">营销活动</h4>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal m-t-sm" action="" method="post" id="post-task-form">
+                <form class="form-horizontal m-t-sm" id="taskForm" name="taskForm">
                     <div class="form-group">
                         <label for="name" class="col-xs-1 control-label">任务名称</label>
 
                         <div class="col-xs-9">
-                            <input class="form-control" type="text" id="name"
+                            <input class="form-control validate" type="text" id="name"
                                    name="name"
                                    value="{{task.name}}"
+                                   data-rules="required"
+                                   data-display="任务名称"
                                    placeholder="比如：分享文章，赚积分，得礼包">
                         </div>
                     </div>
@@ -73,9 +73,11 @@
                         <label for="scoreAward" class="col-xs-1 control-label">奖励积分</label>
 
                         <div class="col-xs-9">
-                            <input class="form-control" type="text" id="scoreAward"
+                            <input class="form-control validate" type="text" id="scoreAward"
                                    name="scoreAward"
                                    value="{{task.scoreAward}}"
+                                   data-rules="required|integer"
+                                   data-display="奖励积分"
                                    placeholder="请填入分享本篇文章奖励的积分数">
                         </div>
                     </div>
@@ -98,8 +100,7 @@
                                 <tr>
                                     <td>
                                         <img class="lazy"
-                                             data-original="http://resource.hizuoye.com/{{task.item.image}}"
-                                             src="http://static.hizuoye.com/images/coverpage_default.png"
+                                             src="http://resource.hizuoye.com/{{task.item.image}}"
                                              width="115px"
                                              height="80px">
                                     </td>
@@ -114,12 +115,12 @@
                             </table>
                         </div>
                     </div>
-                </form>
-                <div class="col-xs-12">
-                    <div class="col-xs-offset-5 col-xs-2">
-                        <button class="btn btn-default btn-block" id="post-share-save">保存</button>
+                    <div class="col-xs-12">
+                        <div class="col-xs-offset-5 col-xs-2">
+                            <button class="btn btn-default btn-block" type="submit">保存</button>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -128,6 +129,6 @@
 
 {% block javascript %}
 
-<script src="/js/entries/school/task/post/view-post-tasks.js"></script>>>
+<script src="/js/entries/school/task/post/view-post-task.js"></script>>>
 
 {% endblock %}

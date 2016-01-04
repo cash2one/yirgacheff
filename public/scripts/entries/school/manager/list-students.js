@@ -2,7 +2,6 @@
 
 require('datatables');
 var app = require('../../../common/app');
-var $http = require('../../../common/restfulClient');
 
 $(document).ready(function () {
 
@@ -48,7 +47,7 @@ $(document).ready(function () {
             $('#class-list-frame').hide();
         } else {
             dataTable.ajax.url('/api/v1/teachers/' + selectTeacher + '/students').load();
-            $http.get('/api/v1/teachers/' + selectTeacher + '/classes', function (classes) {
+            $.get('/api/v1/teachers/' + selectTeacher + '/classes', function (classes) {
                 var options = '<option value="">选择班级</option>';
                 for (var i = 0; i < classes.length; i++) {
                     var clazz = classes[i];

@@ -1,5 +1,4 @@
 require 'validate-js'
-require './formvalidator'
 notify = require './notify'
 
 $.fn.extend
@@ -32,7 +31,7 @@ $.fn.extend
           $target.closest(".control-group").removeClass("error").addClass "error"
         return false
 
-      if typeof cb is "function"
+      if cb and typeof cb is "function"
         cb $this, $this.serializeObject()
 
     for own key,val of messages

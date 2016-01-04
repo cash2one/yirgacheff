@@ -1,7 +1,6 @@
 {% extends '../base.html' %}
 {% block content %}
 <!-- 面包屑 -->
-{{ breadcrumb.init([{'url':'','title':'新建文章'}]) }}
 <!-- END OF BREADCRUMBS -->
 <div class="row">
     <div class="col-xs-12">
@@ -10,155 +9,48 @@
                 <h4 class="panel-title">新建文章</h4>
             </div>
             <div class="panel-body">
-                <div class="row">
-                    <div class="col-xs-5">
-                        <div class="images-cover">
-                            <img class="b" width="320px" height="200px" id="indexImage"
-                                 {% if post %}
-                                 src="http://resource.hizuoye.com/{{post.image}}"
-                                 {% else %}
-                                 src="http://static.hizuoye.com/images/coverpage_default.png"
-                                 {% endif %}>
-                            <p class="m-t-xs">上传封面图片<span class="tip">(建议尺寸: 900像素x500像素)</span></p>
-                            <input type="file" id="imageUpload" class="image-upload">
-                        </div>
+                <form class="form-horizontal" id="postForm" method="post" name="postForm">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <div class="images-cover">
+                                <img class="b" width="320px" height="200px" id="indexImage"
+                                     {% if post %}
+                                     src="http://resource.hizuoye.com/{{post.image}}"
+                                     {% else %}
+                                     src="http://static.hizuoye.com/images/coverpage_default.png"
+                                     {% endif %}>
+                                <p class="m-t-xs">上传封面图片<span class="tip">(建议尺寸: 900像素x500像素)</span></p>
+                                <input type="file" id="imageUpload" class="image-upload">
+                            </div>
 
-                        <div class="editor">
-                            <div class="wx-editor-template-list">
-                                <ul class="nav nav-tabs">
-                                    <li class="active">
-                                        <a href="#tab1" data-toggle="tab">
-                                            <div class="bg-color bg-success">
-                                                <i class="fa fa-header"></i>
-                                            </div>
-                                            标题
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#tab2" data-toggle="tab">
-                                            <div class="bg-color bg-danger">
-                                                <i class="fa fa-file-o"></i>
-                                            </div>
-                                            正文
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#tab3" data-toggle="tab">
-                                            <div class="bg-color bg-info">
-                                                <i class="fa fa-thumbs-o-up"></i>
-                                            </div>
-                                            关注
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#tab4" data-toggle="tab">
-                                            <div class="bg-color bg-warning">
-                                                <i class="fa fa-share-square-o"></i>
-                                            </div>
-                                            分享
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#tab5" data-toggle="tab">
-                                            <div class="bg-color bg-primary">
-                                                <i class="fa fa-picture-o"></i>
-                                            </div>
-                                            图片
-                                        </a>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle"
-                                           data-toggle="dropdown">
-                                            <div class="bg-color f-white" style="background-color: #72d26e;">
-                                                <i class="fa fa-cog"></i>
-                                            </div>
-                                            颜色
-                                        </a>
-                                        <ul class="dropdown-menu colorpick-w" role="menu" aria-labelledby="myTabDrop1">
-                                            <li>
-                                                <div class="colorpick">
-                                                    <ul class="list-unstyled">
-                                                        <li style="background-color: #fff45c;"></li>
-                                                        <li style="background-color: #fde800;"></li>
-                                                        <li style="background-color: #ffcb15;"></li>
-                                                        <li style="background-color: #ffa921;"></li>
-                                                        <li style="background-color: #ff691f;"></li>
-                                                        <li style="background-color: #ff391f;"></li>
-                                                        <li style="background-color: #c53f46;"></li>
-                                                        <li style="background-color: #d6004a;"></li>
-                                                        <li style="background-color: #ff1d6b;"></li>
-                                                        <li style="background-color: #ff4da9;"></li>
-                                                        <li style="background-color: #ff80c5;"></li>
-                                                        <li style="background-color: #ffb4ce;"></li>
-                                                        <li style="background-color: #ddf56d;"></li>
-                                                        <li style="background-color: #b0f346;"></li>
-                                                        <li style="background-color: #6fe113;"></li>
-                                                        <li style="background-color: #87c943;"></li>
-                                                        <li style="background-color: #129527;"></li>
-                                                        <li style="background-color: #059d7f;"></li>
-                                                        <li style="background-color: #00589c;"></li>
-                                                        <li style="background-color: #4676d9;"></li>
-                                                        <li style="background-color: #4e99df;"></li>
-                                                        <li style="background-color: #5faaff;"></li>
-                                                        <li style="background-color: #3abcff;"></li>
-                                                        <li style="background-color: #70d8ff;"></li>
-                                                        <li style="background-color: #cccccc;"></li>
-                                                        <li style="background-color: #999999;"></li>
-                                                        <li style="background-color: #666666;"></li>
-                                                        <li style="background-color: #333333;"></li>
-                                                        <li style="background-color: #000000;"></li>
-                                                    </ul>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="wx-editor-template-content">
-                                <div class="tab-content">
-                                    <div class="tab-pane fade in active" id="tab1">
-                                        <div class="item">
-                                            <fieldset style="margin: 0px; padding: 0px; border: 0px currentColor; text-align: center; color: rgb(62, 62, 62); line-height: 25px; font-family: 微软雅黑; white-space: normal; -ms-word-wrap: break-word !important; max-width: 100%; box-sizing: border-box;"><section class="wxqq-borderTopColor wxqq-borderRightColor wxqq-borderBottomColor wxqq-borderLeftColor" style="border: 0.4em solid rgb(0, 187, 236); display: inline-block; -ms-word-wrap: break-word !important; max-width: 100%; box-sizing: border-box !important; background-color: rgb(248, 247, 245);"><section style="margin: -0.4em 0.5em; padding: 0.5em; border-top-color: rgb(248, 247, 245); border-bottom-color: rgb(248, 247, 245); border-top-width: 0.5em; border-bottom-width: 0.5em; border-top-style: solid; border-bottom-style: solid; -ms-word-wrap: break-word !important; max-width: 100%; box-sizing: border-box !important;"><section style="-ms-word-wrap: break-word !important; max-width: 100%; box-sizing: border-box !important;"><section style="vertical-align: middle; display: inline-table; -ms-word-wrap: break-word !important; max-width: 100%; box-sizing: border-box !important;"><section class="wxqq-color" style="text-align: inherit; color: rgb(0, 187, 236); line-height: 1.5; font-family: inherit; font-size: 1em; text-decoration: inherit; vertical-align: middle; display: table; -ms-word-wrap: break-word !important; max-width: 100%; box-sizing: border-box !important;">关注我<br style="-ms-word-wrap: break-word !important; max-width: 100%; box-sizing: border-box !important;">必是精品<br style="-ms-word-wrap: break-word !important; max-width: 100%; box-sizing: border-box !important;"></section></section><section class="wxqq-bg" style="margin: 0px; border-radius: 50% 50% 0px; width: 3em; height: 3em; vertical-align: middle; display: inline-block; -ms-word-wrap: break-word !important; max-width: 100%; box-sizing: border-box; background-color: rgb(0, 187, 236);"><section style="margin: 0.2em; border-radius: 50%; border: 0.2em solid rgb(255, 255, 255); width: 2.6em; height: 2.6em; -ms-word-wrap: break-word !important; max-width: 100%; box-sizing: border-box; background-color: transparent;"><section style="text-align: inherit; color: rgb(255, 255, 255); line-height: 1; font-family: inherit; font-size: 2em; text-decoration: inherit; margin-top: 0.05em; -ms-word-wrap: break-word !important; max-width: 100%; box-sizing: border-box !important;">1</section></section></section></section><section class="main4" style="border-color: rgb(0, 187, 236); margin: 0.5em 0px; border-top-width: 1px; border-top-style: solid; -ms-word-wrap: break-word !important; max-width: 100%; box-sizing: border-box !important;"></section><section style="text-align: inherit; line-height: 1; font-family: inherit; font-size: 0.9em; text-decoration: inherit; -ms-word-wrap: break-word !important; max-width: 100%; box-sizing: border-box !important;">这里可输入标题，自适应宽度</section></section></section></fieldset>                                    </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="tab2">2</div>
-                                    <div class="tab-pane fade" id="tab3">3</div>
-                                    <div class="tab-pane fade" id="tab4">4</div>
-                                    <div class="tab-pane fade" id="tab5">
-                                        <ul class="list-unstyled images-list" id="gallery">
-                                            <li>
-                                                <a class="" href="javascript:void(0)" id="uploadButton">
-                                                    <div class="upload-btn"></div>
-                                                </a>
-                                            </li>
-                                            <li class="item">
-                                                <img class="img-thumbnail" src="/images/MostredFriday_v1.png">
-                                            </li>
-                                            <li class="item">
-                                                <img class="img-thumbnail" src="/images/landscape.png">
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                            {%include '../../components/weixinEditor.html' %}
                         </div>
-                    </div>
-                    <div class="col-xs-7">
-                        <form class="form-horizontal" id="postForm" method="post">
-                            <input type="hidden" name="image" id="coverImage" value="{{post.image}}"/>
-                            <input type="hidden" value="{{post._id.toString()}}" id="postId"/>
+                        <div class="col-xs-7">
+
+                            <input class="form-control validate"
+                                   type="hidden" name="image" id="coverImage" value="{{post.image}}"
+                                   data-display="封面图片"
+                                   data-rules="required"/>
+                            <input type="hidden" value="{{post._id.toString()}}" id="postId" name="postId"/>
                             <div class="form-group">
-                                <label class="col-xs-2 control-label">文章标题：</label>
+                                <label class="col-xs-2 control-label" for="postTitle">文章标题：</label>
 
                                 <div class="col-xs-10">
-                                    <input class="form-control" type="text" id="postTitle" value="{{post.title}}"
-                                           name="title">
+                                    <input class="form-control validate" type="text" id="postTitle"
+                                           value="{{post.title}}"
+                                           name="title"
+                                           data-rules="required"
+                                           data-display="文章标题"
+                                    >
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-xs-2 control-label">文章栏目：</label>
+                                <label class="col-xs-2 control-label" for="category">文章分类：</label>
 
                                 <div class="col-xs-10">
-                                    <select name="category" id="category" class="form-control">
+                                    <select name="category" id="category" class="form-control validate"
+                                            data-rules="required"
+                                            data-display="文章分类">
                                         <option value="">选择栏目</option>
                                         {% for category in categories %}
                                         <option value="{{category._id.toString()}}"
@@ -176,32 +68,36 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-xs-2 control-label">阅读次数：</label>
+                                <label class="col-xs-2 control-label" for="visitCount">阅读次数：</label>
 
                                 <div class="col-xs-10">
-                                    <input type="text" class="form-control" name="visitCount"
-                                           id="visitCount" value="{{post && post.visitCount || 0}}">
+                                    <input type="text" class="form-control validate" name="visitCount"
+                                           id="visitCount" value="{{post && post.visitCount || 0}}"
+                                           data-display="阅读次数"
+                                           data-rules="required|integer">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-xs-2 control-label">分享次数：</label>
+                                <label class="col-xs-2 control-label" for="shareCount">分享次数：</label>
 
                                 <div class="col-xs-10">
                                     <input type="text" class="form-control" name="shareCount"
-                                           id="shareCount" value="{{post && post.shareCount || 0}}">
+                                           id="shareCount" value="{{post && post.shareCount || 0}}"
+                                           data-display="分享次数"
+                                           data-rules="required|integer">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-xs-2 control-label">点赞次数：</label>
-
+                                <label class="col-xs-2 control-label" for="like">点赞次数：</label>
                                 <div class="col-xs-10">
                                     <input type="text" class="form-control" name="like"
-                                           id="like" value="{{post && post.like || 0}}">
+                                           id="like" value="{{post && post.like || 0}}"
+                                           data-display="点赞次数"
+                                           data-rules="required|integer">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-xs-2 control-label">首页文章：</label>
-
+                                <label class="col-xs-2 control-label" for="useSlide">首页文章：</label>
                                 <div class="col-xs-10">
                                     <input type="radio" name="isSlide" id="useSlide" value="1"
                                            {% if post && post.isSlide %} checked {% endif %}>
@@ -213,34 +109,35 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-12">
-                                    <div class="textarea-container" id="postContent">
+                                    <div class="textarea-container" id="content">
                                     </div>
-                                    <input type="hidden" id="content" value="{{post.content}}">
                                 </div>
                             </div>
-                        </form>
+                            <input type="hidden" id="postContent" value="{{post && post.content}}">
+                        </div>
                     </div>
-
-                </div>
-                <div class="row m-t-lg">
-                    <div class="col-md-offset-4 col-xs-4">
-                        <button class="btn btn-default btn-block" id="savePost">
-                            {% if update %} 修改 {% else %} 发布 {% endif %}
-                        </button>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-xs-4 m-t-md col-xs-offset-4">
+                                <button type="submit" class="btn btn-default btn-block">
+                                    {% if update %} 修改 {% else %} 发布 {% endif %}
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
+
         </div>
     </div>
 </div>
 
 
-{% include '../../common/media-lib.html' %}
 {% endblock %}
 
 {% block javascript %}
 <script src="/js/lib/ueditor/ueditor.config.js"></script>
-<script src="/js/lib/ueditor/ueditor.all.js"></script>
+<script src="/js/lib/ueditor/ueditor.all.min.js"></script>
 <script src="/js/entries/school/site/create-post.js"></script>
 
 {% endblock %}

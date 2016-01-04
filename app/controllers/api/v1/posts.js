@@ -6,10 +6,24 @@ const service = require('../../../services');
 
 module.exports = function (router) {
 
+    router.post('/', function*() {
+        let postId = this.request.body.postId;
+        if (postId) {
+            this.body = yield service.posts.updateById(postId, this.request.body);
+            return;
+        }
+        this.body = yield service.posts.createPost(this.user.schoolId, this.request.body);
+    });
+
+    router.put('/:id', function*() {
+        this.body = yield service.posts.updateById(this.params.id, this.request.body);
+    });
+
     router.delete('/:id', function*() {
         let postId = this.params.id;
         this.body = yield service.posts.deleteById(postId);
     });
+
 
     return router;
 };
