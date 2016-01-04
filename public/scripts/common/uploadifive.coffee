@@ -38,7 +38,7 @@ token = null
 $.ajax(
   url: TOKEN_API
   async: false
-).then (tk) -> token = tk
+).then (res) -> token = res.token
 
 
 #单个文件上传
@@ -51,7 +51,7 @@ singleUpload = (opts)->
     'fileObjName': "file"
     'multi': false
     'buttonText': opts.buttonText || '上传'
-    'removeCompleted':true
+    'removeCompleted': true
     'formData':
       'token': token
 
