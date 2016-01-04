@@ -1,38 +1,42 @@
 {% extends '../base.html' %}
-
 {% block content %}
 
-<!-- 面包屑 -->
-{{ breadcrumb.init([{'url':'','title':'班级管理'}]) }}
-<!-- END OF BREADCRUMBS -->
-
 <!-- 班级列表 -->
-
 <div class="row">
-    <div class="col-xs-12">
-        <div class="panel panel-white">
+    <div class="col-xs-2">
+        <div class="page-sidebar shadow">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active">
+                    <a href="/teacher/classes">
+                        我的班级
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        一对一管理
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-xs-10">
+        <div class="panel panel-default shadow">
             <div class="panel-heading clearfix">
-                <h4 class="panel-title"><i class="fa fa-list m-r-xxs"></i>班级列表</h4>
-
-                <div class="panel-control">
-                    <button class="btn btn-success btn-xs" id="addClazz">+添加班级</button>
-                </div>
+                <h4 class="panel-title">班级列表</h4>
             </div>
             <div class="panel-body">
-                <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>班级名称</th>
-                        <th>班级学生</th>
-                        <th>班级教师</th>
-                        <th>修改操作</th>
-                    </tr>
-                    </thead>
-                    <tbody id="classList">
-
-                    </tbody>
-                </table>
+                <div class="row">
+                    <div class="col-xs-3 m-b-md">
+                        <a class="class-add" href="javascript:void(0)" id="addClazz">
+                            <div class="class-add-group">
+                                <div class="class-icon">
+                                    <i class="fa fa-plus"></i>
+                                </div>
+                                <p>创建新班级</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="classList"></div>
                 </div>
                 <!--<div id="classList">-->
                     <!--<div class="hides">-->
@@ -43,22 +47,6 @@
         </div>
     </div>
 </div>
-<!--<div class="w-base w-base-extraction w-base-border">-->
-    <!--<div class="w-base-title" style="border-bottom: 0">-->
-        <!--<h3><i class="fa fa-list mr-5"></i>班级列表</h3>-->
-
-        <!--<div class="w-base-right" style="margin-right: 10px;">-->
-            <!--<a class="v-add-student btn-middle solid-btn-green"-->
-               <!--href="javascript:void(0);" id="addClazz">+添加班级</a>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
-<!--<div id="classList">-->
-    <!--<div class="hides">-->
-        <!--<div class="tip-content">提示：当前没有任何班级，请点击 [添加班级] 创建班级！</div>-->
-    <!--</div>-->
-<!--</div>-->
-
 
 <!-- 添加b班级提示框-->
 <div class="hides" id="class-dialog">

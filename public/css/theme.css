@@ -32,7 +32,7 @@ a{
     transition: all 0.2s linear;
 }
 a:hover{
-    color: #2ab27b;
+    color: #2aabe6;
     text-decoration: none;
 }
 h1,
@@ -2215,4 +2215,8 @@ transition:width 6s ease-in-out
 .pagination > .active > span:focus {
     background-color: #5fbeaa;
     border-color: #5fbeaa;
+}
+/*modal*/
+.modal-content{
+    border-radius: 0;
 }

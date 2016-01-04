@@ -11,45 +11,15 @@ $(document).ready(function () {
     var $scoreForm = $("#scoreForm");
     var $joinClassForm = $("#joinClassForm");
     var jqTable = $('#students-list');
-    var $classList = $('#class-list');
-    //不存在班级不继续往下执行
-    if (!$classList.val()) {
-        return;
-    }
+
     var dataTable = jqTable.DataTable({
         'bAutoWidth': false,
         'bSort': false,
         'language': {
             'url': '/js/lib/plugins/dataTable/Chinese.lang'
         },
-        'ajax': {
-            dataSrc: ''
-        },
-        rowId: '_id',
-        'order': [[1, "desc"]],
-        'columns': [
-            {'data': 'displayName'},
-            {'data': 'username'},
-            {'data': 'password'},
-            {'data': 'gender'},
-            {'data': 'score'},
-            {
-                'data': null,
-                'defaultContent': '<a class="btn btn-info btn-xs btn-custom edit" >修改</a>&nbsp;&nbsp;'
-                + '<a class="btn btn-info btn-xs btn-custom score-edit" >积分</a>&nbsp;&nbsp;' +
-                '<a class="btn btn-pink btn-xs btn-custom delete">删除</a>'
-            }
-        ]
+        'order': [[1, "desc"]]
     });
-
-    $classList.change(function () {
-        var url = '/api/v1/classes/' + $(this).val() + '/students';
-        dataTable.ajax.url(url).load();
-    });
-    (function () {
-        var url = '/api/v1/classes/' + $classList.val() + '/students';
-        dataTable.ajax.url(url);
-    })();
 
     $("#add-student-btn").click(function () {
         $("#studentModal").modal("show");
@@ -96,8 +66,7 @@ $(document).ready(function () {
         $scoreForm.find("[name='studentId']").val(student);
     });
 
-    $scoreForm.validate(function ($form) {
-        var data = $form.serializeObject();
+    $scoreForm.validate(function ($form,data) {
         var studentId = data.studentId;
         $.ajax({
             url: '/api/v1/students/' + studentId + '/score',
@@ -131,8 +100,7 @@ $(document).ready(function () {
         //});
     });
 
-    $joinClassForm.validate(function ($form) {
-        var data = $form.serializeObject();
+    $joinClassForm.validate(function ($form,data) {
         var classId = $('#class-list').val();
         $.ajax({
             url: '/api/v1/classes/' + classId + '/students',

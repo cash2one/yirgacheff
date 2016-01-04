@@ -3,12 +3,12 @@
 {% block content %}
 <div class="row m-t-md">
     <div class="col-xs-12">
-        <img class="m-b-xs" src="http://static.hizuoye.com/images/MostredFriday_v1.png" width="100%" alt=""/>
+        <img class="m-b-md" src="http://static.hizuoye.com/images/MostredFriday_v1.png" width="100%" alt=""/>
     </div>
 </div><!-- Row -->
 <div class="row">
     <div class="col-xs-6">
-        <div class="panel panel-white">
+        <div class="panel panel-white shadow">
             <div class="visitors-chart">
                 <div class="panel-body">
                     <!-- 布置作业 -->
@@ -46,7 +46,7 @@
         </div>
     </div>
     <div class="col-xs-6">
-        <div class="panel panel-white">
+        <div class="panel panel-white shadow">
             <div class="visitors-chart">
                 <div class="panel-body">
                     <div class="row m-b-lg home-work">
@@ -85,9 +85,9 @@
 </div>
 <div class="row">
     <div class="col-xs-12">
-        <div class="panel panel-white">
+        <div class="panel panel-default shadow">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-trophy m-r-xs"></i>积分排行榜</h3>
+                <h3 class="panel-title">积分排行榜</h3>
                 <div class="panel-control">
                     <select id="class-list" data-settings='{"cutOff":5}'>
                         {% if !classes || classes.length === 0 %}
