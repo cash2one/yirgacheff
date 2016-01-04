@@ -103,7 +103,6 @@ multiUpload = (opts)->
   uploader = $("#_upload_file").uploadifive(uploadOpts)
 
   $("#_upload_save").click ()->
-    console.log uploaded
     if isComplete or uploaded.length is 0
       done(uploaded)
       $('#_uploadFiveModal').modal('hide')

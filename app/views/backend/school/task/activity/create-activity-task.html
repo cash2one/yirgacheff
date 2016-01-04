@@ -75,7 +75,7 @@
                     <div class="form-group">
                         <label for="content" class="col-xs-1 control-label">活动详情</label>
                         <div class="col-xs-9">
-                            <textarea name="content" id="content"></textarea>
+                            <div class="textarea-container" id="content"></div>
                         </div>
                     </div>
                     <div class="col-xs-12">
@@ -92,6 +92,8 @@
 
 {% endblock %}
 {% block javascript %}
+<script src="/js/lib/ueditor/ueditor.config.js"></script>
+<script src="/js/lib/ueditor/ueditor.all.min.js"></script>
 <script src="/js/entries/school/task/activity/create-activity-task.js"></script>>>>
 
 {% endblock %}

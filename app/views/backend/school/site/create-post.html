@@ -109,11 +109,9 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-12">
-                                    <!--<div class="textarea-container" id="postContent">-->
-                                    <!--</div>-->
-                                    <textarea name="content"
-                                              id="postContent"
-                                              autofocus>{{post.content}}</textarea>
+                                    <div class="textarea-container" id="postContent">
+                                    </div>
+
                                 </div>
                             </div>
 
@@ -141,6 +139,8 @@
 {% endblock %}
 
 {% block javascript %}
+<script src="/js/lib/ueditor/ueditor.config.js"></script>
+<script src="/js/lib/ueditor/ueditor.all.min.js"></script>
 <script src="/js/entries/school/site/create-post.js"></script>
 
 {% endblock %}

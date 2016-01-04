@@ -7,18 +7,13 @@ var upload = require('../../../common/uploadifive');
 var richEditor = require('../../../common/richEditor');
 var weixinEditor = require('../../../common/weixinEditor');
 
-
 $(document).ready(function () {
     app();
+
     //富编辑器渲染
     var editor = richEditor.render('postContent');
-
     //初始化微信编辑器
-    weixinEditor({
-        callback: function (content) {
-            editor.setValue("<div>" + content + "</div><br />");
-        }
-    });
+    weixinEditor({editor: editor});
 
     //本地上传
     upload({
@@ -26,15 +21,6 @@ $(document).ready(function () {
         done: function (file) {
             $('#indexImage').attr('src', file.path);
             $('#coverImage').val(file.key);
-        }
-    });
-
-    //图库上传
-    upload({
-        button: 'uploadButton',
-        multi: true,
-        done: function (queue) {
-            console.log(queue.length);
         }
     });
 

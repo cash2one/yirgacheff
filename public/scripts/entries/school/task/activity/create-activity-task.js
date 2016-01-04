@@ -14,10 +14,10 @@ $(document).ready(function () {
         start: 'startTime',
         end: 'endTime'
     });
+
     $(".enrolls").select2({
         tags: true
     });
-
     $("#activityForm").validate(function ($form, data) {
 
     });
