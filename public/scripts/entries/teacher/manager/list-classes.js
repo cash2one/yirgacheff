@@ -46,58 +46,6 @@ $(document).ready(function () {
         });
     });
 
-    //修改班级
-    classList.on('click', '.modify-class', function () {
-        var currentClass = $(this).closest('tr.classItem');
-        var className = currentClass.attr('data-name');
-        var classId = currentClass.attr('id');
-        $classForm.find('input[name="className"]').val(className);
-        layer.ajaxForm({
-            title: '班级信息',
-            container: 'class-dialog',
-            form: $classForm,
-            validator: formValidator,
-            ajax: {
-                url: '/api/v1/classes/' + classId,
-                type: 'PUT',
-                success: function (data, done) {
-                    currentClass.find('.className').text(data.className);
-                    currentClass.attr('data-name', data.className);
-                    done();
-                }
-            }
-        });
-    });
-
-    //转让班级
-    classList.on('click', '.exchange-class', function () {
-        var currentClass = $(this).closest('tr.classItem'),
-            className = currentClass.attr('data-name'),
-            url = '/api/v1/classes/' + currentClass.attr('id') + '/changeOwner';
-
-        layer.ajaxForm({
-            title: className,
-            container: 'exchange-class',
-            form: 'exchange-form',
-            validator: function (data) {
-                if (data.username === '') {
-                    return '输入老师工号';
-                }
-                if (data.username === GLOBAL.user.username) {
-                    return '不能转让给自己';
-                }
-            },
-            ajax: {
-                url: url,
-                type: 'PUT',
-                success: function (data, done) {
-                    self.location = '';
-                    done();
-                }
-            }
-        });
-    });
-
     classList.on('click', '.delete-class', function () {
         var currentClass = $(this).closest('tr.classItem');
         layer.confirm('确定要删除班级?', function () {
@@ -107,15 +55,5 @@ $(document).ready(function () {
             });
         });
     });
-
-    //var chars = ['72d26e','fff','72c02c'];
-    //var num = Math.floor(Math.random() * chars.length + 1)-1;
-    //console.log(chars[num]);
-    //
-    //var classItem = $('.class-group');
-    //console.log(classItem.length);
-    //for(var i = 0; i < classItem.length; i++){
-    //    classItem[i].style.backgroundColor = "#" + chars[num];
-    //}
 
 });

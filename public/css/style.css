@@ -1368,3 +1368,18 @@
     font-size: 14px;
     line-height: 40px;
 }
+.batch-select {
+    position: absolute;
+    margin-left: 180px;
+}
+.batch-select .btn{
+    padding: 4px 12px;
+    border-radius: 0;
+}
+.batch-select .btn:hover{
+    box-shadow: none;
+}
+.batch-select .btn-white{
+    border: 1px solid #dfdfdf!important;
+}
+

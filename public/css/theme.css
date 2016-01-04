@@ -1358,7 +1358,7 @@ margin-right: 5px;
 }
 .c-checkbox:hover span,
 .c-radio:hover span {
-border-color: #337ab7;
+border-color: #2aabe6;
 }
 .form-inline .c-checkbox span,
 .form-inline .c-radio span {
@@ -1397,15 +1397,15 @@ transition: color 0.3 ease-out;
 }
 input[type=checkbox]:checked + span,
 input[type=radio]:checked + span {
-border-color: #337ab7;
-background-color: #337ab7;
+border-color: #2aabe6;
+background-color: #2aabe6;
 }
 /* override for radio */
 input[type=radio]:checked + span {
 background-color: #fff;
 }
 input[type=radio]:checked + span:before {
-color: #337ab7;
+color: #2aabe6;
 }
 /* Disable state */
 input[type=checkbox]:disabled + span,
@@ -1423,7 +1423,12 @@ color: #dddddd;
 .form-control-rounded {
 border-radius: 100px;
 }
-
+td .checkbox {
+    position: relative;
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
 /* Panel */
 
 .panel {
