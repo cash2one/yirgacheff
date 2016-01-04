@@ -4,6 +4,7 @@ require('datatables');
 require('../../../common/formvalidator');
 var app = require('../../../common/app');
 var notify = require('../../../common/notify');
+var layer = require('../../../common/layerWrapper');
 
 $(document).ready(function () {
     app();
@@ -11,6 +12,7 @@ $(document).ready(function () {
     var $scoreForm = $("#scoreForm");
     var $joinClassForm = $("#joinClassForm");
     var jqTable = $('#students-list');
+    var classEdit =$('#class-info');
 
     var dataTable = jqTable.DataTable({
         'bAutoWidth': false,
@@ -52,6 +54,35 @@ $(document).ready(function () {
 
     });
 
+    //转让班级
+    classEdit.on('click', '.exchange-class', function () {
+        var currentClass = $(this).closest('tr.classItem'),
+            className = currentClass.attr('data-name'),
+            url = '/api/v1/classes/' + currentClass.attr('id') + '/changeOwner';
+
+        layer.ajaxForm({
+            title: className,
+            container: 'exchange-class',
+            form: 'exchange-form',
+            validator: function (data) {
+                if (data.username === '') {
+                    return '输入老师工号';
+                }
+                if (data.username === GLOBAL.user.username) {
+                    return '不能转让给自己';
+                }
+            },
+            ajax: {
+                url: url,
+                type: 'PUT',
+                success: function (data, done) {
+                    self.location = '';
+                    done();
+                }
+            }
+        });
+    });
+
     // 修改学生
     jqTable.on('click', '.edit', function () {
         $studentForm.renderForm(dataTable.row($(this).parents('tr')).data());
@@ -59,7 +90,7 @@ $(document).ready(function () {
     });
 
     // 修改学生积分
-    jqTable.on('click', '.score-edit', function () {
+    $('.batch-select').on('click', '.score-edit', function () {
         $("#scoreModal").modal('show');
         $scoreForm[0].reset(0);
         var student = $(this).parents('tr').attr("id");
@@ -83,22 +114,22 @@ $(document).ready(function () {
     });
 
     //删除学生
-    jqTable.on('click', '.delete', function () {
-        var self = $(this);
-        $(this).popConfirm();
-        //var student = dataTable.row($(this).parents('tr')).data();
-        //var currentClass = $classList.val();
-        //layer.confirm('您确定要删除当前学生?', function () {
-        //    var url = '/api/v1/classes/' + currentClass + '/students/' + student._id;
-        //    $http.del(url, function () {
-        //        dataTable
-        //            .row(self.parents('tr'))
-        //            .remove()
-        //            .draw();
-        //        notify.success('删除学生成功');
-        //    });
-        //});
-    });
+    //jqTable.on('click', '.delete', function () {
+    //    var self = $(this);
+    //    $(this).popConfirm();
+    //    var student = dataTable.row($(this).parents('tr')).data();
+    //    var currentClass = $classList.val();
+    //    layer.confirm('您确定要删除当前学生?', function () {
+    //        var url = '/api/v1/classes/' + currentClass + '/students/' + student._id;
+    //        $http.del(url, function () {
+    //            dataTable
+    //                .row(self.parents('tr'))
+    //                .remove()
+    //                .draw();
+    //            notify.success('删除学生成功');
+    //        });
+    //    });
+    //});
 
     $joinClassForm.validate(function ($form,data) {
         var classId = $('#class-list').val();
@@ -116,6 +147,12 @@ $(document).ready(function () {
     $('#download-btn').click(function () {
         var url = '/api/v1/classes/' + $('#class-list').val() + '/students/qrcode';
         window.open(url);
+    });
+
+    //全选
+    $('#SelectAll').click(function () {
+        var allChecked = $(this).is(':checked');
+        $("td input[type='checkbox']").prop("checked", allChecked);
     });
 
 });

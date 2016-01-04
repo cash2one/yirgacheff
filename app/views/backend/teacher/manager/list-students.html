@@ -2,50 +2,42 @@
 {% block content %} <!-- 面包屑 -->
 
 <div class="row">
-    <div class="col-xs-3">
-        <!--<div class="page-sidebar shadow">-->
-            <!--<ul class="nav nav-pills nav-stacked">-->
-                <!--<li>-->
-                    <!--<a href="/teacher/classes">-->
-                        <!--我的班级-->
-                    <!--</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="javascript:void(0)">-->
-                        <!--一对一管理-->
-                    <!--</a>-->
-                <!--</li>-->
-            <!--</ul>-->
-        <!--</div>-->
+    <div class="col-xs-12">
         <div class="panel panel-default shadow">
             <div class="panel-heading clearfix">
-                <h4 class="panel-title">班级详情</h4>
+                <h4 class="panel-title">班级信息</h4>
                 <div class="panel-control">
-                    <div class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars"></i> <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/school/posts/create">文章发布</a></li>
-                            <li><a href="/school/posts">所有文章</a></li>
-                            <li><a href="/school/categories">栏目管理</a></li>
-                            <li><a href="/school/materials">图片库</a></li>
-                        </ul>
-                    </div>
                 </div>
             </div>
             <div class="panel-body">
-
+                <form class="form-horizontal" id="class-info">
+                    <div class="form-group">
+                        <label class="col-xs-1 control-label">班级名称</label>
+                        <div class="col-xs-5">
+                            <input type="text" class="form-control" value="{{clazz.className}}">
+                        </div>
+                        <div class="col-xs-2">
+                            <button class="btn btn-info modify-class">修改</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-1 control-label">班级教师</label>
+                        <div class="col-xs-5">
+                            <input type="text" class="form-control" value="{{clazz.ownerDisplayName}}">
+                        </div>
+                        <div class="col-xs-2">
+                            <button class="btn btn-info exchange-class">转班</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-1 control-label">班级人数</label>
+                        <div class="col-xs-5">
+                            <input class="form-control" type="text" value="{{students.length}}">
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-    </div>
-    <div class="col-xs-9">
-        <!--<div class="panel panel-default shadow">-->
-            <!--<div class="panel-heading clearfix">-->
-                <!--<h4 class="panel-title">班级信息</h4>-->
-            <!--</div>-->
-            <!--<div class="panel-body">-->
-
-            <!--</div>-->
-        <!--</div>-->
         <div class="panel panel-default shadow">
             <div class="panel-heading clearfix">
                 <h4 class="panel-title">学生列表</h4>
@@ -54,15 +46,34 @@
                             class="fa fa-cloud-download m-r-xxs"></i>下载名单
                     </button>
                     <button class="btn btn-default btn-sm" id="add-student-btn">
-                        <i class="fa fa-plus-square m-r-xxs"></i>添加学生
+                        <i class="fa fa-plus m-r-xxs"></i>添加学生
                     </button>
                 </div>
             </div>
             {% if classes.length !== 0 %}
             <div class="panel-body">
+                <div class="batch-select">
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle btn btn-white" data-toggle="dropdown">
+                        批量操作
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="score-edit" href="javascript:void(0)">积分管理</a></li>
+                        <li><a href="#">批量删除</a></li>
+                    </ul>
+                </div>
+                </div>
                 <table id="students-list" class="display" width="100%" cellspacing="0">
                     <thead>
                     <tr>
+                        <th width="5%" class="text-center">
+                            <div class="checkbox c-checkbox">
+                                <label>
+                                    <input type="checkbox" id="SelectAll">
+                                    <span class="fa fa-check"></span></label>
+                            </div>
+                        </th>
                         <th>姓名</th>
                         <th>学号</th>
                         <th>密码</th>
@@ -74,15 +85,21 @@
                     <tbody>
                     {% for student in students %}
                     <tr id="{{student._id.toString()}}">
-                        <td>{{student.displayName}}</td>
+                        <td class="text-center">
+                            <div class="checkbox c-checkbox">
+                                <label>
+                                    <input type="checkbox">
+                                    <span class="fa fa-check"></span></label>
+                            </div>
+                        </td>
+                        <td><a href="/teacher/connections/{{student._id.toString()}}">{{student.displayName}}</a></td>
                         <td>{{student.username}}</td>
                         <td>{{student.password}}</td>
                         <td>{{student.gender}}</td>
                         <td>{{student.score}}</td>
                         <td>
-                            <a class="btn btn-info btn-xs btn-custom edit" >修改</a>
-                            <a class="btn btn-info btn-xs btn-custom score-edit" >积分</a>
-                            <a class="btn btn-pink btn-xs btn-custom delete">删除</a>
+                            <a class="f-info edit m-r-xs"><i class="fa fa-pencil"></i></a>
+                            <a class="f-pink delete"><i class="fa fa-trash-o"></i></a>
                         </td>
                     </tr>
                     {% endfor %}
@@ -94,7 +111,23 @@
     </div>
 </div>
 
-
+<!-- 转让班级 -->
+<div class="hides" id="exchange-class">
+    <form class="form-horizontal m-t-sm" id="exchange-form">
+        <div class="form-group">
+            <label class="col-xs-4 control-label">请输入老师工号：</label>
+            <div class="col-xs-7">
+                <input class="form-control" type="text" name="username" id="username">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-offset-4 col-xs-7">
+                <button type="button" class="btn btn-info layer-ok-btn">确定</button>
+                <button type="button" class="btn btn-white layer-close-btn">取消</button>
+            </div>
+        </div>
+    </form>
+</div>
 <!--新建修改学生-->
 <!--<div class="hides" id="student-dialog">-->
 <div class="modal fade" id="studentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
