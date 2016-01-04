@@ -28,14 +28,16 @@
                             <input class="form-control validate" type="text" id="scoreAward"
                                    name="scoreAward"
                                    placeholder="请填入分享本篇文章奖励的积分数"
-                                   data-rules="required"
+                                   data-rules="required|integer"
                                    data-display="奖励积分">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-1 control-label" for="category">文章类型</label>
                         <div class="col-xs-9">
-                            <select class="form-control validate" id="category" name="category">
+                            <select class="form-control validate" id="category" name="category"
+                                    data-rules="required"
+                                    data-display="文章分类">
                                 <option value="">所有分类</option>
                                 {% for category in categories %}
                                 <option value="{{category._id.toString()}}">{{category.name}}</option>

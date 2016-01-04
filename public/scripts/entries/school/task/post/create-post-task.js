@@ -1,4 +1,5 @@
 'use strict';
+require('../../../../common/formvalidator');
 var app = require('../../../../common/app');
 $(document).ready(function () {
     app();
@@ -20,11 +21,6 @@ $(document).ready(function () {
         }
     });
 
-    $('.frm_radio').click(function () {
-        $('#list-posts').find('li').removeClass('selected');
-        $(this).closest('li').addClass('selected');
-    });
-
-
+    $("#taskForm").validate({submit: true});
 });
 

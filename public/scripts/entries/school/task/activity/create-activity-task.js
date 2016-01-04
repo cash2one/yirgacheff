@@ -1,6 +1,7 @@
 'use strict';
 
 require('select2/dist/css/select2.css');
+require('select2-bootstrap-css/select2-bootstrap.css');
 require('select2');
 require('../../../../common/formvalidator');
 var app = require('../../../../common/app');
@@ -16,7 +17,8 @@ $(document).ready(function () {
     });
 
     $(".enrolls").select2({
-        tags: true
+        tags: [{text: "姓名", locked: true}],
+        maximumInputLength: 5
     });
     $("#activityForm").validate(function ($form, data) {
 

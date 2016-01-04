@@ -11,9 +11,12 @@ $(document).ready(function () {
     app();
 
     //富编辑器渲染
-    var editor = richEditor.render('postContent');
+    var editor = richEditor.render('content');
     //初始化微信编辑器
     weixinEditor({editor: editor});
+    editor.ready(function () {
+        editor.setContent($("#postContent").val());
+    });
 
     //本地上传
     upload({
@@ -26,7 +29,7 @@ $(document).ready(function () {
 
     //文章发布
     $("#postForm").validate(function ($form, data) {
-        if (!editor.getValue()) {
+        if (!editor.hasContents()) {
             return notify.danger("请填写文章内容")
         }
         $.post('/api/v1/posts', data).then(function (data) {
