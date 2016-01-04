@@ -7,7 +7,9 @@ const qiniu = require('../../../middleware/qiniu');
 module.exports = function (router) {
 
     router.get('/token', qiniu.token(), function*() {
-        this.body = this.token;
+        this.body = {
+            token: this.token
+        };
     });
 
     router.get('/imageToken', qiniu.imageToken, function*() {
