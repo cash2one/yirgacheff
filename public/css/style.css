@@ -612,6 +612,17 @@
     padding: 10px;
 }
 
+.wx-editor-template-content li{
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #d4d4d4;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.wx-editor-template-content li:hover{
+    border: 1px solid #2aabe6;
+}
+
 /*Õºø‚¡–±Ì*/
 .images-list{
     width: 430px;
