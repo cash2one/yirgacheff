@@ -2219,10 +2219,39 @@ transition:width 6s ease-in-out
 .pagination > .active > span:hover,
 .pagination > .active > a:focus,
 .pagination > .active > span:focus {
-    background-color: #5fbeaa;
-    border-color: #5fbeaa;
+    background-color: #2aabe6;
+    border-color: #2aabe6;
 }
 /*modal*/
 .modal-content{
     border-radius: 0;
+}
+
+/*tabs*/
+.nav-tabs {
+    border-bottom: 1px solid #dddddd;
+}
+.nav-tabs > li {
+    float: left;
+    margin-bottom: -1px;
+}
+.nav-tabs > li > a {
+    margin-right: 2px;
+    line-height: 1.42857143;
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 4px 4px 0 0;
+}
+.nav-tabs > li > a:hover {
+    border-bottom: 2px solid transparent;
+    background: none;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+    color: #555555;
+    background-color: #ffffff;
+    border: none;
+    border-bottom: 2px solid #2aabe6;
+    cursor: default;
 }

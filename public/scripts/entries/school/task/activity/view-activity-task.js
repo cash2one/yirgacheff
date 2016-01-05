@@ -1,13 +1,33 @@
 'use strict';
 
+require('../../../../common/formvalidator');
 var app = require('../../../../common/app');
-var notify = require('../../../../common/notify');
-var richEditor = require('../../../../common/richEditor');
 var datepicker = require('../../../../common/datetimepicker');
+var notify = require('../../../../common/notify');
+var upload = require('../../../../common/uploadifive');
+var richEditor = require('../../../../common/richEditor');
+var weixinEditor = require('../../../../common/weixinEditor');
 
 $(document).ready(function () {
     app();
-    richEditor.render('content');
+
+    //富编辑器渲染
+    var editor = richEditor.render('content');
+    //初始化微信编辑器
+    weixinEditor({editor: editor});
+    editor.ready(function () {
+        editor.setContent($("#taskContent").val());
+    });
+
+    //本地上传
+    upload({
+        file: 'imageUpload',
+        done: function (file) {
+            $('#indexImage').attr('src', file.path);
+            $('#coverImage').val(file.key);
+        }
+    });
+
     datepicker.timeRange({
         start: 'startTime',
         end: 'endTime'
@@ -106,6 +126,16 @@ $(document).ready(function () {
     //    return !parameter || parameter === '';
     //}
 
+    //提交
+    $("#activityForm").validate(function ($form, data) {
+        if (!editor.hasContents()) {
+            return notify.danger("请填写文章内容")
+        }
+        //$.post('/api/v1/tasks', data).then(function (data) {
+        //    self.location.href = "/school/tasks/" + data._id.toString();
+        //});
+    });
+
     //处理Tab
     $('.w-base-switch').find('li').each(function (index) {
         $(this).bind('click', function () {
@@ -130,6 +160,17 @@ $(document).ready(function () {
             }
 
         });
+    });
+
+    function tips() {
+        notify.warning("无法修改报名信息!")
+    }
+    //添加附加信息
+    $(".enrollarea").on("click",".enroll-field-btn", function() {
+        tips();
+    });
+    $(".enrollarea").on("click",".enroll-field-custom", function() {
+        tips();
     });
 
 });

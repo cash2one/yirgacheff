@@ -15,7 +15,7 @@ modal = """
                 <h4 class="modal-title" id="myModalLabel">文件上传</h4>
             </div>
             <div class="modal-body">
-                <div class="alert alert-warning">
+                <div class="alert-2 alert-warning-2">
                     <p>1.单张图片最大不要超过2M，不要发布涉嫌违法的图片。</p>
                     <p>2.在上传过程中，请不要刷新页面，以免导致上传图片失败。</p>
                     <p>3.如您对添加的图片不满意，可点击图片右侧的删除图标，将其从上传队列中删除。</p>
