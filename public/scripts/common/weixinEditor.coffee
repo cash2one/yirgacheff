@@ -18,10 +18,11 @@ module.exports = (opts)->
   $('.colorpick').on 'click', 'li', (event)->
     event.preventDefault()
     color = $(this).css('background-color');
+    $(this).closest(".dropdown").find(".bg-color").css({backgroundColor: color})
     event.stopPropagation();
     $(".itembox .wxqq-bg").css({backgroundColor: color})
     $(".itembox .wxqq-color").css({color: color});
-    border = ["borderTopColor", "borderRightColor", "borderBottomColor", "borderLeftColor"]
+    border = ["borderTopColor", "borderRightColor", "borderBottomColor", "borderLeftColor","borderColor"]
     clazz = [];
     $.each border, (position)-> clazz.push(".itembox .wxqq-" + border[position])
     $.each clazz, (name)-> $(clazz[name]).css(border[name], color)

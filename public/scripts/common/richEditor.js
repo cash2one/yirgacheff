@@ -11,7 +11,7 @@ module.exports.render = function (elemId) {
             'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
             'link', 'unlink', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|', 'insertvideo', 'horizontal', 'inserttable'
         ]],
-        initialFrameHeight: 650,
+        initialFrameHeight: 630,
         autoHeightEnabled: false,
         elementPathEnabled: false,
         autoFloatEnabled: false,

@@ -508,7 +508,6 @@
 
 /*发布文章*/
 .images-cover{
-    height: 318px;
     overflow: hidden;
 }
 /*微信编辑器*/
@@ -516,10 +515,7 @@
     width: 438px;
     height: 79px;
     background-color: #fafafa;
-    background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
-    background-repeat: repeat-x;
     border: 1px solid #d4d4d4;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
     *zoom: 1;
     border-radius: 4px 4px 0 0;
 }
@@ -531,13 +527,14 @@
     border: 1px solid #d4d4d4;
     border-top:none;
     border-radius: 0 0 4px 4px;
+    overflow: hidden;
 }
 .editor .wx-editor-template-list ul{
 }
 .editor .wx-editor-template-list .nav li{
     border: none;
     text-align: center;
-    margin:0 10px;
+    margin:0 8px;
 }
 .editor .wx-editor-template-list .nav li i{
     display: block;
@@ -634,10 +631,13 @@
     margin-right: 16px;
     margin-bottom: 16px;
     cursor: pointer;
+    padding: 0;
+    border: none;
     transition: all 0.3s ease 0s;
 }
 .images-list li:hover{
     opacity: 0.7;
+    border: none;
 }
 .images-list li img{
     width: 190px;
