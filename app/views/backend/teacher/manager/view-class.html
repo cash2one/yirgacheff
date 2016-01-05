@@ -7,34 +7,50 @@
             <div class="panel-heading clearfix">
                 <h4 class="panel-title">班级信息</h4>
                 <div class="panel-control">
+                    <a href="javascript:void(0)">
+                        <span class="f-s-16">
+                            <i class="fa fa-pencil m-r-xxs"></i>编辑
+                        </span>
+                    </a>
                 </div>
             </div>
             <div class="panel-body">
                 <form class="form-horizontal" id="class-info">
+                    <input type="hidden" id="classId" value="{{clazz._id.toString()}}">
+
                     <div class="form-group">
                         <label class="col-xs-1 control-label">班级名称</label>
                         <div class="col-xs-5">
-                            <input type="text" class="form-control" value="{{clazz.className}}">
+                            <p class="form-control-static">
+                                {{clazz.className}}
+                            </p>
                         </div>
-                        <div class="col-xs-2">
-                            <button class="btn btn-info modify-class">修改</button>
-                        </div>
+
                     </div>
+
                     <div class="form-group">
                         <label class="col-xs-1 control-label">班级教师</label>
                         <div class="col-xs-5">
-                            <input type="text" class="form-control" value="{{clazz.ownerDisplayName}}">
-                        </div>
-                        <div class="col-xs-2">
-                            <button class="btn btn-info exchange-class">转班</button>
+                            <p class="form-control-static">
+                                {{clazz.ownerDisplayName}}
+                            </p>
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label class="col-xs-1 control-label">班级人数</label>
-                        <div class="col-xs-5">
-                            <input class="form-control" type="text" value="{{students.length}}">
+                        <div class="col-xs-1">
+                            <p class="form-control-static">
+                                {{studentCount}}
+                            </p>
+                        </div>
+                        <div class="col-xs-2">
+                            <button class="btn btn-info btn-sm" id="download-btn"><i
+                                    class="fa fa-cloud-download m-r-xxs"></i>下载名单
+                            </button>
                         </div>
                     </div>
+
                 </form>
             </div>
         </div>
@@ -42,9 +58,7 @@
             <div class="panel-heading clearfix">
                 <h4 class="panel-title">学生列表</h4>
                 <div class="panel-control">
-                    <button class="btn btn-warning btn-sm" id="download-btn"><i
-                            class="fa fa-cloud-download m-r-xxs"></i>下载名单
-                    </button>
+
                     <button class="btn btn-default btn-sm" id="add-student-btn">
                         <i class="fa fa-plus m-r-xxs"></i>添加学生
                     </button>
@@ -53,16 +67,16 @@
             {% if classes.length !== 0 %}
             <div class="panel-body">
                 <div class="batch-select">
-                <div class="dropdown">
-                    <a href="#" class="dropdown-toggle btn btn-white" data-toggle="dropdown">
-                        批量操作
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="score-edit" href="javascript:void(0)">积分管理</a></li>
-                        <li><a href="#">批量删除</a></li>
-                    </ul>
-                </div>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle btn btn-white" data-toggle="dropdown">
+                            批量操作
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a id="batchScore" href="javascript:void(0)">积分管理</a></li>
+                            <li><a id="batchDelete" href="javascript:void(0)">批量删除</a></li>
+                        </ul>
+                    </div>
                 </div>
                 <table id="students-list" class="display" width="100%" cellspacing="0">
                     <thead>
@@ -83,26 +97,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for student in students %}
-                    <tr id="{{student._id.toString()}}">
-                        <td class="text-center">
-                            <div class="checkbox c-checkbox">
-                                <label>
-                                    <input type="checkbox">
-                                    <span class="fa fa-check"></span></label>
-                            </div>
-                        </td>
-                        <td><a href="/teacher/connections/{{student._id.toString()}}">{{student.displayName}}</a></td>
-                        <td>{{student.username}}</td>
-                        <td>{{student.password}}</td>
-                        <td>{{student.gender}}</td>
-                        <td>{{student.score}}</td>
-                        <td>
-                            <a class="f-info edit m-r-xs"><i class="fa fa-pencil"></i></a>
-                            <a class="f-pink delete"><i class="fa fa-trash-o"></i></a>
-                        </td>
-                    </tr>
-                    {% endfor %}
+
                     </tbody>
                 </table>
             </div>
@@ -128,15 +123,15 @@
         </div>
     </form>
 </div>
+
 <!--新建修改学生-->
-<!--<div class="hides" id="student-dialog">-->
 <div class="modal fade" id="studentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">学生信息</h4>
+                <h4 class="modal-title" id="myModalLabel">学生基本信息</h4>
             </div>
             <div class="modal-body">
                 <ul class="nav nav-tabs">
@@ -148,7 +143,6 @@
                 <div class="tab-content">
                     <div class="tab-pane fade in active" id="new-built">
                         <form class="form-horizontal m-t-sm" id="studentForm" name="studentForm">
-                            <input type="hidden" name="_id" id="studentId">
                             <div class="form-group">
                                 <label for="displayName" class="col-xs-2 control-label">姓名：</label>
                                 <div class="col-xs-9">
@@ -190,24 +184,6 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="schoolName" class="col-xs-2 control-label">学校：</label>
-                                <div class="col-xs-9">
-                                    <input class="form-control" type="text" name="onSchool" id="schoolName">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="grade" class="col-xs-2 control-label">年级：</label>
-                                <div class="col-xs-9">
-                                    <input class="form-control" type="text" name="grade" id="grade">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="remark" class="col-xs-2 control-label">备注：</label>
-                                <div class="col-xs-9">
-                                    <input class="form-control" type="text" name="remark" id="remark">
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <div class="col-xs-offset-2 col-xs-9">
                                     <button type="submit" class="btn btn-info " id="save-student">确定</button>
                                     <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
@@ -218,11 +194,17 @@
                     <div class="tab-pane fade" id="number">
                         <form class="form-horizontal m-t-sm" id="joinClassForm" name="joinClassForm">
                             <div class="form-group">
-                                <label for="username" class="col-xs-2 control-label">学号：</label>
+                                <label for="selectUsername" class="col-xs-2 control-label">学号：</label>
                                 <div class="col-xs-9">
-                                    <input class="form-control validate" type="text" name="username" id="username"
+                                    <input type="text" class="form-control validate"
+                                           name="username"
+                                           id="selectUsername"
+                                           data-provide="typeahead"
+
+                                           autocomplete="off"
                                            data-rules="required"
-                                           data-display="学号">
+                                           data-display="学号"/>
+
                                 </div>
                             </div>
                             <div class="form-group">
@@ -238,38 +220,69 @@
         </div>
     </div>
 </div>
-<!--</div>-->
 
-<!--按学号添加学生-->
-<!--<div class="modal fade" id="joinClassModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">-->
-    <!--<div class="modal-dialog" role="document">-->
-        <!--<div class="modal-content">-->
-            <!--<div class="modal-header">-->
-                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span-->
-                        <!--aria-hidden="true">&times;</span></button>-->
-                <!--<h4 class="modal-title">学生信息</h4>-->
-            <!--</div>-->
-            <!--<div class="modal-body">-->
-                <!--<form class="form-horizontal m-t-sm" id="joinClassForm" name="joinClassForm">-->
-                    <!--<div class="form-group">-->
-                        <!--<label for="username" class="col-xs-3 control-label">请输入学号：</label>-->
-                        <!--<div class="col-xs-8">-->
-                            <!--<input class="form-control validate" type="text" name="username" id="username"-->
-                                   <!--data-rules="required"-->
-                                   <!--data-display="学号">-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<div class="form-group">-->
-                        <!--<div class="col-xs-offset-3 col-xs-8">-->
-                            <!--<button type="submit" class="btn btn-info" id="add-student">确定</button>-->
-                            <!--<button type="button" class="btn btn-white" data-dismiss="modal">取消</button>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</form>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
+<div class="modal fade" id="modifyStudentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">学生基本信息</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal m-t-sm" id="modifyStudentForm" name="modifyStudentForm">
+                    <input type="hidden" name="_id" id="studentId">
+                    <div class="form-group">
+                        <label for="displayNameId" class="col-xs-2 control-label">姓名：</label>
+                        <div class="col-xs-9">
+                            <input class="form-control validate" type="text" name="displayName"
+                                   data-display="姓名"
+                                   id="displayNameId"
+                                   data-rules="required">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="genderId" class="col-xs-2 control-label">性别：</label>
+                        <div class="col-xs-9">
+                            <select class="form-control validate" name="gender"
+                                    id="genderId"
+                                    data-display="性别"
+                                    data-rules="required">
+                                <option value="男">男</option>
+                                <option value="女">女</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="passwordId" class="col-xs-2 control-label">密码：</label>
+                        <div class="col-xs-9">
+                            <input class="form-control validate" type="text" name="password"
+                                   id="passwordId"
+                                   data-display="密码"
+                                   data-rules="required">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneId" class="col-xs-2 control-label">电话：</label>
+                        <div class="col-xs-9">
+                            <input class="form-control validate"
+                                   type="text"
+                                   name="phone"
+                                   data-display="电话"
+                                   id="phoneId">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-offset-2 col-xs-9">
+                            <button type="submit" class="btn btn-info">确定</button>
+                            <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!--积分操作-->
 <div class="modal fade" id="scoreModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -278,13 +291,12 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">学生信息</h4>
+                <h4 class="modal-title">积分信息</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal m-t-sm" id="scoreForm" name="scoreForm">
-                    <input type="hidden" name="studentId">
                     <div class="form-group">
-                        <label for="scoreOpt" class="col-xs-3 control-label">请输入操作：</label>
+                        <label for="scoreOpt" class="col-xs-3 control-label">操作：</label>
                         <div class="col-xs-8">
                             <select class="form-control" name="operation" id="scoreOpt">
                                 <option value="0">增加</option>
@@ -293,12 +305,19 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="scoreValue" class="col-xs-3 control-label">请输入积分：</label>
+                        <label for="scoreValue" class="col-xs-3 control-label">积分：</label>
                         <div class="col-xs-8">
-                            <input class="form-control validate" type="text" name="value"
+                            <input class="form-control validate" type="text" name="score"
                                    id="scoreValue"
                                    data-rules="required|integer"
                                    data-display="积分">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="remark" class="col-xs-3 control-label">备注：</label>
+                        <div class="col-xs-8">
+                            <textarea class="form-control" name="remark" id="remark" cols="20" rows="10"
+                                      placeholder="填写积分操作理由"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
@@ -317,6 +336,6 @@
 {% endblock %}
 {% block javascript %}
 
-<script src="/js/entries/teacher/manager/list-students.js"></script>
+<script src="/js/entries/teacher/manager/view-class.js"></script>
 
 {% endblock %}

@@ -266,25 +266,6 @@ module.exports = {
         }
         _.assign(student, data);
         return yield student.save();
-    }),
-
-    scoreAward: co.wrap(function*(studentId, data) {
-        let opt = parseInt(data.operation);
-        let value = parseInt(data.value);
-        if (_.isNaN(opt) || _.isNaN(value)) {
-            throw createError(400, '非法参数');
-        }
-        value = opt === 0 ? value : (0 - value);
-        let student = yield Student.findById(studentId, 'score').exec();
-        if (!student) {
-            throw createError(400, '学生不存在');
-        }
-        let score = student.score + value;
-        if (score < 0) {
-            score = 0;
-        }
-        student.score = score;
-        return yield student.save();
     })
 
 };

@@ -1,25 +1,21 @@
 'use strict';
 
 var app = require('../../../common/app');
-var notify = require('../../../common/notify');
+var upload = require('../../../common/uploadifive');
 var _ = require('underscore');
 
 $(document).ready(function () {
+    app = app();
     var exerciseTemplate = _.template($('#exerciseTemplate').html());
     var optionTemplate = _.template($('#optionTemplate').html());
     var $exerciseList = $('#exerciseList');
-    var exercises = window.exercises;
-    if (exercises) {
-        $('#exerciseList-area').html(exerciseBuilder.buildExercisesWithData(exercises));
-    }
+    //var exercises = window.exercises;
+    //if (exercises) {
+    //    $('#exerciseList-area').html(exerciseBuilder.buildExercisesWithData(exercises));
+    //}
     //班级选择
     var classes = $('#level_and_clazzs').find('ul li');
-    if (classes.length == 0) {
-        confirm.open('forward-to-classes', function (index) {
-            layer.close(index);
-            self.location.href = '/teacher/classes';
-        });
-    }
+
     classes.bind('click', function () {
         var clazz = 'active';
         var mark = $(this).hasClass(clazz);
@@ -50,7 +46,7 @@ $(document).ready(function () {
 
     //添加题目
     $('.btn-add-exercise').click(function () {
-        var exerciseType = parseInt($(this).attr('data-id'));
+        var exerciseType = parseInt($(this).attr('data-type'));
         $exerciseList.append(exerciseTemplate({type: exerciseType}));
         refreshCount();
     });
@@ -58,15 +54,16 @@ $(document).ready(function () {
     $exerciseList.on('click', '.addoption', function () {
         var inputCount = $(this).closest('.row').children('.new-option').length;
         if (inputCount > 1) {
+            app.notify.warning("只能4个选项哦");
             return;
         }
         var optionNum = 'C';
         if (inputCount === 1) {
             optionNum = 'D'
         }
-        var option = optionTemplate({type: $(this).attr('data-id'), option: optionNum});
+        var option = optionTemplate({type: $(this).attr('data-type'), option: optionNum});
         $(this).parent().before(option);
-        $(this).closest('form').find('.dropdown-menu').append('<li class="new-li">' + '<a class="drop-option answer">' + optionNum + '</a>' + '</li>');
+        $(this).closest('.quiz-item').find('.dropdown-menu').append('<li class="new-li">' + '<a class="drop-option answer">' + optionNum + '</a>' + '</li>');
     });
     //删除选项
     $exerciseList.on('click', '.del-option', function () {

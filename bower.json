@@ -15,7 +15,6 @@
   ],
   "dependencies": {
     "list.js": "~1.1.1",
-    "list.pagination.js": "~0.1.1",
-    "simditor": "~2.3.6"
+    "list.pagination.js": "~0.1.1"
   }
 }

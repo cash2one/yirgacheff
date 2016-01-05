@@ -1,7 +1,6 @@
 'use strict';
 
 var app = require('../../common/app');
-var $http = require('../../common/restfulClient');
 var _ = require('underscore');
 
 
@@ -19,7 +18,7 @@ $(document).ready(function () {
         if (rankCache[classId]) {
             rankList.html(rankTemplate({students: rankCache[classId]}));
         } else {
-            $http.get('/api/v1/classes/' + classId + '/students', function (data) {
+            $.get('/api/v1/classes/' + classId + '/students').then(function (data) {
                 var students = _.sortBy(data, function (obj) {
                     return 0 - obj.score;
                 });

@@ -71,11 +71,13 @@
     "simditor-video": "0.0.2",
     "slimscroll": "^0.9.1",
     "swig": "~1.4.2",
+    "type-ahead": "^2.1.0",
     "ueditor-nodejs": "^0.1.2",
     "underscore": "^1.8.3",
     "uuid": "^2.0.1",
     "validate-js": "^2.0.0",
-    "validator": "^4.4.0"
+    "validator": "^4.4.0",
+    "yaqrcode": "^0.2.1"
   },
   "devDependencies": {
     "autoprefixer-loader": "^3.1.0",

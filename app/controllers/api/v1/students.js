@@ -47,8 +47,12 @@ module.exports = function (router) {
 
     router.put('/:id/score', function*() {
         let studentId = this.params.id;
-        this.body = yield service.students.scoreAward(studentId, this.request.body);
+        this.body = yield service.score.scoreAward(studentId, this.request.body, this.user);
+    });
 
+    router.put('/score', function*() {
+        let studentIds = this.request.body.students || [];
+        this.body = yield service.score.scoreAward(studentIds, this.request.body, this.user);
     });
 
 

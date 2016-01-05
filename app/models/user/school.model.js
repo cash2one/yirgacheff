@@ -83,8 +83,13 @@ var schoolSchema = new Schema({
         required: '规模不能为空'
     },
 
-    //二维码url
+    //二维码url ,公共服务号二维码URL
     qrcode: {
+        type: String
+    },
+
+    //学校自己公共号二维码,为图片地址
+    privateQrcode: {
         type: String
     },
 
