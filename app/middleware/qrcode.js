@@ -3,43 +3,37 @@
  */
 
 'use strict';
-
 const request = require('request');
 const mongoose = require('mongoose');
 const co = require('co');
 const apiUrl = require('../../config/config').apiUrl;
-const redis = require('../../db/redis');
-
+const Qrcode = require('yaqrcode');
 const School = mongoose.model('School');
 
 module.exports = function (opts) {
     return function* (next) {
+        let size = (opts && opts.size) || this.query.size;
+        if (size) {
+            size = parseInt(size);
+        }
+        if (!size || isNaN(size)) {
+            size = 300;
+        }
+        size = Math.min(size, 600);
         if (!this.user) {
             this.throw(400, 'not login');
         }
-        let schoolId = this.user.schoolId;
-        let key = 'qrcode:' + schoolId;
-        let qrcode = yield redis.get(key);
-        if (qrcode) {
-            this.state.qrcode = qrcode;
-            return yield next;
-        }
-        let school = yield School.findById(schoolId)
+        let school = yield School.findById(this.user.schoolId)
             .select('qrcode username')
             .lean().exec();
-        if (!school) {
-            this.throw(400, '学校不存在');
+        let qrcode = school.qrcode;
+        if (!qrcode) {
+            qrcode = yield generateQrcode(school);
+            yield School.update({_id: school._id}, {$set: {qrcode: qrcode}}).exec();
         }
-        if (school.qrcode) {
-            this.state.qrcode = school.qrcode;
-            return yield next;
-        }
-        qrcode = yield generateQrcode(school);
-        yield School.update({_id: this.school._id}, {$set: {qrcode: qrcode}}).exec();
-        this.qrcode = qrcode;
+        this.qrcode = Qrcode(qrcode, {size: size});
         yield next;
     };
-
 };
 
 /**

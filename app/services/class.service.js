@@ -147,11 +147,14 @@ module.exports = {
 
     }),
 
-    deleteStudentById: co.wrap(function*(classId, studentId) {
-        let student = yield Student.findById(studentId).exec();
-        student.classes.pull(classId);
-        return yield student.save();
-
+    deleteStudentByIds: co.wrap(function*(classId, studentIds) {
+        if (!_.isArray(studentIds)) {
+            studentIds = [studentIds]
+        }
+        yield Student.where('_id').in(studentIds).update({},
+            {$pull: {classes: classId}},
+            {multi: true})
+            .exec();
     }),
 
     addStudent: co.wrap(function*(classId, data) {
@@ -167,7 +170,7 @@ module.exports = {
             username: username,
             schoolId: clazz.schoolId,
             state: 0
-        }).select('classes').exec();
+        }).exec();
         if (!student) {
             throw createError(400, '学生不存在');
         }

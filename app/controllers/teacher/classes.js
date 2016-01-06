@@ -10,10 +10,15 @@ module.exports = function (router) {
         yield this.render('backend/teacher/manager/list-classes');
     });
 
-    router.get('/:id',function*(){
-        this.state.clazz = yield service.classes.findById(this.params.id,true);
-        this.state.students = yield service.students.findByClass(this.params.id);
-        yield this.render('backend/teacher/manager/list-students');
+    router.get('/:id', function*() {
+        let classId = this.params.id;
+        this.state.clazz = yield service.classes.findById(classId, true);
+        this.state.studentCount = yield service.students.countByClass(classId);
+        yield this.render('backend/teacher/manager/view-class');
+    });
+
+    router.get('/:id/nameList', function*() {
+
     });
 
     return router;

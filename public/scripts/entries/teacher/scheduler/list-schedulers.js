@@ -3,21 +3,22 @@
  */
 'use strict';
 var moment = require('moment');
+
 require('fullcalendar');
 require('fullcalendar/dist/lang/zh-cn');
-var $http = require('../../../common/restfulClient');
+require('../../../common/formvalidator');
 var app = require('../../../common/app');
-var layer = require('../../../common/layerWrapper');
 var datepicker = require('../../../common/datetimepicker');
 
 $(document).ready(function () {
-    app();
+    app = app();
     var calendar = $('#calendar');
-    var scheduleForm = $('#schedule-form');
+    var $scheduleForm = $('#scheduleForm');
     datepicker.timeRange({
         start: "start",
         end: "end"
     });
+    var event;
 
     calendar.fullCalendar({
         editable: true,
@@ -33,71 +34,67 @@ $(document).ready(function () {
             cache: true
         },
         eventClick: function (calEvent, jsEvent, view) {
-            scheduleForm.renderForm({
+            $scheduleForm.renderForm({
                 title: calEvent.title,
                 start: calEvent.start.format('YYYY-MM-DD HH:mm'),
                 end: calEvent.end.format('YYYY-MM-DD HH:mm')
             });
             $('#scheduleId').val(calEvent._id);
             $('.del-btn').show();
-            layer.ajaxForm({
-                title: '日程修改',
-                container: 'add-scheduler',
-                form: scheduleForm,
-                ajax: {
-                    type: 'PUT',
-                    url: '/api/v1/schedules/' + calEvent._id,
-                    success: function (data, done) {
-                        calEvent.title = data.title;
-                        calEvent.start = moment(data.start);
-                        calEvent.end = moment(data.end);
-                        calendar.fullCalendar('updateEvent', calEvent);
-                        done();
-                    }
-                },
-                cancelCallback: function () {
-                    calendar.fullCalendar('unselect');
-                }
-            });
+            $("#scheduleModal").modal("show");
+            event = calEvent;
         },
         lazyFetching: true,
         timeFormat: '',
         timezone: 'local',
         selectable: true,
         select: function (start, end) {
-            scheduleForm[0].reset();
+            $scheduleForm[0].reset();
             $('#start').val(start.hour(8).format('YYYY-MM-DD HH:mm'));
             $('#end').val(start.hour(9).format('YYYY-MM-DD HH:mm'));
             $('.del-btn').hide();
+            $("#scheduleModal").modal("show");
+        }
+    });
 
-            layer.ajaxForm({
-                title: '新建日程',
-                container: 'add-scheduler',
-                form: scheduleForm,
-                ajax: {
-                    type: 'POST',
-                    url: '/api/v1/schedules',
-                    success: function (data, done) {
-                        calendar.fullCalendar('renderEvent', data, false);
-                        done();
-                    }
-                },
-                cancelCallback: function () {
-                    calendar.fullCalendar('unselect');
-                }
+    $scheduleForm.validate(function ($form, data) {
+        var isModify = !!data.scheduleId;
+        if (isModify) {
+            $.ajax({
+                url: '/api/v1/schedules/' + data.scheduleId,
+                type: 'PUT',
+                data: data
+            }).then(function (data) {
+                event.title = data.title;
+                event.start = data.start;
+                event.end = data.end;
+                calendar.fullCalendar('updateEvent', event);
+                app.notify.success("修改日程成功");
+                $("#scheduleModal").modal("hide");
+            });
+        } else {
+            $.post('/api/v1/schedules', data).then(function (data) {
+                calendar.fullCalendar('renderEvent', data, false);
+                app.notify.success("添加日程成功");
+                $("#scheduleModal").modal("hide");
             });
         }
     });
+
+
     $('.del-btn').click(function () {
-        layer.confirm('日程删除后无法恢复，确认要删除该日程吗？',
-            function () {
-                var scheduleId = $('#scheduleId').val();
-                var url = '/api/v1/schedules/' + scheduleId;
-                $http.del(url, function () {
-                    calendar.fullCalendar('removeEvents', [scheduleId]);
-                    layer.closeAll();
-                });
+        if (confirm("确认删除日程?")) {
+            var scheduleId = $('#scheduleId').val();
+            var url = '/api/v1/schedules/' + scheduleId;
+            $.ajax({
+                url: url,
+                method: 'DELETE'
+            }).then(function () {
+                app.notify.success("删除日程成功");
+                $("#scheduleModal").modal("hide");
+                calendar.fullCalendar('removeEvents', [scheduleId]);
             });
+        }
     });
 
 });

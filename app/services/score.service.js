@@ -10,6 +10,8 @@ const createError = require('http-errors');
 const queryBuilder = require('../functions/queryBuilder');
 const ScoreExchangeInstruction = mongoose.model('ScoreExchangeInstruction');
 const ScoreExchange = mongoose.model('ScoreExchange');
+const ScoreLog = mongoose.model('ScoreLog');
+const Student = mongoose.model('Student');
 
 module.exports = {
 
@@ -77,7 +79,39 @@ module.exports = {
             throw createError(400, '商品不存在');
         }
         return yield exchange.remove();
+    }),
+
+    /**
+     * 积分操作
+     */
+    scoreAward: co.wrap(function*(studentIds, data, operator) {
+        console.log(data);
+        if (!_.isArray(studentIds)) {
+            studentIds = [studentIds];
+        }
+        let remark = data.remark;
+        let opt = parseInt(data.operation);
+        let value = parseInt(data.score);
+        if (_.isNaN(opt) || _.isNaN(value)) {
+            throw createError(400, '非法参数');
+        }
+        value = opt === 0 ? value : (0 - value);
+        yield Student.where('_id').in(studentIds).update({}, {
+            $inc: {score: value}
+        }, {multi: true}).exec();
+
+        let logs = _.map(studentIds, student=> {
+            return {
+                student: student,
+                operator: operator._id,
+                value: data.score,
+                operation: opt,
+                remark: remark,
+                schoolId: operator.schoolId
+            }
+        });
+        yield ScoreLog.create(logs);
+        return true;
     })
 
-}
-;
+};

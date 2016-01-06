@@ -11,7 +11,7 @@ var mongoose = require('mongoose'),
 var scoreTraceSchema = new Schema({
     // 操作
     operation: {
-        type: String,
+        type: Number,
         required: '操作不能为空'
     },
     // 分值
@@ -19,23 +19,28 @@ var scoreTraceSchema = new Schema({
         type: Number,
         required: '分值不能为空'
     },
-    reason: {
+
+    remark: {
         type: String
     },
+
     student: {
         type: ObjectId,
         ref: 'Student',
         index: true,
         required: true
     },
+
     operator: {
         type: ObjectId,
         required: true
     },
+
     createdTime: {
         type: Date,
         default: Date.now
     },
+
     schoolId: {
         type: ObjectId,
         index: true,
@@ -45,6 +50,6 @@ var scoreTraceSchema = new Schema({
 });
 
 module.exports = {
-    ScoreTrace: mongoose.model('ScoreTrace', scoreTraceSchema)
+    ScoreTrace: mongoose.model('ScoreLog', scoreTraceSchema)
 };
 

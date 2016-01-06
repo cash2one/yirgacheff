@@ -76,7 +76,13 @@ module.exports = function (router) {
     router.delete('/:classId/students/:studentId', function*() {
         let classId = this.params.classId;
         let studentId = this.params.studentId;
-        this.body = yield service.classes.deleteStudentById(classId, studentId);
+        this.body = yield service.classes.deleteStudentByIds(classId, studentId);
+    });
+
+    router.delete('/:classId/students', function*() {
+        let classId = this.params.classId;
+        let studentIds = this.request.body.students;
+        this.body = yield service.classes.deleteStudentByIds(classId, studentIds);
     });
 
     router.post('/:classId/students', function*() {
