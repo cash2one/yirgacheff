@@ -118,7 +118,11 @@
                     <div class="form-group">
                         <div class="col-xs-4 m-t-md col-xs-offset-4">
                             <button type="submit" class="btn btn-default btn-block">
-                                {% if update %} 修改 {% else %} 发布 {% endif %}
+                                {% if post._id.toString().length > 0 %}
+                                修改
+                                {% else %}
+                                发布
+                                {% endif %}
                             </button>
                         </div>
                     </div>

@@ -6,6 +6,7 @@ var notify = require('../../../common/notify');
 $(document).ready(function () {
     app();
 
+    //暂无文章
     var item = $("#list-posts").find("li").length;
     if(item == 0){
         $(".post-item").find('#tips').removeClass("hides");
