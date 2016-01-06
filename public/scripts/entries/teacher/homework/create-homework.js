@@ -15,8 +15,8 @@ $(document).ready(function () {
     var vm = new Vue({
         el: '#exerciseList',
         data: {quizzes: []},
-        methods: {
-            delete: function (index) {
+        events: {
+            'delete-quiz': function (index) {
                 this.quizzes.splice(index, 1);
             }
         }

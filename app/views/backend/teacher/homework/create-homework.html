@@ -84,10 +84,8 @@
                 <div class="row m-t-lg">
                     <div id="exerciseList">
                         <quiz v-for="quiz in quizzes"
-                              v-on:delete="delete"
                         :index= "$index"
-                        :quiz= "quiz"
-                        >
+                        :quiz= "quiz">
                         </quiz>
                     </div>
                     <div class="col-xs-offset-1 col-xs-10">

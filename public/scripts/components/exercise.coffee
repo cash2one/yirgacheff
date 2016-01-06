@@ -39,7 +39,7 @@ QuizComponent = Vue.extend(
 
   methods:
     delete: ()->
-      this.$dispatch('delete', this.index)
+      this.$dispatch('delete-quiz', this.index)
 )
 
 Vue.component('quiz', QuizComponent)

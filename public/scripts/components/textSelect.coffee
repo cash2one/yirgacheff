@@ -21,10 +21,10 @@ OptionComponent = Vue.extend(
 
   methods:
     handleDelete: ()->
-      this.$dispatch('delete', this.index)
+      this.$dispatch('delete-option', this.index)
   computed:
     canDelete: ()->
-      true
+      this.$parent.choices.length > 2
     title: ()->
       OPTIONS[this.index]
 )
@@ -44,7 +44,8 @@ TextSelectComponent = Vue.extend(
                 </button>
                 <span class="caret answerIcon"></span>
                 <ul class="dropdown-menu" role="menu">
-                    <li v-for="option in choices" v-on:click='chooseAnswer($index)'>
+                    <li v-for="option in choices"
+                        v-on:click='chooseAnswer($index)'>
                         {{getTitle($index)}}
                     </li>
                 </ul>
@@ -54,7 +55,7 @@ TextSelectComponent = Vue.extend(
       <quiz-option v-for='option in choices'
                    :index='$index'
                    :option='option'
-                   v-on:delete='deleteOption'>
+                   v-on:delete-option='deleteOption'>
       </quiz-option>
 
       <div class="col-xs-12 m-b-md">
@@ -78,14 +79,9 @@ TextSelectComponent = Vue.extend(
   components:
     'quiz-option': OptionComponent
 
-  events:
-    validate: ()->
-
-
   methods:
     addOption: ()->
       len = this.choices.length
-      console.log this.choices
       if(len >= 4)
         return
       this.choices.push({
@@ -93,6 +89,7 @@ TextSelectComponent = Vue.extend(
       })
 
     deleteOption: (index)->
+      console.log 'delete option'
       this.choices.splice(index - 1, 1)
 
     chooseAnswer: (index)->
