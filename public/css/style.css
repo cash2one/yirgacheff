@@ -548,6 +548,17 @@
 .images-cover{
     overflow: hidden;
 }
+/*文章列表*/
+.post-item .post-item-title p{
+    display: inline-block;
+}
+.post-item li{
+    border: 1px solid #dfdfdf;
+    margin-bottom: 20px;
+}
+.post-item li:hover{
+    border: 1px solid #2aabe6;
+}
 /*微信编辑器*/
 .editor .wx-editor-template-list{
     width: 438px;

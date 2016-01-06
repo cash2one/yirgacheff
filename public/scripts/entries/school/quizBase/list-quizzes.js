@@ -52,8 +52,8 @@ $(document).ready(function () {
             {
                 'targets': [5],
                 'render': function (data, type, row, meta) {
-                    return '<a class="btn btn-info btn-xs btn-custom detail" href=" /school/quizzes/' + data + '">查看</a> ' +
-                        '<a class="btn btn-pink btn-xs btn-custom delete-btn" id=' + data + '>删除</a>';
+                    return '<a class="f-info m-r-xs detail" href=" /school/quizzes/' + data + '"><i class="fa fa-file-text-o"></i></a> ' +
+                        '<a class="f-pink delete-btn" id=' + data + '><i class="fa fa-trash-o"></i></a>';
                 }
             }
         ]

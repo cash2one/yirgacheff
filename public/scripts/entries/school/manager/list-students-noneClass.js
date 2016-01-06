@@ -27,8 +27,8 @@ $(document).ready(function () {
             {'data': 'grade'},
             {
                 'data': null,
-                'defaultContent': '<a class="btn btn-info btn-xs btn-custom detail">查看</a>&nbsp;&nbsp;' +
-                '<a class="btn btn-pink btn-xs btn-custom delete">删除</a>'
+                'defaultContent': '<a class="f-info m-r-xs detail"><i class="fa fa-file-text-o"></i></a>' +
+                '<a class="f-pink delete"><i class="fa fa-trash-o"></i></a>'
             }
         ]
     });
