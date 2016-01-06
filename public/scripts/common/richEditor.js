@@ -11,11 +11,10 @@ module.exports.render = function (elemId) {
             'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
             'link', 'unlink', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|', 'insertvideo', 'horizontal', 'inserttable'
         ]],
-        initialFrameHeight: 650,
+        initialFrameHeight: 600,
         autoHeightEnabled: false,
         elementPathEnabled: false,
         autoFloatEnabled: false,
         textarea: 'content'
     });
 };
-

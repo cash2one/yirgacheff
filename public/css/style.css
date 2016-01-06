@@ -506,9 +506,46 @@
     margin-top: -5px;
 }
 
+.enrollarea a:focus{
+    text-decoration: none;
+}
+.enrollarea .delete{
+    cursor: pointer;
+}
+.enrollarea .delete:hover{
+    color: #2ab27b;
+}
+.enrollarea .add-column{
+    width: 254px;
+    height: 300px;
+}
+.enrollarea .add-column ul{
+    width: 240px;
+}
+.enrollarea .add-column ul li{
+    float: left;
+    text-align: left;
+    margin-top: 10px;
+    margin-right: 12px;
+}
+.enrollarea .add-column ul li button {
+    width: 100px;
+    text-align: left;
+    height: 35px;
+    color: #2ab27b;
+    background-color: #fff;
+    outline: none;
+    border: 1px dashed #2ab27b;
+}
+.enrollarea .add-column ul li button:hover {
+    background-color: #2ab27b;
+    border: 1px solid #2ab27b;
+    color: #fff;
+    transition: all 0.2s linear;
+}
+
 /*发布文章*/
 .images-cover{
-    height: 318px;
     overflow: hidden;
 }
 /*微信编辑器*/
@@ -516,28 +553,26 @@
     width: 438px;
     height: 79px;
     background-color: #fafafa;
-    background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
-    background-repeat: repeat-x;
     border: 1px solid #d4d4d4;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
     *zoom: 1;
     border-radius: 4px 4px 0 0;
 }
 
 .editor .wx-editor-template-content{
     width: 438px;
-    height: 572px;
+    height: 544px;
     padding: 20px;
     border: 1px solid #d4d4d4;
     border-top:none;
     border-radius: 0 0 4px 4px;
+    overflow: hidden;
 }
 .editor .wx-editor-template-list ul{
 }
 .editor .wx-editor-template-list .nav li{
     border: none;
     text-align: center;
-    margin:0 10px;
+    margin:0 8px;
 }
 .editor .wx-editor-template-list .nav li i{
     display: block;
@@ -612,6 +647,17 @@
     padding: 10px;
 }
 
+.wx-editor-template-content li{
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #d4d4d4;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.wx-editor-template-content li:hover{
+    border: 1px solid #2aabe6;
+}
+
 /*图库列表*/
 .images-list{
     width: 430px;
@@ -623,10 +669,13 @@
     margin-right: 16px;
     margin-bottom: 16px;
     cursor: pointer;
+    padding: 0;
+    border: none;
     transition: all 0.3s ease 0s;
 }
 .images-list li:hover{
     opacity: 0.7;
+    border: none;
 }
 .images-list li img{
     width: 190px;
@@ -705,9 +754,9 @@
 }
 
 .list-registration .name{
-    margin-left: 5px;
+    margin-left: 18px;
     float: left;
-    padding-top: 19px;
+    padding-top: 20px;
     font-size: 15px;
 }
 

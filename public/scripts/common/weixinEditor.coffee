@@ -18,13 +18,20 @@ module.exports = (opts)->
   $('.colorpick').on 'click', 'li', (event)->
     event.preventDefault()
     color = $(this).css('background-color');
+    $(this).closest(".dropdown").find(".bg-color").css({backgroundColor: color})
     event.stopPropagation();
-    alert "选择颜色" + color
+    $(".itembox .wxqq-bg").css({backgroundColor: color})
+    $(".itembox .wxqq-color").css({color: color});
+    border = ["borderTopColor", "borderRightColor", "borderBottomColor", "borderLeftColor","borderColor"]
+    clazz = [];
+    $.each border, (position)-> clazz.push(".itembox .wxqq-" + border[position])
+    $.each clazz, (name)-> $(clazz[name]).css(border[name], color)
 
   #绑定组件点击事件
-  $('.wx-editor-template-content').on 'click', '.item', ()->
+  $('.wx-editor-template-content').on 'click', 'li', ()->
     content = $(this).html()
-    editor.execCommand('inserthtml', content);
+    editor.execCommand('insertHtml',content);
+
 
   $.get '/api/v1/medias', (images)->
     templates = images.map template
