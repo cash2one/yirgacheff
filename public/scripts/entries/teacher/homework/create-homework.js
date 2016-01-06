@@ -62,6 +62,7 @@ $(document).ready(function () {
             optionNum = 'D'
         }
         var option = optionTemplate({type: $(this).attr('data-type'), option: optionNum});
+        console.log(option)
         $(this).parent().before(option);
         $(this).closest('.quiz-item').find('.dropdown-menu').append('<li class="new-li">' + '<a class="drop-option answer">' + optionNum + '</a>' + '</li>');
     });
