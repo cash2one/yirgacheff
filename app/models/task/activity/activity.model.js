@@ -25,8 +25,7 @@ var activitySchema = new Schema({
     },
 
     deadline: {       // 截至日期
-        type: Date,
-        required: true
+        type: Date
     },
 
     address: {        // 活动地点
