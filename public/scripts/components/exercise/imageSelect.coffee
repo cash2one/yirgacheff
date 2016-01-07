@@ -11,15 +11,17 @@ OptionComponent = Vue.extend(
   template: """
       <div class="col-xs-3">
          <span>{{title}}</span>
-
          <div class="images-upload m-t-xs">
-             <img src='{{imagePath}}' alt=''>
+             <img src='{{imagePath}}' alt='' width='130' height='130'>
          </div>
-          <input type='file' id='upload-{{seq}}-{{index}}'>
+         <div class='upload-control'>
+             <a class='f-info pull-left'>上传</a>
+             <a class='f-pink pull-right' @click="handleDelete" v-show="canDelete">删除</a>
+         </div>
      </div>
   """
   data: ()->
-    imagePath: ''
+    imagePath: '/images/icon-upload.png'
 
   created: ()->
     this.option.title ?= this.title
@@ -101,7 +103,7 @@ ImageComponent = Vue.extend(
       })
 
     deleteOption: (index)->
-      this.choices.splice(index - 1, 1)
+      this.choices.splice(index, 1)
       this.$set('answer', '')
 
     getTitle: (index)->

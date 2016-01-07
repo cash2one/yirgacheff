@@ -11,7 +11,7 @@ QuizComponent = Vue.extend(
   props: ['quiz', 'index']
   template: """
    <div class="col-xs-offset-1 col-xs-10 buildUp">
-        <div class="panel b">
+        <div class="panel panel-white panel-b">
             <div class="panel-heading">
                 <div class="quest-title">
                     <div class="quest-number">{{index+1}}</div>

@@ -1718,6 +1718,9 @@ td .checkbox {
     border: 2px dashed #ddd;
     margin-bottom: 20px;
 }
+.panel-b{
+    border: 1px solid #dfdfdf!important;
+}
 .panel-height{
     height: 480px;
 }

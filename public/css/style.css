@@ -479,10 +479,9 @@
     box-shadow: none;
 }
 .images-upload{
-    width: 100px;
-    height: 100px;
+    width: 130px;
+    height: 130px;
     border: 1px solid #dfdfdf;
-    background: url("/images/icon-upload.png") no-repeat center;
 }
 .images-que-list{
     padding: 20px 0 10px 0;
@@ -522,10 +521,15 @@
     position: absolute;
     z-index: 1000;
     right: 0;
-    margin-top: -50px
+    margin-top: 5px
 }
 .images-times{
-    width: 20px; margin:-3px 0 0 72px; text-align: right;position: absolute; float: right
+    width: 20px; margin:-3px 0 0 102px; text-align: right;position: absolute; float: right
+}
+.upload-control{
+    width: 130px;
+    margin-top: 10px;
+    text-align: center;
 }
 .images-que{
     padding: 0 10px;
