@@ -42,6 +42,10 @@ var classSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    courseTime: {
+        type: String,
+        require: true
+    },
 
     // 学校id
     schoolId: {

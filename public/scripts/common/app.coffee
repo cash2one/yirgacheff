@@ -1,4 +1,3 @@
-require 'bootstrap'
 require 'slimscroll'
 require './jqueryExtend'
 notify = require "./notify"

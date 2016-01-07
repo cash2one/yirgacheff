@@ -45,13 +45,14 @@ module.exports = function (router) {
             fields: ['-performances'],
             order: ['-createdTime']
         });
-        yield this.render('backend/teacher/homework/list-homework')
+        yield this.render('backend/teacher/homework/list-homework-history')
     });
 
 
     router.get('/:homeworkId([a-f0-9]{24})', function*() {
         let homeworkId = this.params.homeworkId;
         this.state.homework = yield service.homework.getClassHomework(homeworkId);
+        yield this.render('backend/teacher/homework/view-classDetail');
 
     });
 
@@ -68,6 +69,7 @@ module.exports = function (router) {
     router.get('/:homeworkId([a-f0-9]{24})/history', function*() {
         let homeworkId = this.params.homeworkId;
         this.state.homework = yield service.homework.getClassHomework(homeworkId);
+        yield this.render('backend/teacher/homework/view-classDetail-history')
     });
 
     router.get('/:homeworkId([a-f0-9]{24})/students/:studentId([a-f0-9]{24})/history', function*() {
