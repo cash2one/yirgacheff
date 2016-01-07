@@ -6,14 +6,11 @@ var notify = require('../../../common/notify');
 $(document).ready(function () {
     app();
 
-    $('#selectCategory').change(function () {
-        var selectCategory = $(this).val();
-        var url = '/school/posts';
-        if (!!selectCategory) {
-            url = url + '?category=' + selectCategory;
-        }
-        self.location.href = url;
-    });
+    //暂无文章
+    var item = $("#list-posts").find("li").length;
+    if(item == 0){
+        $(".post-item").find('#tips').removeClass("hides");
+    }
 
     $('.del_btn').click(function () {
         var postId = $(this).attr('id');

@@ -33,8 +33,11 @@ $(document).ready(function () {
             return notify.danger("请填写文章内容")
         }
         $.post('/api/v1/posts', data).then(function (data) {
-            self.location.href = "/school/posts/" + data._id.toString();
+            self.location.href = "/school/posts/";
         });
     });
+
+
+    console.log(postId);
 
 });

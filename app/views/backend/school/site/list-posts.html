@@ -4,64 +4,70 @@
 <!-- END OF BREADCRUMBS -->
 
 <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-2">
+        <div class="page-sidebar shadow">
+            <ul class="nav nav-pills nav-stacked" id="selectCategory">
+                <li class="{% if currentCategory=== category._id.toString()%} active{% endif %}">
+                    <a href="/school/posts">
+                        全部文章
+                    </a>
+                </li>
+                {% for category in categories %}
+                <li class="{% if currentCategory=== category._id.toString()%} active{% endif %}">
+                    <a href="/school/posts?category={{category._id.toString()}}">
+                        {{category.name}}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="col-xs-10">
         <div class="panel panel-default shadow">
             <div class="panel-heading clearfix">
                 <h4 class="panel-title">文章列表</h4>
                 <div class="panel-control">
-                    <select name="" id="selectCategory">
-                        <option value="">所有栏目</option>
-                        {% for category in categories %}
-                        <option value="{{category._id.toString()}}"
-                                {% if currentCategory=== category._id.toString()%} selected{% endif %}>
-                            {{category.name}}
-                        </option>
-                        {% endfor %}
-                    </select>
                     <a class="btn btn-default btn-sm pull-right"
                        href="/school/posts/create{% if currentCategory %}?category={{currentCategory}}{% endif %}"
                        id="add-passage-btn">创建文章</a>
                 </div>
             </div>
             <div class="panel-body">
-                <div class="table-responsive">
-                    <table id="postList" class="table">
-                        <thead>
-                        <tr>
-                            <th>封面</th>
-                            <th>标题</th>
-                            <th>栏目</th>
-                            <th>浏览量</th>
-                            <th>赞</th>
-                            <th>分享</th>
-                            <th>发布时间</th>
-                            <th>操作</th>
-                        </tr>
-                        </thead>
-                        <tbody id="list-posts">
+                <div class="post-item">
+                    <ul class="list-unstyled" id="list-posts">
                         {% for post in posts %}
-                        <tr>
-                            <td>
-                                <a href="/school/posts/{{post._id.toString()}}">
-                                    <img src="http://resource.hizuoye.com/{{post.image}}" width="100px" height="64px">
-                                </a>
-                            </td>
-                            <td>{{post.title | subTitle(12)}}</td>
-                            <td>{{post.category.name |
-                                subTitle(4)}}
-                            </td>
-                            <td>{{post.visitCount}}</td>
-                            <td>{{post.like}}</td>
-                            <td>{{post.shareCount}}</td>
-                            <td>{{post.createdTime | date('Y-m-d',-480)}}</td>
-                            <td>
-                                <a class="btn btn-pink btn-xs btn-custom del_btn" data-tooltip="删除"
-                                   id="{{post._id.toString()}}">删除</a>
-                            </td>
-                        </tr>
+                        <li>
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="/school/posts/{{post._id.toString()}}">
+                                        <img src="http://resource.hizuoye.com/{{post.image}}" width="200px" height="140px">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <a href="/school/posts/{{post._id.toString()}}" class="post-item-title">
+                                        <p class="media-heading f-s-16 f-bold m-t-sm">{{post.title | subTitle(20)}}</p>
+                                        <span class="pull-right m-t-sm m-r-sm f-gray">文章详情 >></span>
+                                    </a>
+                                    <div class="f-gray m-t-xs">
+                                        <p><span class="m-t-lg">发布时间：</span>{{post.createdTime | date('Y-m-d',-480)}}
+                                        </p>
+                                        <p class="m-t-xs"><span>文章栏目：{{post.category.name | subTitle(4)}}</span></p>
+                                        <div class="m-t-xs">
+                                            <span class="m-r-xxl"><i class="fa fa-eye f-info m-r-xs"></i>{{post.visitCount}}</span>
+                                            <span class="m-r-xxl"><i class="fa fa-thumbs-o-up f-default m-r-xs"></i>{{post.like}}</span>
+                                            <span><i class="fa fa-share-square-o f-yellow m-r-xs"></i>{{post.shareCount}}</span>
+                                            <div class="pull-right m-r-xs">
+                                                <a class="f-pink del_btn" data-tooltip="删除"
+                                                   id="{{post._id.toString()}}"><i class="fa fa-trash-o f-s-16"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
                         {% endfor %}
-                        </tbody>
-                    </table>
+                    </ul>
+                    <p class="text-center hides" id="tips">暂无文章</p>
                 </div>
             </div>
         </div>

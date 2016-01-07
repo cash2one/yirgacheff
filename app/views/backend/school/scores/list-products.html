@@ -27,18 +27,19 @@
                 <ul class="cd-gallery" id="product-list">
                     {% for exchange in exchanges %}
                     <li id="{{exchange._id.toString()}}">
+                        <div class="cd-item-img">
                         <a href="#">
-                            <img class="lazy center-block m-t-xs"
-                                 src="{{resourceURL}}/{{exchange.imageKey}}?imageView2/1/w/205/h/160/interlace/1">
+                            <img class="lazy center-block"
+                                 src="{{resourceURL}}/{{exchange.imageKey}}?imageView2/1/w/229/h/180/interlace/1">
                         </a>
-
+                        </div>
                         <div class="cd-item-info">
                             <b>{{exchange.productName}}</b>
                             <b class="cd-price">积分：{{exchange.score}}</b>
                         </div>
                         <div class="cd-item-details">
                             <a href="#" class="pull-left add-to-cart"><i class="fa fa-shopping-cart"></i>数量：{{exchange.stock}}</a>
-                            <button class="pull-right btn btn-pink btn-xs m-t-xs m-r-xs delete-btn">删除</button>
+                            <a class="pull-right delete-btn"><i class="fa fa-trash-o f-s-14 f-pink"></i></a>
                         </div>
                     </li>
                     {% endfor %}
@@ -118,7 +119,6 @@
 {% endblock %}
 
 {% block javascript %}
-<
 <script src="/js/entries/school/scores/list-products.js"></script>
 
 {% endblock %}

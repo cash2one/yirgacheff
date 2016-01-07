@@ -30,8 +30,8 @@ $(document).ready(function () {
             {'data': 'department'},
             {
                 'data': null,
-                'defaultContent': '<a class="btn btn-info btn-xs btn-custom edit" >修改</a>&nbsp;&nbsp;' +
-                '<a class="btn btn-pink btn-xs btn-custom delete" data-toggle="confirmation">禁用</a>&nbsp;&nbsp;'
+                'defaultContent': '<a class="f-info m-r-xs edit" ><i class="fa fa-pencil"></i></a>' +
+                '<a class="f-pink delete" data-toggle="confirmation"><i class="fa fa-ban"></i></a>'
             }
         ]
     });

@@ -25,7 +25,7 @@ $(document).ready(function () {
             {'data': 'department'},
             {
                 'data': null,
-                'defaultContent': '<a class="btn-small a-btn-blue enable">启用</a>'
+                'defaultContent': '<a class="f-default enable"><i class="fa fa-check-circle-o"></i></a>'
             }
         ]
     });

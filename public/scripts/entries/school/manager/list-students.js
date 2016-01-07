@@ -28,7 +28,7 @@ $(document).ready(function () {
             {'data': 'grade'},
             {
                 'data': null,
-                'defaultContent': '<a class="btn btn-info btn-xs btn-custom detail" >查看</a>'
+                'defaultContent': '<a class="f-info detail" ><i class="fa fa-file-text-o"></i></a>'
             }
         ],
         "aoColumnDefs": [

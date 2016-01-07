@@ -239,6 +239,15 @@ Main Components
   }
 }
 
+.cd-item-img{
+  height: 187px;
+  padding:3px 0;
+  border-bottom: 1px solid #dfdfdf;
+}
+.cd-item-img img{
+  vertical-align: middle;
+}
+
 .cd-item-info {
   padding: 1em;
   border-bottom: 1px solid #f1f1f1;

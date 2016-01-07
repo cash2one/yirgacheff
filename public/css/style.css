@@ -548,6 +548,17 @@
 .images-cover{
     overflow: hidden;
 }
+/*�����б�*/
+.post-item .post-item-title p{
+    display: inline-block;
+}
+.post-item li{
+    border: 1px solid #dfdfdf;
+    margin-bottom: 20px;
+}
+.post-item li:hover{
+    border: 1px solid #2aabe6;
+}
 /*΢�ű༭��*/
 .editor .wx-editor-template-list{
     width: 438px;
