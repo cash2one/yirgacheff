@@ -1,14 +1,14 @@
 Vue = require 'vue'
-_ = require 'underscore'
 upload = require '../../common/uploadifive'
-notify = require '../../common/notify'
 constants = require '../../common/constants'
-
-OPTIONS = ['A', 'B', 'C', 'D']
+selectMixin = require './mixins/selectMixin'
+exerciseMixin = require './mixins/exerciseMixin'
+optionMixin = require './mixins/optionMixin'
 
 #选项组件
-OptionComponent = Vue.extend(
+OptionComponent = Vue.extend
   props: ['option', 'index', 'seq']
+  mixins: [optionMixin]
   template: """
       <div class="col-xs-3">
          <span>{{title}}</span>
@@ -26,36 +26,24 @@ OptionComponent = Vue.extend(
     uploadText: '上传'
 
   created: ()->
-    this.option.title ?= this.title
     if this.option.content
       this.imagePath = constants.RESOURCE_URL + this.option.content
 
   ready: ()->
     self = this
-    upload({
+    upload
       button: $('.image-option-upload')
       multi: false
       done: (res)->
         self.$set('imagePath', res.path)
         self.option.content = res.key
         self.uploadText = '重新上传'
-    })
-
-  methods:
-    handleDelete: ()->
-      this.$dispatch('delete-option', this.index)
-
-  computed:
-    canDelete: ()->
-      this.$parent.choices.length > 2
-    title: ()->
-      OPTIONS[this.index]
-)
 
 
 #图片选择题
-ImageComponent = Vue.extend(
+ImageComponent = Vue.extend
   props: ['index', 'exercise']
+  mixins: [exerciseMixin, selectMixin]
   template: """
       <div class='row quiz-item'>
         <div class="col-xs-12 m-b-md">
@@ -88,48 +76,7 @@ ImageComponent = Vue.extend(
         </div>
      </div>
   """
-
-  data: ()->
-    question: ''
-    analysis: ''
-    answer: ''
-    choices: [{}, {}]
-
-  created: ()->
-    _.extend this.$data, this.exercise
-    delete this.$data['exercise']
-
   components:
     'e-option': OptionComponent
-
-  methods:
-    addOption: ()->
-      len = this.choices.length
-      if(len >= 4)
-        return notify.warning "只能有4个选项哦"
-      this.choices.push({
-        title: OPTIONS[len]
-      })
-
-    deleteOption: (index)->
-      this.choices.splice(index, 1)
-      this.$set('answer', '')
-
-    getTitle: (index)->
-      OPTIONS[index]
-
-    isValid: ()->
-      if _.isEmpty this.question
-        notify.danger "第#{this.index + 1}题题目不能为空"
-        return false
-      for opt,i in this.choices
-        if _.isEmpty opt.content
-          notify.danger "第#{this.index + 1}题选项不能为空"
-          return false
-      if _.isEmpty this.answer
-        notify.danger "第#{this.index + 1}题答案不能为空"
-        return false
-      true
-)
 
 module.exports = ImageComponent

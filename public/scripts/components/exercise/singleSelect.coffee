@@ -1,41 +1,29 @@
 Vue = require 'vue'
-_ = require 'underscore'
-notify = require '../../common/notify'
-
-OPTIONS = ['A', 'B', 'C', 'D']
+selectMixin = require './mixins/selectMixin'
+exerciseMixin = require './mixins/exerciseMixin'
+optionMixin = require './mixins/optionMixin'
 
 #选项组件
-OptionComponent = Vue.extend(
+OptionComponent = Vue.extend
   props: ['option', 'index']
+  mixins: [optionMixin]
   template: """
        <div class="col-xs-12">
           <div class="input-group m-b-md">
-            <span class="input-group-addon">{{option.title}}</span>
+            <span class="input-group-addon">{{title}}</span>
             <input type="text" class="form-control" placeholder="请填写选项内容" v-model='option.content'>
-            <span v-if='canDelete'>
+            <span v-show='canDelete'>
                  <a class="f-s-18 f-gray m-r-lg input-times" @click='handleDelete'><i class="fa fa-times"></i></a>
             </span>
           </div>
       </div>
   """
-  created: ()->
-    this.option.title ?= this.title
-
-  methods:
-    handleDelete: ()->
-      this.$dispatch('delete-option', this.index)
-
-  computed:
-    canDelete: ()->
-      this.$parent.choices.length > 2
-    title: ()->
-      OPTIONS[this.index]
-)
 
 
 #选择题
-SelectComponent = Vue.extend(
+SelectComponent = Vue.extend
   props: ['index', 'exercise']
+  mixins: [exerciseMixin, selectMixin]
   template: """
    <div class='row quiz-item'>
       <div class="col-xs-12 m-b-md">
@@ -65,48 +53,7 @@ SelectComponent = Vue.extend(
       </div>
    </div>
   """
-
-  data: ()->
-    question: ''
-    analysis: ''
-    answer:''
-    choices: [{}, {}]
-
-  created: ()->
-    _.extend this.$data, this.exercise
-    delete this.$data['exercise']
-
   components:
     'e-option': OptionComponent
-
-  methods:
-    addOption: ()->
-      len = this.choices.length
-      if(len >= 4)
-        return notify.warning "只能有4个选项哦"
-      this.choices.push({
-        title: OPTIONS[len]
-      })
-
-    deleteOption: (index)->
-      this.choices.splice(index, 1)
-      this.$set('answer', '')
-
-    getTitle: (index)->
-      OPTIONS[index]
-
-    isValid: ()->
-      if _.isEmpty this.question
-        notify.danger "第#{this.index + 1}题题目不能为空"
-        return false
-      for opt,i in this.choices
-        if _.isEmpty opt.content
-          notify.danger "第#{this.index + 1}题选项不能为空"
-          return false
-      if _.isEmpty this.answer
-        notify.danger "第#{this.index + 1}题答案不能为空"
-        return false
-      true
-)
 
 module.exports = SelectComponent
