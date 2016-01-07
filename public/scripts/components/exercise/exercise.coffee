@@ -1,6 +1,10 @@
 'use strict';
 
-TextSelect = require './textSelect'
+Vue = require 'vue'
+SingleSelect = require './singleSelect'
+ImageSelect = require './imageSelect'
+FillBlank = require './fillBlank'
+Voice = require './voice'
 
 TITLES = ['单选题', '图片选择题', '填空题', '语音题']
 QuizComponent = Vue.extend(
@@ -22,16 +26,24 @@ QuizComponent = Vue.extend(
                 </div>
             </div>
             <div class="panel-body">
-                <div class="row quiz-item">
-                    <text-select v-if='quiz.eType === 0' :index='index' :quiz='quiz'></text-select>
-                </div>
+                <quiz-select v-if='quiz.eType === 0' :index='index' :quiz='quiz' v-ref:child></quiz-select>
+                <quiz-image v-if='quiz.eType === 1' :index='index' :quiz='quiz' v-ref:child></quiz-image>
+                <quiz-fill v-if='quiz.eType === 2' :index='index' :quiz='quiz' v-ref:child></quiz-fill>
+                <quiz-voice v-if='quiz.eType === 3' :index='index' :quiz='quiz' v-ref:child></quiz-voice>
             </div>
         </div>
    </div>
   """
 
   components:
-    'text-select': TextSelect
+    'quiz-select': SingleSelect
+    'quiz-fill': FillBlank
+    'quiz-voice': Voice
+    'quiz-image': ImageSelect
+
+
+  created: ()->
+    this.quiz.sequence = this.index + 1
 
   computed:
     title: ()->
@@ -40,9 +52,15 @@ QuizComponent = Vue.extend(
   methods:
     delete: ()->
       this.$dispatch('delete-quiz', this.index)
+
+    getData: ()->
+      this.$refs.child.$data
+
+    isValid: ()->
+      this.$refs.child.isValid()
 )
 
-Vue.component('quiz', QuizComponent)
+module.exports = QuizComponent
 
 
 

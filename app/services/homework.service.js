@@ -10,9 +10,78 @@ const createError = require('http-errors');
 const math = require('mathjs');
 const queryBuilder = require('../functions/queryBuilder');
 const Homework = mongoose.model('Homework');
+const Teacher = mongoose.model('Teacher');
+const Student = mongoose.model('Student');
 const Class = mongoose.model('Class');
+const Quiz = mongoose.model('Quiz');
 
 module.exports = {
+
+    create: co.wrap((function*(user, data) {
+        let teacher = yield Teacher.findById(user._id).lean().exec();
+        let homework = data.homework;
+        let exercises = data.exercises;
+        let classes = homework.classes;
+        let asTemplate = homework.addQuizBase;
+        let quiz = new Quiz({
+            title: homework.title,
+            creator: teacher,
+            creatorDisplayName: teacher.displayName,
+            creatorUsername: teacher.username,
+            exercises: exercises,
+            asTemplate: asTemplate,
+            schoolId: teacher.schoolId
+        });
+
+        let studentsList = yield _.map(classes, clazz=> {
+            return Student.find({classes: clazz}).select('_id').lean().exec();
+        });
+
+        let homeworkList = [];
+        for (let i = 0; i < studentsList.length; i++) {
+            let students = studentsList[i];
+            let clazz = classes[i];
+            if (students.length === 0) {
+                continue;
+            }
+            homeworkList.push(_.extend({}, homework, {
+                clazz: clazz,
+                quiz: quiz,
+                performances: _.map(students, student=> {
+                    return {student: student._id};
+                }),
+                schoolId: teacher.schoolId,
+                exerciseCount: quiz.exercises.length,
+                statistics: {
+                    studentCount: students.length,
+                    studentCountOfFinished: 0
+                }
+            }));
+        }
+        if (homeworkList.length > 0) {
+            //保存题目信息
+
+            yield quiz.save();
+            //保存作业信息
+            yield Homework.create(homeworkList);
+        }
+        return true;
+    })),
+
+    deleteById: co.wrap(function*(id) {
+        let homework = yield Homework.findById(id).select('state quiz').exec();
+        if (!homework || homework.state !== 0) {
+            throw createError(400, '作业不存在或无法删除');
+        }
+        let quiz = homework.quiz;
+        yield homework.remove();
+        yield Quiz.remove({
+            _id: quiz,
+            asTemplate: false
+        }).exec();
+
+        return true;
+    }),
 
 
     findByClasses: co.wrap(function*(classes, filter) {

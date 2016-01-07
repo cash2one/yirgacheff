@@ -46,12 +46,14 @@ singleUpload = (opts)->
   file = opts.file
   $file = if typeof file is 'object' then file else $('#' + file)
   done = opts.done
+  fileType = opts.fileType or 'image/*' #默认上传图片
   uploadOpts =
     'uploadScript': UPLOAD_API
     'fileObjName': "file"
     'multi': false
     'buttonText': opts.buttonText || '上传'
     'removeCompleted': true
+    'fileType': fileType
     'formData':
       'token': token
 
@@ -76,12 +78,15 @@ multiUpload = (opts)->
   $btn = if typeof btn is 'object' then btn else $('#' + btn)
   uploaded = []
   isComplete = false
+  fileType = opts.fileType or 'image/*' #默认上传图片
   uploadOpts =
     'uploadScript': UPLOAD_API
     'fileObjName': "file"
     'multi': true
     'queueID': "uploadifive-queue"
     'buttonText': '上传'
+    'fileType': fileType
+    'fileSizeLimit': '2MB'
     'formData':
       'token': token
 
