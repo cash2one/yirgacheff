@@ -66,14 +66,15 @@ singleUpload = (opts)->
   $file.uploadifive uploadOpts
 
 
-#多文件同时上传
-multiUpload = (opts)->
+#窗口上传,默认是多文件上传
+windowUpload = (opts)->
   $('body').append($(modal));
   $('.slimscroll').slimscroll(
     allowPageScroll: true
     height: 300
   )
   btn = opts.button
+  multi = opts.multi ? true
   done = opts.done
   $btn = if typeof btn is 'object' then btn else $('#' + btn)
   uploaded = []
@@ -82,11 +83,11 @@ multiUpload = (opts)->
   uploadOpts =
     'uploadScript': UPLOAD_API
     'fileObjName': "file"
-    'multi': true
+    'multi': !!multi
     'queueID': "uploadifive-queue"
     'buttonText': '上传'
     'fileType': fileType
-    'fileSizeLimit': '2MB'
+    'fileSizeLimit': '3MB'
     'formData':
       'token': token
 
@@ -108,8 +109,14 @@ multiUpload = (opts)->
   uploader = $("#_upload_file").uploadifive(uploadOpts)
 
   $("#_upload_save").click ()->
-    if isComplete or uploaded.length is 0
-      done(uploaded)
+    if uploaded.length is 0
+      console.warn "没有图片上传"
+      return
+    if isComplete
+      if multi
+        done(uploaded)
+      else
+        done(uploaded[0])
       $('#_uploadFiveModal').modal('hide')
       uploader.uploadifive("clearQueue") #清空上传队列
     else
@@ -123,8 +130,8 @@ multiUpload = (opts)->
 
 
 module.exports = (opts = {})->
-  multi = opts.multi || false
-  if not multi
+  window = opts.button || false
+  if not window
     singleUpload(opts)
   else
-    multiUpload(opts)
+    windowUpload(opts)
