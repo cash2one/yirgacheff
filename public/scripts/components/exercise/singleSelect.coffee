@@ -86,7 +86,7 @@ SelectComponent = Vue.extend(
       })
 
     deleteOption: (index)->
-      this.choices.splice(index - 1, 1)
+      this.choices.splice(index, 1)
       this.$set('answer', '')
 
     getTitle: (index)->

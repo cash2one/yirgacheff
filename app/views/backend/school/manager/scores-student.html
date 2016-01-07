@@ -1,0 +1,110 @@
+{% extends '../base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-xs-12">
+        <div class="student-profile-header">
+            <div class="avatar text-center">
+                <img class="lazy" src="/images/default_head.jpg" {% if student.avatar %}
+                     data-original="{{resourceURL}}/{{student.avatar}}" {% endif %} width="150px"
+                     height="150px">
+            </div>
+            <div class="pro-name text-center m-t-lg">
+                <p class="f-white f-s-18 m-r-xxl">{{student.displayName}}</p>
+                <p class="f-white f-s-16">{{student.username}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-2">
+        <div class="page-sidebar shadow">
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="/school/students/{{student._id.toString()}}">基本信息</a></li>
+                <li><a href="/school/students/connect/{{student._id.toString()}}">电话记录</a></li>
+                <li class="active"><a href="/school/students/scores/{{student._id.toString()}}">积分记录</a></li>
+                <li><a href=""> 作业记录</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-xs-10">
+        <div class="panel panel-default shadow">
+            <div class="panel-heading clearfix">
+                <h4 class="panel-title">积分记录</h4>
+            </div>
+            <div class="panel-body">
+                <div class="scores-list" id="scoresList">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <div class="media">
+                                <div class="pull-left">
+                                    <img class="media-object img-circle" src="/images/default_head.jpg" {% if student.avatar %}
+                                         data-original="{{resourceURL}}/{{student.avatar}}" {% endif %} width="50px"
+                                         height="50px">
+                                </div>
+                                <div class="media-body">
+                                    <div class="scores-list-title">
+                                        <h4 class="media-heading f-s-18 f-normal m-t-xxs">
+                                            <span class="f-default">+10</span>
+                                        </h4>
+                                        <p class="f-s-12 f-gray m-t-xs">
+                                            <span class="m-r-lg">发布时间：2016-1-7 15:32:34</span>
+                                            <span>发布人：李静</span>
+                                        </p>
+                                    </div>
+                                    <div class="spread">
+                                        <a class="f-info pull-right panel-collapse f-normal">备注<i class="fa fa-sort-desc m-l-xxs"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body hides">
+                            <p class="scores-details">11111</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="RecordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">添加记录</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal m-t-sm">
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label">记录：</label>
+                        <div class="col-xs-9">
+                            <input class="form-control validate" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label">备注：</label>
+                        <div class="col-xs-9">
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-offset-2 col-xs-9">
+                            <button type="submit" class="btn btn-info">确定</button>
+                            <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+
+<script src="/js/entries/school/manager/view-student.js"></script>
+
+{% endblock %}
