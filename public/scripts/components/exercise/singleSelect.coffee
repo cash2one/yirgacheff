@@ -35,17 +35,17 @@ OptionComponent = Vue.extend(
 
 #选择题
 SelectComponent = Vue.extend(
-  props: ['index', 'quiz']
+  props: ['index', 'exercise']
   template: """
    <div class='row quiz-item'>
       <div class="col-xs-12 m-b-md">
             <input placeholder="这是一个单选题目" type="text" class="form-control" v-model='question'>
       </div>
-      <quiz-option v-for='option in choices'
+      <e-option v-for='option in choices'
                    :index='$index'
                    :option='option'
                    @delete-option='deleteOption'>
-      </quiz-option>
+      </e-option>
 
       <div class="col-xs-12 m-b-md">
          <a class="f-s-16 f-info btn btn-info btn-home btn-custom btn-block b-d" v-on:click='addOption'>
@@ -54,7 +54,7 @@ SelectComponent = Vue.extend(
       </div>
       <div class="col-xs-12 m-b-md">
           <select class='form-control' v-model='answer'>
-             <option value='' selected>选择答案</option>
+             <option value='' >选择答案</option>
              <option v-for="option in choices">
                 {{getTitle($index)}}
             </option>
@@ -67,14 +67,17 @@ SelectComponent = Vue.extend(
   """
 
   data: ()->
+    question: ''
+    analysis: ''
+    answer:''
     choices: [{}, {}]
 
   created: ()->
-    _.extend this.$data, this.quiz
-    delete this.$data['quiz']
+    _.extend this.$data, this.exercise
+    delete this.$data['exercise']
 
   components:
-    'quiz-option': OptionComponent
+    'e-option': OptionComponent
 
   methods:
     addOption: ()->

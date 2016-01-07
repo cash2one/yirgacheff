@@ -35,7 +35,6 @@ function makeConf(env) {
                 {test: /\.(coffee\.md|litcoffee)$/, loader: "coffee-loader?literate"},
                 {test: /\.css$/, loader: "style-loader!css-loader?root=.."},
                 {test: /\.jpe?g$|\.gif$|\.png$/i, loader: "url-loader?limit=8192&name=[path][name].[ext]"}
-
             ]
         },
         externals: {
@@ -46,31 +45,29 @@ function makeConf(env) {
         ]
     };
 
-    if (env !== 'test') {
 
-        // Karma doesn't need entry points or output settings
-        webpackConfig.entry = genEntries(jsSrc);
+    // Karma doesn't need entry points or output settings
+    webpackConfig.entry = genEntries(jsSrc);
 
-        webpackConfig.output = {
-            path: path.normalize(jsDest),
-            filename: filenamePattern,
-            publicPath: publicPath
-        };
+    webpackConfig.output = {
+        path: path.normalize(jsDest),
+        filename: filenamePattern,
+        publicPath: publicPath
+    };
 
-        if (config.tasks.js.extractSharedJs) {
-            // Factor out common dependencies into a shared.js
-            webpackConfig.plugins.push(
-                new webpack.optimize.CommonsChunkPlugin({
-                    name: 'shared',
-                    filename: filenamePattern
-                })
-            )
-        }
+    if (config.tasks.js.extractSharedJs) {
+        // Factor out common dependencies into a shared.js
+        webpackConfig.plugins.push(
+            new webpack.optimize.CommonsChunkPlugin({
+                name: 'shared',
+                filename: filenamePattern
+            })
+        )
     }
 
     if (env === 'development') {
         webpackConfig.devtool = 'source-map';
-        webpack.debug = true
+        webpack.debug = true;
     }
 
     if (env === 'production') {
@@ -116,7 +113,6 @@ function genEntries(srcDir) {
 
 function sourceMap() {
     return {
-        'bootstrap': 'bootstrap/dist/js/bootstrap',
         'slimscroll': 'jquery-slimscroll/jquery.slimscroll.min',
         'moment': 'moment/moment.js',
         'highcharts': 'highcharts/highcharts.js',

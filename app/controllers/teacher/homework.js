@@ -23,16 +23,10 @@ module.exports = function (router) {
 
 
     router.get('/create', function*() {
-        let quizId = this.query.quizId;
-        if (quizId) {
-            this.state.quiz = yield service.quizzes.useById(quizId);
-        }
         this.state.classes = yield service.classes.findByTeacher(this.user._id, {
             fields: ['className']
         });
         yield this.render('backend/teacher/homework/create-homework');
-
-
     });
 
 

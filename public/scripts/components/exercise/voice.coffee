@@ -2,7 +2,7 @@ Vue = require 'vue'
 notify = require '../../common/notify'
 #语音题
 VoiceComponent = Vue.extend(
-  props: ['index', 'quiz']
+  props: ['index', 'exercise']
 
   template: """
      <div class='row quiz-item'>
@@ -17,8 +17,8 @@ VoiceComponent = Vue.extend(
     question: ''
 
   created: ()->
-    _.extend this.$data, this.quiz
-    delete this.$data['quiz']
+    _.extend this.$data, this.exercise
+    delete this.$data['exercise']
 
   methods:
     isValid: ()->

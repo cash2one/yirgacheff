@@ -8,7 +8,7 @@ Voice = require './voice'
 
 TITLES = ['单选题', '图片选择题', '填空题', '语音题']
 QuizComponent = Vue.extend(
-  props: ['quiz', 'index']
+  props: ['exercise', 'index']
   template: """
    <div class="col-xs-offset-1 col-xs-10 buildUp">
         <div class="panel panel-white panel-b">
@@ -26,32 +26,32 @@ QuizComponent = Vue.extend(
                 </div>
             </div>
             <div class="panel-body">
-                <quiz-select v-if='quiz.eType === 0' :index='index' :quiz='quiz' v-ref:child></quiz-select>
-                <quiz-image v-if='quiz.eType === 1' :index='index' :quiz='quiz' v-ref:child></quiz-image>
-                <quiz-fill v-if='quiz.eType === 2' :index='index' :quiz='quiz' v-ref:child></quiz-fill>
-                <quiz-voice v-if='quiz.eType === 3' :index='index' :quiz='quiz' v-ref:child></quiz-voice>
+                <exercise-select v-if='exercise.eType === 0' :index='index' :exercise='exercise' v-ref:child></exercise-select>
+                <exercise-image v-if='exercise.eType === 1' :index='index' :exercise='exercise' v-ref:child></exercise-image>
+                <exercise-fill v-if='exercise.eType === 2' :index='index' :exercise='exercise' v-ref:child></exercise-fill>
+                <exercise-voice v-if='exercise.eType === 3' :index='index' :exercise='exercise' v-ref:child></exercise-voice>
             </div>
         </div>
    </div>
   """
 
   components:
-    'quiz-select': SingleSelect
-    'quiz-fill': FillBlank
-    'quiz-voice': Voice
-    'quiz-image': ImageSelect
+    'exercise-select': SingleSelect
+    'exercise-fill': FillBlank
+    'exercise-voice': Voice
+    'exercise-image': ImageSelect
 
 
   created: ()->
-    this.quiz.sequence = this.index + 1
+    this.exercise.sequence = this.index + 1
 
   computed:
     title: ()->
-      TITLES[this.quiz.eType]
+      TITLES[this.exercise.eType]
 
   methods:
     delete: ()->
-      this.$dispatch('delete-quiz', this.index)
+      this.$dispatch('delete-exercise', this.index)
 
     getData: ()->
       this.$refs.child.$data

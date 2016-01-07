@@ -8,9 +8,13 @@ module.exports = function (router) {
 
     router.post('/', function*() {
         let user = this.user;
-        this.body = yield service.create(user, this.request.body);
+        this.body = yield service.quizzes.create(user, this.request.body);
     });
 
+    router.get('/:id', function*() {
+        this.body = yield service.quizzes.findById(this.params.id, true);
+
+    });
 
     router.get('/', function*() {
         let query = this.query;

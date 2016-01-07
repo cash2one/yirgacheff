@@ -28,4 +28,11 @@ $.fn.renderForm = (object)->
       input.val object[name]
 
 
+$.getUrlParam = (name)->
+  reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)")
+  r = window.location.search.substr(1).match(reg)
+  if r?
+    return unescape(r[2])
+  return null
+
 

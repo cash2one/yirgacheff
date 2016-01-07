@@ -33,7 +33,6 @@ module.exports = {
         if (!_.isEmpty(filter)) {
             queryBuilder(query, filter);
         }
-        console.log(query.getQuery());
         return yield query.lean().exec();
     }),
 

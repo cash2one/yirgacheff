@@ -2,6 +2,7 @@ Vue = require 'vue'
 _ = require 'underscore'
 upload = require '../../common/uploadifive'
 notify = require '../../common/notify'
+constants = require '../../common/constants'
 
 OPTIONS = ['A', 'B', 'C', 'D']
 
@@ -12,7 +13,7 @@ OptionComponent = Vue.extend(
       <div class="col-xs-3">
          <span>{{title}}</span>
          <div class="images-upload m-t-xs">
-             <img src='{{imagePath}}' alt='' width='130' height='130'>
+             <img v-bind:src='imagePath' alt='' width='130' height='130'>
          </div>
          <div class='upload-control'>
              <a class='f-info pull-left image-option-upload'>{{uploadText}}</a>
@@ -26,6 +27,8 @@ OptionComponent = Vue.extend(
 
   created: ()->
     this.option.title ?= this.title
+    if this.option.content
+      this.imagePath = constants.RESOURCE_URL + this.option.content
 
   ready: ()->
     self = this
@@ -52,19 +55,19 @@ OptionComponent = Vue.extend(
 
 #图片选择题
 ImageComponent = Vue.extend(
-  props: ['index', 'quiz']
+  props: ['index', 'exercise']
   template: """
       <div class='row quiz-item'>
         <div class="col-xs-12 m-b-md">
               <input placeholder="这是一个图片题" type="text" class="form-control" v-model='question'>
         </div>
         <div class="col-xs-12 m-b-md">
-             <quiz-option v-for='option in choices'
+             <e-option v-for='option in choices'
                    :index='$index'
                    :option='option'
                    :seq='index'
                    v-on:delete-option='deleteOption'>
-             </quiz-option>
+             </e-option>
         </div>
         <div class="col-xs-12 m-t-lg m-b-lg">
            <a class="f-s-16 f-info btn btn-info btn-custom btn-home btn-block b-d"
@@ -74,7 +77,7 @@ ImageComponent = Vue.extend(
         </div>
         <div class="col-xs-12 m-b-md">
           <select class='form-control' v-model='answer'>
-             <option value='' selected>选择答案</option>
+             <option value=''>选择答案</option>
              <option v-for="option in choices">
                 {{getTitle($index)}}
             </option>
@@ -87,14 +90,17 @@ ImageComponent = Vue.extend(
   """
 
   data: ()->
+    question: ''
+    analysis: ''
+    answer: ''
     choices: [{}, {}]
 
   created: ()->
-    _.extend this.$data, this.quiz
-    delete this.$data['quiz']
+    _.extend this.$data, this.exercise
+    delete this.$data['exercise']
 
   components:
-    'quiz-option': OptionComponent
+    'e-option': OptionComponent
 
   methods:
     addOption: ()->

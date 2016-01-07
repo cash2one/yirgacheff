@@ -2,7 +2,7 @@ Vue = require 'vue'
 notify = require '../../common/notify'
 #填空题
 FillBlankComponent = Vue.extend(
-  props: ['index', 'quiz']
+  props: ['index', 'exercise']
 
   template: """
      <div class='row quiz-item'>
@@ -23,8 +23,8 @@ FillBlankComponent = Vue.extend(
     analysis: ''
 
   created: ()->
-    _.extend this.$data, this.quiz
-    delete this.$data['quiz']
+    _.extend this.$data, this.exercise
+    delete this.$data['exercise']
 
   methods:
     isValid: ()->

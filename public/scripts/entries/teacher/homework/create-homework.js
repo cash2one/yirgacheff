@@ -67,20 +67,27 @@ $(document).ready(function () {
 
     var exerciseList = new Vue({
         el: '#exerciseList',
-        data: {quizzes: []},
+        data: {exercises: []},
+        asyncData: function (resolve, reject) {
+            var quizId = $.getUrlParam('quizId');
+            if (quizId !== null) {
+                $.get('/api/v1/quizzes/' + quizId).then(function (quiz) {
+                    resolve({
+                        exercises: quiz.exercises
+                    })
+                });
+            }
+        },
         methods: {
-
-            addQuiz: function (eType) {
-                this.quizzes.push({eType: eType});
+            addExercise: function (eType) {
+                this.exercises.push({eType: eType});
             },
-
-            deleteQuiz: function (index) {
-                this.quizzes.splice(index, 1);
+            deleteExercise: function (index) {
+                this.exercises.splice(index, 1);
             },
-
             isValid: function () {
                 var i;
-                for (i = 0; i < this.quizzes.length; i++) {
+                for (i = 0; i < this.exercises.length; i++) {
                     var child = this.$children[i];
                     if (!child.isValid()) {
                         return false;
@@ -92,7 +99,7 @@ $(document).ready(function () {
                 if (!this.isValid()) {
                     return false;
                 }
-                if (this.quizzes.length === 0) {
+                if (this.exercises.length === 0) {
                     app.notify.danger("请添加题目");
                     return false;
                 }
