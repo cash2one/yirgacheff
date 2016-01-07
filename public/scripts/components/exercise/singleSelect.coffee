@@ -19,7 +19,6 @@ OptionComponent = Vue.extend
       </div>
   """
 
-
 #选择题
 SelectComponent = Vue.extend
   props: ['index', 'exercise']

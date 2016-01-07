@@ -18,18 +18,41 @@ QuizComponent = Vue.extend(
                     {{title}}
                 </div>
                 <div class="panel-control">
-                    <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Expand/Collapse"
-                       class="panel-collapse"><i class="fa fa-arrow-circle-o-down"></i></a>
                     <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Remove"
                        v-on:click='delete'
-                       class="panel-remove"><i class="fa fa-times-circle-o"></i></a>
+                       class="panel-remove"><i class="fa fa-times f-s-16"></i></a>
                 </div>
             </div>
+
             <div class="panel-body">
-                <exercise-select v-if='exercise.eType === 0' :index='index' :exercise='exercise' v-ref:child></exercise-select>
-                <exercise-image v-if='exercise.eType === 1' :index='index' :exercise='exercise' v-ref:child></exercise-image>
-                <exercise-fill v-if='exercise.eType === 2' :index='index' :exercise='exercise' v-ref:child></exercise-fill>
-                <exercise-voice v-if='exercise.eType === 3' :index='index' :exercise='exercise' v-ref:child></exercise-voice>
+                <exercise-select
+                  v-if='exercise.eType === 0'
+                  :index='index'
+                  :exercise='exercise'
+                  v-ref:child>
+                </exercise-select>
+
+                <exercise-image
+                  v-if='exercise.eType === 1'
+                  :index='index'
+                  :exercise='exercise'
+                  v-ref:child>
+                </exercise-image>
+
+                <exercise-fill
+                  v-if='exercise.eType === 2'
+                  :index='index'
+                  :exercise='exercise'
+                  v-ref:child>
+                </exercise-fill>
+
+                <exercise-voice
+                  v-if='exercise.eType === 3'
+                  :index='index'
+                  :exercise='exercise'
+                  v-ref:child>
+                </exercise-voice>
+
             </div>
         </div>
    </div>
