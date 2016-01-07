@@ -24,8 +24,7 @@ $(document).ready(function () {
             {'data': 'username'},
             {'data': 'password'},
             {'data': 'gender'},
-            {'data': 'onSchool'},
-            {'data': 'grade'},
+            {'data': 'phone'},
             {
                 'data': null,
                 'defaultContent': '<a class="f-info detail" ><i class="fa fa-file-text-o"></i></a>'
