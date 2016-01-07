@@ -15,13 +15,14 @@ OptionComponent = Vue.extend(
              <img src='{{imagePath}}' alt='' width='130' height='130'>
          </div>
          <div class='upload-control'>
-             <a class='f-info pull-left'>上传</a>
+             <a class='f-info pull-left image-option-upload'>{{uploadText}}</a>
              <a class='f-pink pull-right' @click="handleDelete" v-show="canDelete">删除</a>
          </div>
      </div>
   """
   data: ()->
     imagePath: '/images/icon-upload.png'
+    uploadText: '上传'
 
   created: ()->
     this.option.title ?= this.title
@@ -29,10 +30,12 @@ OptionComponent = Vue.extend(
   ready: ()->
     self = this
     upload({
-      file: "upload-#{this.seq}-#{this.index}",
+      button: $('.image-option-upload')
+      multi: false
       done: (res)->
         self.$set('imagePath', res.path)
         self.option.content = res.key
+        self.uploadText = '重新上传'
     })
 
   methods:
