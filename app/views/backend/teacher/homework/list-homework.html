@@ -21,7 +21,7 @@
                     </thead>
                     <tbody>
                     {% for homework in homeworkList %}
-                    <tr>
+                    <tr id="{{homework._id.toString()}}">
                         <td class="text-left" title="{{homework.title}}">{{homework.title | subTitle(6)}}</td>
                         <td title="{{homework.clazz.className}}">{{homework.clazz.className | subTitle(6)}}</td>
                         <td>{{homework.statistics.studentCount}}</td>
@@ -31,8 +31,7 @@
                             <a class="btn btn-default btn-custom btn-xs"
                                href="/teacher/homework/{{homework._id.toString()}}">检查</a>
                             <a class="btn btn-pink btn-xs btn-custom delete"
-                               href="javascript:void(0);"
-                               id="{{homework._id.toString()}}">删除</a>
+                               href="javascript:void(0);">删除</a>
                         </td>
                     </tr>
                     {% endfor %}

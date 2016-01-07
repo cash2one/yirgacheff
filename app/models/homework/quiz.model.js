@@ -14,7 +14,6 @@ var exerciseSchema = new Schema({
         type: Number,
         enum: [0, 1, 2, 3] // (0: 单选 1: 图片单选  2:填空  3: 语音)
     },
-
     // 序号
     sequence: {
         type: Number
@@ -34,16 +33,20 @@ var exerciseSchema = new Schema({
     choices: [{
         title: String,
         content: String,
+        image: String,
         _id: false
     }],
+
     // 答案
     answer: {
         type: String
     },
+
     // 答案解析
     analysis: {
         type: String
     }
+
 }, {_id: false});
 
 

@@ -17,9 +17,11 @@ module.exports = {
 
     create: co.wrap(function*(user, data) {
         let clazz = new Class(data);
+        let teacher = yield Teacher.findById(user._id)
+            .select('_id displayName').lean().exec();
         _.assign(clazz, {
             owner: user._id,
-            ownerDisplayName: user.displayName,
+            ownerDisplayName: teacher.displayName,
             ownerUsername: user.username,
             schoolId: user.schoolId
         });
@@ -84,8 +86,12 @@ module.exports = {
     /**
      * 根据ID获取班级信息
      */
-    findById: co.wrap(function*(id) {
-        return yield  Class.findById(id).exec();
+    findById: co.wrap(function*(id, lean) {
+        let query = Class.findById(id);
+        if (lean === true) {
+            query.lean();
+        }
+        return yield query.exec();
     }),
 
     /**
