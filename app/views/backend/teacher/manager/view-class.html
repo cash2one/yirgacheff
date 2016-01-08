@@ -1,6 +1,5 @@
 {% extends '../base.html' %}
 {% block content %} <!-- 面包屑 -->
-
 <div class="row">
     <div class="col-xs-12">
         <div class="panel panel-default shadow">
@@ -8,16 +7,20 @@
                 <h4 class="panel-title">班级信息</h4>
                 <div class="panel-control">
                     <a href="javascript:void(0)">
-                        <span class="f-s-16">
                             <i class="fa fa-pencil m-r-xxs"></i>编辑
-                        </span>
                     </a>
+                    <div class="dropdown pull-right m-l-lg" id="clazzMenu">
+                        <a href="#" class="dropdown-toggle f-gray" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">更多 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="changeClass" href="javascript:void(0)"><i class="fa fa-exchange m-r-xs"></i>班级转让</a></li>
+                            <li><a class="deleteClass {% if studentCount >0 %} disabled btn {% endif %}" href="javascript:void(0)"><i class="fa fa-trash-o f-pink m-r-xs"></i>班级删除</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="panel-body">
                 <form class="form-horizontal" id="class-info">
-                    <input type="hidden" id="classId" value="{{clazz._id.toString()}}">
-
                     <div class="form-group">
                         <label class="col-xs-1 control-label">班级名称</label>
                         <div class="col-xs-5">
@@ -117,21 +120,37 @@
 </div>
 
 <!-- 转让班级 -->
-<div class="hides" id="exchange-class">
-    <form class="form-horizontal m-t-sm" id="exchange-form">
-        <div class="form-group">
-            <label class="col-xs-4 control-label">请输入老师工号：</label>
-            <div class="col-xs-7">
-                <input class="form-control" type="text" name="username" id="username">
+<div class="modal fade" id="exchangeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">班级转让</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal m-t-sm" id="exchangeForm" name="exchangeForm">
+                    <div class="form-group">
+                        <label for="username" class="col-xs-3 control-label">老师工号：</label>
+                        <div class="col-xs-8">
+                            <input class="form-control validate" type="text"
+                                   name="username"
+                                   id="username"
+                                   data-rules="required"
+                                   data-display="工号">
+                            <input type="hidden" name="classId" id="classId" value="{{clazz._id.toString()}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-offset-3 col-xs-8">
+                            <button type="submit" class="btn btn-info">确定</button>
+                            <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="form-group">
-            <div class="col-xs-offset-4 col-xs-7">
-                <button type="button" class="btn btn-info layer-ok-btn">确定</button>
-                <button type="button" class="btn btn-white layer-close-btn">取消</button>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>
 
 <!--新建修改学生-->

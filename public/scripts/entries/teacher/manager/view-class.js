@@ -7,6 +7,8 @@ var app = require('../../../common/app');
 
 $(document).ready(function () {
     app = app();
+    var $changeClassForm = $('#exchangeForm');
+    var $clazzMenu =$("#clazzMenu");
     var $studentForm = $('#studentForm');
     var $modifyStudentForm = $("#modifyStudentForm");
     var $scoreForm = $("#scoreForm");
@@ -41,6 +43,35 @@ $(document).ready(function () {
                 '<a href="javascript:void(0)" class="f-pink delete m-r-xs" title="删除"><i class="fa fa-trash-o"></i></a>'
             }],
         'order': [[1, "desc"]]
+    });
+
+    //转让班级
+    $clazzMenu.on('click','.changeClass',function(){
+        $changeClassForm.parents('.modal').modal('show');
+        $("#classId").val()
+    });
+    $changeClassForm.validate(function ($form, data) {
+        var url = '/api/v1/classes/changeOwner';
+        $.ajax({
+            url: url,
+            method: "PUT",
+            data: data
+        }).then(function () {
+            self.location.href = "/teacher/classes";
+        });
+    });
+
+    //删除班级
+    $clazzMenu.on('click','.deleteClass',function(){
+        var deleteClassId = $("#classId").val();
+        if (confirm("您确定要删除这个班？")) {
+            $.ajax({
+                url: '/api/v1/classes/'+deleteClassId,
+                method: 'DELETE'
+            }).then(function(){
+                self.location.href = "/teacher/classes";
+            });
+        }
     });
 
     $("#add-student-btn").click(function () {

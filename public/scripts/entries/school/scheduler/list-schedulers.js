@@ -41,7 +41,7 @@ $(document).ready(function () {
                 end: calEvent.end.format('YYYY-MM-DD HH:mm')
             });
             $('#scheduleId').val(calEvent._id);
-            $('.del-btn').show();
+            $('.more-menu').show();
             $("#scheduleModal").modal("show");
             event = calEvent;
         },
@@ -53,7 +53,7 @@ $(document).ready(function () {
             $scheduleForm[0].reset();
             $('#start').val(start.hour(8).format('YYYY-MM-DD HH:mm'));
             $('#end').val(start.hour(9).format('YYYY-MM-DD HH:mm'));
-            $('.del-btn').hide();
+            $('.more-menu').hide();
             $("#scheduleModal").modal("show");
         }
     });
@@ -94,6 +94,7 @@ $(document).ready(function () {
                 notify.success("删除日程成功");
                 $("#scheduleModal").modal("hide");
                 calendar.fullCalendar('removeEvents', [scheduleId]);
+                $('#scheduleId').val('');
             });
         }
     });

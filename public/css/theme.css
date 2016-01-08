@@ -35,6 +35,10 @@ a:hover{
     color: #2aabe6;
     text-decoration: none;
 }
+a:active,a:focus{
+    color: #2aabe6;
+    text-decoration: none;
+}
 h1,
 h2,
 h3,
@@ -1172,26 +1176,26 @@ a.bg-pink:focus {
     color: #999999;
     white-space: nowrap;
 }
-.dropdown-menu:before {
-    position: absolute;
-    top: -8px;
-    left: 9px;
-    display: inline-block !important;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid #d8dee4;
-    border-left: 8px solid transparent;
-    content: '';
-}
-.dropdown-menu:after {
-    position: absolute;
-    top: -7px;
-    left: 10px;
-    display: inline-block !important;
-    border-right: 7px solid transparent;
-    border-bottom: 7px solid #fff;
-    border-left: 7px solid transparent;
-    content: '';
-}
+/*.dropdown-menu:before {*/
+    /*position: absolute;*/
+    /*top: -8px;*/
+    /*left: 9px;*/
+    /*display: inline-block !important;*/
+    /*border-right: 8px solid transparent;*/
+    /*border-bottom: 8px solid #d8dee4;*/
+    /*border-left: 8px solid transparent;*/
+    /*content: '';*/
+/*}*/
+/*.dropdown-menu:after {*/
+    /*position: absolute;*/
+    /*top: -7px;*/
+    /*left: 10px;*/
+    /*display: inline-block !important;*/
+    /*border-right: 7px solid transparent;*/
+    /*border-bottom: 7px solid #fff;*/
+    /*border-left: 7px solid transparent;*/
+    /*content: '';*/
+/*}*/
 .navbar .nav > li .dropdown-menu {
     margin: 0;
 }
@@ -1441,7 +1445,6 @@ td .checkbox {
 
 .panel .panel-heading {
     padding: 20px 20px 20px 20px;
-    overflow: hidden;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     border: 0;
@@ -1484,6 +1487,10 @@ td .checkbox {
     margin-left: 5px;
     font-size: 13px;
     float: left;
+}
+.panel .panel-heading .panel-control  .dropdown-menu a{
+    margin-left: 0;
+    font-size: 14px;
 }
 
 .panel .panel-heading .panel-control a:hover {
@@ -2229,7 +2236,9 @@ transition:width 6s ease-in-out
 .modal-content{
     border-radius: 0;
 }
-
+.close {
+    font-size: 22px;
+}
 /*tabs*/
 .nav-tabs {
     border-bottom: 1px solid #dddddd;
