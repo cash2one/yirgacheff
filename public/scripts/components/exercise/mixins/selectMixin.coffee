@@ -7,7 +7,7 @@ module.exports =
     question: ''
     analysis: ''
     answer: ''
-    choices: [{'title':'A'}, {'title':'B'}]
+    choices: [{'title': 'A'}, {'title': 'B'}]
 
 
   methods:
@@ -20,6 +20,8 @@ module.exports =
 
     deleteOption: (index)->
       this.choices.splice(index, 1)
+      _.forEach this.choices, (c, i)->
+        c.title = OPTIONS[i]
       this.answer = ''
 
     getTitle: (index)->
