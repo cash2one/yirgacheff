@@ -4,16 +4,16 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="student-profile-header">
-                <div class="avatar text-center">
-                    <img class="lazy" src="/images/default_head.jpg" {% if student.avatar %}
-                         data-original="{{resourceURL}}/{{student.avatar}}" {% endif %} width="150px"
-                         height="150px">
-                </div>
-                <div class="pro-name text-center m-t-lg">
-                    <p class="f-white f-s-18 m-r-xxl">{{student.displayName}}</p>
+            <div class="avatar text-center">
+                <img class="lazy" src="/images/default_head.jpg" {% if student.avatar %}
+                     data-original="{{resourceURL}}/{{student.avatar}}" {% endif %} width="150px"
+                     height="150px">
+            </div>
+            <div class="pro-name text-center m-t-lg">
+                <p class="f-white f-s-18 m-r-xxl">{{student.displayName}}</p>
 
-                    <p class="f-white f-s-16">{{student.username}}</p>
-                </div>
+                <p class="f-white f-s-16">{{student.username}}</p>
+            </div>
         </div>
     </div>
 </div>
@@ -78,19 +78,23 @@
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-xs-3 m-b-md">
-                        <div class="class-item">
-                            <div class="class-group">
-                                <div class="class-icon">
-                                    <i class="fa fa-flag"></i>
+                    {% for clazz in student.classes %}
+                    <a href="/teacher/classes/{{clazz._id.toString()}}">
+                        <div class="col-xs-3 m-b-md">
+                            <div class="class-item">
+                                <div class="class-group">
+                                    <div class="class-icon">
+                                        <i class="fa fa-flag"></i>
+                                    </div>
+                                </div>
+                                <div class="class-title">
+                                    <p>{{clazz.className}}</p>
+                                        <span class="count">{{clazz.ownerDisplayName}}</span>
                                 </div>
                             </div>
-                            <div class="class-title">
-                                <p>新概念</p>
-                                <span class="count">李静</span>
-                            </div>
                         </div>
-                    </div>
+                    </a>
+                    {% endfor %}
                 </div>
             </div>
         </div>

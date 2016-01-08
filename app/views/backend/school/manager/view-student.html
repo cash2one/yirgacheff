@@ -78,6 +78,8 @@
             </div>
             <div class="panel-body">
                 <div class="row">
+                    {% for clazz in student.classes %}
+                    <a href="/school/classes/{{clazz._id.toString()}}">
                     <div class="col-xs-3 m-b-md">
                         <div class="class-item">
                             <div class="class-group">
@@ -86,11 +88,13 @@
                                 </div>
                             </div>
                             <div class="class-title">
-                                <p>新概念</p>
-                                <span class="count">李静</span>
+                                <p>{{clazz.className}}</p>
+                                <span class="count">{{clazz.ownerDisplayName}}</span>
                             </div>
                         </div>
                     </div>
+                    </a>
+                    {% endfor %}
                 </div>
             </div>
         </div>

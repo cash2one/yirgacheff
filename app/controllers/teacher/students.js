@@ -10,10 +10,9 @@ module.exports = function (router) {
 
     router.get('/:studentId', function*() {
         let studentId = this.params.studentId;
-        let ret = yield {
-            student: service.students.findById(studentId)
-        };
-        _.assign(this.state, ret);
+        let student = yield service.students.findById(studentId);
+        yield student.populate('classes', 'className ownerDisplayName').execPopulate();
+        this.state.student = student;
         yield this.render('backend/teacher/manager/view-student');
     });
 
@@ -41,7 +40,8 @@ module.exports = function (router) {
     router.get('/scores/:studentId', function*() {
         let studentId = this.params.studentId;
         let ret = yield {
-            student: service.students.findById(studentId)
+            student: yield service.students.findById(studentId, true),
+            logs: yield service.score.logByStudent(studentId)
         };
         _.assign(this.state, ret);
         yield this.render('backend/teacher/manager/scores-student');

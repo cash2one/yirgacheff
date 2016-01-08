@@ -24,10 +24,9 @@ module.exports = function (router) {
 
     router.get('/:studentId', function*() {
         let studentId = this.params.studentId;
-        let ret = yield {
-            student: service.students.findById(studentId)
-        };
-        _.assign(this.state, ret);
+        let student = yield service.students.findById(studentId);
+        yield student.populate('classes', 'className ownerDisplayName').execPopulate();
+        this.state.student = student;
         yield this.render('backend/school/manager/view-student');
     });
 

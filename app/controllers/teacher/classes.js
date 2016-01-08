@@ -14,6 +14,7 @@ module.exports = function (router) {
         let classId = this.params.id;
         this.state.clazz = yield service.classes.findById(classId, true);
         this.state.studentCount = yield service.students.countByClass(classId);
+        this.state.classes = yield service.classes.findByTeacher(this.user._id);
         yield this.render('backend/teacher/manager/view-class');
     });
 

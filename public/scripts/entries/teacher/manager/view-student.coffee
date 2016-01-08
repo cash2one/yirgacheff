@@ -5,9 +5,11 @@ app = require '../../../common/app'
 $ ->
   app();
   studentId = $('#studentId').val()
+
   $('#recordForm').validate ($form, data)->
     url = '/api/v1/connections/students/' + studentId
-    $.post(url, data).then (data)->
+    $.post(url, data).then ()->
+      self.location.href = ''
 
 
   $('#recordList').on 'click', '.panel-collapse', ()->
