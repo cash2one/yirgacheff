@@ -16,7 +16,7 @@ OptionComponent = Vue.extend
              <img v-bind:src='imagePath' alt='' width='130' height='130'>
          </div>
          <div class='upload-control'>
-             <a class='f-info pull-left image-option-upload'>{{uploadText}}</a>
+             <a class='f-info pull-left' id='upload-{{seq}}-{{index}}'>{{uploadText}}</a>
              <a class='f-pink pull-right' @click="handleDelete" v-show="canDelete">删除</a>
          </div>
      </div>
@@ -32,11 +32,12 @@ OptionComponent = Vue.extend
   ready: ()->
     self = this
     upload
-      button: $('.image-option-upload')
+      button: "upload-#{this.seq}-#{this.index}"
       multi: false
       done: (res)->
-        self.$set('imagePath', res.path)
-        self.option.content = res.key
+        file = res[0]
+        self.$set('imagePath', file.path)
+        self.option.content = file.key
         self.uploadText = '重新上传'
 
 
@@ -54,7 +55,7 @@ ImageComponent = Vue.extend
                    :index='$index'
                    :option='option'
                    :seq='index'
-                   v-on:delete-option='deleteOption'>
+                   @delete-option='deleteOption'>
              </e-option>
         </div>
         <div class="col-xs-12 m-t-lg m-b-lg">
