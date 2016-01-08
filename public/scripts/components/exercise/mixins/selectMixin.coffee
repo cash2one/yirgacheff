@@ -7,16 +7,16 @@ module.exports =
     question: ''
     analysis: ''
     answer: ''
-    choices: [{}, {}]
+    choices: [{'title':'A'}, {'title':'B'}]
+
 
   methods:
     addOption: ()->
       len = this.choices.length
-      if(len >= 4)
+      if len >= 4
         return notify.warning "只能有4个选项哦"
-      this.choices.push({
+      this.choices.push
         title: OPTIONS[len]
-      })
 
     deleteOption: (index)->
       this.choices.splice(index, 1)
