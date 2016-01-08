@@ -4,52 +4,52 @@
 <input type="hidden" name="homeworkId" id="homeworkId" value="{{homework._id.toString()}}"/>
 <div class="row">
     <div class="col-xs-4">
-        <div class="panel info-box panel-green">
+        <div class="panel info-box info-box-info">
             <div class="panel-body">
                 <div class="info-box-stats">
                     <p class="counter">
-                        <span>{{ homework.statistics.averageSpendSeconds }}</span><span class="thin">:</span>
-                        <span>{{ homework.statistics.averageSpendSeconds }}</span><span class="thin">:</span>
-                        <span>{{ homework.statistics.averageSpendSeconds }}</span><span class="thin"></span>
+                        <span>{{ homework.statistics.averageSpendSeconds}}</span><span class="thin">:</span>
+                        <span>{{ homework.statistics.averageSpendSeconds}}</span><span class="thin">:</span>
+                        <span>{{ homework.statistics.averageSpendSeconds}}</span><span class="thin"></span>
                     </p>
                     <span class="info-box-title">平均完成时间</span>
                 </div>
                 <div class="info-box-icon">
-                    <i class="fa fa-clock-o fa-5x"></i>
+                    <i class="fa fa-clock-o f-info"></i>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-xs-4">
-        <div class="panel info-box panel-yellow">
+        <div class="panel info-box info-box-default">
             <div class="panel-body">
                 <div class="info-box-stats">
                     <p class="counter">{{(homework.statistics.finishRate * 100).toFixed(0)}}%</p>
                     <span class="info-box-title">作业完成率</span>
                 </div>
                 <div class="info-box-icon">
-                    <i class="fa fa-flag-o fa-5x"></i>
+                    <i class="fa fa-flag-o f-default"></i>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-xs-4">
-        <div class="panel info-box panel-blue">
+        <div class="panel info-box info-box-pink">
             <div class="panel-body">
                 <div class="info-box-stats">
                     <p class="counter">{{(homework.statistics.wrongRate * 100).toFixed(0)}}%</p>
                     <span class="info-box-title">平均错误率</span>
                 </div>
                 <div class="info-box-icon">
-                    <i class="fa fa-frown-o fa-5x"></i>
+                    <i class="fa fa-frown-o f-pink"></i>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-xs-12">
-        <div class="panel panel-white">
+        <div class="panel panel-default shadow">
             <div class="panel-heading clearfix">
-                <h4 class="panel-title"><i class="fa fa-bar-chart m-r-xs"></i>作业错误率分布</h4>
+                <h4 class="panel-title">作业错误率分布</h4>
             </div>
             <div class="panel-body">
                 <div id="column-chart"></div>
@@ -57,12 +57,12 @@
         </div>
     </div>
     <div class="col-xs-12">
-        <div class="panel panel-white">
+        <div class="panel panel-default shadow">
             <div class="panel-heading clearfix">
-                <h4 class="panel-title"><i class="fa fa-table m-r-xs"></i>学生完成情况</h4>
+                <h4 class="panel-title">学生完成情况</h4>
             </div>
             <div class="panel-body">
-                <table id="homework-list" class="table">
+                <table id="homework-list" class="display">
                     <thead>
                     <tr>
                         <th>姓名</th>
@@ -104,16 +104,14 @@
                     {% endfor %}
                     </tbody>
                 </table>
-                <div class="row">
-                    <div class="col-xs-6">
-                        <a class="pull-right btn btn-default" href="/teacher/homework/history">返回列表</a>
-                    </div>
-                    <div class="col-xs-6">
-                        <button class="pull-left btn btn-pink" id="close-homework-btn">关闭作业</button>
-                    </div>
-                </div>
             </div>
         </div>
+    </div>
+    <div class="col-xs-6">
+        <a class="pull-right btn btn-default" href="/teacher/homework/history">返回列表</a>
+    </div>
+    <div class="col-xs-6">
+        <button class="pull-left btn btn-pink" id="close-homework-btn">关闭作业</button>
     </div>
 </div>
 {% endblock %}

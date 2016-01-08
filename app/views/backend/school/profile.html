@@ -1,29 +1,32 @@
 {% extends 'base.html' %}
 {% block content %} <!-- 面包屑 -->
-
 <div class="row">
     <div class="col-xs-12">
-        <div class="panel panel-default shadow">
-            <div class="panel-heading clearfix">
-                <h4 class="panel-title">修改头像</h4>
-            </div>
-            <div class="panel-body">
-                <div class="col-xs-3">
-                    <img
-                            {% if user.avatar %}
-                            src="{{resourceURL}}/{{user.avatar}}?imageView2/1/w/180/h/180"
-                            {% else %}
-                            src="/images/default_head.jpg" {% endif %}
-                            width="180px"
-                            height="180px" class="center-block avatar">
+        <div class="profile-header">
+            <div class="avatar">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <img class="img-thumbnail"  {% if user.avatar %} src="{{resourceURL}}/{{user.avatar}}?imageView2/1/w/180/h/180" {% else %}
+                             src="/images/default_head.jpg" {% endif %}
+                             width="150px"
+                             height="150px">
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="avatar-upload">
+                            <input type="file" id="imageUpload">
+                        </div>
+                        <div class="pro-name">
+                            <p class="f-white f-s-18 m-r-xxl">{{user.displayName}}</p>
+                            <p class="f-white f-s-16">{{user.username}}</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-xs-9">
-                    <input type="file" id="imageUpload">
-                    <p class="m-t-lg">注：仅支持JPG, JPEG, GIF, PNG图像文件, 且文件小于2MB</p>
-                </div>
             </div>
+
         </div>
     </div>
+</div>
+<div class="row">
     <div class="col-xs-12">
         <div class="panel panel-default shadow">
             <div class="panel-heading clearfix">

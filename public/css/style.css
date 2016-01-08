@@ -907,22 +907,27 @@
     border: 1px solid #dfdfdf!important;
 }
 
-/*学生详情*/
-.student-profile-header{
-    background:url("../images/hd_bg.jpg");
-    height: 370px;
+/*个人信息*/
+.profile-header{
+    background:url("../images/profile-cover.png");
+    background-size: cover;
+    height: 280px;
     margin-bottom: 20px;
+    padding: 100px 0 0 20px;
 }
-.student-profile-header .avatar{
-    display: block;
+.profile-header .avatar{
+    width: 400px;
 }
-.student-profile-header .avatar img{
-    margin-top: 80px;
+.profile-header .avatar img{
     width: 150px;
     height: 150px;
     border-radius: 50%;
 }
-.student-profile-header p{
+.profile-header .avatar-upload{
+    padding-top: 20px;
+    height: 90px;
+}
+.profile-header .pro-name p{
     display: inline-block;
 }
 /*电话记录*/
