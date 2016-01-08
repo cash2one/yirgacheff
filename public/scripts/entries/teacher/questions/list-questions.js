@@ -1,8 +1,10 @@
 'use strict';
 
 require('datatables');
+var strftime = require('strftime');
 var app = require('../../../common/app');
 var notify = require('../../../common/notify');
+
 
 $(document).ready(function () {
     app();
@@ -21,16 +23,6 @@ $(document).ready(function () {
         });
     }
 
-    //格式化时间函数
-    function formatDate(date1) {
-        var now = new Date(date1);
-        var year = now.getFullYear();
-        var month = now.getMonth() + 1;
-        var date = now.getDate();
-        var hour = now.getHours();
-        var minute = now.getMinutes();
-        return year + "-" + month + "-" + date + "   " + hour + ":" + minute;
-    }
 
     //截取字符串，多余的部分用...代替
     function setString(str, len) {
@@ -102,8 +94,7 @@ $(document).ready(function () {
             {
                 'targets': [3],
                 'render': function (data, type, row) {
-                    var date = (new Date(data)).getTime();
-                    return formatDate(date);
+                    return strftime('%F %T',new Date(data));
                 }
             },
             {
