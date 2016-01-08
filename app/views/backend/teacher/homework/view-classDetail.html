@@ -107,11 +107,13 @@
             </div>
         </div>
     </div>
-    <div class="col-xs-6">
-        <a class="pull-right btn btn-default" href="/teacher/homework/history">返回列表</a>
-    </div>
-    <div class="col-xs-6">
-        <button class="pull-left btn btn-pink" id="close-homework-btn">关闭作业</button>
+    <div class="col-xs-12 text-center">
+        {% if homework.state == 1 %}
+        <a class="btn btn-default" href="/teacher/homework/history">返回列表</a>
+        {% else %}
+        <a class="btn btn-default" href="/teacher/homework">返回列表</a>
+        <button class="btn btn-pink" id="close-homework-btn">关闭作业</button>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
