@@ -22,9 +22,8 @@
         <div class="page-sidebar shadow">
             <ul class="nav nav-pills nav-stacked">
                 <li class="active"><a href="/school/students/{{student._id.toString()}}">基本信息</a></li>
-                <li><a href="/school/students/connect/{{student._id.toString()}}">电话记录</a></li>
-                <li><a href="/school/students/scores/{{student._id.toString()}}">积分记录</a></li>
-                <li><a href=""> 作业记录</a></li>
+                <li><a href="/school/students/{{student._id.toString()}}/phoneRecords">电话记录</a></li>
+                <li><a href="/school/students/{{student._id.toString()}}/scoreRecords">积分记录</a></li>
             </ul>
         </div>
     </div>
@@ -78,6 +77,8 @@
             </div>
             <div class="panel-body">
                 <div class="row">
+                    {% for clazz in student.classes %}
+                    <a href="/school/classes/{{clazz._id.toString()}}">
                     <div class="col-xs-3 m-b-md">
                         <div class="class-item">
                             <div class="class-group">
@@ -86,11 +87,13 @@
                                 </div>
                             </div>
                             <div class="class-title">
-                                <p>新概念</p>
-                                <span class="count">李静</span>
+                                <p>{{clazz.className}}</p>
+                                <span class="count">{{clazz.ownerDisplayName}}</span>
                             </div>
                         </div>
                     </div>
+                    </a>
+                    {% endfor %}
                 </div>
             </div>
         </div>

@@ -33,6 +33,7 @@ var scoreTraceSchema = new Schema({
 
     operator: {
         type: ObjectId,
+        ref: 'Teacher',
         required: true
     },
 

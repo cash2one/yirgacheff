@@ -112,6 +112,16 @@ module.exports = {
         });
         yield ScoreLog.create(logs);
         return true;
+    }),
+
+    /**
+     * 获取积分日志
+     */
+    logByStudent: co.wrap(function*(studentId) {
+        this.body = yield ScoreLog.find({
+            student: studentId
+        }).populate('operator', 'displayName').lean().exec();
+
     })
 
 };

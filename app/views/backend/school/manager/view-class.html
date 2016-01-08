@@ -8,30 +8,52 @@
                 <h4 class="panel-title">班级信息</h4>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="col-xs-1 control-label">班级名称</label>
+                <div class="panel-body">
+                    <form class="form-horizontal" id="class-info">
+                        <div class="form-group">
+                            <label class="col-xs-1 control-label">班级名称</label>
+                            <div class="col-xs-5">
+                                <p class="form-control-static">
+                                    {{clazz.className}}
+                                </p>
+                            </div>
+                        </div>
 
-                        <div class="col-xs-6">
-                            <input class="form-control" type="text" id="className" value="{{clazz.className}}"
-                                   disabled/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-1 control-label">管理教师</label>
+                        <div class="form-group">
+                            <label class="col-xs-1 control-label">上课时间</label>
+                            <div class="col-xs-5">
+                                <p class="form-control-static">
+                                    {{clazz.courseTime}}
+                                </p>
+                            </div>
 
-                        <div class="col-xs-6">
-                            <input class="form-control" type="text" id="ownerDisplayName"
-                                   value="{{clazz.ownerDisplayName}}" disabled/>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-1 control-label" for="studentCount">学生数量</label>
-                        <div class="col-xs-6">
-                            <input class="form-control" type="text" id="studentCount" value="{{students.length}}" disabled/>
+
+                        <div class="form-group">
+                            <label class="col-xs-1 control-label">班级教师</label>
+                            <div class="col-xs-5">
+                                <p class="form-control-static">
+                                    {{clazz.ownerDisplayName}}
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                </form>
+
+                        <div class="form-group">
+                            <label class="col-xs-1 control-label">班级人数</label>
+                            <div class="col-xs-1">
+                                <p class="form-control-static">
+                                    {{students.length}}
+                                </p>
+                            </div>
+                            <div class="col-xs-2">
+                                <button class="btn btn-info btn-sm" id="download-btn"><i
+                                        class="fa fa-cloud-download m-r-xxs"></i>下载名单
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -50,8 +72,7 @@
                         <th>学号</th>
                         <th>密码</th>
                         <th>性别</th>
-                        <th>学校</th>
-                        <th>年级</th>
+                        <th>电话</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -62,8 +83,7 @@
                         <td>{{student.username}}</td>
                         <td>{{student.password}}</td>
                         <td>{{student.gender}}</td>
-                        <td>{{student.onSchool.schoolName}}</td>
-                        <td>{{student.onSchool.grade}}</td>
+                        <td>{{student.phone}}</td>
                         <td>
                             <a class="btn btn-info btn-xs btn-custom"
                                href="/school/students/{{student._id.toString()}}">查看</a>
