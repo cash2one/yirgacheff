@@ -6,6 +6,10 @@ const service = require('../../../services');
 
 module.exports = function (router) {
 
+    router.get('/count', function*() {
+        this.body = yield service.quizzes.countBySchool(this.user.schoolId);
+    });
+
     router.post('/', function*() {
         let user = this.user;
         this.body = yield service.quizzes.create(user, this.request.body);
