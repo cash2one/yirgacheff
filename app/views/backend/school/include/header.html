@@ -10,7 +10,8 @@
                 <li>
                     <a href="/school/profile">
                         {{user.displayName}}
-                        <img class="pull-right m-t-n-xxs img-circle m-l-xxs" src="http://resource.hizuoye.com/{{user.avatar | default('images/default/avatar.jpg')}}"
+                        <img class="pull-right m-t-n-xxs img-circle m-l-xxs"
+                             src="http://resource.hizuoye.com/{{user.avatar | default('images/default/avatar.jpg')}}"
                              width="30" height="30">
                     </a>
                 </li>
@@ -29,7 +30,8 @@
                     </a>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">教务管理 <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">教务管理 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/school/teachers">教师管理</a></li>
                         <li><a href="/school/classes">班级管理</a></li>
@@ -37,7 +39,8 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">积分管理 <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">积分管理 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/school/scores/instruction">积分规则</a></li>
                         <li><a href="/school/scores/mall">积分商城</a></li>
@@ -50,7 +53,8 @@
                     <a href="/school/quizzes">题库资源</a>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">微网站 <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">微网站 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/school/posts/create">文章发布</a></li>
                         <li><a href="/school/posts">所有文章</a></li>
@@ -58,7 +62,8 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">营销中心 <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">营销中心 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/school/tasks/create">任务发布</a></li>
                         <li><a href="/school/tasks">任务管理</a></li>
@@ -68,4 +73,4 @@
         </div>
     </div>
 </nav>
-{% include '../../common/response.html' %}
+{% include '../../include/response.html' %}

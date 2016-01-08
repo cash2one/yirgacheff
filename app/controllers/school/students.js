@@ -41,7 +41,7 @@ module.exports = function (router) {
             })
         };
         _.assign(this.state, ret);
-        yield this.render('backend/school/manager/connetion_pipe');
+        yield this.render('backend/school/manager/list-records');
     });
 
     router.get('/scores/:studentId', function*() {
