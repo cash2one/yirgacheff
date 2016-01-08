@@ -8,7 +8,7 @@ var app = require('../../../common/app');
 $(document).ready(function () {
     app = app();
     var $changeClassForm = $('#exchangeForm');
-    var $clazzMenu =$("#clazzMenu");
+    var $clazzMenu = $("#clazzMenu");
     var $studentForm = $('#studentForm');
     var $modifyStudentForm = $("#modifyStudentForm");
     var $scoreForm = $("#scoreForm");
@@ -39,14 +39,16 @@ $(document).ready(function () {
             {'data': 'score'},
             {
                 'data': null,
-                'defaultContent': '<a href="javascript:void(0)" class="f-info edit m-r-xs" title="修改"><i class="fa fa-pencil"></i></a>' +
+                'defaultContent': '<a href="javascript:void(0)" class="m-r-xs view" title="查看"><i class="fa fa-eye"></i></a>' +
+                '<a href="javascript:void(0)" class="f-info edit m-r-xs" title="修改"><i class="fa fa-pencil"></i></a>' +
                 '<a href="javascript:void(0)" class="f-pink delete m-r-xs" title="删除"><i class="fa fa-trash-o"></i></a>'
+
             }],
         'order': [[1, "desc"]]
     });
 
     //转让班级
-    $clazzMenu.on('click','.changeClass',function(){
+    $clazzMenu.on('click', '.changeClass', function () {
         $changeClassForm.parents('.modal').modal('show');
         $("#classId").val()
     });
@@ -62,13 +64,13 @@ $(document).ready(function () {
     });
 
     //删除班级
-    $clazzMenu.on('click','.deleteClass',function(){
+    $clazzMenu.on('click', '.deleteClass', function () {
         var deleteClassId = $("#classId").val();
         if (confirm("您确定要删除这个班？")) {
             $.ajax({
-                url: '/api/v1/classes/'+deleteClassId,
+                url: '/api/v1/classes/' + deleteClassId,
                 method: 'DELETE'
-            }).then(function(){
+            }).then(function () {
                 self.location.href = "/teacher/classes";
             });
         }
@@ -96,6 +98,11 @@ $(document).ready(function () {
         var student = dataTable.row($(this).parents('tr')).data();
         $modifyStudentForm.renderForm(student);
         $("#modifyStudentModal").modal('show');
+    });
+
+    jqTable.on('click', '.view', function () {
+        var studentId = $(this).parents('tr').attr('id');
+        self.location.href = "/teacher/students/" + studentId;
     });
 
     $modifyStudentForm.validate(function ($form, student) {

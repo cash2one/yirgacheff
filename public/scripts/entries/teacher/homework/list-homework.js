@@ -5,6 +5,7 @@ var app = require('../../../common/app');
 
 $(document).ready(function () {
     app = app();
+    app.menu(1);
     var jqTable = $('#homework-list');
     var dataTable = jqTable.DataTable({
         'bAutoWidth': false,

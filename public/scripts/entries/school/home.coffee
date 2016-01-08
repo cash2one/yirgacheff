@@ -6,16 +6,15 @@ $ ->
 #app 初始化
   app()
   #学生数
-  $.get('/api/v1/statics/students/count').then (data) ->
-    $('#student-count').html data
-
+  $('#studentCount').load('/api/v1/statics/students/count');
   #班级数
-  $.get('/api/v1/statics/classes/count').then (data) ->
-    $('#class-count').html data
+  $('#classCount').load('/api/v1/statics/classes/count')
 
   #教师数
-  $.get('/api/v1/statics/teachers/count').then (data) ->
-    $('#teacher-count').html(data)
+  $('#teacherCount').load('/api/v1/statics/teachers/count')
+
+  $('#quizCount').load('/api/v1/quizzes/count')
+
 
   # 出题排行榜
   $.get('/api/v1/statics/teachers/quizContributionRank').then (data) ->
