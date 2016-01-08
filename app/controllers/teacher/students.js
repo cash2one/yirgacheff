@@ -24,7 +24,7 @@ module.exports = function (router) {
         yield this.render('backend/teacher/manager/list-students');
     });
 
-    router.get('/connect/:studentId', function*() {
+    router.get('/:studentId/phoneRecords', function*() {
         let studentId = this.params.studentId;
         let ret = yield {
             student: service.students.findById(studentId),
@@ -34,17 +34,17 @@ module.exports = function (router) {
             })
         };
         _.assign(this.state, ret);
-        yield this.render('backend/teacher/manager/list-records');
+        yield this.render('backend/teacher/manager/list-phone-records');
     });
 
-    router.get('/scores/:studentId', function*() {
+    router.get('/:studentId/scoreRecords', function*() {
         let studentId = this.params.studentId;
         let ret = yield {
             student: yield service.students.findById(studentId, true),
             logs: yield service.score.logByStudent(studentId)
         };
         _.assign(this.state, ret);
-        yield this.render('backend/teacher/manager/scores-student');
+        yield this.render('backend/teacher/manager/list-score-records');
     });
 
     return router;
