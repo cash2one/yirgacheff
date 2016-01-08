@@ -3,6 +3,7 @@
  */
 'use strict';
 
+const _ = require('lodash');
 const service = require('../../services');
 
 module.exports = function (router) {
