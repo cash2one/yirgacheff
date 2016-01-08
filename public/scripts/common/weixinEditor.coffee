@@ -28,7 +28,7 @@ module.exports = (opts)->
     $.each clazz, (name)-> $(clazz[name]).css(border[name], color)
 
   #绑定组件点击事件
-  $('.wx-editor-template-content').on 'click', 'li', ()->
+  $('.wx-editor-template-content').on 'click', '.item', ()->
     content = $(this).html()
     editor.execCommand('insertHtml',content);
 
