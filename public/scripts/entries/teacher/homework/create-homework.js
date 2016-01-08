@@ -13,6 +13,7 @@ Vue.use(VueAsyncData);
 
 $(document).ready(function () {
     app = app();
+    app.menu(1);
     var homeworkInfo = new Vue({
         el: '#homeworkInfo',
         data: {
