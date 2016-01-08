@@ -20,7 +20,7 @@ module.exports =
 
     deleteOption: (index)->
       this.choices.splice(index, 1)
-      this.$set('answer', '')
+      this.answer = ''
 
     getTitle: (index)->
       OPTIONS[index]

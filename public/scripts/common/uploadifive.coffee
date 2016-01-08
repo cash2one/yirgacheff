@@ -6,7 +6,7 @@ VISIT_URL = "http://7rfll3.com1.z0.glb.clouddn.com/"
 TOKEN_API = "/api/v1/qiniu/token"
 UPLOAD_API = "http://upload.qiniu.com/"
 
-modal = """
+modalTemplate = """
 <div class="modal fade" id="_uploadFiveModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -67,66 +67,85 @@ singleUpload = (opts)->
 
 
 #窗口上传,默认是多文件上传
-windowUpload = (opts)->
-  $('body').append($(modal));
-  $('.slimscroll').slimscroll(
-    allowPageScroll: true
-    height: 300
-  )
+modalUpload = (opts)->
   btn = opts.button
-  multi = opts.multi ? true
-  done = opts.done
   $btn = if typeof btn is 'object' then btn else $('#' + btn)
-  uploaded = []
-  isComplete = false
-  fileType = opts.fileType or 'image/*' #默认上传图片
-  uploadOpts =
-    'uploadScript': UPLOAD_API
-    'fileObjName': "file"
-    'multi': !!multi
-    'queueID': "uploadifive-queue"
-    'buttonText': '上传'
-    'fileType': fileType
-    'fileSizeLimit': '3MB'
-    'formData':
-      'token': token
-
-    'onUploadComplete': (file, data) ->
-      ret = $.parseJSON(data)
-      ret.path = VISIT_URL + ret.key
-      ret.name = file.name
-      uploaded.push(ret)
-
-    'onQueueComplete': () ->
-      isComplete = true
-
-    'onCancel': (file)->
-      uploaded = (item for item in uploaded when item.name isnt file.name)
-
-    'onUpload': ()->
-      isComplete = false
-
-  uploader = $("#_upload_file").uploadifive(uploadOpts)
-
-  $("#_upload_save").click ()->
-    if uploaded.length is 0
-      console.warn "没有图片上传"
-      return
-    if isComplete
-      if multi
-        done(uploaded)
-      else
-        done(uploaded[0])
-      $('#_uploadFiveModal').modal('hide')
-      uploader.uploadifive("clearQueue") #清空上传队列
-    else
-      notify.warning "图片正在上传中..."
-
+  #单例模式,保证一个页面只存在一个模态窗口实例
+  modal = UploadModal.getInstance()
   $btn.click ()->
-    uploaded = []
-    isComplete = false
-    uploader.uploadifive("clearQueue") #清空上传队列
+    modal.initUploader(opts)
+    modal.show()
+
+
+#上传模态窗口类
+class UploadModal
+  constructor: ()->
+    @version = 0
+    @uploaded = []
+    @isComplate = false
+    @uploader = null
+    $('body').append $(modalTemplate)
+    $('.slimscroll').slimscroll
+      allowPageScroll: true
+      height: 300
+    @done = ()->
+    $("#_upload_save").click ()=>
+      $("#uploadifive-queue").html ''
+      if @uploaded.length is 0
+        $('#_uploadFiveModal').modal('hide')
+        console.warn "没有图片上传"
+        return
+      if @isComplete
+        @done(@uploaded)
+        $('#_uploadFiveModal').modal('hide')
+      else
+        notify.warning "图片正在上传中..."
+
+
+  initUploader: (opts)->
+    @uploaded = []
+    @isComplate = false
+    @done = opts.done
+    multi = opts.multi ? true
+    buttonText = opts.buttonText ? '上传'
+    fileSizeLimit = opts.fileSizeLimit ? '5MB'
+    fileType = opts.fileType ? 'image/*' #默认上传图片
+    uploadOpts =
+      'uploadScript': UPLOAD_API
+      'fileObjName': "file"
+      'multi': multi
+      'queueID': "uploadifive-queue"
+      'buttonText': buttonText
+      'fileSizeLimit': fileSizeLimit
+      'fileType': fileType
+      'formData':
+        'token': token
+      onUploadComplete: (file, data) =>
+        ret = $.parseJSON(data)
+        ret.path = VISIT_URL + ret.key
+        ret.name = file.name
+        @uploaded.push(ret)
+      onQueueComplete: () =>
+        @isComplete = true
+
+      onCancel: (file) =>
+        @uploaded = (item for item in @uploaded when item.name isnt file.name)
+
+      onUpload: () =>
+        @isComplete = false
+
+    @uploader = $("#_upload_file").uploadifive(uploadOpts)
+    @uploader.uploadifive("clearQueue") #清空上传队列
+
+
+  show: ()->
     $('#_uploadFiveModal').modal()
+
+
+  @getInstance: ()->
+    if @instance?
+      return @instance
+    @instance = new UploadModal()
 
 
 module.exports = (opts = {})->
@@ -134,4 +153,4 @@ module.exports = (opts = {})->
   if not window
     singleUpload(opts)
   else
-    windowUpload(opts)
+    modalUpload(opts)
