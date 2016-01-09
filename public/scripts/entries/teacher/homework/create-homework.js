@@ -1,9 +1,8 @@
 'use strict';
 
+var _ = require('underscore');
 var Vue = require('vue');
 var VueAsyncData = require('vue-async-data');
-var _ = require('underscore');
-
 var app = require('../../../common/app');
 var upload = require('../../../common/uploadifive');
 var QuizComponent = require('../../../components/exercise');
@@ -14,13 +13,24 @@ Vue.use(VueAsyncData);
 $(document).ready(function () {
     app = app();
     app.menu(1);
-    var homeworkInfo = new Vue({
-        el: '#homeworkInfo',
+    new Vue({
+        el: "#createHomework",
         data: {
             classes: [],
             title: '',
             keyPointRecord: '',
-            addQuizBase: true
+            addQuizBase: true,
+            exercises: []
+        },
+        asyncData: function (resolve, reject) {
+            var quizId = $.getUrlParam('quizId');
+            if (quizId !== null) {
+                $.get('/api/v1/quizzes/' + quizId).then(function (quiz) {
+                    resolve({
+                        exercises: quiz.exercises
+                    })
+                });
+            }
         },
         methods: {
             addClass: function (e) {
@@ -35,10 +45,16 @@ $(document).ready(function () {
                     })
                 }
             },
+            addExercise: function (eType) {
+                this.exercises.push({eType: eType});
+            },
+            deleteExercise: function (index) {
+                this.exercises.splice(index, 1);
+            },
             getData: function () {
-                if (!this.isValid()) {
-                    return false;
-                }
+                this.exercises = _.map(this.$children, function (child) {
+                    return child.getData();
+                });
                 return this.$data;
             },
 
@@ -51,7 +67,25 @@ $(document).ready(function () {
                     app.notify.danger("作业标题不能为空");
                     return false;
                 }
+                if (this.exercises.length === 0) {
+                    app.notify.danger("请添加题目");
+                    return false;
+                }
+                for (var i = 0; i < this.exercises.length; i++) {
+                    var child = this.$children[i];
+                    if (!child.isValid()) {
+                        return false;
+                    }
+                }
                 return true;
+            },
+            saveHomework: function () {
+                if (!this.isValid()) {
+                    return false;
+                }
+                $.post('/api/v1/homework', this.getData()).then(function (res) {
+                    app.notify.success("保存作业成功");
+                });
             }
         },
         ready: function () {
@@ -65,73 +99,4 @@ $(document).ready(function () {
             });
         }
     });
-
-    var exerciseList = new Vue({
-        el: '#exerciseList',
-        data: {exercises: []},
-        asyncData: function (resolve, reject) {
-            var quizId = $.getUrlParam('quizId');
-            if (quizId !== null) {
-                $.get('/api/v1/quizzes/' + quizId).then(function (quiz) {
-                    resolve({
-                        exercises: quiz.exercises
-                    })
-                });
-            }
-        },
-        methods: {
-            addExercise: function (eType) {
-                this.exercises.push({eType: eType});
-            },
-            deleteExercise: function (index) {
-                this.exercises.splice(index, 1);
-            },
-            isValid: function () {
-                var i;
-                for (i = 0; i < this.exercises.length; i++) {
-                    var child = this.$children[i];
-                    if (!child.isValid()) {
-                        return false;
-                    }
-                }
-                return true;
-            },
-            getData: function () {
-                if (!this.isValid()) {
-                    return false;
-                }
-                if (this.exercises.length === 0) {
-                    app.notify.danger("请添加题目");
-                    return false;
-                }
-                return _.map(this.$children, function (child) {
-                    return child.getData();
-                })
-            }
-        }
-    });
-
-
-    //保存作业
-    $('#save-homework').on('click', function () {
-        var homework;
-        var exercises;
-        var data;
-        homework = homeworkInfo.getData();
-        if (!homework) {
-            return false;
-        }
-        exercises = exerciseList.getData();
-        if (!exercises) {
-            return false;
-        }
-        data = {
-            homework: homework,
-            exercises: exercises
-        };
-        $.post('/api/v1/homework', data).then(function (res) {
-            app.notify.success("保存作业成功");
-        });
-    });
-
 });

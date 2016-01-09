@@ -1,7 +1,7 @@
 {% extends '../../layout.html' %}
 {% block content %}
 
-<div class="row">
+<div class="row" id="createHomework">
     <div class="col-xs-2">
         <div class="page-sidebar shadow">
             <ul class="nav nav-pills nav-stacked">
@@ -39,7 +39,8 @@
                                         {% for clazz in classes %}
                                         <li id="<<clazz._id.toString()>>" title="<<clazz.className>>"
                                             @click.stop="addClass">
-                                            <p><<clazz.className | subTitle(6)>></p>
+                                            <p> <<clazz.className | subTitle(6)>>
+                                            </p>
                                         </li>
                                         {% endfor %}
                                     </ul>
@@ -160,7 +161,7 @@
     </div>
 
     <div class="col-xs-12 m-b-md">
-        <a class="col-xs-offset-5 col-xs-2 btn btn-default" id="save-homework">保存作业</a>
+        <a class="col-xs-offset-5 col-xs-2 btn btn-default" @click="saveHomework">保存作业</a>
     </div>
 </div>
 

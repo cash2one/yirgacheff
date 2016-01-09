@@ -19,7 +19,7 @@ module.exports = {
 
     create: co.wrap((function*(user, data) {
         let teacher = yield Teacher.findById(user._id).lean().exec();
-        let homework = data.homework;
+        let homework = data;
         let exercises = data.exercises;
         let classes = homework.classes;
         let asTemplate = homework.addQuizBase;
