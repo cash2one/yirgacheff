@@ -31,11 +31,19 @@
                     <% }); %>
                     <div class="form-group">
                         <div class="analysis-que col-xs-10">
-                            <p>参考答案：<span class="m-l-xs"><%= exercise && exercise.answer %></span></p>
-                            <% if (exercise.wrongAnswer) { %>
-                            <p>学生答案：<span class="m-l-xs"><%= exercise.wrongAnswer %></span></p>
-                            <% } %>
-                            <p>解析：<%= exercise.analysis %></p>
+                            <p>参考答案：
+                                <%= exercise && exercise.answer %>
+                            </p>
+                            <p>学生答案：
+                                <% if (exercise.wrongAnswer) { %>
+                                <%= exercise.wrongAnswer %>
+                                <% } else{ %>
+                                <%= exercise && exercise.answer %>
+                                <% } %>
+                            </p>
+                            <p>答案解析：
+                                <%= exercise.analysis %>
+                            </p>
                         </div>
                     </div>
                 </form>
@@ -73,9 +81,9 @@
                                         <% } else if(choice.title == exercise.wrongAnswer){ %>error
                                         <% } %>
                                         ">
-                                        <div class="images-group center-block">
+                                        <div class="images-group">
                                             <img class=""
-                                                 src="http://resource.hizuoye.com/<%= choice.content %>?imageView2/1/w/120/h/120/interlace/1">
+                                                 src="http://resource.hizuoye.com/<%= choice.content %>?imageView2/1/w/155/h/155/interlace/1">
                                         </div>
                                         <p class="m-t-xs"><%= choice.title %></p>
                                     </div>
@@ -86,11 +94,19 @@
                     </div>
                     <div class="form-group">
                         <div class="analysis-que col-xs-10">
-                            <p>参考答案：<span class="m-l-xs"><%= exercise && exercise.answer %></span></p>
-                            <% if (exercise.wrongAnswer) { %>
-                            <p>学生答案：<span class="m-l-xs"><%= exercise.wrongAnswer %></span></p>
-                            <% } %>
-                            <p>解析：<%= exercise.analysis %></p>
+                            <p>参考答案：
+                                <%= exercise && exercise.answer %>
+                            </p>
+                            <p>学生答案：
+                                <% if (exercise.wrongAnswer) { %>
+                                <%= exercise.wrongAnswer %>
+                                <% } else{ %>
+                                <%= exercise && exercise.answer %>
+                                <% } %>
+                            </p>
+                            <p>答案解析：
+                                <%= exercise.analysis %>
+                            </p>
                         </div>
                     </div>
                 </form>
@@ -121,10 +137,19 @@
                     </div>
                     <div class="form-group">
                         <div class="analysis-que col-xs-10">
-                            <p>参考答案：<span class="m-l-xs"><%= exercise && exercise.answer %></span></p>
-                            <% if (exercise.wrongAnswer) { %>
-                            <p>学生答案：<span class="m-l-xs"><%= exercise.wrongAnswer %></span></p>
-                            <% } %>
+                            <p>参考答案：
+                                <%= exercise && exercise.answer %>
+                            </p>
+                            <p>学生答案：
+                                <% if (exercise.wrongAnswer) { %>
+                                <%= exercise.wrongAnswer %>
+                                <% } else{ %>
+                                <%= exercise && exercise.answer %>
+                                <% } %>
+                            </p>
+                            <p>答案解析：
+                                <%= exercise.analysis %>
+                            </p>
                         </div>
                     </div>
                 </form>
@@ -147,10 +172,10 @@
                     <div class="form-group">
                         <p class="no-m"><%= exercise && exercise.question %></p>
                     </div>
-                    <% if(exercise.audioAnswer) { %>
-                    <div style="margin-left: 72px; margin-top: 26px;">
-                        <audio src="http://resource.hizuoye.com/<%= exercise.audioAnswer %>" preload="none"></audio>
-                    </div>
+                    <% if(exercise.audioAnswer) {%>
+                    <audio src="http://resource.hizuoye.com/<%= exercise.audioAnswer %>" controls="controls">
+                        请使用360极速浏览器
+                    </audio>
                     <% } %>
                 </form>
             </div>

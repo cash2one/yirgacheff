@@ -4,15 +4,12 @@ require('datatables');
 require('highcharts');
 
 var app = require('../../../common/app');
-var app = require('../../../common/app');
+var exerciseBuilder = require('../../../common/exerciseReadOnlyBuilder');
 
 $(document).ready(function () {
     var exercises = window.exercises;
     var data = exerciseBuilder.buildExercisesWithData(exercises);
     $('#exerciseList').html(data);
-    audiojs.events.ready(function () {
-        audiojs.createAll();
-    });
 
     $('#reward-save-btn').click(function () {
         var comment = $('textarea[name="comment"]').val();

@@ -484,13 +484,14 @@
     border: 1px solid #dfdfdf;
 }
 .images-que-list{
-    padding: 20px 0 10px 0;
+    padding: 3px 0 10px 0;
     text-align: center;
-    border: 1px solid #d1d1d1;
+    border: 1px solid #cccccc;
     border-radius: 5px;
 }
 .images-group{
-
+    border-bottom: 1px solid #cccccc;
+    padding-bottom: 3px;
 }
 .quest-number{
     width: 32px;
@@ -500,15 +501,17 @@
     font-weight: bold;
     text-align: center;
     margin-right: 10px;
+    background: #2aabe6;
+    color: #fff;
 }
 .quest-title{
-    background: url("/images/icon-quest-title.png") no-repeat;
     width: 141px;
     height: 34px;
     font-size: 14px;
     color: #686868;
     line-height: 34px;
     float: left;
+    margin-left: -20px;
 }
 .answerIcon{
     position: absolute;
@@ -553,6 +556,9 @@
     font-size: 14px;
     color: #999;
     min-height: 70px;
+}
+.analysis-que p{
+    word-break: break-all;
 }
 /*题目正确错误*/
 .result-flag-w {
