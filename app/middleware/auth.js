@@ -18,10 +18,13 @@ module.exports = {
         if (!user) {
             this.throw(401, 'need login');
         }
-        user = yield service.users.getUserByIdAndRole(user._id, user.role);
+        let role = user.role;
+        user = yield service.users.getUserByIdAndRole(user._id, role);
+
         if (user === null) {
             this.throw(401, 'user not exist');
         }
+        user.role = role;
         this.state.user = user;
         yield next;
     }
