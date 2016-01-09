@@ -1,5 +1,5 @@
 /**
- * Created by Frank on 15/12/18.
+ * Created by Admin on 2016/1/9.
  */
 'use strict';
 
@@ -8,7 +8,8 @@ const service = require('../../../services');
 module.exports = function (router) {
 
     router.get('/edit', function*() {
-        yield this.render('common/events/post');
+        yield this.render('common/events/audition');
+
     });
 
 

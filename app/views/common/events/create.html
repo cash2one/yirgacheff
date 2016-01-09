@@ -1,4 +1,4 @@
-{% extends '../base.html' %}
+{% extends '../../layout.html' %}
 {% block content %}
 <!-- END OF BREADCRUMBS -->
 <input type="hidden" id="homeworkId" value="">
@@ -9,7 +9,7 @@
 </div>
 <div class="row">
     <div class="col-xs-3">
-        <a class="" href="/school/tasks/posts/create">
+        <a class="" href="/school/events/post/edit">
             <div class="shadow shadow-hover bg-white center-block text-center p-v-sm p-h-sm">
                 <p><img src="/images/ls1.jpg" width="230"></p>
 
@@ -22,7 +22,7 @@
         </a>
     </div>
     <div class="col-xs-3">
-        <a class="" href="">
+        <a class="" href="/school/events/audition/edit">
             <div class="shadow shadow-hover bg-white center-block text-center p-v-sm p-h-sm">
                 <p><img src="/images/ls2.jpg" width="230"></p>
 
@@ -48,7 +48,7 @@
         </a>
     </div>
     <div class="col-xs-3">
-        <a class="" href="/school/tasks/activities/create">
+        <a class="" href="/school/events/activities/edit">
             <div class="shadow shadow-hover bg-white center-block text-center p-v-sm p-h-sm">
                 <p><img src="/images/ls4.jpg" width="230"></p>
 
@@ -116,6 +116,5 @@
 
 {% endblock %}
 {% block javascript %}
-<script src="/js/entries/school/task/create-tasks.js"></script>
 
 {% endblock %}

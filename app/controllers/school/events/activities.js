@@ -8,7 +8,8 @@ const service = require('../../../services');
 module.exports = function (router) {
 
     router.get('/edit', function*() {
-        yield this.render('common/events/post');
+        yield this.render('common/events/activity');
+
     });
 
 
