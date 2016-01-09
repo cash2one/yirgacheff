@@ -11,15 +11,31 @@
                 <div class="row">
                     <div class="col-xs-6 text-center">
                         <h3>360家校云二维码</h3>
-                        <img class="center-block m-t-lg" src="{{qrcode}}" alt="">
-                        <button class="btn btn-default center-block m-t-lg">下载</button>
+                        <img class="center-block m-t-lg" src="{{qrcode}}">
+                        <a class="btn btn-default  m-t-lg"
+                           href="{{qrcode}}"
+                           download="qrcode.gif">下载
+                        </a>
                     </div>
                     <div class="col-xs-6 text-center">
                         <h3>学校二维码</h3>
-                        <img class="center-block m-t-lg b" width="300px" height="300px" src="/images/ewm-cover.png">
+                        <img class="center-block m-t-lg b" width="300px" height="300px"
+                             id="privateQrcode"
+                             {% if privateQrcode %}
+                             src="{{resourceURL}}/{{privateQrcode}}"
+                             {% else %}
+                             src="/images/ewm-cover.png"
+                             {% endif %}
+                             >
                         <div>
-                            <button class="btn btn-default m-t-lg m-r-xs">上传</button>
-                            <button class="btn btn-default m-t-lg">下载</button>
+                            <button class="btn btn-default m-t-lg m-r-xs" id="uploadQrcode">上传</button>
+
+                            <a {% if !privateQrcode %}style="display:none" {% endif %}
+                               id="downloadQrcode"
+                               class="btn btn-default m-t-lg"
+                               href="{{resourceURL}}/{{privateQrcode}}"
+                               download="qrcode.jpg">下载</a>
+
                         </div>
                     </div>
                 </div>

@@ -12,6 +12,7 @@ var scoreTraceSchema = new Schema({
     // 操作
     operation: {
         type: Number,
+        enum:[0,1],  //0 添加  1删除
         required: '操作不能为空'
     },
     // 分值
