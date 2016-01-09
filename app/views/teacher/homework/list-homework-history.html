@@ -43,14 +43,14 @@
                     <tbody>
                     {% for homework in homeworkList %}
                     <tr>
-                        <td class="text-left" title="{{homework.title}}">{{homework.title | subTitle(6)}}</td>
-                        <td title="{{homework.className}}">{{homework.className | subTitle(6)}}</td>
-                        <td>{{homework.statistics.studentCount}}</td>
-                        <td>{{homework.statistics.studentCountOfFinished}} 人</td>
-                        <td>{{homework.createdTime | date('Y-m-d')}}</td>
+                        <td class="text-left" title="<<homework.title>>"><<homework.title | subTitle(6)>></td>
+                        <td title="<<homework.className>>"><<homework.className | subTitle(6)>></td>
+                        <td><<homework.statistics.studentCount>></td>
+                        <td><<homework.statistics.studentCountOfFinished>> 人</td>
+                        <td><<homework.createdTime | date('Y-m-d')>></td>
                         <td>
                             <a class="btn btn-info btn-xs btn-custom"
-                               href="/teacher/homework/{{homework._id.toString()}}/history">查看</a>
+                               href="/teacher/homework/<<homework._id.toString()>>/history">查看</a>
                         </td>
                     </tr>
                     {% endfor %}

@@ -9,7 +9,7 @@
             <div class="avatar">
                 <div class="row">
                     <div class="col-xs-6">
-                        <img class="img-thumbnail"  {% if user.avatar %} src="{{resourceURL}}/{{user.avatar}}?imageView2/1/w/180/h/180" {% else %}
+                        <img class="img-thumbnail"  {% if user.avatar %} src="<<resourceURL>>/<<user.avatar>>?imageView2/1/w/180/h/180" {% else %}
                              src="/images/default_head.jpg" {% endif %}
                              width="150px"
                              height="150px">
@@ -19,8 +19,8 @@
                             <input type="file" id="imageUpload">
                         </div>
                         <div class="pro-name">
-                            <p class="f-white f-s-18 m-r-xxl">{{user.displayName}}</p>
-                            <p class="f-white f-s-16">{{user.username}}</p>
+                            <p class="f-white f-s-18 m-r-xxl"><<user.displayName>></p>
+                            <p class="f-white f-s-16"><<user.username>></p>
                         </div>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                     <div class="form-group">
                         <label class="col-sm-1 control-label" for="displayName">我的姓名：</label>
                         <div class="col-sm-6">
-                            <input class="form-control validate" type="text" value="{{user.displayName}}"
+                            <input class="form-control validate" type="text" value="<<user.displayName>>"
                                    name="displayName"
                                    id="displayName">
                         </div>
@@ -50,13 +50,13 @@
                         <div class="col-sm-6">
                             <input class="form-control validate" type="text"
                                    id="username"
-                                   value="{{user.username}}" disabled>
+                                   value="<<user.username>>" disabled>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-1 control-label" for="contact">联系方式：</label>
                         <div class="col-sm-6">
-                            <input class="form-control validate" type="text" value="{{user.contact}}"
+                            <input class="form-control validate" type="text" value="<<user.contact>>"
                                    name="contact"
                                    id="contact"
                                    data-rules="required"

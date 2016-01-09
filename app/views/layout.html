@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{title}}</title>
+    <title><<title>></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="renderer" content="webkit">
     <link rel="icon" href="/images/favicon.ico" mce_href="/images/favicon.ico" type="image/x-icon">
@@ -13,8 +13,8 @@
     {% endblock %}
     <script type="text/javascript">
         var GLOBAL = {};
-        GLOBAL.user = {{user | json | safe}};
-        GLOBAL.visitUrl = "{{resourceURL}}";
+        GLOBAL.user = <<user | json | safe>>;
+        GLOBAL.visitUrl = "<<resourceURL>>";
     </script>
 </head>
 <body>

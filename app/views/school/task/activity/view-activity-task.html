@@ -1,7 +1,7 @@
 {% extends '../../base.html' %}
 {% block content %}
 <!-- END OF BREADCRUMBS -->
-<input type="hidden" id="taskId" value="{{task._id.toString()}}"/>
+<input type="hidden" id="taskId" value="<<task._id.toString()>>"/>
 <div class="row">
     <div class="col-xs-12">
         <div class="panel panel-default shadow">
@@ -23,7 +23,7 @@
                             <div class="row">
                                 <div class="col-xs-2">
                                     <div class="widget-inline-box text-center">
-                                        <h3><i class="fa fa-users f-info m-r-xs"></i> <span>{{task.participants}}</span>
+                                        <h3><i class="fa fa-users f-info m-r-xs"></i> <span><<task.participants>></span>
                                         </h3>
                                         <h4 class="f-gray">参与人数</h4>
                                     </div>
@@ -31,7 +31,7 @@
 
                                 <div class="col-xs-2">
                                     <div class="widget-inline-box text-center">
-                                        <h3><i class="fa fa-pencil-square-o f-warning m-r-xs"></i> <span>{{collect.length}}</span>
+                                        <h3><i class="fa fa-pencil-square-o f-warning m-r-xs"></i> <span><<collect.length>></span>
                                         </h3>
                                         <h4 class="f-gray">报名人数</h4>
                                     </div>
@@ -40,14 +40,14 @@
                                 <div class="col-xs-2">
                                     <div class="widget-inline-box text-center">
                                         <h3><i class="fa fa-eye f-pink m-r-xs"></i>
-                                            <span>{{task.item.visitCount}}</span></h3>
+                                            <span><<task.item.visitCount>></span></h3>
                                         <h4 class="text-muted">阅读次数</h4>
                                     </div>
                                 </div>
 
                                 <div class="col-xs-2">
                                     <div class="widget-inline-box text-center">
-                                        <h3><i class="fa fa-share-alt f-default m-r-xs"></i> <span>{{task.item.shareCount}}</span>
+                                        <h3><i class="fa fa-share-alt f-default m-r-xs"></i> <span><<task.item.shareCount>></span>
                                         </h3>
                                         <h4 class="text-muted">分享次数</h4>
                                     </div>
@@ -56,7 +56,7 @@
                                 <div class="col-xs-2">
                                     <div class="widget-inline-box text-center no-b">
                                         <h3><i class="fa fa-thumbs-up f-purple m-r-xs"></i>
-                                            <span>{{task.item.like}}</span></h3>
+                                            <span><<task.item.like>></span></h3>
                                         <h4 class="text-muted">点赞人数</h4>
                                     </div>
                                 </div>
@@ -70,14 +70,14 @@
                                     <input class="form-control validate" id="name" type="text" name="name"
                                            data-rules="required"
                                            data-display="任务名称"
-                                           value="{{task.name}}" placeholder="比如：分享活动，赚积分，得礼包">
+                                           value="<<task.name>>" placeholder="比如：分享活动，赚积分，得礼包">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="scoreAward" class="col-xs-1 control-label">奖励积分</label>
                                 <div class="col-xs-9">
                                     <input class="form-control validate" id="scoreAward" type="text" name="scoreAward"
-                                           value="{{task.scoreAward}}" placeholder="请填入分享本次活动奖励的积分数"
+                                           value="<<task.scoreAward>>" placeholder="请填入分享本次活动奖励的积分数"
                                            data-rules="required|integer"
                                            data-display="奖励积分">
                                 </div>
@@ -85,7 +85,7 @@
                             <div class="form-group">
                                 <label for="theme" class="col-xs-1 control-label">活动主题</label>
                                 <div class="col-xs-9">
-                                    <input class="form-control" id="theme" value="{{task.item.theme}}" type="text"
+                                    <input class="form-control" id="theme" value="<<task.item.theme>>" type="text"
                                            name="theme"
                                            data-rules="required"
                                            data-display="活动主题">
@@ -95,7 +95,7 @@
                                 <label for="startTime" class="col-xs-1 control-label">活动时间</label>
                                 <div class="col-xs-4">
                                     <input class="form-control validate" id="startTime"
-                                           value="{{task.item.startTime | date('Y-m-d',-480)}}" type="text"
+                                           value="<<task.item.startTime | date('Y-m-d',-480)>>" type="text"
                                            name="startTime"
                                            data-rules="required"
                                            data-display="活动开始时间"/>
@@ -105,7 +105,7 @@
                                 </div>
                                 <div class="col-xs-4">
                                     <input class="form-control" id="endTime"
-                                           value="{{task.item.endTime | date('Y-m-d',-480)}}" type="text"
+                                           value="<<task.item.endTime | date('Y-m-d',-480)>>" type="text"
                                            name="endTime"
                                            data-rules="required"
                                            data-display="活动结束时间"/>
@@ -114,7 +114,7 @@
                             <div class="form-group">
                                 <label for="address" class="col-xs-1 control-label">活动地点</label>
                                 <div class="col-xs-9">
-                                    <input class="form-control" id="address" value="{{task.item.address}}"
+                                    <input class="form-control" id="address" value="<<task.item.address>>"
                                            type="text" name="address"
                                            data-rules="required"
                                            data-display="活动地点">
@@ -128,7 +128,7 @@
                                 <div class="col-xs-6">
                                     <div class="textarea-container" id="content">
                                     </div>
-                                    <input type="hidden" id="taskContent" value="{{task.item.content}}">
+                                    <input type="hidden" id="taskContent" value="<<task.item.content>>">
                                 </div>
                             </div>
                             <div class="alert-2 alert-warning-2">
@@ -158,9 +158,9 @@
                                     <div class="enroll-extras">
                                         {% for info in task.item.infoCollect %}
                                         <div class="form-group">
-                                            <label class="control-label col-xs-2">{{info}}：</label>
+                                            <label class="control-label col-xs-2"><<info>>：</label>
                                             <div class="col-xs-10">
-                                                <input class="form-control" type="text" placeholder="请输入您的{{info}}"
+                                                <input class="form-control" type="text" placeholder="请输入您的<<info>>"
                                                        readonly>
                                             </div>
                                         </div>
@@ -226,7 +226,7 @@
                             <div class="col-xs-10">
                                 <div class="task-management-registration">
                                     <div class="counter">
-                                        <span>{{collect.length}}</span>人报名
+                                        <span><<collect.length>></span>人报名
                                         <button class="btn btn-default btn-sm pull-right"><i
                                                 class="fa fa-cloud-download"></i>下载名单
                                         </button>
@@ -242,16 +242,16 @@
                                                             <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2823961627,3572677526&fm=58"
                                                                  width="35px" height="35px">
 
-                                                            <div class="name">{{info.name}}</div>
-                                                            <div class="create">{{info.createdTime |
-                                                                date('Y-m-d',-480)}}
+                                                            <div class="name"><<info.name>></div>
+                                                            <div class="create"><<info.createdTime |
+                                                                date('Y-m-d',-480)>>
                                                             </div>
                                                         </div>
                                                     </li>
                                                     <li class="extraction">
                                                         <div class="head">
                                                             <div class="info"><span class="key">手机：</span><span
-                                                                    class="value">{{info.phone}}</span>
+                                                                    class="value"><<info.phone>></span>
                                                             </div>
                                                         </div>
                                                     </li>
@@ -259,8 +259,8 @@
                                                     <li class="extraction">
                                                         <div class="head">
                                                             <div class="info"><span
-                                                                    class="key">{{other.key}}：</span><span
-                                                                    class="value">{{other.value}}</span>
+                                                                    class="key"><<other.key>>：</span><span
+                                                                    class="value"><<other.value>></span>
                                                             </div>
                                                         </div>
                                                     </li>

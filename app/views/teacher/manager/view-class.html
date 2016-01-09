@@ -11,8 +11,8 @@
                 </li>
                 {% for cla in classes %}
                 <li {% if cla._id.toString()=== clazz._id.toString() %} class="active" {% endif %}>
-                    <a href="/teacher/classes/{{cla._id.toString()}}">
-                        {{cla.className}}
+                    <a href="/teacher/classes/<<cla._id.toString()>>">
+                        <<cla.className>>
                     </a>
                 </li>
                 {% endfor %}
@@ -46,7 +46,7 @@
                         <label class="col-xs-2 control-label">班级名称</label>
                         <div class="col-xs-5">
                             <p class="form-control-static">
-                                {{clazz.className}}
+                                <<clazz.className>>
                             </p>
                         </div>
 
@@ -56,7 +56,7 @@
                         <label class="col-xs-2 control-label">上课时间</label>
                         <div class="col-xs-5">
                             <p class="form-control-static">
-                                {{clazz.courseTime}}
+                                <<clazz.courseTime>>
                             </p>
                         </div>
 
@@ -66,7 +66,7 @@
                         <label class="col-xs-2 control-label">班级教师</label>
                         <div class="col-xs-5">
                             <p class="form-control-static">
-                                {{clazz.ownerDisplayName}}
+                                <<clazz.ownerDisplayName>>
                             </p>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                         <label class="col-xs-2 control-label">班级人数</label>
                         <div class="col-xs-1">
                             <p class="form-control-static">
-                                {{studentCount}}
+                                <<studentCount>>
                             </p>
                         </div>
                         <div class="col-xs-2">
@@ -159,7 +159,7 @@
                                    id="username"
                                    data-rules="required"
                                    data-display="工号">
-                            <input type="hidden" name="classId" id="classId" value="{{clazz._id.toString()}}">
+                            <input type="hidden" name="classId" id="classId" value="<<clazz._id.toString()>>">
                         </div>
                     </div>
                     <div class="form-group">

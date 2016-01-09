@@ -5,12 +5,12 @@
         <div class="student-profile-header">
             <div class="avatar text-center">
                 <img class="lazy" src="/images/default_head.jpg" {% if student.avatar %}
-                     data-original="{{resourceURL}}/{{student.avatar}}" {% endif %} width="150px"
+                     data-original="<<resourceURL>>/<<student.avatar>>" {% endif %} width="150px"
                      height="150px">
             </div>
             <div class="pro-name text-center m-t-lg">
-                <p class="f-white f-s-18 m-r-xxl">{{student.displayName}}</p>
-                <p class="f-white f-s-16">{{student.username}}</p>
+                <p class="f-white f-s-18 m-r-xxl"><<student.displayName>></p>
+                <p class="f-white f-s-16"><<student.username>></p>
             </div>
         </div>
     </div>
@@ -19,9 +19,9 @@
     <div class="col-xs-2">
         <div class="page-sidebar shadow">
             <ul class="nav nav-pills nav-stacked">
-                <li><a href="/school/students/{{student._id.toString()}}">基本信息</a></li>
-                <li><a href="/school/students/{{student._id.toString()}}/phoneRecords">电话记录</a></li>
-                <li class="active"><a href="/school/students/{{student._id.toString()}}/scoreRecords">积分记录</a></li>
+                <li><a href="/school/students/<<student._id.toString()>>">基本信息</a></li>
+                <li><a href="/school/students/<<student._id.toString()>>/phoneRecords">电话记录</a></li>
+                <li class="active"><a href="/school/students/<<student._id.toString()>>/scoreRecords">积分记录</a></li>
             </ul>
         </div>
     </div>
@@ -41,7 +41,7 @@
                                          width="50"
                                          height="50"
                                          {% if log.operator.avatar %}
-                                         src="{{resourceURL}}/{{log.operator.avatar}}?imageView2/1/w/50/h/50"
+                                         src="<<resourceURL>>/<<log.operator.avatar>>?imageView2/1/w/50/h/50"
                                          {% else %}
                                          src="/images/default_head.jpg"
                                          {% endif %}
@@ -51,14 +51,14 @@
                                     <div class="scores-list-title">
                                         <h4 class="media-heading f-s-18 f-normal m-t-xxs">
                                             {% if log.operation === 0%}
-                                            <span class="f-default">+{{log.value}}</span>
+                                            <span class="f-default">+<<log.value>></span>
                                             {% else %}
-                                            <span class="f-pink">-{{log.value}}</span>
+                                            <span class="f-pink">-<<log.value>></span>
                                             {% endif %}
                                         </h4>
                                         <p class="f-s-12 f-gray m-t-xs">
-                                            <span class="m-r-lg">发布时间：{{log.createdTime | date('Y-m-d',-480)}}</span>
-                                            <span>操作人员：{{log.operator.displayName}}</span>
+                                            <span class="m-r-lg">发布时间：<<log.createdTime | date('Y-m-d',-480)>></span>
+                                            <span>操作人员：<<log.operator.displayName>></span>
                                         </p>
                                     </div>
                                     <div class="spread">
@@ -69,7 +69,7 @@
                             </div>
                         </div>
                         <div class="panel-body hides">
-                            <p class="scores-details">{{log.remark}}</p>
+                            <p class="scores-details"><<log.remark>></p>
                         </div>
                     </div>
                     {% endfor %}

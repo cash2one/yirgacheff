@@ -11,16 +11,16 @@
             <div class="panel-body">
                 <form class="form-horizontal" id="postForm" method="post" name="postForm">
                     <input class="form-control validate"
-                           type="hidden" name="image" id="coverImage" value="{{post.image}}"
+                           type="hidden" name="image" id="coverImage" value="<<post.image>>"
                            data-display="封面图片"
                            data-rules="required"/>
-                    <input type="hidden" value="{{post._id.toString()}}" id="postId" name="postId"/>
+                    <input type="hidden" value="<<post._id.toString()>>" id="postId" name="postId"/>
                     <div class="form-group">
                         <label class="col-xs-1 control-label" for="postTitle">文章标题：</label>
 
                         <div class="col-xs-8">
                             <input class="form-control validate" type="text" id="postTitle"
-                                   value="{{post.title}}"
+                                   value="<<post.title>>"
                                    name="title"
                                    data-rules="required"
                                    data-display="文章标题"
@@ -35,13 +35,13 @@
                                     data-display="文章分类">
                                 <option value="">选择栏目</option>
                                 {% for category in categories %}
-                                <option value="{{category._id.toString()}}"
+                                <option value="<<category._id.toString()>>"
                                         {% if post && post.category.toString()=== category._id.toString() %}
                                         selected{% endif %}
                                         {% if currentCategory=== category._id.toString() %}
                                         selected {%endif %}>
 
-                                    {{category.name}}
+                                    <<category.name>>
                                 </option>
                                 {% endfor %}
                                 {% if categories.length === 0 %}
@@ -54,7 +54,7 @@
 
                         <div class="col-xs-8">
                             <input type="text" class="form-control validate" name="visitCount"
-                                   id="visitCount" value="{{post && post.visitCount || 0}}"
+                                   id="visitCount" value="<<post && post.visitCount || 0>>"
                                    data-display="阅读次数"
                                    data-rules="required|integer">
                         </div>
@@ -64,7 +64,7 @@
 
                         <div class="col-xs-8">
                             <input type="text" class="form-control" name="shareCount"
-                                   id="shareCount" value="{{post && post.shareCount || 0}}"
+                                   id="shareCount" value="<<post && post.shareCount || 0>>"
                                    data-display="分享次数"
                                    data-rules="required|integer">
                         </div>
@@ -73,7 +73,7 @@
                         <label class="col-xs-1 control-label" for="like">点赞次数：</label>
                         <div class="col-xs-8">
                             <input type="text" class="form-control" name="like"
-                                   id="like" value="{{post && post.like || 0}}"
+                                   id="like" value="<<post && post.like || 0>>"
                                    data-display="点赞次数"
                                    data-rules="required|integer">
                         </div>
@@ -94,7 +94,7 @@
                         <div class="col-xs-4">
                             <img class="b" width="320px" height="200px" id="indexImage"
                                  {% if post %}
-                                 src="http://resource.hizuoye.com/{{post.image}}"
+                                 src="http://resource.hizuoye.com/<<post.image>>"
                                  {% else %}
                                  src="http://static.hizuoye.com/images/coverpage_default.png"
                                  {% endif %}>
@@ -114,7 +114,7 @@
                             </div>
                         </div>
                     </div>
-                    <input type="hidden" id="postContent" value="{{post && post.content}}">
+                    <input type="hidden" id="postContent" value="<<post && post.content>>">
                     <div class="form-group">
                         <div class="col-xs-4 m-t-md col-xs-offset-4">
                             <button type="submit" class="btn btn-default btn-block">

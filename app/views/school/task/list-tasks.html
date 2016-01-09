@@ -28,7 +28,7 @@
                         </div>
                         <ul class="list list-unstyled" id="list-posts">
                             {% for task in tasks %}
-                            <li class="data" id="{{task._id.toString()}}" data-state="{{task.state}}">
+                            <li class="data" id="<<task._id.toString()>>" data-state="<<task.state>>">
                                 <div class="thumb thumb-ext">
                                     {% if task.taskType === 0 %}
                                     {% if task.state === 0 %}
@@ -54,9 +54,9 @@
                                 </div>
                                 <div class="title">
                                     <div class="row m-t-lg">
-                                        <div class="col-xs-7"><p class="task-name" title="{{task.name}}">
-                                            {{task.name}}</p></div>
-                                        <div class="col-xs-3 date">发布时间：{{task.createdTime | date('Y-m-d',-480)}}</div>
+                                        <div class="col-xs-7"><p class="task-name" title="<<task.name>>">
+                                            <<task.name>></p></div>
+                                        <div class="col-xs-3 date">发布时间：<<task.createdTime | date('Y-m-d',-480)>></div>
                                         <div class="col-xs-2">{% if task.state === 0
                                             %} <span class="label label-success">进行中</span> {% else %}
                                             <span class="label label-warning">已结束</span> {% endif %}
@@ -67,12 +67,12 @@
                                     {% if task.state === 0 %}
                                     <div class="">
                                         <a class="btn btn-default btn-custom btn-sm"
-                                           href="/school/tasks/{{task._id.toString()}}">管理任务</a>
+                                           href="/school/tasks/<<task._id.toString()>>">管理任务</a>
                                     </div>
                                     {% else %}
                                     <div class="">
                                         <a class="btn btn-info btn-custom btn-sm"
-                                           href="/school/tasks/{{task._id.toString()}}">查看任务</a>
+                                           href="/school/tasks/<<task._id.toString()>>">查看任务</a>
                                     </div>
                                     {% endif %}
 

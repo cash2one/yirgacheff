@@ -81,7 +81,8 @@ function initViewEngine(app) {
         autoescape: true,
         filters: require('./swigFilters'),
         cache: false, // disable, set to false
-        ext: 'html'
+        ext: 'html',
+        varControls:['<<','>>']
     });
 }
 

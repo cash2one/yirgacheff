@@ -40,7 +40,7 @@
                                     data-display="文章分类">
                                 <option value="">所有分类</option>
                                 {% for category in categories %}
-                                <option value="{{category._id.toString()}}">{{category.name}}</option>
+                                <option value="<<category._id.toString()>>"><<category.name>></option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -63,12 +63,12 @@
                                 </thead>
                                 <tbody id="list-posts">
                                 {% for post in posts %}
-                                <tr data-category="{{post.category.toString()}}">
+                                <tr data-category="<<post.category.toString()>>">
                                     <td>
                                         <div class="radio c-radio">
                                             <label class="m-t-md">
                                                 <input type="radio" name="item"
-                                                       value="{{post._id.toString()}}" id="{{post._id.toString()}}"
+                                                       value="<<post._id.toString()>>" id="<<post._id.toString()>>"
                                                        checked>
                                                 <span class="fa fa-circle"></span>
                                             </label>
@@ -78,11 +78,11 @@
                                     </td>
                                     <td>
                                         <img class="lazy"
-                                             src="http://resource.hizuoye.com/{{post.image}}"
+                                             src="http://resource.hizuoye.com/<<post.image>>"
                                              width="115px"
                                              height="80px">
                                     </td>
-                                    <td>{{post.title}}</td>
+                                    <td><<post.title>></td>
                                     <td>1</td>
                                     <td>1</td>
                                     <td>1</td>

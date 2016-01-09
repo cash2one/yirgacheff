@@ -1,16 +1,16 @@
 {% extends '../base.html' %}
 {% block content %}
 <!-- END OF BREADCRUMBS -->
-<input type="hidden" name="homeworkId" id="homeworkId" value="{{homework._id.toString()}}"/>
+<input type="hidden" name="homeworkId" id="homeworkId" value="<<homework._id.toString()>>"/>
 <div class="row">
     <div class="col-xs-4">
         <div class="panel info-box info-box-info">
             <div class="panel-body">
                 <div class="info-box-stats">
                     <p class="counter">
-                        <span>{{ homework.statistics.averageSpendSeconds}}</span><span class="thin">:</span>
-                        <span>{{ homework.statistics.averageSpendSeconds}}</span><span class="thin">:</span>
-                        <span>{{ homework.statistics.averageSpendSeconds}}</span><span class="thin"></span>
+                        <span><< homework.statistics.averageSpendSeconds>></span><span class="thin">:</span>
+                        <span><< homework.statistics.averageSpendSeconds>></span><span class="thin">:</span>
+                        <span><< homework.statistics.averageSpendSeconds>></span><span class="thin"></span>
                     </p>
                     <span class="info-box-title">平均完成时间</span>
                 </div>
@@ -24,7 +24,7 @@
         <div class="panel info-box info-box-default">
             <div class="panel-body">
                 <div class="info-box-stats">
-                    <p class="counter">{{(homework.statistics.finishRate * 100).toFixed(0)}}%</p>
+                    <p class="counter"><<(homework.statistics.finishRate * 100).toFixed(0)>>%</p>
                     <span class="info-box-title">作业完成率</span>
                 </div>
                 <div class="info-box-icon">
@@ -37,7 +37,7 @@
         <div class="panel info-box info-box-pink">
             <div class="panel-body">
                 <div class="info-box-stats">
-                    <p class="counter">{{(homework.statistics.wrongRate * 100).toFixed(0)}}%</p>
+                    <p class="counter"><<(homework.statistics.wrongRate * 100).toFixed(0)>>%</p>
                     <span class="info-box-title">平均错误率</span>
                 </div>
                 <div class="info-box-icon">
@@ -76,8 +76,8 @@
                     <tbody>
                     {% for performance in homework.performances %}
                     <tr>
-                        <td>{{performance.student.displayName}}</td>
-                        <td>{{performance.student.username}}</td>
+                        <td><<performance.student.displayName>></td>
+                        <td><<performance.student.username>></td>
                         <td>
                             {% if performance.state === 1 %}
                             完成
@@ -91,13 +91,13 @@
                             {% if performance.state === 0 %}
                             -
                             {% else %}
-                            {{performance.finishedTime | date('Y-m-d H:i:s', -480, 'CCT')}}
+                            <<performance.finishedTime | date('Y-m-d H:i:s', -480, 'CCT')>>
                             {% endif %}
                         </td>
                         <td>
                             {% if performance.state !== 0 %}
                             <a class="btn btn-info btn-xs"
-                               href="/teacher/homework/{{homework._id.toString()}}/students/{{performance.student._id.toString()}}">详情</a>
+                               href="/teacher/homework/<<homework._id.toString()>>/students/<<performance.student._id.toString()>>">详情</a>
                             {% endif %}
                         </td>
                     </tr>

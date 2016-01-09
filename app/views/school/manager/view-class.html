@@ -14,7 +14,7 @@
                             <label class="col-xs-1 control-label">班级名称</label>
                             <div class="col-xs-5">
                                 <p class="form-control-static">
-                                    {{clazz.className}}
+                                    <<clazz.className>>
                                 </p>
                             </div>
                         </div>
@@ -23,7 +23,7 @@
                             <label class="col-xs-1 control-label">上课时间</label>
                             <div class="col-xs-5">
                                 <p class="form-control-static">
-                                    {{clazz.courseTime}}
+                                    <<clazz.courseTime>>
                                 </p>
                             </div>
 
@@ -33,7 +33,7 @@
                             <label class="col-xs-1 control-label">班级教师</label>
                             <div class="col-xs-5">
                                 <p class="form-control-static">
-                                    {{clazz.ownerDisplayName}}
+                                    <<clazz.ownerDisplayName>>
                                 </p>
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                             <label class="col-xs-1 control-label">班级人数</label>
                             <div class="col-xs-1">
                                 <p class="form-control-static">
-                                    {{students.length}}
+                                    <<students.length>>
                                 </p>
                             </div>
                             <div class="col-xs-2">
@@ -79,14 +79,14 @@
                     <tbody>
                     {% for student in students %}
                     <tr>
-                        <td>{{student.displayName}}</td>
-                        <td>{{student.username}}</td>
-                        <td>{{student.password}}</td>
-                        <td>{{student.gender}}</td>
-                        <td>{{student.phone}}</td>
+                        <td><<student.displayName>></td>
+                        <td><<student.username>></td>
+                        <td><<student.password>></td>
+                        <td><<student.gender>></td>
+                        <td><<student.phone>></td>
                         <td>
                             <a class="btn btn-info btn-xs btn-custom"
-                               href="/school/students/{{student._id.toString()}}">查看</a>
+                               href="/school/students/<<student._id.toString()>>">查看</a>
                         </td>
                     </tr>
                     {% endfor %}

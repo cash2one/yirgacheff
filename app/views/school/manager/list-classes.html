@@ -19,13 +19,13 @@
                     </thead>
                     <tbody>
                     {% for clazz in classes %}
-                    <tr id="{{clazz._id.toString()}}">
-                        <td class="text-left">{{clazz.className}}</td>
-                        <td>{{clazz.ownerDisplayName}}</td>
-                        <td>{{clazz.studentsCount}}</td>
+                    <tr id="<<clazz._id.toString()>>">
+                        <td class="text-left"><<clazz.className>></td>
+                        <td><<clazz.ownerDisplayName>></td>
+                        <td><<clazz.studentsCount>></td>
                         <td>
                             <a class="f-info m-r-xs"
-                               href="/school/classes/{{clazz._id.toString()}}"><i class="fa fa-file-text-o"></i></a>
+                               href="/school/classes/<<clazz._id.toString()>>"><i class="fa fa-file-text-o"></i></a>
                             <a class="f-default exchange"><i class="fa fa-exchange"></i></a>
                         </td>
                     </tr>

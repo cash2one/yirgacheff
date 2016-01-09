@@ -12,8 +12,8 @@
                 <div class="row">
                     <div class="col-xs-10">
                         <div class="quizzes-title">
-                            <p class="f-s-16 m-t-xxs">套题名称：{{quiz.title}}</p>
-                            <p class="pull-right">总计<span class="f-default f-s-20" id="total-number">{{quiz.exercises.length}}</span>个题目</p>
+                            <p class="f-s-16 m-t-xxs">套题名称：<<quiz.title>></p>
+                            <p class="pull-right">总计<span class="f-default f-s-20" id="total-number"><<quiz.exercises.length>></span>个题目</p>
                         </div>
                     </div>
                 </div>
@@ -24,14 +24,14 @@
         </div>
     </div>
 </div>
-<input name="schoolId" id="schoolId" type="hidden" value="{{student.schoolId}}">
+<input name="schoolId" id="schoolId" type="hidden" value="<<student.schoolId>>">
 <!-- 题型模版 -->
 {% include '../../templates/exerciseReadOnlyTemplate.html' %}
 {% endblock %}
 
 {% block javascript %}
 <script>
-    window.exercises = {{ quiz.exercises | json | safe}};
+    window.exercises = << quiz.exercises | json | safe>>;
 </script>
 <script src="/js/entries/school/quizBase/view-quiz.js"></script>
 

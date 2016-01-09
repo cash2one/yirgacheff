@@ -27,8 +27,8 @@
                     <select id="teacher-list">
                         <option value="">选择教师</option>
                         {% for teacher in teachers %}
-                        <option value="{{teacher._id.toString()}}">
-                            {{teacher.displayName}}
+                        <option value="<<teacher._id.toString()>>">
+                            <<teacher.displayName>>
                         </option>
                         {% endfor %}
                     </select>
