@@ -6,15 +6,16 @@ var _ = require('underscore');
 
 $(document).ready(function () {
     app();
-    var rankCache = {},
-        rankList = $('#rankList'),
-        classList = $('#class-list'),
-        rankTemplate = _.template($('#scoreRankTemplate').html());
+    var rankCache = {};
+    var rankList = $('#rankList');
+    var classList = $('#class-list');
+    var rankTemplate = _.template($('#scoreRankTemplate').html());
 
     function renderRank(classId) {
         if (!classId || classId === '') {
             return;
         }
+        console.log('rank...');
         if (rankCache[classId]) {
             rankList.html(rankTemplate({students: rankCache[classId]}));
         } else {
