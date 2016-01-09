@@ -9,7 +9,7 @@ module.exports = function (router) {
     router.get('/', qrcode(), function*() {
         this.state.qrcode = this.qrcode;
         this.state.privateQrcode = this.privateQrcode;
-        yield this.render('backend/school/qrcode');
+        yield this.render('school/qrcode');
     });
 
     return router;

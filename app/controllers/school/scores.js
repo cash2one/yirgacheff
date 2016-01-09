@@ -9,7 +9,7 @@ module.exports = function (router) {
     router.get('/instruction', function*() {
         let user = this.user;
         this.state.instruction = yield service.score.getInstruction(user.schoolId);
-        yield this.render('backend/school/scores/view-exchange-instruction');
+        yield this.render('school/scores/view-exchange-instruction');
     });
 
 
@@ -19,6 +19,6 @@ module.exports = function (router) {
             fields: ['-createdTime', '-schoolId']
         };
         this.state.exchanges = yield service.score.getExchanges(user.schoolId, filter);
-        yield this.render('backend/school/scores/list-products');
+        yield this.render('school/scores/list-products');
     });
 };

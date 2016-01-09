@@ -7,18 +7,18 @@ const quizzes = service.quizzes;
 
 module.exports = function (router) {
     router.get('/', function*() {
-        yield this.render('backend/teacher/quizBase/list-quizzes');
+        yield this.render('teacher/quizBase/list-quizzes');
 
     });
 
     router.get('/create', function*() {
-        yield this.render('backend/teacher/quizBase/create-quiz');
+        yield this.render('teacher/quizBase/create-quiz');
     });
 
     router.get('/:id([a-f0-9]{24})', function*() {
         let quizId = this.params.id;
         this.state.quiz = yield quizzes.findById(quizId, true);
-        yield this.render('backend/teacher/quizBase/view-quiz');
+        yield this.render('teacher/quizBase/view-quiz');
     });
 
 

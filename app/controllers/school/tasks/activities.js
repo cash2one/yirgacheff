@@ -9,7 +9,7 @@ const service = require('../../../services');
 module.exports = function (router) {
 
     router.get('/create', function*() {
-        yield this.render('backend/school/task/activity/create-activity-task');
+        yield this.render('school/task/activity/create-activity-task');
 
     });
 

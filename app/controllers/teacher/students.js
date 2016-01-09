@@ -13,7 +13,7 @@ module.exports = function (router) {
         let student = yield service.students.findById(studentId);
         yield student.populate('classes', 'className ownerDisplayName').execPopulate();
         this.state.student = student;
-        yield this.render('backend/teacher/manager/view-student');
+        yield this.render('teacher/manager/view-student');
     });
 
     router.get('/', function*() {
@@ -21,7 +21,7 @@ module.exports = function (router) {
         if (this.query.clazz) {
             this.state.selectedClass = this.query.clazz;
         }
-        yield this.render('backend/teacher/manager/list-students');
+        yield this.render('teacher/manager/list-students');
     });
 
     router.get('/:studentId/phoneRecords', function*() {
@@ -34,7 +34,7 @@ module.exports = function (router) {
             })
         };
         _.assign(this.state, ret);
-        yield this.render('backend/teacher/manager/list-phone-records');
+        yield this.render('teacher/manager/list-phone-records');
     });
 
     router.get('/:studentId/scoreRecords', function*() {
@@ -44,7 +44,7 @@ module.exports = function (router) {
             logs: yield service.score.logByStudent(studentId)
         };
         _.assign(this.state, ret);
-        yield this.render('backend/teacher/manager/list-score-records');
+        yield this.render('teacher/manager/list-score-records');
     });
 
     return router;

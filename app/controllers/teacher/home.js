@@ -17,7 +17,7 @@ module.exports = function (router) {
         this.state.homeworkCount = homeworkList.length;
         this.state.classes = classes;
         this.state.homeworkList = _.take(homeworkList, 3);
-        yield this.render('backend/teacher/home');
+        yield this.render('teacher/home');
     });
 
     return router;

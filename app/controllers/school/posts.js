@@ -23,7 +23,7 @@ module.exports = function (router) {
         }
         this.state.categories = yield service.categories.findBySchool(user.schoolId);
         this.state.posts = yield service.posts.findBySchool(user.schoolId, filter);
-        yield this.render('backend/school/site/list-posts');
+        yield this.render('school/site/list-posts');
     });
 
 
@@ -33,7 +33,7 @@ module.exports = function (router) {
         if (this.query.category) {
             this.state.currentCategory = this.query.category;
         }
-        yield this.render('backend/school/site/create-post');
+        yield this.render('school/site/create-post');
     });
 
 
@@ -60,7 +60,7 @@ module.exports = function (router) {
         let postId = this.params.id;
         this.state.categories = yield service.categories.findBySchool(user.schoolId);
         this.state.post = yield service.posts.findById(postId);
-        yield this.render('backend/school/site/create-post');
+        yield this.render('school/site/create-post');
     });
 
     return router;

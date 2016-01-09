@@ -14,7 +14,7 @@ module.exports = function (router) {
     });
 
     router.get('/login', function*() {
-        yield this.render('backend/login');
+        yield this.render('login');
     });
 
     router.post('/login', function*(next) {
@@ -22,7 +22,7 @@ module.exports = function (router) {
         yield passport.authenticate('local', {session: false},
             function*(err, user, info) {
                 if (err || !user) {
-                    yield ctx.render('backend/login', {error: (err && err.message) || '用户不存在'});
+                    yield ctx.render('login', {error: (err && err.message) || '用户不存在'});
                     return;
                 }
                 ctx.cookies.set('jwt', user.accessToken(), {signed: true});

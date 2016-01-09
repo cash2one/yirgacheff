@@ -5,7 +5,7 @@
 module.exports = function (router) {
 
     router.get('/', function*() {
-        yield this.render('backend/teacher/profile');
+        yield this.render('teacher/profile');
     });
 
     return router;

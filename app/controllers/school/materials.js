@@ -11,7 +11,7 @@ module.exports = function (router) {
         let user = this.user;
         this.state.selected = this.query.selected || null;
         this.state.groups = yield service.medias.findGroupBySchool(user.schoolId);
-        yield this.render('backend/school/site/list-materials');
+        yield this.render('school/site/list-materials');
     });
 };
 

@@ -18,7 +18,7 @@ module.exports = function (router) {
             order: ['-createdTime'],
             include: [{'clazz': 'className'}]
         });
-        yield this.render('backend/teacher/homework/list-homework')
+        yield this.render('teacher/homework/list-homework')
 
     });
 
@@ -27,7 +27,7 @@ module.exports = function (router) {
         this.state.classes = yield service.classes.findByTeacher(this.user._id, {
             fields: ['className']
         });
-        yield this.render('backend/teacher/homework/create-homework');
+        yield this.render('teacher/homework/create-homework');
     });
 
 
@@ -40,14 +40,14 @@ module.exports = function (router) {
             fields: ['-performances'],
             order: ['-createdTime']
         });
-        yield this.render('backend/teacher/homework/list-homework-history')
+        yield this.render('teacher/homework/list-homework-history')
     });
 
 
     router.get('/:homeworkId([a-f0-9]{24})', function*() {
         let homeworkId = this.params.homeworkId;
         this.state.homework = yield service.homework.getClassHomework(homeworkId);
-        yield this.render('backend/teacher/homework/view-classDetail');
+        yield this.render('teacher/homework/view-classDetail');
 
     });
 
@@ -57,14 +57,14 @@ module.exports = function (router) {
         let student = yield service.students.findById(studentId, true);
         let homeworkDetail = yield service.homework.getStudentHomework(studentId, homeworkId);
         _.assign(this.state, homeworkDetail, {student});
-        yield this.render('backend/teacher/homework/view-studentDetail');
+        yield this.render('teacher/homework/view-studentDetail');
 
     });
 
     router.get('/:homeworkId([a-f0-9]{24})/history', function*() {
         let homeworkId = this.params.homeworkId;
         this.state.homework = yield service.homework.getClassHomework(homeworkId);
-        yield this.render('backend/teacher/homework/view-classDetail')
+        yield this.render('teacher/homework/view-classDetail')
     });
 
     router.get('/:homeworkId([a-f0-9]{24})/students/:studentId([a-f0-9]{24})/history', function*() {
@@ -73,7 +73,7 @@ module.exports = function (router) {
         let student = yield service.students.findById(studentId, true);
         let homeworkDetail = yield service.homework.getStudentHomework(studentId, homeworkId);
         _.assign(this.state, homeworkDetail, {student});
-        yield this.render('backend/teacher/homework/view-studentDetail');
+        yield this.render('teacher/homework/view-studentDetail');
 
     });
 

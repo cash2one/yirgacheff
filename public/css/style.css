@@ -46,11 +46,16 @@
     display: inline-block;
 }
 .post-item li{
-    border: 1px solid #dfdfdf;
     margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    cursor: pointer;
 }
 .post-item li:hover{
-    border: 1px solid #2aabe6;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    transform:translate3d(0, -2px, 0);
+    transition: all 0.2s linear;
 }
 /*Î¢ÐÅ±à¼­Æ÷*/
 .editor .wx-editor-template-list{

@@ -14,7 +14,7 @@ module.exports = function (router) {
             categories: service.categories.findBySchool(user.schoolId, {fields: ['name']})
         };
         _.assign(this.state, result);
-        yield this.render('backend/school/task/post/create-post-task');
+        yield this.render('school/task/post/create-post-task');
     });
 
     router.post('/create', function*() {

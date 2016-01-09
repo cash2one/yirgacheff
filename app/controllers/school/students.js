@@ -13,12 +13,12 @@ module.exports = function (router) {
         let user = this.user;
         let filter = {fields: ['displayName']};
         this.state.teachers = yield service.teachers.findBySchool(user.schoolId, filter);
-        yield this.render('backend/school/manager/list-students');
+        yield this.render('school/manager/list-students');
 
     });
 
     router.get('/noneClass', function*() {
-        yield this.render('backend/school/manager/list-students-noneClass');
+        yield this.render('school/manager/list-students-noneClass');
     });
 
 
@@ -27,7 +27,7 @@ module.exports = function (router) {
         let student = yield service.students.findById(studentId);
         yield student.populate('classes', 'className ownerDisplayName').execPopulate();
         this.state.student = student;
-        yield this.render('backend/school/manager/view-student');
+        yield this.render('school/manager/view-student');
     });
 
     router.get('/:studentId/phoneRecords', function*() {
@@ -40,7 +40,7 @@ module.exports = function (router) {
             })
         };
         _.assign(this.state, ret);
-        yield this.render('backend/school/manager/list-phone-records');
+        yield this.render('school/manager/list-phone-records');
     });
 
     router.get('/:studentId/scoreRecords', function*() {
@@ -50,7 +50,7 @@ module.exports = function (router) {
             logs: yield service.score.logByStudent(studentId)
         };
         _.assign(this.state, ret);
-        yield this.render('backend/school/manager/list-score-records');
+        yield this.render('school/manager/list-score-records');
     });
 
     return router;

@@ -6,7 +6,7 @@
 module.exports = function (router) {
 
     router.get('/', function*() {
-        yield this.render('backend/school/scheduler/list-schedulers');
+        yield this.render('school/scheduler/list-schedulers');
     });
 
     return router;

@@ -8,7 +8,7 @@
 module.exports = function (router) {
 
     router.get('/', function*() {
-        yield this.render('backend/school/site/list-categories');
+        yield this.render('school/site/list-categories');
     });
 
 };

@@ -2,7 +2,16 @@
 {% block content %}
 <!-- 面包屑 -->
 <!-- END OF BREADCRUMBS -->
-
+<div class="row m-b-md">
+    <div class="col-xs-10">
+        <p class="f-s-18 no-m m-t-xxs m-l-xs f-gray"><i class="fa fa-bookmark m-r-xs"></i>教育中心</p>
+    </div>
+    <div class="col-xs-2">
+        <a class="btn btn-default btn-sm btn-block" href="/school/posts/create">
+            <i class="fa fa-plus m-r-xxs"></i>发布文章
+        </a>
+    </div>
+</div>
 <div class="row">
 
     <div class="col-xs-10">
@@ -10,13 +19,14 @@
             <ul class="list-unstyled" id="list-posts">
                 {% for post in posts %}
                 <li>
-                    <div class="media bg-white shadow shadow-hover">
+                    <div class="media">
                         <div class="media-left">
                             <a href="/school/posts/{{post._id.toString()}}">
                                 <img src="http://resource.hizuoye.com/{{post.image}}" width="200px" height="140px">
                             </a>
                         </div>
                         <div class="media-body">
+                            <div class="m-l-xxs">
                             <a href="/school/posts/{{post._id.toString()}}" class="post-item-title">
                                 <p class="media-heading f-s-16 f-bold m-t-sm">{{post.title | subTitle(20)}}</p>
                                 <span class="pull-right m-t-sm m-r-sm f-gray">文章详情 >></span>
@@ -35,6 +45,7 @@
                                     </div>
                                 </div>
                             </div>
+                            </div>
                         </div>
                     </div>
                 </li>
@@ -44,8 +55,11 @@
         </div>
     </div>
     <div class="col-xs-2">
-        <div class="page-sidebar shadow">
+        <div class="category-sidebar shadow">
             <ul class="nav nav-pills nav-stacked" id="selectCategory">
+                <li>
+                    <p class="b-b p-v-sm p-h-xs no-m"><i class="fa fa-list m-r-xs"></i>文章分类</p>
+                </li>
                 <li class="{% if currentCategory=== category._id.toString()%} active{% endif %}">
                     <a href="/school/posts">
                         全部文章

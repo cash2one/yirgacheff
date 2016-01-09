@@ -21,7 +21,7 @@ module.exports = function (router) {
             clazz.studentsCount = counts[index];
         });
         this.state.classes = classes;
-        yield this.render('backend/school/manager/list-classes');
+        yield this.render('school/manager/list-classes');
     });
 
 
@@ -32,7 +32,7 @@ module.exports = function (router) {
             students: service.students.findByClass(classId)
         };
         _.assign(this.state, result);
-        yield this.render('backend/school/manager/view-class');
+        yield this.render('school/manager/view-class');
 
     });
 
