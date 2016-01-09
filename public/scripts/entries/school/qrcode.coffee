@@ -1,13 +1,31 @@
 'use strict';
 
 app = require '../../common/app'
-QrCode = require '../../lib/qrcode'
+upload = require '../../common/uploadifive'
 
 $ ->
-  app()
-  qrcode = new QrCode(document.getElementById('qrcode'), {
-    width: 300,
-    height: 300
-  })
-  qrcode.makeCode $("#url").val()
+  app = app()
+  upload
+    button: 'uploadQrcode',
+    multi: false,
+    done: (res)->
+      file = res[0]
+      $('#privateQrcode').attr("src", file.path)
+      $("#downloadQrcode").attr('href', file.path)
+      $("#downloadQrcode").show()
+      $.ajax({
+        url: '/api/v1/qrcode',
+        method: 'PUT',
+        data:
+          qrcode: file.key
+      }).then ()->
+        app.notify.success "二维码上传成功"
+
+
+
+
+
+
+
+
 

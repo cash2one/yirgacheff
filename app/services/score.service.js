@@ -118,10 +118,9 @@ module.exports = {
      * 获取积分日志
      */
     logByStudent: co.wrap(function*(studentId) {
-        this.body = yield ScoreLog.find({
+        return yield ScoreLog.find({
             student: studentId
-        }).populate('operator', 'displayName').lean().exec();
-
+        }).populate('operator', 'displayName avatar').lean().exec();
     })
 
 };

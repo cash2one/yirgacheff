@@ -21,9 +21,8 @@
         <div class="page-sidebar shadow">
             <ul class="nav nav-pills nav-stacked">
                 <li><a href="/teacher/students/{{student._id.toString()}}">基本信息</a></li>
-                <li class="active"><a href="/school/student/{{student._id.toString()}}/phoneRecords">电话记录</a></li>
+                <li class="active"><a href="/teacher/students/{{student._id.toString()}}/phoneRecords">电话记录</a></li>
                 <li><a href="/teacher/students/{{student._id.toString()}}/scoreRecords">积分记录</a></li>
-                <li><a href=""> 作业记录</a></li>
             </ul>
         </div>
     </div>
@@ -45,10 +44,15 @@
                         <div class="panel-heading">
                             <div class="media">
                                 <div class="pull-left">
-                                    <img class="media-object img-circle" src="/images/default_head.jpg" {% if
-                                         student.avatar %}
-                                         data-original="{{resourceURL}}/{{student.avatar}}" {% endif %} width="50px"
-                                         height="50px">
+                                    <img class="media-object img-circle"
+                                         width="50"
+                                         height="50"
+                                         {% if record.creator.avatar %}
+                                         src="{{resourceURL}}/{{record.creator.avatar}}?imageView2/1/w/50/h/50"
+                                         {% else %}
+                                         src="/images/default_head.jpg"
+                                         {% endif %}
+                                    >
                                 </div>
                                 <div class="media-body">
                                     <div class="record-list-title">

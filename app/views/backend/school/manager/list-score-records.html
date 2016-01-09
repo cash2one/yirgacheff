@@ -32,34 +32,47 @@
             </div>
             <div class="panel-body">
                 <div class="scores-list" id="scoresList">
+                    {% for log in logs %}
                     <div class="panel">
                         <div class="panel-heading">
                             <div class="media">
                                 <div class="pull-left">
-                                    <img class="media-object img-circle" src="/images/default_head.jpg" {% if student.avatar %}
-                                         data-original="{{resourceURL}}/{{student.avatar}}" {% endif %} width="50px"
-                                         height="50px">
+                                    <img class="media-object img-circle"
+                                         width="50"
+                                         height="50"
+                                         {% if log.operator.avatar %}
+                                         src="{{resourceURL}}/{{log.operator.avatar}}?imageView2/1/w/50/h/50"
+                                         {% else %}
+                                         src="/images/default_head.jpg"
+                                         {% endif %}
+                                    >
                                 </div>
                                 <div class="media-body">
                                     <div class="scores-list-title">
                                         <h4 class="media-heading f-s-18 f-normal m-t-xxs">
-                                            <span class="f-default">+10</span>
+                                            {% if log.operation === 0%}
+                                            <span class="f-default">+{{log.value}}</span>
+                                            {% else %}
+                                            <span class="f-pink">-{{log.value}}</span>
+                                            {% endif %}
                                         </h4>
                                         <p class="f-s-12 f-gray m-t-xs">
-                                            <span class="m-r-lg">发布时间：2016-1-7 15:32:34</span>
-                                            <span>发布人：李静</span>
+                                            <span class="m-r-lg">发布时间：{{log.createdTime | date('Y-m-d',-480)}}</span>
+                                            <span>操作人员：{{log.operator.displayName}}</span>
                                         </p>
                                     </div>
                                     <div class="spread">
-                                        <a class="f-info pull-right panel-collapse f-normal">备注<i class="fa fa-sort-desc m-l-xxs"></i></a>
+                                        <a class="f-info pull-right panel-collapse f-normal">备注<i
+                                                class="fa fa-sort-desc m-l-xxs"></i></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="panel-body hides">
-                            <p class="scores-details">11111</p>
+                            <p class="scores-details">{{log.remark}}</p>
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

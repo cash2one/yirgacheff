@@ -35,7 +35,7 @@ module.exports = function (router) {
         let ret = yield {
             student: service.students.findById(studentId),
             records: service.connections.findByStudent(studentId, {
-                include: [{'creator': 'displayName'}],
+                include: [{'creator': 'displayName avatar'}],
                 order: ['-createdTime']
             })
         };
@@ -46,7 +46,8 @@ module.exports = function (router) {
     router.get('/:studentId/scoreRecords', function*() {
         let studentId = this.params.studentId;
         let ret = yield {
-            student: service.students.findById(studentId)
+            student: yield service.students.findById(studentId, true),
+            logs: yield service.score.logByStudent(studentId)
         };
         _.assign(this.state, ret);
         yield this.render('backend/school/manager/list-score-records');

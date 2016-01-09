@@ -29,7 +29,7 @@ module.exports = function (router) {
         let ret = yield {
             student: service.students.findById(studentId),
             records: service.connections.findByStudent(studentId, {
-                include: [{'creator': 'displayName'}],
+                include: [{'creator': 'displayName avatar'}],
                 order: ['-createdTime']
             })
         };

@@ -9,6 +9,5 @@ module.exports = function (router) {
     router.put('/:id', function *() {
         let schoolId = this.params.id;
         this.body = yield service.schools.updateById(schoolId, this.request.body);
-
     });
 };
