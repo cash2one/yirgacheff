@@ -37,7 +37,6 @@ module.exports = (opts)->
     templates = images.map template
     $("#weixinGallery").append(templates.join '')
 
-
   #初始化图库上传功能
   upload({
     button: 'weixinEditorImgUpload',

@@ -19,7 +19,7 @@ module.exports = {
 
     create: co.wrap((function*(user, data) {
         let teacher = yield Teacher.findById(user._id).lean().exec();
-        let homework = data.homework;
+        let homework = data;
         let exercises = data.exercises;
         let classes = homework.classes;
         let asTemplate = homework.addQuizBase;
@@ -83,6 +83,19 @@ module.exports = {
         return true;
     }),
 
+    closeById: co.wrap(function*(id) {
+        let homework = yield Homework.findById(id)
+            .populate('performances.student', 'username displayName')
+            .populate('clazz className').exec();
+        if (!homework || homework.state !== 0) {
+            throw createError(400, '作业不存在或无法删除');
+        }
+        homework = executeStatistics(homework);
+        homework.state = 1;
+        homework.className = homework.clazz.className;
+        return yield homework.save();
+
+    }),
 
     findByClasses: co.wrap(function*(classes, filter) {
         if (!_.isArray(classes)) {

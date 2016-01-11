@@ -12,46 +12,51 @@
         </a>
     </div>
 </div>
-<div class="row">
-
+<div class="row" id="postList">
     <div class="col-xs-10">
         <div class="post-item">
-            <ul class="list-unstyled" id="list-posts">
-                {% for post in posts %}
-                <li>
+            <ul class="list-unstyled">
+                <li v-for="post in posts" stagger="100" class="animated fadeIn" v-show="shouldShow(post.category.name)">
                     <div class="media">
                         <div class="media-left">
-                            <a href="/school/posts/<<post._id.toString()>>">
-                                <img src="http://resource.hizuoye.com/<<post.image>>" width="200px" height="140px">
+                            <a href="/school/posts/{{post._id.toString()}}">
+                                <img src="http://resource.hizuoye.com/{{post.image}}" width="200px" height="140px">
                             </a>
                         </div>
                         <div class="media-body">
                             <div class="m-l-xxs">
-                            <a href="/school/posts/<<post._id.toString()>>" class="post-item-title">
-                                <p class="media-heading f-s-16 f-bold m-t-sm"><<post.title | subTitle(20)>></p>
-                                <span class="pull-right m-t-sm m-r-sm f-gray">文章详情 >></span>
-                            </a>
-                            <div class="f-gray m-t-xs">
-                                <p><span class="m-t-lg">发布时间：</span><<post.createdTime | date('Y-m-d',-480)>>
-                                </p>
-                                <p class="m-t-xs"><span>文章栏目：<<post.category.name | subTitle(4)>></span></p>
-                                <div class="m-t-xs">
-                                    <span class="m-r-xxl"><i class="fa fa-eye f-info m-r-xs"></i><<post.visitCount>></span>
-                                    <span class="m-r-xxl"><i class="fa fa-thumbs-o-up f-default m-r-xs"></i><<post.like>></span>
-                                    <span><i class="fa fa-share-square-o f-yellow m-r-xs"></i><<post.shareCount>></span>
-                                    <div class="pull-right m-r-xs">
-                                        <a class="f-pink del_btn" data-tooltip="删除"
-                                           id="<<post._id.toString()>>"><i class="fa fa-trash-o f-s-16"></i></a>
+                                <a href="/school/posts/{{post._id.toString()" class="post-item-title">
+                                    <p class="media-heading f-s-16 f-bold m-t-sm">{{post.title }}</p>
+                                    <span class="pull-right m-t-sm m-r-sm f-gray">文章详情 >></span>
+                                </a>
+                                <div class="f-gray m-t-xs">
+                                    <p><span class="m-t-lg">发布时间：</span>
+                                        {{post.createdTime}}
+                                    </p>
+                                    <p class="m-t-xs">
+                                        <span>文章栏目:{{post.category.name}}</span>
+                                    </p>
+                                    <div class="m-t-xs">
+                                    <span class="m-r-xxl"><i class="fa fa-eye f-info m-r-xs"></i>
+                                        {{post.visitCount}}
+                                    </span>
+                                        <span class="m-r-xxl"><i class="fa fa-thumbs-o-up f-default m-r-xs"></i>{{post.like}}</span>
+                                        <span><i
+                                                class="fa fa-share-square-o f-yellow m-r-xs"></i>{{post.shareCount}}</span>
+                                        <div class="pull-right m-r-xs">
+                                            <a class="f-pink del_btn" data-tooltip="删除"
+                                               @click="deletePost(post,$index)">
+                                                <i class="fa fa-trash-o f-s-16"></i>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             </div>
                         </div>
                     </div>
                 </li>
-                {% endfor %}
             </ul>
-            <p class="text-center hides" id="tips">暂无文章</p>
+            <p class="text-center hides" id="tips" v-show="!posts">暂无文章</p>
         </div>
     </div>
     <div class="col-xs-2">
@@ -60,18 +65,14 @@
                 <li>
                     <p class="b-b p-v-sm p-h-xs no-m"><i class="fa fa-list m-r-xs"></i>文章分类</p>
                 </li>
-                <li class="{% if currentCategory=== category._id.toString()%} active{% endif %}">
-                    <a href="/school/posts">
-                        全部文章
+                <li>
+                    <a href="javascript:void(0)" @click="selectCategory('')">全部文章</a>
+                </li>
+                <li v-for="category in categories">
+                    <a href="javascript:void(0)" @click="selectCategory(category.name)">
+                        {{category.name}}
                     </a>
                 </li>
-                {% for category in categories %}
-                <li class="{% if currentCategory=== category._id.toString()%} active{% endif %}">
-                    <a href="/school/posts?category=<<category._id.toString()>>">
-                        <<category.name>>
-                    </a>
-                </li>
-                {% endfor %}
             </ul>
         </div>
     </div>
@@ -82,3 +83,5 @@
 <script src="/js/entries/school/site/list-posts.js"></script>
 
 {% endblock %}
+
+
