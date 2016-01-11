@@ -24,6 +24,15 @@ module.exports = function (router) {
         this.body = yield service.posts.deleteById(postId);
     });
 
+    router.get('/', function*() {
+        let filter = {
+            include: {
+                'category': 'name'
+            }
+        };
+        this.body = yield service.posts.findBySchool(this.user.schoolId, filter);
+    });
+
 
     return router;
 };

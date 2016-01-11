@@ -1,24 +1,7 @@
 {% extends '../../layout.html' %}
 {% block content %} <!-- 面包屑 -->
 <div class="row">
-    <div class="col-xs-2">
-        <div class="page-sidebar shadow">
-            <ul class="nav nav-pills nav-stacked">
-                <li>
-                    <a href="/teacher/classes">
-                        所有班级
-                    </a>
-                </li>
-                {% for cla in classes %}
-                <li {% if cla._id.toString()=== clazz._id.toString() %} class="active" {% endif %}>
-                    <a href="/teacher/classes/<<cla._id.toString()>>">
-                        <<cla.className>>
-                    </a>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
+
     <div class="col-xs-10">
         <div class="panel panel-default shadow">
             <div class="panel-heading clearfix">
@@ -136,6 +119,25 @@
                 </table>
             </div>
             {% endif %}
+        </div>
+    </div>
+    <div class="col-xs-2">
+        <div class="category-sidebar shadow">
+            <ul class="nav nav-pills nav-stacked" id="selectCategory">
+                <li>
+                    <p class="b-b p-v-sm p-h-xs no-m"><i class="fa fa-list m-r-xs"></i>班级列表</p>
+                </li>
+                <li>
+                    <a href="/teacher/classes">所有班级</a>
+                </li>
+                {% for cla in classes %}
+                <li {% if cla._id.toString()=== clazz._id.toString() %} class="active" {% endif %}>
+                    <a href="/teacher/classes/<<cla._id.toString()>>">
+                        <<cla.className>>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 </div>

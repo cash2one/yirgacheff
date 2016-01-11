@@ -15,5 +15,10 @@ module.exports = function (router) {
         let homeworkId = this.params.homeworkId;
         this.body = yield service.homework.deleteById(homeworkId);
     });
+
+    router.put('/:homeworkId/close', function*() {
+        let homeworkId = this.params.homeworkId;
+        this.body = yield service.homework.closeById(homeworkId);
+    });
     return router;
 };
