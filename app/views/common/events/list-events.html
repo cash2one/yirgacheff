@@ -4,10 +4,17 @@
 <!-- END OF BREADCRUMBS -->
 <div class="row m-b-md">
     <div class="col-xs-10">
-        <p class="f-s-18 no-m m-t-xxs m-l-xs f-gray"><i class="fa fa-bookmark m-r-xs"></i>活动</p>
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="#home" data-toggle="tab">
+                    进行中
+                </a>
+            </li>
+            <li><a href="#ios" data-toggle="tab">已结束</a></li>
+        </ul>
     </div>
     <div class="col-xs-2">
-        <a class="btn btn-default btn-sm btn-block" href="/school/posts/create">
+        <a class="btn btn-default btn-sm btn-block" href="/school/events">
             <i class="fa fa-plus m-r-xxs"></i>活动发布
         </a>
     </div>
@@ -62,7 +69,7 @@
         <div class="category-sidebar shadow">
             <ul class="nav nav-pills nav-stacked" id="selectCategory">
                 <li>
-                    <p class="b-b p-v-sm p-h-xs no-m"><i class="fa fa-list m-r-xs"></i>文章分类</p>
+                    <p class="b-b p-v-sm p-h-xs no-m f-gray">文章分类</p>
                 </li>
                 <li>
                     <a href="javascript:void(0)" @click="selectCategory('')">全部文章</a>

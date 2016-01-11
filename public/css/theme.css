@@ -1764,7 +1764,7 @@ td .checkbox {
 
 /* shadow */
 .shadow{
-    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 3px rgba(0,0,0,0.15);
 }
 .shadow-hover:hover{
     box-shadow:0 10px 30px rgba(0,0,0,0.15);
@@ -2296,8 +2296,8 @@ transition:width 6s ease-in-out
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
-    color: #555555;
-    background-color: #ffffff;
+    color: #2aabe6;
+    background: none;
     border: none;
     border-bottom: 2px solid #2aabe6;
     cursor: default;
