@@ -13,12 +13,12 @@ var weixinEditor = require('../../../common/weixinEditor');
 $(document).ready(function () {
     app();
 
-    //¸»±à¼­Æ÷äÖÈ¾
+    //å¯Œç¼–è¾‘å™¨æ¸²æŸ“
     var editor = richEditor.render('content');
-    //³õÊ¼»¯Î¢ĞÅ±à¼­Æ÷
+    //åˆå§‹åŒ–å¾®ä¿¡ç¼–è¾‘å™¨
     weixinEditor({editor: editor});
 
-    //±¾µØÉÏ´«
+    //æœ¬åœ°ä¸Šä¼ 
     upload({
         file: 'imageUpload',
         done: function (file) {
@@ -27,19 +27,19 @@ $(document).ready(function () {
         }
     });
 
-    //Ìí¼Ó¸½¼ÓĞÅÏ¢
+    //æ·»åŠ é™„åŠ ä¿¡æ¯
     $(".enroll-field-btn").click(function() {
         var label = $(this).text().trim();
-        var field = "<div class='form-group enroll-field'><label class='control-label col-xs-2'>" + label + "£º</label> <div class='col-xs-10'><input class='form-control' type='text' name='infoCollect' value='" + label + "' placeholder='ÇëÊäÈëÄãµÄ" + label + "' readonly><i class='delete fa fa-times f-gray f-s-16 pull-right m-t-n-lg m-r-xs'></i></div></div>";
+        var field = "<div class='form-group enroll-field'><label class='control-label col-xs-2'>" + label + "ï¼š</label> <div class='col-xs-10'><input class='form-control' type='text' name='infoCollect' value='" + label + "' placeholder='è¯·è¾“å…¥ä½ çš„" + label + "' readonly><i class='delete fa fa-times f-gray f-s-16 pull-right m-t-n-lg m-r-xs'></i></div></div>";
         $('.enroll-extras').append(field);
     });
-    //Ìí¼Ó×Ô¶¨Òå
+    //æ·»åŠ è‡ªå®šä¹‰
     $(".enroll-field-custom").click(function() {
         var info = $(this).text().trim();
         var field = "<div class='form-group enroll-field'>\n   " +
-            "<label class='control-label col-xs-2'>" + info + "£º</label>" +
+            "<label class='control-label col-xs-2'>" + info + "ï¼š</label>" +
             "<div class='col-xs-10'>" +
-            "<input class='form-control' name='infoCollect' type='text' placeholder='ÇëÊäÈëÄãµÄ" + info + "ĞÅÏ¢" + "'>" +
+            "<input class='form-control' name='infoCollect' type='text' placeholder='è¯·è¾“å…¥ä½ çš„" + info + "ä¿¡æ¯" + "'>" +
             "<i class='delete fa fa-times f-gray f-s-16 pull-right m-t-n-lg m-r-xs'></i> " +
             "</div>\n</div>";
         $('.enroll-extras').append(field);

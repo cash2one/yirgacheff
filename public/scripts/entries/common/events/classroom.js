@@ -1,5 +1,5 @@
 /**
- * Created by Admin on 2016/1/9.
+ * Created by Admin on 2016/1/10.
  */
 'use strict';
 require('../../../common/formvalidator');
@@ -26,4 +26,3 @@ $(document).ready(function () {
     });
 
 });
-
