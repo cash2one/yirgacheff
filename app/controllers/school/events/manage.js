@@ -10,4 +10,8 @@ module.exports = function (router) {
         yield this.render('common/events/event-manage');
     });
 
+    router.get('/enroll/:id', function*() {
+        yield this.render('common/events/manage-enroll');
+    });
+
 };

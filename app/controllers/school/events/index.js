@@ -7,6 +7,7 @@ const service = require('../../../services');
 module.exports = function (router) {
 
     router.get('/list', function*() {
+        yield this.render('common/events/list-events');
     });
 
     router.get('/', function*() {

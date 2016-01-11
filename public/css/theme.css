@@ -210,7 +210,7 @@ ul li{
 }
 
 .f-info {
-    color: #34d3eb;
+    color: #2aabe6;
 }
 
 .f-warning {
@@ -222,6 +222,9 @@ ul li{
 }
 
 .f-pink{
+    color: #fb6d9d;
+}
+a.f-pink:hover{
     color: #fb6d9d;
 }
 /*width*/
@@ -913,8 +916,8 @@ a.bg-pink:focus {
 .btn-info:focus,
 .btn-info:hover,
 .open > .dropdown-toggle.btn-info {
-    background-color: #34d3eb !important;
-    border: 1px solid #34d3eb !important;
+    background-color: #2aabe6 !important;
+    border: 1px solid #2aabe6 !important;
 }
 .btn-warning,
 .btn-warning:hover,
@@ -998,7 +1001,7 @@ a.bg-pink:focus {
     color: #81c868 !important;
 }
 .btn-custom.btn-info {
-    color: #34d3eb !important;
+    color: #2aabe6 !important;
 }
 .btn-custom.btn-warning {
     color: #ffbd4a !important;
@@ -1778,7 +1781,7 @@ td .checkbox {
     float: right;
 }
 .info-box-info{
-    border-left: 4px solid #34d3eb;
+    border-left: 4px solid #2aabe6;
 }
 .info-box-warning{
     border-left: 4px solid #ffbd4a;
@@ -1860,7 +1863,7 @@ td .checkbox {
 }
 .widget-bg-color-icon .bg-icon-info {
     background-color: rgba(52, 211, 235, 0.2);
-    border: 1px solid #34d3eb;
+    border: 1px solid #2aabe6;
 }
 .widget-bg-color-icon .bg-icon-primary {
     background-color: rgba(93, 156, 236, 0.2);
