@@ -85,6 +85,7 @@ $(document).ready(function () {
                 }
                 $.post('/api/v1/homework', this.getData()).then(function (res) {
                     app.notify.success("保存作业成功");
+                    self.location.href = "/teacher/homework";
                 });
             }
         },

@@ -10,7 +10,7 @@ var upload = require('../../../common/uploadifive');
 $(document).ready(function () {
     app();
 
-    var $videoItem =$(".video-item");
+    var $videoList =$(".video-list");
 
     upload({
         file: 'imageUpload',
@@ -28,28 +28,28 @@ $(document).ready(function () {
         var link = $("#link").val();
         var name = $("#videoName").val();
         var detail =$("#videoDetail").val();
-        var video = "<div class='media b m-b-md'>" +
-            "<div class='media-left video-container'>"+ link +"</div>" +
-            "<div class='media-body'><p class='video-title'>"+ name +"</p>" +
-            "<div class='video-control'><a class='f-info m-r-xs reset-video'>重新上传</a><a class='f-pink delete-video'>删除</a></div>" +
-            "<p class='video-detail'>"+ detail +"</p></div></div>";
-        $(".video-item").append(video);
+        var video = "<div class='col-xs-4 video-item'><div class='thumbnail'>" +
+            "<div class='video-container'>"+ link +"</div><div class='caption'>" +
+            "<p class='video-title'>"+ name +"</p><div class='video-control'>" +
+            "<a class='f-info m-r-xs'>修改</a><a class='f-pink delete-video'>删除</a></div>" +
+            "<p class='video-detail'>"+ detail +"</p></div></div></div>";
+        $("#uploadVideo").before(video);
         $("#addVideoModal").modal('hide');
         notify.success("添加成功");
         $("#addVideoForm")[0].reset();
     });
 
     //重新上传
-    $videoItem.on('click', '.reset-video', function () {
-        var link = $(this).closest('.media').find('.video-container').html();
-        var name = $(this).closest('.media').find('.video-title').html();
-        var detail = $(this).closest('.media').find('.video-detail').html();
+    $videoList.on('click', '.reset-video', function () {
+        var link = $(this).closest('.video-item').find('.video-container').html();
+        var name = $(this).closest('.video-item').find('.video-title').html();
+        var detail = $(this).closest('.video-item').find('.video-detail').html();
         console.log(link,name,detail)
     });
 
     //删除视频
-    $videoItem.on('click', '.delete-video', function () {
-        $(this).closest('.media').remove();
+    $videoList.on('click', '.delete-video', function () {
+        $(this).closest('.video-item').remove();
         notify.danger("删除成功");
     });
 

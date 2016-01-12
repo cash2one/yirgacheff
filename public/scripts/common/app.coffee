@@ -22,8 +22,16 @@ $ ->
 
   $('[data-toggle="tooltip"]').tooltip()
 
-  $('#gotop').click ()->
-    $(document).scrollTop(0)
+  $("#toTop").hide()
+
+  $(window).scroll ()->
+    if($(window).scrollTop()>100)
+       $("#toTop").fadeIn()
+    else $("#toTop").fadeOut()
+
+  $('#toTop').click ()->
+    $('body,html').animate({scrollTop:0},500)
+    return false
 
   $('.slimscroll').slimscroll({
     alwaysVisible: false
