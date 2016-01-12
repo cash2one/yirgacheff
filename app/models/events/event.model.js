@@ -12,13 +12,13 @@ const eventSchema = new Schema({
     // 标题
     title: {
         type: String,
-        required: true
+        required: '标题不能为空'
     },
 
     // 封面图片
     coverImage: {
         type: String,
-        required: true
+        required: '封面不能为空'
     },
 
     // 详情
@@ -26,10 +26,9 @@ const eventSchema = new Schema({
         type: String
     },
 
-    // 是否需要报名
-    needEnroll: {
-        type: Boolean,
-        default: false
+    // 报名表单 (如果存在说明需要报名,否则不需要)
+    enroll: {
+        type: ObjectId
     },
 
     // 阅读量
@@ -50,17 +49,44 @@ const eventSchema = new Schema({
         default: 0
     },
 
+    //创建人
+    creator: {
+        type: ObjectId,
+        required: '创建人不能为空'
+    },
+
+    state: {
+        type: Number,
+        default: 0
+    },
+
+    //创建人角色
+    creatorRole: {
+        type: Number,
+        required: '创建人角色不能为空'
+    },
+
+    //模版类型
+    template: {
+        type: String,
+        required: '模版不能为空',
+        enum: ['article']
+    },
+
     schoolId: {
         type: ObjectId,
         required: true
     },
 
     createdTime: {
-        type: Date
+        type: Date,
+        default: Date.now
     }
 
 });
 
+const Event = mongoose.model('Event', eventSchema);
 
-mongoose.model('Event', eventSchema);
-
+Event.discriminator('Activity', require('./themes/activity.model'));
+Event.discriminator('Article', require('./themes/article.model'));
+Event.discriminator('Audition', require('./themes/audition.model'));

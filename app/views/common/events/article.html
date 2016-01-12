@@ -8,13 +8,15 @@
                 <h4 class="panel-title">发布文章</h4>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal" method="post" id="taskForm" name="taskForm">
+                <form class="form-horizontal" id="articleForm" name="articleForm">
+
                     <div class="form-group">
                         <label for="name" class="col-xs-1 control-label">文章标题</label>
 
                         <div class="col-xs-9">
                             <input class="form-control validate" type="text" id="name"
-                                   name="name"
+                                   name="title"
+                                   value="<<event.title>>"
                                    placeholder="比如：分享文章，赚积分，得礼包"
                                    data-rules="required"
                                    data-display="文章标题">
@@ -24,9 +26,10 @@
                         <label class="col-xs-1 control-label">阅读次数</label>
                         <div class="col-xs-9">
                             <input class="form-control validate" type="text"
-                                   name="scoreAward"
+                                   name="visitCount"
+                                   value="<<event.visitCount>>"
                                    placeholder="你可以设置文章的初始阅读量"
-                                   data-rules="required|integer"
+                                   data-rules="integer"
                                    data-display="阅读次数">
                         </div>
                     </div>
@@ -34,12 +37,17 @@
                         <label class="col-xs-1 control-label">设置封面</label>
                         <div class="col-xs-4">
                             <img class="b" width="320px" height="200px" id="indexImage"
-                                 {% if post %}
-                                 src="http://resource.hizuoye.com/<<post.image>>"
+                                 {% if event %}
+                                 src="http://resource.hizuoye.com/<<event.coverImage>>"
                                  {% else %}
                                  src="http://static.hizuoye.com/images/coverpage_default.png"
                                  {% endif %}>
                         </div>
+                        <input type="hidden" name="coverImage" class="form-control validate"
+                               id="coverImage"
+                               value="<<event.coverImage>>"
+                               data-display="封面图片"
+                               data-rules="required">
                         <input type="file" id="imageUpload" class="image-upload">
                         <p class="m-t-lg">上传封面图片<span class="tip">(建议尺寸: 900像素x500像素)</span></p>
                         <p class="m-t-lg">一张漂亮的海报，能让你的活动锦上添花，带来更多用户报名
@@ -52,6 +60,10 @@
                         </div>
                         <div class="col-xs-6">
                             <div class="textarea-container" id="content"></div>
+                            {% if event %}
+                            <input type="hidden" name="articleId" value="<<event._id.toString()>>">
+                            <input type="hidden" value="<<event.content>>" id="hideContent">
+                            {% endif %}
                         </div>
                     </div>
                     <div class="col-xs-12">
@@ -65,9 +77,8 @@
     </div>
 </div>
 {% endblock %}
-
 {% block javascript %}
 <script src="/js/lib/ueditor/ueditor.config.js"></script>
 <script src="/js/lib/ueditor/ueditor.all.min.js"></script>
-<script src="/js/entries/common/events/post.js"></script>
+<script src="/js/entries/common/events/article.js"></script>
 {% endblock %}

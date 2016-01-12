@@ -26,4 +26,4 @@ const activitySchema = new mongoose.Schema({
     }
 });
 
-module.exports = Event.discriminator('Activity', activitySchema);
+module.exports = activitySchema;

@@ -2,90 +2,108 @@
 {% block content %}
 <!-- 面包屑 -->
 <!-- END OF BREADCRUMBS -->
-<div class="row m-b-md">
-    <div class="col-xs-10">
-        <ul class="nav nav-tabs">
-            <li class="active">
-                <a href="#home" data-toggle="tab">
-                    进行中
-                </a>
-            </li>
-            <li><a href="#ios" data-toggle="tab">已结束</a></li>
-        </ul>
+<div id="eventList">
+    <div class="row m-b-md">
+        <div class="col-xs-10">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#home" data-toggle="tab" @click="changeState(0)">
+                        进行中
+                    </a>
+                </li>
+                <li><a href="#ios" data-toggle="tab" @click="changeState(1)">已结束</a></li>
+            </ul>
+        </div>
+        <div class="col-xs-2">
+            <a class="btn btn-default btn-sm btn-block" href="/school/events">
+                <i class="fa fa-plus m-r-xxs"></i>活动发布
+            </a>
+        </div>
     </div>
-    <div class="col-xs-2">
-        <a class="btn btn-default btn-sm btn-block" href="/school/events">
-            <i class="fa fa-plus m-r-xxs"></i>活动发布
-        </a>
-    </div>
-</div>
-<div class="row" id="postList">
-    <div class="col-xs-10">
-        <div class="events-item">
-            <ul class="list-unstyled">
-                <li v-for="post in posts" stagger="100" class="animated fadeIn" v-show="shouldShow(post.category.name)">
-                    <div class="media">
-                        <div class="media-left ps-r">
-                            <a href="/school/posts/{{post._id.toString()}}">
-                                <img src="/images/ls5.jpg" width="200px" height="140px">
-                                <span class="label label-success mask-tags">进行中</span>
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <div class="m-l-xxs">
-                                <a href="/school/posts/{{post._id.toString()" class="post-item-title">
-                                    <p class="media-heading f-s-16 f-bold m-t-sm">创业就用微软智能云 之 黑客松分享会</p>
+    <div class="row">
+        <div class="col-xs-10">
+            <div class="events-item">
+                <ul class="list-unstyled">
+                    <li v-for="event in events" stagger="100" class="animated fadeIn">
+                        <div class="media">
+                            <div class="media-left ps-r">
+                                <a href="/school/posts/{{post._id.toString()}}">
+                                    <img src="/images/ls5.jpg" width="200px" height="140px">
+                                    <span class="label label-success mask-tags">进行中</span>
                                 </a>
-                                <div class="f-gray m-t-xs">
-                                    <p><span class="m-t-lg">发布时间：</span>
-                                        2016-1-11 15:36:13
-                                    </p>
-                                    <p class="m-t-xs">
-                                        <span>所属分类：</span>
-                                        活动
-                                    </p>
-                                    <div class="m-t-xs">
-                                    <span class="m-r-xxl"><i class="fa fa-eye f-info m-r-xs"></i>
-                                        123
+                            </div>
+                            <div class="media-body">
+                                <div class="m-l-xxs">
+                                    <a href="/school/posts/{{post._id.toString()" class="post-item-title">
+                                        <p class="media-heading f-s-16 f-bold m-t-sm">{{event.title}}</p>
+                                    </a>
+                                    <div class="f-gray m-t-xs">
+                                        <p><span class="m-t-lg">发布时间：</span>
+                                            {{event.createdTime}}
+                                        </p>
+                                        <p class="m-t-xs">
+                                            <span>所属分类：</span>
+                                            活动
+                                        </p>
+                                        <div class="m-t-xs">
+                                    <span class="m-r-xxl">
+                                        <i class="fa fa-eye f-info m-r-xs"></i>{{event.visitCount}}
                                     </span>
-                                        <span class="m-r-xxl"><i class="fa fa-thumbs-o-up f-default m-r-xs"></i>12</span>
-                                        <span><i
-                                                class="fa fa-share-square-o f-yellow m-r-xs"></i>23</span>
-                                        <div class="pull-right m-r-xs">
-                                            <a class="f-gray m-r-lg"><i class="fa fa-cog m-r-xxs"></i>活动管理</a>
-                                            <a class="f-gray"><i class="fa fa-users m-r-xxs"></i>报名管理</a>
+                                    <span class="m-r-xxl">
+                                        <i class="fa fa-thumbs-o-up f-default m-r-xs"></i>{{event.shareCount}}
+                                    </span>
+                                    <span>
+                                        <i class="fa fa-share-square-o f-yellow m-r-xs"></i>{{event.like}}
+                                    </span>
+                                            <div class="pull-right m-r-xs">
+                                                <a class="f-gray m-r-lg"><i class="fa fa-cog m-r-xxs"></i>活动管理</a>
+                                                <a class="f-gray" href="/school/events/edit/{{event._id}}"><i
+                                                        class="fa fa-edit m-r-xxs"></i>活动编辑</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </li>
-            </ul>
-            <p class="text-center hides" id="tips" v-show="!posts">暂无文章</p>
+                    </li>
+                </ul>
+                <p class="text-center hides" id="tips" v-show="!posts">暂无文章</p>
+            </div>
         </div>
-    </div>
-    <div class="col-xs-2">
-        <div class="category-sidebar shadow">
-            <ul class="nav nav-pills nav-stacked" id="selectCategory">
-                <li>
-                    <p class="b-b p-v-sm p-h-xs no-m f-gray">文章分类</p>
-                </li>
-                <li>
-                    <a href="javascript:void(0)" @click="selectCategory('')">全部文章</a>
-                </li>
-                <li v-for="category in categories">
-                    <a href="javascript:void(0)" @click="selectCategory(category.name)">
-                        {{category.name}}
-                    </a>
-                </li>
-            </ul>
+        <div class="col-xs-2">
+            <div class="category-sidebar shadow">
+                <ul class="nav nav-pills nav-stacked" id="selectCategory">
+                    <li>
+                        <p class="b-b p-v-sm p-h-xs no-m f-gray">活动类型</p>
+                    </li>
+                    <li class="active">
+                        <a href="javascript:void(0)" @click="selectCategory('')">全部活动</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" @click="selectCategory('')">文章</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" @click="selectCategory('')">活动</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" @click="selectCategory('')">试听课</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" @click="selectCategory('')">在线课堂</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" @click="selectCategory('')">大转盘</a>
+                    </li>
+
+                </ul>
+            </div>
         </div>
     </div>
 </div>
 {% endblock %}
 
 {% block javascript %}
+<script src="/js/entries/common/events/list-events.js"></script>
 {% endblock %}
 
 

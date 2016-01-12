@@ -6,4 +6,5 @@ const mongoose = require('mongoose');
 const Event = mongoose.model('Event');
 
 //文章
-module.exports = Event.discriminator('Article', new mongoose.Schema({}));
+module.exports = new mongoose.Schema({});
+

@@ -18,5 +18,6 @@ module.exports = {
     activities: require('./task/activity.service'),
     connections: require('./connection.service'),
     question: require('./question.service'),
-    schools: require('./school.service')
+    schools: require('./school.service'),
+    events: require('./events')
 };

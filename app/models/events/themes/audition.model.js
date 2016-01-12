@@ -38,4 +38,4 @@ const auditionSchema = new mongoose.Schema({
     }
 });
 
-module.exports = Event.discriminator('Audition', auditionSchema);
+module.exports = auditionSchema;
