@@ -7,7 +7,7 @@ const service = require('../../../services');
 module.exports = function (router) {
 
     router.get('/:id', function*() {
-        yield this.render('common/events/event-manage');
+        yield this.render('common/events/manage-event');
     });
 
     router.get('/enroll/:id', function*() {
