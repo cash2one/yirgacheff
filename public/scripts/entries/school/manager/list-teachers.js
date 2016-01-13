@@ -30,8 +30,8 @@ $(document).ready(function () {
             {'data': 'department'},
             {
                 'data': null,
-                'defaultContent': '<a class="f-info m-r-xs edit" ><i class="fa fa-pencil"></i></a>' +
-                '<a class="f-pink delete" data-toggle="confirmation"><i class="fa fa-ban"></i></a>'
+                'defaultContent': '<a class="f-info m-r-xs edit" title="修改"><i class="iconfont icon-xiangqing"></i></a>' +
+                '<a class="f-pink delete" data-toggle="confirmation" title="禁用"><i class="iconfont icon-jinzhi"></i></a>'
             }
         ]
     });

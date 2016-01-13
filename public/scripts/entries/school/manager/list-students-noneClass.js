@@ -26,8 +26,8 @@ $(document).ready(function () {
             {'data': 'phone'},
             {
                 'data': null,
-                'defaultContent': '<a class="f-info m-r-xs detail"><i class="fa fa-file-text-o"></i></a>' +
-                '<a class="f-pink delete"><i class="fa fa-trash-o"></i></a>'
+                'defaultContent': '<a class="f-info m-r-xs detail" title="详情"><i class="iconfont icon-xiangqing"></i></a>' +
+                '<a class="f-pink delete" title="删除"><i class="iconfont icon-shanchu"></i></a>'
             }
         ]
     });

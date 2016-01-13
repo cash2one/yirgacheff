@@ -80,7 +80,7 @@ $(document).ready(function () {
             {'data': 'teacher.displayName'},
             {
                 'data': null,
-                'defaultContent': '<a  class="btn btn-info btn-xs btn-custom detail">查看</a>&nbsp;&nbsp;'
+                'defaultContent': '<a  class="f-info detail"><i class="iconfont icon-xiangqing"></i></a>&nbsp;&nbsp;'
             }
         ],
         'columnDefs': [

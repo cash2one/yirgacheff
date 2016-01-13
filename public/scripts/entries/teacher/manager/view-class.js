@@ -39,9 +39,9 @@ $(document).ready(function () {
             {'data': 'score'},
             {
                 'data': null,
-                'defaultContent': '<a href="javascript:void(0)" class="m-r-xs view" title="查看"><i class="fa fa-eye"></i></a>' +
-                '<a href="javascript:void(0)" class="f-info edit m-r-xs" title="修改"><i class="fa fa-pencil"></i></a>' +
-                '<a href="javascript:void(0)" class="f-pink delete m-r-xs" title="删除"><i class="fa fa-trash-o"></i></a>'
+                'defaultContent': '<a href="javascript:void(0)" class="m-r-xs f-info view" title="查看"><i class="iconfont icon-xiangqing"></i></a>' +
+                '<a href="javascript:void(0)" class="f-info edit m-r-xs" title="修改"><i class="iconfont icon-xiugai"></i></a>' +
+                '<a href="javascript:void(0)" class="f-pink delete m-r-xs" title="删除"><i class="iconfont icon-shanchu"></i></a>'
 
             }],
         'order': [[1, "desc"]]
