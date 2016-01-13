@@ -25,7 +25,7 @@ $(document).ready(function () {
             {'data': 'department'},
             {
                 'data': null,
-                'defaultContent': '<a class="f-default enable"><i class="fa fa-check-circle-o"></i></a>'
+                'defaultContent': '<a class="f-default enable" title="启用"><i class="iconfont icon-qiyong"></i></a>'
             }
         ]
     });

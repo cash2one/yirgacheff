@@ -411,7 +411,7 @@
     margin-left: 0px;
     color:#acacac
 }
-/*���ض���*/
+/*返回顶部*/
 .w-top {
     /*opacity: 0;*/
     filter: alpha(opacity=0);
@@ -439,7 +439,7 @@
     background: url("/images/w-top-hover.png") no-repeat;
 }
 
-/*�༶ѡ��*/
+/*出题班级列表*/
 .t-homeworkClass-list {
     margin: 0;
     float: left;
@@ -498,6 +498,12 @@
 .images-group{
     border-bottom: 1px solid #cccccc;
     padding-bottom: 3px;
+    height: 158px;
+    overflow: hidden;
+}
+.images-group img{
+    width: 154px;
+    height: 154px;
 }
 .quest-number{
     width: 32px;
@@ -988,30 +994,27 @@
 /*上传视频*/
 .upload-video{
     border: 1px dashed #dfdfdf;
-    padding-top: 30px;
-    height: 218px;
+    padding-top: 70px;
+    height: 308px;
 }
-.thumbnail {
+.video-list .thumbnail{
+    height: 308px;
     box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    overflow: hidden;
 }
 .video-container {
     position: relative;
     overflow: hidden;
+    height: 220px;
 }
 .video-container embed, .video-container iframe, .video-container object {
-    width: 100%;
-    height: 100%;
-}
-.video-header{
-    height: 40px;
-}
-.video-header i{
-    margin-top: 8px;
+    width: 306px;
+    height: 220px;
 }
 .thumbnail .caption .video-title {
     display: inline-block;
     width: 160px;
-    float: left;
+    height: 30px;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -1019,8 +1022,16 @@
     margin:0;
     padding: 5px 0;
 }
+.thumbnail .caption .video-control{
+    float: right;
+    padding-top: 5px;
+}
 .thumbnail .caption .video-detail{
-    display: block;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    margin-bottom: 0;
+    height: 20px;
 }
 /*照片墙*/
 .upload-photo{
@@ -1139,8 +1150,55 @@
     margin-right: 25px!important;
 }
 
-.back-g{
-    width: 100%; height: 150px; padding: 25px;
-    background-image: url("/images/green.png");
-    background-size: 235px 150px;
+/*学校二维码*/
+.school-ewm{
+    padding: 20px;
+    border: 1px solid #dfdfdf;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+/*返回顶部tools*/
+#bottomTools {
+    position: fixed;
+    bottom: 30px;
+    left: 95%;
+    width: 30px;
+    zoom: 1;
+}
+#bottomTools a {
+    background-image: url("/images/toolbar.png");
+    background-repeat: no-repeat;
+    display: block;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 2px;
+    overflow: hidden;
+    text-indent: -999px;
+    transition: background-position 0.7s ease 0s;
+}
+#bottomTools .weixin {
+    background-position: 0 -372px;
+    position: absolute;
+    bottom: 54px;
+}
+#bottomTools a.weixin:hover {
+    background-position: 0 -434px;
+}
+#bottomTools .contact {
+    background-position: 0 0;
+    position: absolute;
+    bottom: 0;
+}
+#bottomTools a.contact:hover {
+    background-position: 0 -62px;
+}
+#bottomTools a#toTop {
+    background-position: 0 -248px;
+    position: absolute;
+    bottom: 108px;
+    cursor: pointer;
+}
+#bottomTools a#toTop:hover {
+    background-position: 0 -308px;
 }

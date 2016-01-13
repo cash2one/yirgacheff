@@ -25,9 +25,9 @@ $(document).ready(function () {
             {'data': 'postCount'},
             {
                 'data': null,
-                'defaultContent': '<a class="f-info m-r-xs edit"><i class="fa fa-pencil"></i></a>' +
-                '<a class="f-info m-r-xs detail"><i class="fa fa-file-text-o"></i></a>' +
-                '<a class="f-pink delete"><i class="fa fa-trash-o"></i></a>'
+                'defaultContent': '<a class="f-info m-r-xs edit" title="修改"><i class="iconfont icon-xiugai"></i></a>' +
+                '<a class="f-info m-r-xs detail" title="详情"><i class="iconfont icon-xiangqing"></i></a>' +
+                '<a class="f-pink delete" title="删除"><i class="iconfont icon-shanchu"></i></a>'
             }
         ],
         "aoColumnDefs": [

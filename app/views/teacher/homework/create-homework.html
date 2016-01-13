@@ -32,9 +32,9 @@
                     </div>
                     <div class="panel-body">
                         <form action="" id="homeworkInfo" class="form-horizontal m-t-lg">
-                            <div class="form-group m-b-xxs">
+                            <div class="form-group">
                                 <label class="col-xs-2 control-label">班级：</label>
-                                <div class="col-xs-10 t-homeworkClass-list">
+                                <div class="col-xs-7 t-homeworkClass-list">
                                     <ul class="list-unstyled" id="classList">
                                         {% for clazz in classes %}
                                         <li id="<<clazz._id.toString()>>" title="<<clazz.className>>"
@@ -47,7 +47,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group m-t-n-xs">
                                 <label class="col-xs-2 control-label">作业标题：</label>
                                 <div class="col-xs-6">
                                     <input class="form-control" type="text"
@@ -156,13 +156,13 @@
                     </div>
                 </div>
             </div>
+            <div class="col-xs-12 m-b-md">
+                <a class="col-xs-offset-5 col-xs-2 btn btn-default" @click="saveHomework">保存作业</a>
+            </div>
         </div>
 
     </div>
 
-    <div class="col-xs-12 m-b-md">
-        <a class="col-xs-offset-5 col-xs-2 btn btn-default" @click="saveHomework">保存作业</a>
-    </div>
 </div>
 
 <!-- 题型模版 -->
