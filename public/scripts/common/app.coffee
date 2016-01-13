@@ -33,6 +33,9 @@ $ ->
     $('body,html').animate({scrollTop:0},500)
     return false
 
+  $('#message').click ()->
+    $('#onlineConsultationModal').modal('show')
+
   $('.slimscroll').slimscroll({
     alwaysVisible: false
     allowPageScroll: false
