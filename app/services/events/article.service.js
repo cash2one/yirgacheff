@@ -19,7 +19,13 @@ module.exports = {
         article.creatorRole = creator.role;
         article.schoolId = creator.schoolId;
         article.template = 'article';
-        return yield article.save();
+        try {
+            yield article.save();
+        } catch (err) {
+            console.error(err.errors);
+            throw err;
+        }
+        return article;
     }),
 
     updateById: co.wrap(function*(id, data) {

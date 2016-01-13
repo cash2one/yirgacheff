@@ -5,6 +5,7 @@
 
 const co = require('co');
 const mongoose = require('mongoose');
+const createError = require('http-errors');
 const queryBuilder = require('../../functions/queryBuilder');
 const Event = mongoose.model('Event');
 
@@ -24,6 +25,15 @@ module.exports = {
             query.lean();
         }
         return yield query.exec();
+    }),
+
+    deleteById: co.wrap(function*(id) {
+        let event = yield Event.findById(id).select('_id').exec();
+        if (!event) {
+            throw createError(400, '活动不存在');
+        }
+        return yield event.remove();
+
     })
 
 };

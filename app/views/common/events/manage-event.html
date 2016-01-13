@@ -10,11 +10,6 @@
                         活动概览
                     </a>
                 </li>
-                <li>
-                    <a href="#">
-                        报名管理
-                    </a>
-                </li>
             </ul>
         </div>
     </div>
@@ -22,43 +17,37 @@
         <div class="panel panel-default shadow">
             <div class="panel-heading clearfix">
                 <h4 class="panel-title">活动概览</h4>
+
             </div>
             <div class="panel-body">
                 <div class="manage">
                     <div class="manage-header">
-                    <p class="manage-title">这是一场“新品是最大机密”的新品发布会</p>
+                        <p class="manage-title"><<event.title>></p>
                         <div class="manage-control">
-                            <a class="f-info"><i class="fa fa-pencil m-r-xxs"></i>活动编辑</a>
-                            <a class="f-pink m-l-md"><i class="fa fa-trash-o m-r-xxs"></i>活动删除</a>
+                            <a class="f-info" href="/school/events/edit/<<event._id.toString()>>"><i class="fa fa-pencil m-r-xxs"></i>活动编辑</a>
+                            <a class="f-pink m-l-md deleteEvent" href="javascript:void(0)" id="<<event._id.toString()>>"><i class="fa fa-trash-o m-r-xxs"></i>活动删除</a>
                         </div>
                     </div>
                     <div class="manage-num m-t-md">
                         <ul class="list-unstyled">
-                            <li><span>阅读</span><div>1</div></li>
-                            <li><span>分享</span><div>0</div></li>
-                            <li><span>喜欢</span><div>0</div></li>
+                            <li>
+                                <span>阅读</span>
+                                <div><<event.visitCount>></div>
+                            </li>
+                            <li>
+                                <span>分享</span>
+                                <div><<event.shareCount>></div>
+                            </li>
+                            <li>
+                                <span>喜欢</span>
+                                <div><<event.like>></div>
+                            </li>
+                            {% if event.enroll %}
                             <li class="no-b"><span>报名</span><div>0</div></li>
+                            {% endif %}
                         </ul>
                     </div>
-                    <div class="manage-details bg-gray m-t-md">
-                        <p><span>发布时间：</span></p>
-                        <p><span>活动主题：</span>下午茶论坛及新年晚宴派对</p>
-                        <p><span>活动时间：</span>2016-01-11 10:23:21 ~ 2016-01-11 10:23:21</p>
-                        <p><span>活动地点：</span>南山区科兴路10号科技园文化广场F2比特咖啡创客空间</p>
-                    </div>
-                    <div class="details-info m-t-xs">
-                        <p>活动详情：</p>
-                        <div class="itembox" title="节日1">
-                            <section>
-                                <section style="max-width: 100%; font-family: sans-serif; white-space: normal; border: none; margin: 1em auto; text-align: center; width: 20em; box-sizing: border-box !important; word-wrap: break-word !important;"><section style="box-sizing: border-box !important; max-width: 100%; word-wrap: break-word !important; width: 20em; height: auto;"><img src="/images/wximages/festival/festival1.png" alt="" style="width: 12em; box-sizing: border-box !important; word-wrap: break-word !important;"><section class="wxqq-bg" style="box-sizing: border-box !important; max-width: 100%; word-wrap: break-word !important; width: 19.8em; height: auto; background-color: rgb(214, 17, 17); border: 0.1em solid rgb(255, 255, 255); margin-top: -3.6em; border-top-left-radius: 0.33em; border-top-right-radius: 0.33em; border-bottom-right-radius: 0.33em; border-bottom-left-radius: 0.33em; overflow: hidden;"><section style="box-sizing: border-box !important; max-width: 100%; word-wrap: break-word !important; width: 9em; height: auto; display: inline-block; text-align: left; color: rgb(255, 255, 255); margin-top: 3em; overflow: hidden;"><p style="margin-top: 0px; margin-bottom: 0px; max-width: 100%; font-size: 1.1em; line-height: 1.2em; padding-bottom: 0.1em; box-sizing: border-box !important; word-wrap: break-word !important;">360家校云</p><p style="margin-top: 0px; margin-bottom: 0px; max-width: 100%; font-size: 0.95em; line-height: 1em; padding-bottom: 0.8em; box-sizing: border-box !important; word-wrap: break-word !important;">weixin </p><p style="margin-top: 0px; margin-bottom: 0px; max-width: 100%; font-size: 1em; line-height: 1.4em; box-sizing: border-box !important; word-wrap: break-word !important;">360家校云微信公众 weixin公众号</p></section><section style="box-sizing: border-box !important; max-width: 100%; word-wrap: break-word !important; width: 6.5em; height: auto; float: right; color: rgb(255, 255, 255); margin-top: 3em; margin-right: 1.5em; margin-bottom: 1em;"><img src="/images/wximages/festival/festival2.jpg" alt="" style="width: 96px; box-sizing: border-box !important; word-wrap: break-word !important; height: 96px;" width="96" height="96" border="0" vspace="0" title=""><p style="margin-top: 0.2em; margin-bottom: 0px; max-width: 100%; font-size: 0.75em; box-sizing: border-box !important; word-wrap: break-word !important;">长按识别关注我们</p></section></section></section></section>
-                            </section>
-                        </div>
-                        <div class="itembox" title="节日2">
-                            <section>
-                                <section style="border: none; margin: 1em auto; text-align: center; width: 20em;"><section style="width:20em;"><img src="/images/wximages/festival/festival8.png" alt="undefined" style="width:15em;" title="undefined"><img src="/images/wximages/festival/festival9.png" alt="undefined" style="width:4em;margin-left:-2.4em;" title="undefined"></section><section class="wxqq-bg" style="width:20em;padding:1em 0;background-color:#d61111;margin-top:-0.8em;color:#fff;border-radius:5px;font-size:1em;"><p style="margin-top: 0px; margin-bottom: 0px;"><span style="font-family: 微软雅黑, 'Microsoft YaHei';">新年新气象</span></p></section></section>
-                            </section>
-                        </div>
-                    </div>
+
                     <div class="manage-share m-t-md">
                         <div class="media">
                             <div class="media-left">
@@ -67,7 +56,7 @@
                                 </a>
                             </div>
                             <div class="media-body">
-                                <h4 class="media-heading f-s-26 f-normal f-info m-t-xxs">活动页二维码</h4>
+                                <h4 class="media-heading f-s-26 f-normal f-info m-t-xxs">活动二维码</h4>
                                 <p class="m-t-md">这是活动的专属二维码，赶紧扫描分享给朋友们吧!</p>
                                 <div class="share share-lg">
                                     <p class="m-t-md">分享：</p>

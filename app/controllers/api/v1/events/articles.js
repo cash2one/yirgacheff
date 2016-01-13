@@ -9,14 +9,6 @@ const articleService = service.events.article;
 
 module.exports = function (router) {
 
-    router.get('/', function*() {
-        let Article = Event.discriminators.Article;
-        this.body = yield Article.find({}).exec();
-    });
-
-
-
-
     router.post('/', function*() {
         let articleId = this.request.body.articleId;
         if (articleId) {
@@ -27,8 +19,8 @@ module.exports = function (router) {
     });
 
 
-    router.put('/articleId', function*() {
-        let articleId = this.params.articleId;
+    router.put('/:id', function*() {
+        let articleId = this.params.id;
         this.body = yield articleService.updateById(articleId, this.request.body);
     });
 

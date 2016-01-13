@@ -17,6 +17,7 @@ module.exports = function (router) {
     });
 
     router.delete('/:id', function*() {
+        this.body = yield service.events.event.deleteById(this.params.id);
 
     });
 

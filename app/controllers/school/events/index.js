@@ -10,10 +10,6 @@ module.exports = function (router) {
         yield this.render('common/events/events');
     });
 
-    router.get('/manager', function*() {
-        yield this.render('common/events/list-events');
-    });
-
     router.get('/edit', function*() {
         let template = this.query.template;
         if (!template) {
@@ -22,12 +18,14 @@ module.exports = function (router) {
         yield this.render(`common/events/template/${template}`);
     });
 
-    router.get('/edit/:eventId', function*() {
-        let eventId = this.params.eventId;
+    router.get('/edit/:id', function*() {
+        let eventId = this.params.id;
         let event = yield service.events.event.findById(eventId, true);
         let template = event.template;
         this.state.event = event;
         yield this.render(`common/events/template/${template}`);
     });
+
+    return router;
 
 };
