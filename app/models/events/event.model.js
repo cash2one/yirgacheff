@@ -28,7 +28,8 @@ const eventSchema = new Schema({
 
     // 报名表单 (如果存在说明需要报名,否则不需要)
     enroll: {
-        type: ObjectId
+        type: ObjectId,
+        ref: 'Enroll'
     },
 
     // 阅读量
@@ -70,7 +71,7 @@ const eventSchema = new Schema({
     template: {
         type: String,
         required: '模版不能为空',
-        enum: ['article']
+        enum: ['article', 'activity', 'audition']
     },
 
     schoolId: {
@@ -85,8 +86,23 @@ const eventSchema = new Schema({
 
 });
 
+
+eventSchema.post('remove', (event)=> {
+    console.log('execute post remove');
+    //如果存在报名,删除该活动后,一并删除报名信息
+    if (event.enroll && event.enroll !== null) {
+        mongoose.model('Enroll').remove({
+            enroll: event.enroll
+        }).exec();
+    }
+
+});
+
+
 const Event = mongoose.model('Event', eventSchema);
 
-Event.discriminator('Activity', require('./themes/activity.model'));
-Event.discriminator('Article', require('./themes/article.model'));
-Event.discriminator('Audition', require('./themes/audition.model'));
+Event.discriminator('Activity', require('./template/activity.model'));
+Event.discriminator('Article', require('./template/article.model'));
+Event.discriminator('Audition', require('./template/audition.model'));
+
+

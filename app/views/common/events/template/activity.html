@@ -15,6 +15,7 @@
                             <input class="form-control validate" id="title" type="text" name="title"
                                    data-rules="required"
                                    data-display="活动名称"
+                                   value="<<event.title>>"
                                    placeholder="比如：分享活动，赚积分，得礼包">
                         </div>
                     </div>
@@ -25,6 +26,7 @@
                             <input class="form-control validate" id="startTime" type="text"
                                    data-rules="required"
                                    data-display="开始时间"
+                                   value="<<event && event.startTime | date('Y-m-d',-480) >>"
                                    name="startTime"/>
                         </div>
                         <div class="col-xs-1 text-center">
@@ -34,6 +36,7 @@
                             <input class="form-control validate" type="text" name="endTime"
                                    id="endTime"
                                    data-rules="required"
+                                   value="<<event && event.endTime | date('Y-m-d',-480) >>"
                                    data-display="结束时间"/>
                         </div>
                     </div>
@@ -41,7 +44,8 @@
                     <div class="form-group">
                         <label for="address" class="col-xs-1 control-label">活动地点</label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="address" type="text" name="address">
+                            <input class="form-control" id="address" type="text" name="address"
+                                   value="<<address>>">
                         </div>
                     </div>
                     <div class="form-group">
@@ -60,8 +64,8 @@
                         <label class="col-xs-1 control-label">设置封面</label>
                         <div class="col-xs-4">
                             <img class="b" width="320px" height="200px" id="indexImage"
-                                 {% if post %}
-                                 src="http://resource.hizuoye.com/<<post.image>>"
+                                 {% if event %}
+                                 src="http://resource.hizuoye.com/<<event.coverImage>>"
                                  {% else %}
                                  src="http://static.hizuoye.com/images/coverpage_default.png"
                                  {% endif %}>
@@ -86,7 +90,18 @@
                         </div>
                     </div>
                     <hr>
-                    <enroll :fields.sync="enrollFields"></enroll>
+                    <enroll :fields.sync="enrollFields" {% if enroll %} readonly="true" {% endif %}  >
+                        {% for field in enroll.fields %}
+                        <div class='form-group enroll-field'>
+                            <label class='control-label col-xs-2'>
+                                <<field.label>>
+                            </label>
+                            <div class='col-xs-10'>
+                                <input class='form-control' type='text' value="<<field.label>>" name='infoCollect' disabled>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </enroll>
                     <div class="form-group">
                         <div class="col-xs-offset-4 col-xs-4">
                             <button class="btn btn-default btn-block" type="submit">保存</button>

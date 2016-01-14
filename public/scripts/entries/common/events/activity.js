@@ -13,7 +13,7 @@ var Vue = require('vue');
 
 $(document).ready(function () {
     app = app();
-    new Vue({
+    var vm = new Vue({
         data: {
             enrollFields: []
         },
@@ -46,10 +46,10 @@ $(document).ready(function () {
     });
 
     $("#activityForm").validate(function ($form, data) {
-        console.log(data);
         if (!editor.hasContents()) {
             return app.notify.danger("请填写文章内容")
         }
+        data.enrollFields = vm.enrollFields;
         $.post('/api/v1/events/activities', data).then(function () {
             self.location.href = "/school/events/manage"
         });

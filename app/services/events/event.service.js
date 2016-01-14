@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const createError = require('http-errors');
 const queryBuilder = require('../../functions/queryBuilder');
 const Event = mongoose.model('Event');
+const Enroll = mongoose.model('Enroll');
 
 module.exports = {
 
@@ -31,6 +32,10 @@ module.exports = {
         let event = yield Event.findById(id).select('_id').exec();
         if (!event) {
             throw createError(400, '活动不存在');
+        }
+        //如果存在报名则删除报名信息
+        if (event.enroll) {
+            yield Enroll.remove({_id: event.enroll}).exec();
         }
         return yield event.remove();
 

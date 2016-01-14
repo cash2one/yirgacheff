@@ -20,17 +20,21 @@ module.exports = {
         activity.creatorRole = creator.role;
         activity.schoolId = creator.schoolId;
         activity.template = 'activity';
-        let enroll = new Enroll({
-            schoolId: creator.schoolId
-        });
+        let enroll = new Enroll({schoolId: creator.schoolId});
         if (data.enrollFields) {
             enroll.fields = _.map(data.enrollFields, field=> {
-                return {label: field};
+                return {label: field.label, inputType: 'text'};
             });
         }
+
         yield enroll.save();
         activity.enroll = enroll;
-        return yield activity.save();
+        try {
+            return yield activity.save();
+        } catch (err) {
+            yield enroll.remove();
+            throw err;
+        }
     }),
 
     updateById: co.wrap(function*(id, data) {
@@ -51,3 +55,5 @@ module.exports = {
         return yield activity.exec();
     })
 };
+
+

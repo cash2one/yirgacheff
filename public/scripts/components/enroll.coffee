@@ -21,7 +21,7 @@ EnrollField = Vue.extend({
 })
 
 Enroll = Vue.extend
-  props: ['fields']
+  props: ['fields','readonly']
 
   components:
     'enroll-field': EnrollField
@@ -52,6 +52,7 @@ Enroll = Vue.extend
               <p class="p f-s-16">附加信息</p>
 
               <div class="enroll-extras">
+                  <slot></slot>
                   <enroll-field v-for='field in fields'
                   :field.sync='field'
                   :index='$index'
@@ -59,7 +60,7 @@ Enroll = Vue.extend
                   </enroll-field>
               </div>
       </div>
-      <div class="col-xs-3">
+      <div class="col-xs-3" v-show='!readonly'>
           <div class="add-column b p-h-md p-v-xs">
               <div>
                   <p class="f-s-14"><i class="fa fa-bars m-r-xs"></i>常用栏目</p>

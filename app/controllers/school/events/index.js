@@ -20,9 +20,15 @@ module.exports = function (router) {
 
     router.get('/edit/:id', function*() {
         let eventId = this.params.id;
-        let event = yield service.events.event.findById(eventId, true);
+        let event = yield service.events.event.findById(eventId);
         let template = event.template;
+        if (event.enroll) {
+            yield event.populate('enroll', 'fields').execPopulate();
+        }
         this.state.event = event;
+        if (event.enroll) {
+            this.state.enroll = event.enroll;
+        }
         yield this.render(`common/events/template/${template}`);
     });
 
