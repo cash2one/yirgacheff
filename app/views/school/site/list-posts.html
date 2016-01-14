@@ -56,7 +56,11 @@
                     </div>
                 </li>
             </ul>
-            <p class="text-center hides" id="tips" v-show="!posts">暂无文章</p>
+            <div class="tips" v-show="!posts">
+                <img class="center-block" src="/images/tips-ku.png">
+                <p class="m-t-lg">当前分类没有文章</p>
+                <p>赶快去<a class="f-info" href="/school/posts/create">发布</a>吧！</p>
+            </div>
         </div>
     </div>
     <div class="col-xs-2">

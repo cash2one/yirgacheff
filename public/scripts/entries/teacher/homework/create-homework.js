@@ -12,7 +12,7 @@ Vue.use(VueAsyncData);
 
 $(document).ready(function () {
     app = app();
-    app.menu(1);
+
     new Vue({
         el: "#createHomework",
         data: {

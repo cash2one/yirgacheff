@@ -36,12 +36,20 @@ $ ->
   $('#message').click ()->
     $('#onlineConsultationModal').modal('show')
 
+  $('#weiXinEwm').hover(
+    ()-> $('#ewmDialog').fadeIn()
+  , ()-> $('#ewmDialog').fadeOut()
+  );
+
   $('.slimscroll').slimscroll({
     alwaysVisible: false
     allowPageScroll: false
     height: "auto"
   })
 
+  $('.inner-menu li a').each ()->
+    if($($(this))[0].href==String(window.location))
+      $(this).closest('.item').addClass('active')
 
 #app 导出常用的功能模块
 module.exports = ()->
@@ -49,6 +57,7 @@ module.exports = ()->
   menu: (index)->
     $(".head-menu").find('li').removeClass('active')
     $(".head-menu").find("li:eq(#{index})").addClass('active');
+
 
 
 

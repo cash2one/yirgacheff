@@ -1138,7 +1138,6 @@ a.bg-pink:focus {
 .inner-menu .navbar-nav > .active > a:hover,
 .inner-menu .navbar-nav > .active > a:focus {
     color: #2aabe6;
-    font-weight: 600;
     border-bottom: 2px solid #2aabe6;
     background:none;
 }
@@ -1178,6 +1177,14 @@ a.bg-pink:focus {
     line-height: 1.42857143;
     color: #999999;
     white-space: nowrap;
+}
+.navbar .dropdown-menu > li > a:hover,
+.navbar .dropdown-menu > li > a:focus,
+.navbar .dropdown-menu > .active > a,
+.navbar .dropdown-menu > .active > a:hover,
+.navbar .dropdown-menu > .active > a:focus {
+    color: #2aabe6;
+    background: none;
 }
 /*.dropdown-menu:before {*/
     /*position: absolute;*/
@@ -2093,7 +2100,7 @@ color:#fff
 =================================================================== */
 .progress{
 height:20px;
-margin-bottom:20px;
+margin-bottom:10px;
 overflow:hidden;
 background-color:#FFF;
 border-radius:1px
@@ -2125,12 +2132,26 @@ background-color:#337ab7
 .progress-bar-dark{
 background-color:#212122
 }
-.progress .progress-bar.six-sec-ease-in-out{
--webkit-transition:width 6s ease-in-out;
--moz-transition:width 6s ease-in-out;
--ms-transition:width 6s ease-in-out;
--o-transition:width 6s ease-in-out;
-transition:width 6s ease-in-out
+.progress .progress-bar{
+transition:width 6s ease-in
+}
+.progress-bar_0{
+    background-color:#fb6d9d;
+}
+.progress-bar_1{
+    background-color:#2aabe6;
+}
+.progress-bar_2{
+    background-color:#ffbc67;
+}
+.progress-bar_3{
+    background-color:#2ab27b;
+}
+.progress-bar_4{
+    background-color:#7a6fbe;
+}
+.progress-bar_true{
+    background-color:#f4f8fb;
 }
 /*面包屑*/
 .breadcrumb {
