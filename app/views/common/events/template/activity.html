@@ -87,6 +87,10 @@
                         </div>
                         <div class="col-xs-6">
                             <div class="textarea-container" id="content"></div>
+                            {% if event %}
+                            <input type="hidden" name="eventId" value="<< event._id.toString()>>">
+                            <input type="hidden" value="<<event.content>>" id="hideContent">
+                            {% endif %}
                         </div>
                     </div>
                     <hr>
@@ -94,7 +98,7 @@
                         {% for field in enroll.fields %}
                         <div class='form-group enroll-field'>
                             <label class='control-label col-xs-2'>
-                                <<field.label>>
+                                << field.label >>
                             </label>
                             <div class='col-xs-10'>
                                 <input class='form-control' type='text' value="<<field.label>>" name='infoCollect' disabled>

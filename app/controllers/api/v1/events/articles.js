@@ -4,24 +4,21 @@
 'use strict';
 const mongoose = require('mongoose');
 const Event = mongoose.model('Event');
-const service = require('../../../../services');
-const articleService = service.events.article;
+const service = require('../../../../services').events.event;
 
 module.exports = function (router) {
 
     router.post('/', function*() {
-        let articleId = this.request.body.articleId;
-        if (articleId) {
-            this.body = yield articleService.updateById(articleId, this.request.body);
+        let eventId = this.request.body.eventId;
+        if (eventId) {
+            this.body = yield service.updateById(eventId, this.request.body);
             return;
         }
-        this.body = yield articleService.create(this.user, this.request.body);
+        this.body = yield service.create(this.user, this.request.body);
     });
 
-
     router.put('/:id', function*() {
-        let articleId = this.params.id;
-        this.body = yield articleService.updateById(articleId, this.request.body);
+        this.body = yield service.updateById(this.params.id, this.request.body);
     });
 
 };

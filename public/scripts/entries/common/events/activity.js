@@ -28,7 +28,10 @@ $(document).ready(function () {
     //初始化微信编辑器
     weixinEditor({editor: editor});
     editor.ready(function () {
-        editor.setContent($("#postContent").val());
+        var hideContent = $("#hideContent");
+        if (hideContent.length > 0) {
+            editor.setContent(hideContent.val());
+        }
     });
 
     //本地上传

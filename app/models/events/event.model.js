@@ -101,8 +101,8 @@ eventSchema.post('remove', (event)=> {
 
 const Event = mongoose.model('Event', eventSchema);
 
-Event.discriminator('Activity', require('./template/activity.model'));
-Event.discriminator('Article', require('./template/article.model'));
-Event.discriminator('Audition', require('./template/audition.model'));
+Event.discriminator('activity', require('./template/activity.model'));
+Event.discriminator('article', require('./template/article.model'));
+Event.discriminator('audition', require('./template/audition.model'));
 
 

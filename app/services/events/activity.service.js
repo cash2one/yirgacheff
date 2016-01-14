@@ -9,7 +9,7 @@ const co = require('co');
 const mongoose = require('mongoose');
 const createError = require('http-errors');
 const queryBuilder = require('../../functions/queryBuilder');
-const Activity = mongoose.model('Event').discriminators.Activity;
+const Activity = mongoose.model('Event').discriminators.activity;
 const Enroll = mongoose.model('Enroll');
 
 module.exports = {

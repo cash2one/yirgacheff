@@ -9,16 +9,15 @@ const Event = mongoose.model('Event');
 //试听课邀请
 const auditionSchema = new mongoose.Schema({
 
-    //课程名称
-    course: {
-        type: String,
-        required: true
-    },
 
     //主讲老师
     teacher: {
         type: String,
         required: true
+    },
+
+    teacherPhoto: {
+        type: String
     },
 
     //主讲老师介绍
@@ -28,13 +27,14 @@ const auditionSchema = new mongoose.Schema({
 
     // 开课时间
     startTime: {
-        type: Date,
+        type: String,
         required: true
     },
 
     // 上课地点
     address: {
-        type: String
+        type: String,
+        required: true
     }
 });
 

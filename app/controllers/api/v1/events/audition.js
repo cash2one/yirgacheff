@@ -1,6 +1,7 @@
 /**
  * Created by Frank on 16/1/12.
  */
+
 'use strict';
 const mongoose = require('mongoose');
 const Event = mongoose.model('Event');
