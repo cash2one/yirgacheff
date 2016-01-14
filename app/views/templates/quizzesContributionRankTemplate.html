@@ -15,7 +15,18 @@
                 <td><%= i + 1 %></td>
                 <td><%= teacher.displayName %></td>
                 <td><%= teacher.quizzesCount %></td>
-                <td><%= (teacher.quizzesPercent * 100).toFixed(1) %>%</td>
+                <td width="220">
+                    <div class="row">
+                        <div class="col-xs-9">
+                            <div class="progress animation-sm m-t-xxs">
+                                <div role="progressbar" class="progress-bar progress-bar_<%= i > 4 || i %>" aria-valuetransitiongoal="<%= (teacher.quizzesPercent * 100).toFixed(1) %>" style="width: <%= (teacher.quizzesPercent * 100).toFixed(1) %>%">90</div>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <%= (teacher.quizzesPercent * 100).toFixed(1) %>%
+                        </div>
+                    </div>
+                </td>
             </tr>
             <% } %>
             </tbody>

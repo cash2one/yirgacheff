@@ -4,9 +4,10 @@ var notify = require('../../../common/notify');
 
 $(document).ready(function () {
     app();
-
+    var $textArea = $('#rules-explanation');
     $('#mod-instruction-btn').click(function () {
-        $('#rules-explanation').removeAttr("readonly");
+        $textArea.removeAttr("readonly");
+        $textArea.focus();
         $('#explanation-save').show();
     });
 

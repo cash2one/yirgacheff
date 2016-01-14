@@ -1135,7 +1135,7 @@
 /*tips*/
 .tips{
     height: 500px;
-    padding-top: 100px;
+    padding-top: 60px;
     text-align: center;
 }
 .mask-tags {
@@ -1201,4 +1201,30 @@
 }
 #bottomTools a#toTop:hover {
     background-position: 0 -308px;
+}
+
+.bootom-ewm{
+    background-color:#fff;
+    width: 150px;
+    padding: 15px;
+    border-radius: 4px;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.15);
+    position: fixed;
+    right: 80px;
+    bottom: 70px;
+}
+.bootom-ewm:before{
+    position: absolute;
+    top: 109px;
+    right: -8px;
+    content: '';
+    display: inline-block;
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+    border-left: 9px solid white;
+}
+.bootom-ewm p{
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 5px;
 }
