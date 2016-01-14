@@ -1,1 +1,6 @@
 /*可以在这里添加你自己的css*/
+
+.warp-node{
+    border: dashed 1px #797979;
+    padding:0 5px;
+}

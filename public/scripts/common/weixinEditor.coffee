@@ -7,7 +7,7 @@ RESOURCE_URL = constants.RESOURCE_URL
 template = (image)->
   """
   <li class='item'>
-    <img src='#{RESOURCE_URL}#{image.key}' alt='' class='img-thumbnail'>
+    <img src='#{RESOURCE_URL}#{image.key}' alt='' class='img-thumbnail' style='max-width: 500px'>
   </li>
  """
 

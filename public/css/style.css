@@ -1228,3 +1228,40 @@
     text-align: center;
     margin-bottom: 5px;
 }
+
+.edit-tools {
+    display: none;
+    width: 250px;
+    padding: 5px;
+    position: absolute;
+    border: 1px solid #DCAC6C;
+    color: #222;
+    background: #fff6d9;
+    border-radius: 6px;
+    z-index: 1024;
+}
+.edit-tools span {
+    margin: 0 5px;
+    cursor: pointer;
+}
+.edit-tools span:hover {
+    color: blue;
+}
+.img-tools{
+    display: none;
+    width: 135px;
+    padding: 5px;
+    position: absolute;
+    border: 1px solid #DCAC6C;
+    color: #222;
+    background: #fff6d9;
+    border-radius: 6px;
+    z-index: 1024;
+}
+.img-tools span {
+    margin: 0 5px;
+    cursor: pointer;
+}
+.img-tools span:hover {
+    color: blue;
+}
