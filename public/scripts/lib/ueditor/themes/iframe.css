@@ -1,6 +1,8 @@
 /*可以在这里添加你自己的css*/
-
+.img-node{
+    opacity: 0.8;
+}
 .warp-node{
-    border: dashed 1px #797979;
-    padding:0 5px;
+    border: dashed 1px #2aabe6;
+    padding:5px;
 }

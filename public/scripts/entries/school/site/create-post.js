@@ -32,12 +32,10 @@ $(document).ready(function () {
         if (!editor.hasContents()) {
             return notify.danger("请填写文章内容")
         }
-        $.post('/api/v1/posts', data).then(function (data) {
+        $.post('/api/v1/posts', data).then(function () {
             self.location.href = "/school/posts/";
         });
     });
 
-
-    console.log(postId);
 
 });
