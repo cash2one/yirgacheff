@@ -21,7 +21,7 @@ const auditionSchema = new mongoose.Schema({
     },
 
     //主讲老师介绍
-    teacherProfile: {
+    teacherBrief: {
         type: String
     },
 

@@ -8,7 +8,8 @@ Vue.use(VueAsyncData);
 var TEMPLATES = {
     'article': '文章',
     'activity': '活动',
-    'audition': '试听课'
+    'audition': '试听课',
+    'classroom': '在线课堂'
 };
 
 $(document).ready(function () {

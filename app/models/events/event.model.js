@@ -33,7 +33,7 @@ const eventSchema = new Schema({
     },
 
     // 阅读量
-    visitCount: {
+    visit: {
         type: Number,
         default: 0
     },
@@ -45,7 +45,7 @@ const eventSchema = new Schema({
     },
 
     // 分享量
-    shareCount: {
+    share: {
         type: Number,
         default: 0
     },
@@ -104,5 +104,6 @@ const Event = mongoose.model('Event', eventSchema);
 Event.discriminator('activity', require('./template/activity.model'));
 Event.discriminator('article', require('./template/article.model'));
 Event.discriminator('audition', require('./template/audition.model'));
+Event.discriminator('classroom', require('./template/classroom.model'));
 
 

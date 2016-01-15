@@ -5,8 +5,6 @@
 
 module.exports = [
     function*(next) {
-        let start = new Date();
         yield next;
-        let end = new Date();
     }
 ];
