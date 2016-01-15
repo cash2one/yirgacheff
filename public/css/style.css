@@ -182,14 +182,58 @@
     padding: 0;
     border: none;
     transition: all 0.3s ease 0s;
+    position: relative;
 }
 .images-list li:hover{
-    opacity: 0.7;
     border: none;
+}
+.images-list li.imgItem:hover{
+    border: none;
+    box-shadow: 0 0 10px rgba(46,143,237,0.3);
 }
 .images-list li img{
     width: 190px;
     height: 160px;
+}
+.img-controls{
+    width: 180px;
+    height: 150px;
+    position: absolute;
+    background:rgba(0, 0, 0, 0.4);
+    top:5px;
+    left: 5px;
+    cursor: default;
+    padding-top: 50px;
+    text-align: center;
+}
+.img-controls a{
+    display: inline-block;
+    margin: 0 10px;
+}
+.img-controls a:hover{
+    opacity: 0.8;
+}
+.img-controls i{
+    font-size: 20px;
+}
+.img-controls .add-img{
+    width: 40px;
+    height: 40px;
+    line-height: 45px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #fff;
+    float: left;
+}
+.img-controls .delete-img{
+    width: 40px;
+    height: 40px;
+    line-height: 35px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #fff;
+    float: right;
+    font-weight: 600;
 }
 .upload-btn{
     width: 190px;
@@ -931,10 +975,11 @@
     background-size: cover;
     height: 280px;
     margin-bottom: 20px;
-    padding: 100px 0 0 20px;
 }
 .profile-header .avatar{
+    margin: 0 auto;
     width: 400px;
+    text-align: center;
 }
 .profile-header .avatar img{
     width: 150px;
@@ -942,8 +987,12 @@
     border-radius: 50%;
 }
 .profile-header .avatar-upload{
-    padding-top: 20px;
-    height: 90px;
+    padding:10px 20px;
+    float: right;
+    height: 50px;
+}
+.profile-header .pro-name{
+    margin-top: 20px;
 }
 .profile-header .pro-name p{
     display: inline-block;
@@ -1230,6 +1279,7 @@
     margin-bottom: 5px;
 }
 
+/*选区工具条*/
 .edit-tools {
     display: none;
     width: 250px;
@@ -1248,6 +1298,7 @@
 .edit-tools span:hover {
     color: blue;
 }
+/*图片工具条*/
 .img-tools{
     display: none;
     width: 135px;

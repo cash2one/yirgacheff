@@ -26,7 +26,7 @@ modalTemplate = """
             </div>
             <div class="modal-footer">
                 <input type='file' id='_upload_file'>
-                <button type="button" class="btn btn-default" id="_upload_save">确定</button>
+                <button type="button" class="btn btn-default images-qr" id="_upload_save">确定</button>
             </div>
         </div>
     </div>

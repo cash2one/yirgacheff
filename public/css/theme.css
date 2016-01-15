@@ -1774,7 +1774,7 @@ td .checkbox {
     box-shadow: 0 2px 3px rgba(0,0,0,0.15);
 }
 .shadow-hover:hover{
-    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    box-shadow:0 10px 30px rgba(46,143,237,0.15);
     transform:translate3d(0, -2px, 0);
     transition: all 0.2s linear;
 }
@@ -2289,8 +2289,15 @@ transition:width 6s ease-in
     border-color: #2aabe6;
 }
 /*modal*/
+.modal-title {
+    color: #2aabe6;
+}
 .modal-content{
     border-radius: 0;
+}
+.images-qr{
+    margin-top: -50px;
+    padding: 4px 35px;
 }
 .close {
     font-size: 22px;
