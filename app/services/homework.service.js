@@ -220,6 +220,20 @@ module.exports = {
             performance: performance,
             exercises: exercises
         };
+    }),
+
+    addComment: co.wrap(function*(studentId, homeworkId, comment) {
+        yield Homework.update({
+            _id: homeworkId,
+            'performances.student': studentId
+        }, {
+            $set: {
+                'performances.$.state': 2,
+                'performances.$.comment': comment
+            }
+        }).exec();
+        return true
+
     })
 
 };

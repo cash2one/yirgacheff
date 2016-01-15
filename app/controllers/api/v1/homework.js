@@ -20,5 +20,17 @@ module.exports = function (router) {
         let homeworkId = this.params.homeworkId;
         this.body = yield service.homework.closeById(homeworkId);
     });
+
+    router.put('/:homeworkId/students/:studentId/award', function*() {
+        let studentId = this.params.studentId;
+        let homeworkId = this.params.homeworkId;
+        let comment = {
+            teacher: this.user._id,
+            content: this.request.body.comment
+        };
+        this.body = yield service.homework.addComment(studentId, homeworkId, comment);
+
+    });
+
     return router;
 };

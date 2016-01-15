@@ -31,7 +31,8 @@ $(document).ready(function () {
     });
 
     $("#articleForm").validate(function ($form, data) {
-        $.post('/api/v1/events/articles', data).then(function () {
+        data.template = 'article';
+        $.post('/api/v1/events', data).then(function () {
             self.location.href = "/school/events/manager";
         });
     });

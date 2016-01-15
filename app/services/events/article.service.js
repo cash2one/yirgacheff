@@ -9,7 +9,7 @@ const co = require('co');
 const mongoose = require('mongoose');
 const createError = require('http-errors');
 const queryBuilder = require('../../functions/queryBuilder');
-const Article = mongoose.model('Event').discriminators.Article;
+const Article = mongoose.model('Event').discriminators.article;
 
 module.exports = {
 
@@ -19,7 +19,13 @@ module.exports = {
         article.creatorRole = creator.role;
         article.schoolId = creator.schoolId;
         article.template = 'article';
-        return yield article.save();
+        try {
+            yield article.save();
+        } catch (err) {
+            console.error(err.errors);
+            throw err;
+        }
+        return article;
     }),
 
     updateById: co.wrap(function*(id, data) {

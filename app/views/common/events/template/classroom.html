@@ -10,28 +10,28 @@
             <div class="panel-body">
                 <form class="form-horizontal" method="post" id="taskForm" name="taskForm">
                     <div class="form-group">
-                        <label for="name" class="col-xs-1 control-label">课程名称</label>
+                        <label for="title" class="col-xs-1 control-label">课程名称</label>
 
                         <div class="col-xs-9">
-                            <input class="form-control validate" type="text" id="name"
-                                   name="name"
-                                   placeholder="比如：书面表达写错句子的几种类型"
+                            <input class="form-control validate" type="text" id="title"
+                                   name="title"
+                                   placeholder="比如："
                                    data-rules="required"
-                                   data-display="文章标题">
+                                   data-display="课程名称">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-1 control-label">课程简介</label>
                         <div class="col-xs-9">
-                            <textarea class="form-control" rows="10"></textarea>
+                            <textarea class="form-control" rows="5"></textarea>
                         </div>
                     </div>
                     <div class="form-group images-cover">
                         <label class="col-xs-1 control-label">课程封面</label>
                         <div class="col-xs-4">
-                            <img class="b" width="320px" height="200px" id="indexImage"
+                            <img class="b" width="320px" height="200px" id="coverView"
                                  {% if post %}
-                                 src="http://resource.hizuoye.com/<<post.image>>"
+                                 src="http://resource.hizuoye.com/<<event.coverImage>>"
                                  {% else %}
                                  src="http://static.hizuoye.com/images/coverpage_default.png"
                                  {% endif %}>
@@ -42,7 +42,7 @@
                             及增加传播效果</p>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-1 control-label">上传视频</label>
+                        <label class="col-xs-1 control-label">添加课程视频</label>
                         <div class="col-xs-11">
                             <div class="row video-list">
                                 <div class="col-xs-4">

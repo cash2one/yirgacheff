@@ -31,7 +31,8 @@ module.exports = {
             throw createError(400, '学校不存在');
         }
         let counter = yield Counter.generateSequence('teacher', schoolId);
-        let teacher = new Teacher(data);
+
+        let teacher = new Teacher(_.omit(data, '_id'));
         teacher.username = school.username + roles.TEACHER + counter.seq;
         teacher.schoolId = school;
         yield teacher.save();

@@ -1,7 +1,7 @@
 {% extends '../../../layout.html' %}
 {% block content %}
 <!-- END OF BREADCRUMBS -->
-<div class="row">
+<div class="row" id="activityApp">
     <div class="col-xs-12">
         <div class="panel panel-default shadow">
             <div class="panel-heading clearfix">
@@ -10,29 +10,23 @@
             <div class="panel-body">
                 <form class="form-horizontal" id="activityForm" name="activityForm">
                     <div class="form-group">
-                        <label for="name" class="col-xs-1 control-label">活动名称</label>
+                        <label for="title" class="col-xs-1 control-label">活动名称</label>
                         <div class="col-xs-9">
-                            <input class="form-control validate" id="name" type="text" name="name"
+                            <input class="form-control validate" id="title" type="text" name="title"
                                    data-rules="required"
-                                   data-display="任务名称"
+                                   data-display="活动名称"
+                                   value="<<event.title>>"
                                    placeholder="比如：分享活动，赚积分，得礼包">
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="theme" class="col-xs-1 control-label">活动主题</label>
-                        <div class="col-xs-9">
-                            <input class="form-control validate" id="theme" type="text" name="theme"
-                                   data-rules="required"
-                                   data-display="活动主题">
-                        </div>
-                    </div>
                     <div class="form-group">
                         <label class="col-xs-1 control-label" for="startTime">活动时间</label>
                         <div class="col-xs-4">
                             <input class="form-control validate" id="startTime" type="text"
                                    data-rules="required"
                                    data-display="开始时间"
+                                   value="<<event && event.startTime | date('Y-m-d',-480) >>"
                                    name="startTime"/>
                         </div>
                         <div class="col-xs-1 text-center">
@@ -42,6 +36,7 @@
                             <input class="form-control validate" type="text" name="endTime"
                                    id="endTime"
                                    data-rules="required"
+                                   value="<<event && event.endTime | date('Y-m-d',-480) >>"
                                    data-display="结束时间"/>
                         </div>
                     </div>
@@ -49,19 +44,37 @@
                     <div class="form-group">
                         <label for="address" class="col-xs-1 control-label">活动地点</label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="address" type="text" name="address">
+                            <input class="form-control" id="address" type="text" name="address"
+                                   value="<<event.address>>">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-xs-1 control-label">阅读次数</label>
+                        <div class="col-xs-9">
+                            <input class="form-control validate" type="text"
+                                   name="visit"
+                                   value="<<event.visit>>"
+                                   placeholder="你可以设置文章的初始阅读量"
+                                   data-rules="integer"
+                                   data-display="阅读次数">
+                        </div>
+                    </div>
+
                     <div class="form-group images-cover">
                         <label class="col-xs-1 control-label">设置封面</label>
                         <div class="col-xs-4">
                             <img class="b" width="320px" height="200px" id="indexImage"
-                                 {% if post %}
-                                 src="http://resource.hizuoye.com/<<post.image>>"
+                                 {% if event %}
+                                 src="http://resource.hizuoye.com/<<event.coverImage>>"
                                  {% else %}
                                  src="http://static.hizuoye.com/images/coverpage_default.png"
                                  {% endif %}>
                         </div>
+                        <input type="hidden" name="coverImage" class="form-control validate"
+                               id="coverImage"
+                               value="<<event.coverImage>>"
+                               data-display="封面图片"
+                               data-rules="required">
                         <input type="file" id="imageUpload" class="image-upload">
                         <p class="m-t-lg">上传封面图片<span class="tip">(建议尺寸: 900像素x500像素)</span></p>
                         <p class="m-t-lg">一张漂亮的海报，能让你的活动锦上添花，带来更多用户报名
@@ -74,82 +87,25 @@
                         </div>
                         <div class="col-xs-6">
                             <div class="textarea-container" id="content"></div>
+                            {% if event %}
+                            <input type="hidden" name="eventId" value="<< event._id.toString()>>">
+                            <input type="hidden" value="<<event.content>>" id="hideContent">
+                            {% endif %}
                         </div>
                     </div>
                     <hr>
-                    <div class="row m-b-md enrollarea">
-                        <div class="col-xs-9">
-                            <p class="p f-s-16">联系方式<span class="m-l-lg f-red">(报名用户填写资料，必填)</span></p>
-                                <div class="form-group">
-                                    <label class="control-label col-xs-2"><span
-                                            class="f-red m-r-xs">*</span>姓名：</label>
-                                    <div class="col-xs-10">
-                                        <input class="form-control" type="text" placeholder="报名者的用户名或昵称"
-                                               readonly>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-xs-2"><span
-                                            class="f-red m-r-xs">*</span>手机：</label>
-
-                                    <div class="col-xs-10">
-                                        <input class="form-control" type="text" placeholder="报名者的手机号码"
-                                               readonly>
-                                    </div>
-                                </div>
-                                <p class="p f-s-16">附加信息</p>
-
-                                <div class="enroll-extras">
-
-                                </div>
-                        </div>
-                        <div class="col-xs-3">
-                            <div class="add-column b p-h-md p-v-xs">
-                                <div>
-                                    <p class="f-s-14"><i class="fa fa-bars m-r-xs"></i>常用栏目</p>
-                                </div>
-                                <div class="b-t">
-                                    <ul class="list-unstyled">
-                                        <li>
-                                            <button type="button" class="enroll-field-btn">
-                                                <i class="fa fa-map-marker m-r-xs"></i>住址
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button type="button" class="enroll-field-btn">
-                                                <i class="fa fa-envelope-o m-r-xs"></i>邮箱
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button type="button" class="enroll-field-btn">
-                                                <i class="fa fa-mars m-r-xs"></i>性别
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button type="button" class="enroll-field-btn">
-                                                <i class="fa fa-user m-r-xs"></i>身份证号
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button type="button" class="enroll-field-btn">
-                                                <i class="fa fa-mobile m-r-xs"></i>电话
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button type="button" class="enroll-field-btn">
-                                                <i class="fa fa-futbol-o m-r-xs"></i>兴趣爱好
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button type="button" class="enroll-field-custom">
-                                                <i class="fa fa-pencil m-r-xs"></i>自定义
-                                            </button>
-                                        </li>
-                                    </ul>
-                                </div>
+                    <enroll :fields.sync="enrollFields" {% if enroll %} readonly="true" {% endif %}  >
+                        {% for field in enroll.fields %}
+                        <div class='form-group enroll-field'>
+                            <label class='control-label col-xs-2'>
+                                << field.label >>
+                            </label>
+                            <div class='col-xs-10'>
+                                <input class='form-control' type='text' value="<<field.label>>" name='infoCollect' disabled>
                             </div>
                         </div>
-                    </div>
+                        {% endfor %}
+                    </enroll>
                     <div class="form-group">
                         <div class="col-xs-offset-4 col-xs-4">
                             <button class="btn btn-default btn-block" type="submit">保存</button>

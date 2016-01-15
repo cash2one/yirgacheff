@@ -12,6 +12,8 @@ $(document).ready(function () {
     var $studentForm = $('#studentForm');
     var $modifyStudentForm = $("#modifyStudentForm");
     var $scoreForm = $("#scoreForm");
+    var $classForm = $("#classForm");
+    var $classModal = $("#classModal");
     var $scoreModal = $("#scoreModal");
     var $joinClassForm = $("#joinClassForm");
     var jqTable = $('#students-list');
@@ -52,6 +54,30 @@ $(document).ready(function () {
         $changeClassForm.parents('.modal').modal('show');
         $("#classId").val()
     });
+
+
+    $("#editClass").click(function () {
+        var className = $("#className").html().trim();
+        var courseTime = $("#courseTime").html().trim();
+        $classForm.renderForm({className: className, courseTime: courseTime});
+        $classModal.modal("show");
+    });
+
+    $classForm.validate(function ($form, data) {
+        var classId = $("#classId").val();
+        var url = '/api/v1/classes/' + classId;
+        $.ajax({
+            url: url,
+            method: 'PUT',
+            data: data
+        }).then(function () {
+            $("#className").html(data.className);
+            $("#courseTime").html(data.courseTime);
+            $classModal.modal('hide');
+        });
+    });
+
+
     $changeClassForm.validate(function ($form, data) {
         var url = '/api/v1/classes/changeOwner';
         $.ajax({

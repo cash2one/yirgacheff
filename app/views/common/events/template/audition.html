@@ -1,57 +1,86 @@
 {% extends '../../../layout.html' %}
 {% block content %}
 <!-- END OF BREADCRUMBS -->
-<div class="row">
+<div class="row" id="auditionApp">
     <div class="col-xs-12">
         <div class="panel panel-default shadow">
             <div class="panel-heading clearfix">
                 <h4 class="panel-title">试听课</h4>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal" method="post" id="taskForm" name="taskForm">
+                <form class="form-horizontal" method="post" id="auditionForm" name="auditionForm">
                     <div class="form-group">
-                        <label for="name" class="col-xs-1 control-label">课程名称</label>
-
+                        <label for="title" class="col-xs-1 control-label">课程名称</label>
                         <div class="col-xs-9">
-                            <input class="form-control validate" type="text" id="name"
-                                   name="name"
-                                   placeholder="比如：和外教一起学英语口语"
+                            <input class="form-control validate" type="text" id="title"
+                                   name="title"
+                                   value="<<event.title>>"
+                                   placeholder="比如:新概念英语试听课"
                                    data-rules="required"
-                                   data-display="文章标题">
+                                   data-display="课程名称">
                         </div>
                     </div>
+
                     <div class="form-group">
-                        <label class="col-xs-1 control-label">课程讲师</label>
+                        <label class="col-xs-1 control-label" for="teacher">讲师姓名</label>
                         <div class="col-xs-9">
                             <input class="form-control validate" type="text"
-                                   name="scoreAward"
-                                   placeholder="请输入课程主讲人的姓名"
+                                   id="teacher"
+                                   name="teacher"
+                                   value="<<event.teacher>>"
                                    data-rules="required"
                                    data-display="课程讲师">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-xs-1 control-label">讲师简介</label>
-                        <div class="col-xs-9">
-                            <textarea class="form-control validate" rows="2"
-                                   data-rules="required"
-                                   data-display="课程讲师"></textarea>
+
+                    <div class="form-group images-cover">
+                        <label class="col-xs-1 control-label">讲师照片</label>
+                        <div class="col-xs-4">
+                            <img class="b" width="320px" height="200px" id="photoView"
+                                 {% if event %}
+                                 src="http://resource.hizuoye.com/<<event.teacherPhoto>>"
+                                 {% else %}
+                                 src="http://static.hizuoye.com/images/coverpage_default.png"
+                                 {% endif %}>
+                            <input type="hidden" name="teacherPhoto" class="form-control"
+                                   id="teacherPhoto"
+                                   value="<<event.teacherPhoto>>">
                         </div>
+                        <input type="file" id="photoUpload" class="image-upload">
+                        <p class="m-t-lg">上传讲师照片<span class="tip">(建议尺寸: 900像素x500像素)</span></p>
+
                     </div>
+
                     <div class="form-group">
-                        <label class="col-xs-1 control-label" for="startTime">试听时间</label>
+                        <label class="col-xs-1 control-label" for="teacherBrief">讲师简介</label>
                         <div class="col-xs-9">
-                            <input class="form-control validate" id="startTime" type="text"
-                                   data-rules="required"
-                                   data-display="开始时间"
-                                   name="startTime"/>
+                            <textarea class="form-control validate" rows="5"
+                                      placeholder="介绍一下讲师吧"
+                                      data-rules="required"
+                                      name="teacherBrief"
+                                      id="teacherBrief"
+                                      data-display="课程讲师"><<event.teacherBrief>></textarea>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="address" class="col-xs-1 control-label">试听地点</label>
+                        <label class="col-xs-1 control-label" for="courseTime">开课时间</label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="address" type="text" name="address">
+                            <input class="form-control validate" id="courseTime" type="text"
+                                   data-rules="required"
+                                   data-display="开课时间"
+                                   value="<<event.courseTime>>"
+                                   name="courseTime"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address" class="col-xs-1 control-label">开课地点</label>
+                        <div class="col-xs-9">
+                            <input class="form-control" id="address" type="text" name="address"
+                                   data-rules="required"
+                                   value="<<event.address>>"
+                                   data-display="开课地点">
                         </div>
                     </div>
                     <div class="form-group images-cover">
@@ -63,94 +92,45 @@
                                  {% else %}
                                  src="http://static.hizuoye.com/images/coverpage_default.png"
                                  {% endif %}>
+                            <input type="hidden" name="coverImage" class="form-control validate"
+                                   id="coverImage"
+                                   value="<<event.coverImage>>"
+                                   data-display="封面图片"
+                                   data-rules="required">
                         </div>
                         <input type="file" id="imageUpload" class="image-upload">
                         <p class="m-t-lg">上传封面图片<span class="tip">(建议尺寸: 900像素x500像素)</span></p>
                         <p class="m-t-lg">一张漂亮的海报，能让你的活动锦上添花，带来更多用户报名
                             及增加传播效果</p>
                     </div>
+
                     <div class="form-group">
-                        <label for="content" class="col-xs-1 control-label">课程简介</label>
+                        <label for="content" class="col-xs-1 control-label">课程详情</label>
                         <div class="col-xs-5">
                             {%include '../../../components/weixinEditor.html' %}
                         </div>
                         <div class="col-xs-6">
                             <div class="textarea-container" id="content"></div>
+                            {% if event %}
+                            <input type="hidden" name="eventId" value="<< event._id.toString()>>">
+                            <input type="hidden" value="<<event.content>>" id="hideContent">
+                            {% endif %}
                         </div>
                     </div>
-                    <div class="row m-b-md enrollarea">
-                        <div class="col-xs-9">
-                            <p class="p f-s-16">联系方式<span class="m-l-lg f-red">(报名用户填写资料，必填)</span></p>
-                            <div class="form-group">
-                                <label class="control-label col-xs-2"><span
-                                        class="f-red m-r-xs">*</span>姓名：</label>
-                                <div class="col-xs-10">
-                                    <input class="form-control" type="text" placeholder="报名者的用户名或昵称"
-                                           readonly>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-xs-2"><span
-                                        class="f-red m-r-xs">*</span>手机：</label>
 
-                                <div class="col-xs-10">
-                                    <input class="form-control" type="text" placeholder="报名者的手机号码"
-                                           readonly>
-                                </div>
-                            </div>
-                            <p class="p f-s-16">附加信息</p>
-
-                            <div class="enroll-extras">
-
+                    <enroll :fields.sync="enrollFields" {% if enroll %} readonly="true" {% endif %}>
+                        {% for field in enroll.fields %}
+                        <div class='form-group enroll-field'>
+                            <label class='control-label col-xs-2'>
+                                <<field.label>>
+                            </label>
+                            <div class='col-xs-10'>
+                                <input class='form-control' type='text' value="<<field.label>>" name='infoCollect'
+                                       disabled>
                             </div>
                         </div>
-                        <div class="col-xs-3">
-                            <div class="add-column b p-h-md p-v-xs">
-                                <div>
-                                    <p class="f-s-14"><i class="fa fa-bars m-r-xs"></i>常用栏目</p>
-                                </div>
-                                <div class="b-t">
-                                    <ul class="list-unstyled">
-                                        <li>
-                                            <button type="button" class="enroll-field-btn">
-                                                <i class="fa fa-map-marker m-r-xs"></i>住址
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button type="button" class="enroll-field-btn">
-                                                <i class="fa fa-envelope-o m-r-xs"></i>邮箱
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button type="button" class="enroll-field-btn">
-                                                <i class="fa fa-mars m-r-xs"></i>性别
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button type="button" class="enroll-field-btn">
-                                                <i class="fa fa-user m-r-xs"></i>身份证号
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button type="button" class="enroll-field-btn">
-                                                <i class="fa fa-mobile m-r-xs"></i>电话
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button type="button" class="enroll-field-btn">
-                                                <i class="fa fa-futbol-o m-r-xs"></i>兴趣爱好
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button type="button" class="enroll-field-custom">
-                                                <i class="fa fa-pencil m-r-xs"></i>自定义
-                                            </button>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        {% endfor %}
+                    </enroll>
 
                     <div class="col-xs-12">
                         <div class="col-xs-offset-5 col-xs-2">

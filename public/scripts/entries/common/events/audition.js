@@ -5,19 +5,42 @@
 
 require('../../../common/formvalidator');
 var app = require('../../../common/app');
-var notify = require('../../../common/notify');
 var upload = require('../../../common/uploadifive');
 var richEditor = require('../../../common/richEditor');
 var weixinEditor = require('../../../common/weixinEditor');
+var Vue = require('vue');
 
 $(document).ready(function () {
     app();
+    var vm = new Vue({
+        data: {
+            enrollFields: []
+        },
+        components: {
+            'enroll': require('../../../components/enroll')
+        },
+        el: '#auditionApp'
+    });
 
     //富编辑器渲染
     var editor = richEditor.render('content');
     //初始化微信编辑器
     weixinEditor({editor: editor});
+    editor.ready(function () {
+        var hideContent = $("#hideContent");
+        if (hideContent.length > 0) {
+            editor.setContent(hideContent.val());
+        }
+    });
 
+    //本地上传
+    upload({
+        file: 'photoUpload',
+        done: function (file) {
+            $('#photoView').attr('src', file.path);
+            $('#teacherPhoto').val(file.key);
+        }
+    });
     //本地上传
     upload({
         file: 'imageUpload',
@@ -27,25 +50,15 @@ $(document).ready(function () {
         }
     });
 
-    //添加附加信息
-    $(".enroll-field-btn").click(function() {
-        var label = $(this).text().trim();
-        var field = "<div class='form-group enroll-field'><label class='control-label col-xs-2'>" + label + "：</label> <div class='col-xs-10'><input class='form-control' type='text' name='infoCollect' value='" + label + "' placeholder='请输入你的" + label + "' readonly><i class='delete fa fa-times f-gray f-s-16 pull-right m-t-n-lg m-r-xs'></i></div></div>";
-        $('.enroll-extras').append(field);
-    });
-    //添加自定义
-    $(".enroll-field-custom").click(function() {
-        var info = $(this).text().trim();
-        var field = "<div class='form-group enroll-field'>\n   " +
-            "<label class='control-label col-xs-2'>" + info + "：</label>" +
-            "<div class='col-xs-10'>" +
-            "<input class='form-control' name='infoCollect' type='text' placeholder='请输入你的" + info + "信息" + "'>" +
-            "<i class='delete fa fa-times f-gray f-s-16 pull-right m-t-n-lg m-r-xs'></i> " +
-            "</div>\n</div>";
-        $('.enroll-extras').append(field);
-    });
-    $(".enroll-extras").on('click',".delete", function() {
-        $(this).closest(".enroll-field").remove();
+    $("#auditionForm").validate(function ($form, data) {
+        if (!editor.hasContents()) {
+            return app.notify.danger("请填写试听课内容")
+        }
+        data.template = 'audition';
+        data.enrollFields = vm.enrollFields;
+        $.post('/api/v1/events', data).then(function () {
+            self.location.href = "/school/events/manage"
+        });
     });
 
 });
