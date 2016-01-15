@@ -32,10 +32,10 @@ module.exports = function (router) {
         //说明是服务器分页处理
         if (query.draw && query.length) {
             isPage = true;
-            let search = query.search && query.search.value;
+            let search = query['search[value]'];
             if (search && '' !== search.trim()) {
                 let regx = new RegExp(search);
-                filter.where.or = [{'creatorDisplayName': regx}, {title: regx}];
+                filter.or = [{'creatorDisplayName': regx}, {title: regx}];
             }
             filter.limit = query.length;
             filter.skip = query.start

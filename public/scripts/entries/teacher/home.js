@@ -8,14 +8,13 @@ $(document).ready(function () {
     app();
     var rankCache = {};
     var rankList = $('#rankList');
-    var classList = $('#class-list');
+    var classList = $('#classList');
     var rankTemplate = _.template($('#scoreRankTemplate').html());
 
     function renderRank(classId) {
         if (!classId || classId === '') {
             return;
         }
-        console.log('rank...');
         if (rankCache[classId]) {
             rankList.html(rankTemplate({students: rankCache[classId]}));
         } else {

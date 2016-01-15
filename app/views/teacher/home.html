@@ -89,12 +89,12 @@
             <div class="panel-heading">
                 <h3 class="panel-title">积分排行榜</h3>
                 <div class="panel-control">
-                    <select id="class-list" data-settings='{"cutOff":5}'>
+                    <select id="classList" data-settings='{"cutOff":5}'>
                         {% if !classes || classes.length === 0 %}
                         <option value="">暂无班级</option>
                         {% endif %}
                         {% for clazz in classes %}
-                        <option value="<<clazz.id>>"><<clazz.className>></option>
+                        <option value="<<clazz._id.toString()>>"><<clazz.className>></option>
                         {% endfor %}
                     </select>
                 </div>

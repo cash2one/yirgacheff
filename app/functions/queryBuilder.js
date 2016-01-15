@@ -16,9 +16,17 @@ module.exports = function (query, filter) {
     fields(query, filter.fields);
     limit(query, filter.limit);
     skip(query, filter.skip);
+    or(query, filter.or);
     return query;
 };
 
+
+function or(query, or) {
+    if(_.isEmpty(or)){
+        return query;
+    }
+    return query.or(or);
+}
 
 function where(query, where) {
     if (_.isEmpty(where)) {

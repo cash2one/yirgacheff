@@ -77,28 +77,32 @@
                         <label class="col-xs-2 control-label">填写作业评语：</label>
                         <div class="col-xs-9">
                             {% if performance.state != 2 %}
-                                <select class="form-control" id="comment-options" data-settings='{"cutOff":5}'>
-                                    <option value="Very good! Come on!">1.Very good! Come on!</option>
-                                    <option value="这次作业完成的很好，回家后好好复习，继续努力，See you next class！">2.这次作业完成的很好，回家后好好复习，继续努力，See you next
-                                        class！
-                                    </option>
-                                    <option value="课文读的很好，很熟练，发音也很标准，再接再厉，继续保持哦！">3.课文读的很好，很熟练，发音也很标准，再接再厉，继续保持哦！</option>
-                                    <option value="我为你高兴，认真完成作业是成功的一半，成功在等待着你。">4.我为你高兴，认真完成作业是成功的一半，成功在等待着你。</option>
-                                    <option value="作业很好，有进步，望在课堂上也如此！">5.作业很好，有进步，望在课堂上也如此！</option>
-                                    <option value="Good!你认真的学习态度，规范的作业，值得大家学习！">6.Good!你认真的学习态度，规范的作业，值得大家学习！</option>
-                                    <option value="我相信有一分耕耘就会有一分收获，你会有更大的进步！">7.我相信有一分耕耘就会有一分收获，你会有更大的进步！</option>
-                                    <option value="这次作业完成的不是很好，回家后要好好复习，下次一定行！">8.这次作业完成的不是很好，回家后要好好复习，下次一定行！</option>
-                                    <option value="课文背诵不是很熟练，还需继续练习！">9.课文背诵不是很熟练，还需继续练习！</option>
-                                    <option value="这周上课不是很认真，下次看你的表现哦！Come on！">10.这周上课不是很认真，下次看你的表现哦！Come on！</option>
-                                    <option value="单词背诵有待提高，回去继续练习，下周我要检查!">11.单词背诵有待提高，回去继续练习，下周我要检查!</option>
-                                    <option value="这部分知识不难，多看看书，把每一道题都要弄清楚，Come on！">12.这部分知识不难，多看看书，把每一道题都要弄清楚，Come on！</option>
-                                </select>
+                            <select class="form-control" id="comment-options" data-settings='{"cutOff":5}'>
+                                <option value="Very good! Come on!">1.Very good! Come on!</option>
+                                <option value="这次作业完成的很好，回家后好好复习，继续努力，See you next class！">2.这次作业完成的很好，回家后好好复习，继续努力，See
+                                    you next
+                                    class！
+                                </option>
+                                <option value="课文读的很好，很熟练，发音也很标准，再接再厉，继续保持哦！">3.课文读的很好，很熟练，发音也很标准，再接再厉，继续保持哦！</option>
+                                <option value="我为你高兴，认真完成作业是成功的一半，成功在等待着你。">4.我为你高兴，认真完成作业是成功的一半，成功在等待着你。</option>
+                                <option value="作业很好，有进步，望在课堂上也如此！">5.作业很好，有进步，望在课堂上也如此！</option>
+                                <option value="Good!你认真的学习态度，规范的作业，值得大家学习！">6.Good!你认真的学习态度，规范的作业，值得大家学习！</option>
+                                <option value="我相信有一分耕耘就会有一分收获，你会有更大的进步！">7.我相信有一分耕耘就会有一分收获，你会有更大的进步！</option>
+                                <option value="这次作业完成的不是很好，回家后要好好复习，下次一定行！">8.这次作业完成的不是很好，回家后要好好复习，下次一定行！</option>
+                                <option value="课文背诵不是很熟练，还需继续练习！">9.课文背诵不是很熟练，还需继续练习！</option>
+                                <option value="这周上课不是很认真，下次看你的表现哦！Come on！">10.这周上课不是很认真，下次看你的表现哦！Come on！</option>
+                                <option value="单词背诵有待提高，回去继续练习，下周我要检查!">11.单词背诵有待提高，回去继续练习，下周我要检查!</option>
+                                <option value="这部分知识不难，多看看书，把每一道题都要弄清楚，Come on！">12.这部分知识不难，多看看书，把每一道题都要弄清楚，Come on！
+                                </option>
+                            </select>
                             {% endif %}
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-offset-2 col-xs-9">
-                        <textarea class="form-control" rows="3" {% if performance.state=== 2 %} readonly {% endif %} name="comment"><<performance.comment && performance.comment.content>></textarea>
+                            <textarea class="form-control" rows="3" {% if performance.state=== 2 %} readonly {% endif %}
+                                      id="comment"
+                                      name="comment"><<performance.comment && performance.comment.content>></textarea>
                         </div>
                     </div>
                     <input type="hidden" value="<<performance.homeworkId>>" id="homeworkId"/>
@@ -123,7 +127,8 @@
 {% block javascript %}
 
 <script type="text/javascript">
-    window.exercises = <<exercises | json | safe>>;
+    window.exercises =
+    <<exercises | json | safe >>;
 </script>
 
 
