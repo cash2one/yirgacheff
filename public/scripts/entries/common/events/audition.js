@@ -26,6 +26,21 @@ $(document).ready(function () {
     var editor = richEditor.render('content');
     //初始化微信编辑器
     weixinEditor({editor: editor});
+    editor.ready(function () {
+        var hideContent = $("#hideContent");
+        if (hideContent.length > 0) {
+            editor.setContent(hideContent.val());
+        }
+    });
+
+    //本地上传
+    upload({
+        file: 'photoUpload',
+        done: function (file) {
+            $('#photoView').attr('src', file.path);
+            $('#teacherPhoto').val(file.key);
+        }
+    });
     //本地上传
     upload({
         file: 'imageUpload',
@@ -33,6 +48,17 @@ $(document).ready(function () {
             $('#indexImage').attr('src', file.path);
             $('#coverImage').val(file.key);
         }
+    });
+
+    $("#auditionForm").validate(function ($form, data) {
+        if (!editor.hasContents()) {
+            return app.notify.danger("请填写试听课内容")
+        }
+        data.template = 'audition';
+        data.enrollFields = vm.enrollFields;
+        $.post('/api/v1/events', data).then(function () {
+            self.location.href = "/school/events/manage"
+        });
     });
 
 });

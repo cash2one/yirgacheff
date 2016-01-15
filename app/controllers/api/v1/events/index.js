@@ -21,17 +21,20 @@ module.exports = function (router) {
 
     });
 
+    //添加或修改活动
     router.post('/', function*() {
         let eventId = this.request.body.eventId;
         if (eventId) {
-            this.body = yield eventService.updateById(eventId, this.request.body);
-            return;
+            return this.body = yield eventService.updateById(eventId, this.request.body);
         }
         this.body = yield eventService.create(this.user, this.request.body);
     });
 
+    //修改活动
     router.put('/:id', function*() {
         this.body = yield eventService.updateById(this.params.id, this.request.body);
     });
+
+    return router;
 
 };

@@ -26,7 +26,7 @@ const auditionSchema = new mongoose.Schema({
     },
 
     // 开课时间
-    startTime: {
+    courseTime: {
         type: String,
         required: true
     },

@@ -42,7 +42,6 @@ module.exports = {
 
     create: co.wrap(function*(creator, data) {
         let template = data.template;
-        let needEnroll = data.enroll;
         let enroll = null;
         if (_.isEmpty(template)) {
             throw new Error('缺少模版信息');
@@ -57,7 +56,7 @@ module.exports = {
         event.schoolId = creator.schoolId;
         event.template = template;
         //是否需要报名
-        if (needEnroll) {
+        if (needEnroll(template)) {
             enroll = new Enroll({schoolId: creator.schoolId});
             if (data.enrollFields) {
                 enroll.fields = _.map(data.enrollFields, field=> {
@@ -87,9 +86,17 @@ module.exports = {
         if (!event) {
             throw createError(400, '活动不存在');
         }
-        _.assign(event, _.omit(data, '_id', 'enroll', 'template'));
+        _.assign(event, _.omit(data, '_id', 'enroll', 'template', 'schoolId'));
         return yield event.save();
     })
 
 
 };
+
+
+
+function needEnroll(template) {
+    return _.indexOf(['activity', 'audition'], template) !== -1;
+}
+
+

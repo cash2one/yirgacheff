@@ -52,8 +52,9 @@ $(document).ready(function () {
         if (!editor.hasContents()) {
             return app.notify.danger("请填写文章内容")
         }
+        data.template = 'activity';
         data.enrollFields = vm.enrollFields;
-        $.post('/api/v1/events/activities', data).then(function () {
+        $.post('/api/v1/events', data).then(function () {
             self.location.href = "/school/events/manage"
         });
     });

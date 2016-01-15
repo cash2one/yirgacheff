@@ -9,7 +9,6 @@ EnrollField = Vue.extend({
            </label>
            <div class='col-xs-10'>
               <input class='form-control' type='text'
-              name='infoCollect'
               v-model='field.label'>
               <i class='fa fa-times f-gray f-s-16 pull-right m-t-n-lg m-r-xs' @click='delete'></i>
           </div>
