@@ -18,13 +18,22 @@ module.exports.render = function (elemId) {
         autoFloatEnabled: false,
         textarea: 'content'
     });
+
+
+    var imgTools = $("#J-imgTools");
+    var selectedTools = $("#J-editTools");
+    //选区
     function editorItemSelect(){
+
+        var $editor = $("#ueditor_0");
+        var content = $($editor[0].contentWindow.document.body);
         function editSelected(a) {
-            selected.editTools.off().on("click", "span", function () {
+            selectedTools.off().on("click", "span", function () {
                 switch ($(this).data("operate")) {
                     case "delete":
                         a.remove();
-                        selected.editTools.hide();
+                        selectedTools.hide();
+                        imgTools.hide();
                         break;
                     case "insert-before":
                         $("<p>&nbsp;</p>").insertBefore(a);
@@ -35,85 +44,104 @@ module.exports.render = function (elemId) {
                 }
             })
         }
-
-        var selected = this, content = $(document.getElementById("ueditor_0").contentWindow.document.body);
-        selected.editTools = $("#J-editTools");
-        content.off().on("click", ".360weixin", function () {
+        content.on("click", ".360weixin", function () {
+            imgTools.hide();
             $(this).toggleClass("warp-node").siblings().removeClass("warp-node");
-            var top = $(this).offset().top + $("#ueditor_0").offset().top;
-            var left = $(this).offset().left + $("#ueditor_0").offset().left;
-            $(this).hasClass("warp-node") ? (selected.editTools.css({
-                top: top -
-                35, left: left, display: "block"
-            }), editSelected(content)) : selected.editTools.hide()
+            var top = $(this).offset().top + $(this).height() - content.scrollTop();
+            var left = $(this).offset().left + $editor.offset().left;
+            if($(this).hasClass("warp-node")){
+                console.log($(this).offset().top,$editor.offset().top,top);
+                selectedTools.css({
+                    top: top + 95,
+                    left: left + 45,
+                    display: "block"
+                });
+                editSelected($(this));
+            }else{
+                selectedTools.hide()
+            }
         });
-        var g = new ZeroClipboard(selected.editTools.find("span:eq(0)")), f = new ZeroClipboard(selected.editTools.find("span:eq(1)"));
-        //ZeroClipboard.config({swfPath: "/js/ZeroClipboard.swf"});
-        g.on("copy", function (a) {
-            var b = content.find(".360weixin.warp-node").prop("outerHTML");
-            a.clipboardData.setData("text/html", b);
-            a.clipboardData.setData("text/plain", b)
-        });
-        f.on("copy", function (a) {
-            var b = content.find(".360weixin.warp-node").prop("outerHTML");
-            a.clipboardData.setData("text/html", b);
-            a.clipboardData.setData("text/plain",
-                b)
-        });
-        f.on("aftercopy", function () {
-            content.find(".360weixin.warp-node").remove();
-            selected.editTools.hide()
-        });
+        editor.addListener( 'selectionchange', function() {
+            var g = new ZeroClipboard(selectedTools.find("span:eq(0)"));
+            var f = new ZeroClipboard(selectedTools.find("span:eq(1)"));
+            ZeroClipboard.config({swfPath: "/js/ZeroClipboard.swf"});
+            g.on("copy", function (a) {
+                var b = content.find(".360weixin.warp-node").prop("outerHTML");
+                a.clipboardData.setData("text/html", b);
+                a.clipboardData.setData("text/plain", b)
+            });
+            f.on("copy", function (a) {
+                var b = content.find(".360weixin.warp-node").prop("outerHTML");
+                a.clipboardData.setData("text/html", b);
+                a.clipboardData.setData("text/plain",
+                    b)
+            });
+            f.on("aftercopy", function () {
+                content.find(".360weixin.warp-node").remove();
+                selectedTools.hide()
+            })
+        })
+
     }
+    //图片操作
     function imgItemSelect() {
-        function editImg($img) {
+        var $editor = $("#ueditor_0");
+        var content = $($editor[0].contentWindow.document.body);
+        function editImg(a) {
             imgTools.off().on("click", "span", function () {
                 switch ($(this).data("operate")) {
                     case "border":
-                        var border = $img.css("border");
+                        var border = a.css("border");
                         if(!border || border.indexOf('none') !== -1){
-                            $img.css({border:"5px solid #dfdfdf"});
+                            a.css({border:"5px solid #dfdfdf"});
                         }else{
-                            $img.css({border:"none"})
+                            a.css({border:"none"})
                         }
                         break;
                     case "shadow":
-                        var shadow = $img.css("box-shadow");
+                        var shadow = a.css("box-shadow");
                         if(!shadow || shadow.indexOf('none') !== -1){
-                            $img.css({"box-shadow":"0 2px 5px rgba(0,0,0,0.3)"});
+                            a.css({"box-shadow":"0 2px 5px rgba(0,0,0,0.3)"});
                         }else{
-                            $img.css({"box-shadow":"none"});
+                            a.css({"box-shadow":"none"});
                         }
                         break;
                     case "circle":
-                        var radius = $img.css("border-radius");
+                        var radius = a.css("border-radius");
                         console.log(radius);
                         if(!radius || radius.indexOf('0px') !== -1){
-                            $img.css({"border-radius":"50%"});
+                            a.css({"border-radius":"50%"});
                         }else{
-                            $img.css({"border-radius": "0px"});
+                            a.css({"border-radius": "0px"});
                         }
                         break;
                 }
             })
         }
-        var content = $(document.getElementById("ueditor_0").contentWindow.document.body);
-        var imgTools = $("#J-imgTools");
-        content.off().on("click", "img", function () {
-            var $img = $(this);
-            $img.toggleClass("img-node").siblings().removeClass("img-node");
-            var top = $img.offset().top + $("#ueditor_0").offset().top;
-            var left = $img.offset().left + $("#ueditor_0").offset().left;
-            $img.hasClass("img-node") ? (imgTools.css({
-                top: top -
-                35, left: left, display: "block"
-            }),editImg($img)) : imgTools.hide()
+        content.on("click", "img", function (event) {
+            event.stopPropagation();
+            selectedTools.hide();
+            $(this).toggleClass("img-node").siblings().removeClass("img-node");
+            var top = $(this).offset().top + $(this).height() - content.scrollTop();
+            var left = $(this).offset().left;
+            if($(this).hasClass("img-node")){
+                imgTools.css({
+                    top: top + 85,
+                    left: left + 465,
+                    display: "block"
+                });
+                editImg($(this));
+            }else{
+                imgTools.hide()
+            }
         });
     }
     window.onload = function () {
         editorItemSelect();
         imgItemSelect();
     };
+
+
     return editor
 };
 

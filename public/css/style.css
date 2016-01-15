@@ -1212,6 +1212,7 @@
     position: fixed;
     right: 80px;
     bottom: 70px;
+    z-index: 5000;
 }
 .bootom-ewm:before{
     position: absolute;
