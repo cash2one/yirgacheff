@@ -19,13 +19,13 @@
                 <li v-for="post in posts" stagger="100" class="animated fadeIn" v-show="shouldShow(post.category.name)">
                     <div class="media">
                         <div class="media-left">
-                            <a href="/school/posts/{{post._id.toString()}}">
+                            <a href="/school/posts/{{post._id}}">
                                 <img src="http://resource.hizuoye.com/{{post.image}}" width="200px" height="140px">
                             </a>
                         </div>
                         <div class="media-body">
                             <div class="m-l-xxs">
-                                <a href="/school/posts/{{post._id.toString()" class="post-item-title">
+                                <a href="/school/posts/{{post._id}}" class="post-item-title">
                                     <p class="media-heading f-s-16 f-bold m-t-sm">{{post.title }}</p>
                                     <span class="pull-right m-t-sm m-r-sm f-gray">文章详情 >></span>
                                 </a>
