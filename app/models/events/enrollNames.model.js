@@ -35,6 +35,11 @@ var enrollNamesSchema = new mongoose.Schema({
     schoolId: {
         type: ObjectId,
         required: true
+    },
+
+    createdTime: {
+        type: Date,
+        default: Date.now
     }
 
 });
