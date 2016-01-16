@@ -27,7 +27,7 @@ $(document).ready(function () {
             {'data': 'phone'},
             {
                 'data': null,
-                'defaultContent': '<a class="f-info detail" title="详情"><i class="iconfont icon-xiangqing"></i></a>'
+                'defaultContent': '<a class="f-info detail" title="详情"><i class="icon icon-xiangqing"></i></a>'
             }
         ],
         "aoColumnDefs": [

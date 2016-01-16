@@ -2444,10 +2444,6 @@ transition:width 6s ease-in
     transition: all 0.3s ease-out
 }
 
-.progress {
-    background-color: rgba(255, 64, 129, 0.22)
-}
-
 .no-js #loader-wrapper {
     display: none
 }
