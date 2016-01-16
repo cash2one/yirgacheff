@@ -31,19 +31,22 @@
                     <% }); %>
                     <div class="form-group">
                         <div class="analysis-que col-xs-10">
-                            <p>参考答案：
-                                <%= exercise && exercise.answer %>
-                            </p>
-                            <p>学生答案：
-                                <% if (exercise.wrongAnswer) { %>
-                                <%= exercise.wrongAnswer %>
-                                <% } else{ %>
-                                <%= exercise && exercise.answer %>
-                                <% } %>
-                            </p>
-                            <p>答案解析：
-                                <%= exercise.analysis %>
-                            </p>
+                            <div class="row">
+                                <p class="que-title">参考答案：</p>
+                                <p class="que-info"><%= exercise && exercise.answer %></p>
+                            </div>
+                            <div class="row">
+                                <p class="que-title">学生答案：</p>
+                                <p class="que-info"><% if (exercise.wrongAnswer) { %>
+                                    <%= exercise.wrongAnswer %>
+                                    <% } else{ %>
+                                    <%= exercise && exercise.answer %>
+                                    <% } %></p>
+                            </div>
+                            <div class="row">
+                                <div class="que-title">答案解析：</div>
+                                <div class="que-info"><textarea onpropertychange="this.style.height=this.scrollHeight + 'px'" oninput="this.style.height=this.scrollHeight + 'px'" readonly><%= exercise.analysis %></textarea></div>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -94,19 +97,22 @@
                     </div>
                     <div class="form-group">
                         <div class="analysis-que col-xs-10">
-                            <p>参考答案：
-                                <%= exercise && exercise.answer %>
-                            </p>
-                            <p>学生答案：
-                                <% if (exercise.wrongAnswer) { %>
-                                <%= exercise.wrongAnswer %>
-                                <% } else{ %>
-                                <%= exercise && exercise.answer %>
-                                <% } %>
-                            </p>
-                            <p>答案解析：
-                                <%= exercise.analysis %>
-                            </p>
+                            <div class="row">
+                                <p class="que-title">参考答案：</p>
+                                <p class="que-info"><%= exercise && exercise.answer %></p>
+                            </div>
+                            <div class="row">
+                                <p class="que-title">学生答案：</p>
+                                <p class="que-info"><% if (exercise.wrongAnswer) { %>
+                                    <%= exercise.wrongAnswer %>
+                                    <% } else{ %>
+                                    <%= exercise && exercise.answer %>
+                                    <% } %></p>
+                            </div>
+                            <div class="row">
+                                <div class="que-title">答案解析：</div>
+                                <div class="que-info"><textarea onpropertychange="this.style.height=this.scrollHeight + 'px'" oninput="this.style.height=this.scrollHeight + 'px'" readonly><%= exercise.analysis %></textarea></div>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -137,19 +143,22 @@
                     </div>
                     <div class="form-group">
                         <div class="analysis-que col-xs-10">
-                            <p>参考答案：
-                                <%= exercise && exercise.answer %>
-                            </p>
-                            <p>学生答案：
-                                <% if (exercise.wrongAnswer) { %>
-                                <%= exercise.wrongAnswer %>
-                                <% } else{ %>
-                                <%= exercise && exercise.answer %>
-                                <% } %>
-                            </p>
-                            <p>答案解析：
-                                <%= exercise.analysis %>
-                            </p>
+                            <div class="row">
+                                <p class="que-title">参考答案：</p>
+                                <p class="que-info"><%= exercise && exercise.answer %></p>
+                            </div>
+                            <div class="row">
+                                <p class="que-title">学生答案：</p>
+                                <p class="que-info"><% if (exercise.wrongAnswer) { %>
+                                    <%= exercise.wrongAnswer %>
+                                    <% } else{ %>
+                                    <%= exercise && exercise.answer %>
+                                    <% } %></p>
+                            </div>
+                            <div class="row">
+                                <div class="que-title">答案解析：</div>
+                                <div class="que-info"><textarea onpropertychange="this.style.height=this.scrollHeight + 'px'" oninput="this.style.height=this.scrollHeight + 'px'" readonly><%= exercise.analysis %></textarea></div>
+                            </div>
                         </div>
                     </div>
                 </form>

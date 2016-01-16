@@ -608,13 +608,31 @@
 /*����*/
 .analysis-que{
     background: #f7f6f2;
-    padding-top: 10px;
+    padding: 10px;
     font-size: 14px;
     color: #999;
     min-height: 70px;
 }
-.analysis-que p{
+.analysis-que .que-title{
+    width: 80px;
+    float: left;
+}
+.analysis-que .que-info{
+    width: 610px;
+    float: left;
+}
+.analysis-que textarea{
     word-break: break-all;
+    word-wrap: break-word;
+    width: 610px;
+    resize: none;
+    overflow-y:hidden;
+    border: none;
+    background: none;
+    outline:none;
+}
+.analysis-que p{
+    display: inline-block;
 }
 /*��Ŀ��ȷ����*/
 .result-flag-w {
@@ -1316,4 +1334,30 @@
 }
 .img-tools span:hover {
     color: blue;
+}
+
+/*积分排名*/
+.rankings{
+    position: relative;
+}
+.rankings-number{
+    width: 15px;
+    position: absolute;
+    top: -1px;
+    left: 5px;
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+}
+.f-color_0{
+    color: #ffff00;
+}
+.f-color_1{
+    color: #fb6d9d;
+}
+.f-color_2{
+    color: #ff9966;
+}
+.f-color_true{
+    color: #cfe2f3;
 }
