@@ -17,6 +17,11 @@
     </script>
 </head>
 <body>
+<div id="loader-wrapper">
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+</div>
 <!-- HEAD -->
 {% include 'include/header.html' %}
 <!-- END OF HEAD -->
@@ -40,4 +45,9 @@
 <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="/js/entries/shared.js"></script>
 {% block javascript %}{% endblock %}
+<script>
+    window.onload=function(){
+        $("#loader-wrapper").fadeOut();
+    }
+</script>
 </html>
