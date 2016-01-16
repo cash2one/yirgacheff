@@ -9,9 +9,14 @@
         </tr>
         </thead>
         <tbody>
-        <% for(var i = 0; i< students.length ; i++ ){ var student = students[i]; %>
+        <% for(var i = 0; i< 10 ; i++ ){ var student = students[i]; %>
         <tr>
-            <td><%= i+1 %></td>
+            <td>
+                <div class="rankings">
+                    <i class="fa fa-trophy f-color_<%= i > 2 || i %> f-s-28"></i>
+                    <div class="rankings-number"><%= i+1 %></div>
+                </div>
+            </td>
             <td><%= student.displayName %></td>
             <td><%= student.username %></td>
             <td><%= student.score %></td>
