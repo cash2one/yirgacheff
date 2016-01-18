@@ -14,31 +14,31 @@
                         <form class="form-horizontal">
                             <div class="form-group col-xs-4">
                                 <div>
-                                    <i class="fa fa-smile-o f-default f-s-24 m-r-md"></i>
+                                    <i class="icon icon-xueshengxinxi f-default f-s-24 m-r-md"></i>
                                     姓名：<<student.displayName>>
                                 </div>
                             </div>
                             <div class="form-group col-xs-4">
                                 <div>
-                                    <i class="fa fa-phone-square f-info f-s-24 m-r-md"></i>
+                                    <i class="glyphicon glyphicon-phone f-info f-s-24 m-r-md"></i>
                                     电话：<<student.phone>>
                                 </div>
                             </div>
                             <div class="form-group col-xs-4">
                                 <div>
-                                    <i class="fa fa-clock-o f-purple f-s-24 m-r-md"></i>
+                                    <i class="icon icon-shizhong f-purple f-s-24 m-r-md"></i>
                                     时间：101s
                                 </div>
                             </div>
                             <div class="form-group col-xs-4">
                                 <div>
-                                    <i class="fa fa-file-text-o f-pink f-s-24 m-r-md"></i>
+                                    <i class="icon icon-wodecuoti f-pink f-s-24 m-r-md"></i>
                                     错题数：<<performance.wrongCollect.length || 0>>
                                 </div>
                             </div>
                             <div class="form-group col-xs-4">
                                 <div>
-                                    <i class="fa fa fa-database f-yellow f-s-24 m-r-md"></i>
+                                    <i class="icon icon-jifen f-yellow f-s-24 m-r-md"></i>
                                     总积分：<<student.score>>
                                 </div>
                             </div>
@@ -74,10 +74,9 @@
             <div class="panel-body">
                 <form class="form-horizontal m-t-md">
                     <div class="form-group">
-                        <label class="col-xs-2 control-label">填写作业评语：</label>
-                        <div class="col-xs-9">
+                        <div class="col-xs-offset-1 col-xs-9">
                             {% if performance.state != 2 %}
-                            <select class="form-control" id="comment-options" data-settings='{"cutOff":5}'>
+                            <select class="form-control" id="comment-options">
                                 <option value="Very good! Come on!">1.Very good! Come on!</option>
                                 <option value="这次作业完成的很好，回家后好好复习，继续努力，See you next class！">2.这次作业完成的很好，回家后好好复习，继续努力，See
                                     you next
@@ -99,7 +98,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-xs-offset-2 col-xs-9">
+                        <div class="col-xs-offset-1 col-xs-9">
                             <textarea class="form-control" rows="3" {% if performance.state=== 2 %} readonly {% endif %}
                                       id="comment"
                                       name="comment"><<performance.comment && performance.comment.content>></textarea>
