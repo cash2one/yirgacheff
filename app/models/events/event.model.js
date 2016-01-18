@@ -71,7 +71,7 @@ const eventSchema = new Schema({
     template: {
         type: String,
         required: '模版不能为空',
-        enum: ['article', 'activity', 'audition']
+        enum: ['article', 'activity', 'audition', 'classroom']
     },
 
     schoolId: {

@@ -55,7 +55,7 @@
     "mkdirp": "^0.5.0",
     "moment": "^2.10.6",
     "moment-range": "^2.0.2",
-    "mongoose": "4.3.4",
+    "mongoose": "4.3.6",
     "nanobar": "^0.2.1",
     "node-uuid": "^1.4.3",
     "nunjucks": "^2.2.0",

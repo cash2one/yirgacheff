@@ -3,15 +3,14 @@
  */
 'use strict';
 require('../../../common/formvalidator');
+var _ = require('underscore');
 var app = require('../../../common/app');
 var notify = require('../../../common/notify');
 var upload = require('../../../common/uploadifive');
+var Vue = require('vue');
 
 $(document).ready(function () {
     app();
-
-    var $videoList =$(".video-list");
-
     upload({
         file: 'imageUpload',
         done: function (file) {
@@ -19,38 +18,91 @@ $(document).ready(function () {
             $('#coverImage').val(file.key);
         }
     });
-
-    $("#uploadVideo").on('click', '.upload', function () {
-        $("#addVideoModal").modal('show');
+    Vue.component('video-item', {
+        props: ['video', 'index'],
+        template: '#videoTemplate',
+        methods: {
+            delete: function () {
+                this.$dispatch('delete-video', this.index);
+            },
+            edit: function () {
+                this.$dispatch('edit-video', this.index);
+            }
+        }
     });
 
-    $("#addVideoForm").validate(function () {
-        var link = $("#link").val();
-        var name = $("#videoName").val();
-        var detail =$("#videoDetail").val();
-        var video = "<div class='col-xs-4 video-item'><div class='thumbnail'>" +
-            "<div class='video-container'>"+ link +"</div><div class='caption'>" +
-            "<p class='video-title'>"+ name +"</p><div class='video-control'>" +
-            "<a class='f-info m-r-xs'>修改</a><a class='f-pink delete-video'>删除</a></div>" +
-            "<p class='video-detail'>"+ detail +"</p></div></div></div>";
-        $("#uploadVideo").before(video);
-        $("#addVideoModal").modal('hide');
-        notify.success("添加成功");
-        $("#addVideoForm")[0].reset();
+    Vue.component('video-modal', {
+        data: function () {
+            return {
+                video: {}
+            }
+        },
+        template: '#videoModal',
+        methods: {
+            close: function () {
+                $(this.$el).modal("hide");
+            },
+            add: function () {
+                var video = this.video;
+                if (!video.link || video.link === "") {
+                    return notify.danger("链接不能为空");
+                }
+                if (!video.title || video.title === "") {
+                    return notify.danger("标题不能为空");
+                }
+                this.$dispatch('add-video', this.video);
+                this.close();
+            }
+        },
+        events: {
+            show: function (video) {
+                this.video = _.assign({}, video);
+                $(this.$el).modal("show");
+            }
+        }
     });
 
-    //重新上传
-    $videoList.on('click', '.reset-video', function () {
-        var link = $(this).closest('.video-item').find('.video-container').html();
-        var name = $(this).closest('.video-item').find('.video-title').html();
-        var detail = $(this).closest('.video-item').find('.video-detail').html();
-        console.log(link,name,detail)
+    var vm = new Vue({
+        el: "#classroomApp",
+        data: {
+            videos: window.courses || []
+        },
+        methods: {
+            showModal: function () {
+                this.$refs.modal.$emit('show', {});
+            },
+
+            addVideo: function (video) {
+                if (typeof video._id !== 'undefined') {
+                    this.videos.$set(video.index, video);
+                } else {
+                    video._id = this.videos.length;
+                    this.videos.push(video);
+                }
+            },
+
+            deleteVideo: function (index) {
+                this.videos.splice(index, 1);
+            },
+
+            editVideo: function (index) {
+                this.$refs.modal.$emit('show', this.videos[index]);
+            }
+        }
     });
 
-    //删除视频
-    $videoList.on('click', '.delete-video', function () {
-        $(this).closest('.video-item').remove();
-        notify.danger("删除成功");
+
+    $("#videoForm").validate(function ($form, data) {
+        var videos = vm.videos;
+        if (videos.length === 0) {
+            notify.danger("请至少添加一个课程视频");
+            return;
+        }
+        data.courses = videos;
+        data.template = 'classroom';
+        $.post('/api/v1/events', data).then(function () {
+            self.location.href = "/school/events/manage"
+        });
     });
 
 });
