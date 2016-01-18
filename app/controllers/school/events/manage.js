@@ -20,6 +20,10 @@ module.exports = function (router) {
         yield this.render('common/events/manage-enroll');
     });
 
+    router.get('/task/:id', function*() {
+        yield this.render('common/events/manage-task');
+    });
+
     return router;
 
 };

@@ -3,18 +3,20 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="profile-header">
-            <div class="avatar">
-                <div class="row">
-                    <div class="col-xs-6">
-                        <img class="lazy" src="/images/default_head.jpg" {% if student.avatar %}
-                             data-original="<<resourceURL>>/<<student.avatar>>" {% endif %} width="150px"
-                             height="150px">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="avatar-upload">
+                        <input type="file" id="imageUpload">
                     </div>
-                    <div class="col-xs-6">
-                        <div class="avatar-upload">
-                            <input type="file" id="imageUpload">
-                        </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="avatar">
+                        <img class="img-thumbnail"  {% if user.avatar %} src="<<resourceURL>>/<<student.avatar>>?imageView2/1/w/180/h/180" {% else %}
+                             src="/images/default_head.jpg" {% endif %}
+                             width="150px"
+                             height="150px">
                         <div class="pro-name">
+                            <p class="f-white f-s-18 m-r-xxl"><<student.displayName>></p>
                             <p class="f-white f-s-16"><<student.username>></p>
                         </div>
                     </div>
@@ -74,9 +76,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="panel-body hides">
+                        <div class="panel-body">
                             <p class="record-details"><<record.content>></p>
                         </div>
+                    </div>
+                    <div class="tips
+                    <% if (record) { %>hides
+                        <% } %>">
+                        <img class="center-block" src="/images/tips-ku.png">
+                        <p class="m-t-lg">分享至微信，微博，QQ等平台</p>
+                        <p>召集小伙伴来报名吧！</p>
                     </div>
                     {% endfor %}
                 </div>

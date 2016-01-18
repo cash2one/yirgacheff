@@ -7,6 +7,7 @@ $ ->
   app()
   upload({
     file: 'imageUpload',
+    buttonText:'更换头像',
     done: (file)->
       url = "/api/v1/teachers/#{GLOBAL.user._id.toString()}"
       data = avatar: file.key
@@ -18,7 +19,7 @@ $ ->
         notify.success "修改头像成功"
         $('#local_image_upload').show();
         $('#savePic').hide();
-        $('img.avatar').attr 'src', file.path
+        $('img.img-thumbnail').attr 'src', file.path
   })
 
   $("#userForm").validate ($form)->
