@@ -18,7 +18,7 @@ const classroomSchema = new mongoose.Schema({
     //课程列表
     courses: [{
 
-        id: {
+        _id: {
             type: Number,
             required: true
         },
@@ -28,9 +28,13 @@ const classroomSchema = new mongoose.Schema({
             required: true
         },
 
-        url: {
+        link: {
             type: String,
             required: true
+        },
+
+        brief: {
+            type: String
         },
 
         visit: {
