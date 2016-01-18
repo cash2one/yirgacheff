@@ -54,9 +54,6 @@ $ ->
 #app 导出常用的功能模块
 module.exports = ()->
   notify: notify
-  menu: (index)->
-    $(".head-menu").find('li').removeClass('active')
-    $(".head-menu").find("li:eq(#{index})").addClass('active');
 
 
 
