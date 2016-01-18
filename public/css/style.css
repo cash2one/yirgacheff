@@ -1374,3 +1374,12 @@
 .f-color_true{
     color: #cfe2f3;
 }
+/*即将到来*/
+.jiangkaishi{
+    position: absolute;
+    right: 10px;
+    top: 20px;
+}
+.a_disable{
+    cursor: no-drop;
+}

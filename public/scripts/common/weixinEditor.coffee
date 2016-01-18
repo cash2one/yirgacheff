@@ -16,7 +16,7 @@ template = (image)->
         </a>
         <a id="deleteImg">
            <div class='delete-img'>
-                <i class='iconfont icon-shanchu f-pink'></i>
+                <i class='icon icon-shanchu f-pink'></i>
            </div>
         </a>
     </div>
