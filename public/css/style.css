@@ -1332,7 +1332,7 @@
 /*图片工具条*/
 .img-tools{
     display: none;
-    width: 135px;
+    width: 180px;
     padding: 5px;
     position: absolute;
     border: 1px solid #DCAC6C;

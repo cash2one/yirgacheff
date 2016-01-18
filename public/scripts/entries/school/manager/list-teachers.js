@@ -10,6 +10,7 @@ $(document).ready(function () {
     app();
     var $table = $('#teacher-list');
     var $teacherForm = $('#teacherForm');
+    var $addTeacher =$('#addTeacher');
     var dataTable = $table.DataTable({
         'bAutoWidth': false,
         'bSort': false,
@@ -36,6 +37,10 @@ $(document).ready(function () {
         ]
     });
 
+    $addTeacher.click(function () {
+        $teacherForm[0].reset();
+        $("#teacherModal").modal("show");
+    });
     $teacherForm.validate(function ($form, data) {
         var isModify = !!data._id;
         $.post('/api/v1/teachers', data).then(function (teacher) {
