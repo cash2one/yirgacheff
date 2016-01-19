@@ -26,14 +26,16 @@ module.exports = function (opts) {
         let school = yield School.findById(this.user.schoolId)
             .select('qrcode username privateQrcode')
             .lean().exec();
-        console.log(school);
         let qrcode = school.qrcode;
         if (!qrcode) {
             qrcode = yield generateQrcode(school);
             yield School.update({_id: school._id}, {$set: {qrcode: qrcode}}).exec();
         }
+        this.rawQrcode = qrcode;
         this.qrcode = Qrcode(qrcode, {size: size});
-        this.privateQrcode = school.privateQrcode;
+        if(school.privateQrcode){
+            this.privateQrcode = school.privateQrcode;
+        }
         yield next;
     };
 };

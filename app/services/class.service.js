@@ -3,14 +3,22 @@
  */
 
 'use strict';
+const fs = require('fs');
+const path = require('path');
+const qrMaker = require('qr-image');
+const request = require('request-promise');
+const DocTemplate = require('docxtemplater');
+const ImageModule = require('docxtemplater-image-module');
 const mongoose = require('mongoose');
 const _ = require('lodash');
 const co = require('co');
 const createError = require('http-errors');
 const queryBuilder = require('../functions/queryBuilder');
+const config = require('../../config/config');
 const Class = mongoose.model('Class');
 const Teacher = mongoose.model('Teacher');
 const Student = mongoose.model('Student');
+const School = mongoose.model('School');
 
 
 module.exports = {
@@ -186,5 +194,53 @@ module.exports = {
         student.classes.addToSet(clazz);
         return yield student.save();
 
+    }),
+
+
+    getDoc: co.wrap(function*(id, qrcode) {
+        console.log(qrcode);
+        let clazz = yield Class.findById(id).select('className schoolId').lean().exec();
+        if (!clazz) {
+            throw createError(400, '班级不存在');
+        }
+        let students = yield Student.find({classes: clazz._id})
+            .select('displayName username password -_id')
+            .lean().exec();
+
+        if (students.length <= 0) {
+            throw createError(400, '没有学生信息');
+        }
+        let imageData = null;
+        if (qrcode.startsWith('http')) {
+            imageData = qrMaker.imageSync(qrcode, {type: 'png'});
+        } else {
+            //学校私有二维码
+            imageData = yield request({
+                method: 'GET',
+                uri: config.qn.visitUrl + '/' + qrcode,
+                encoding: null
+            });
+        }
+
+        ImageModule.prototype.getImageFromData = function (image) {
+            console.log(imageData);
+            return imageData;
+        };
+        let imageModule = new ImageModule({centered: false});
+        imageModule.getSizeFromData = function () {
+            return [92, 92];
+        };
+        let template = fs.readFileSync(path.resolve(__dirname, '../docx-template/student-list.docx'), 'binary');
+
+        let doc = new DocTemplate()
+            .attachModule(imageModule)
+            .load(template)
+            .setData({
+                className: clazz.className,
+                students: students,
+                image: qrcode
+            });
+        doc.render();
+        return doc.getZip().generate({type: 'nodebuffer'});
     })
 };

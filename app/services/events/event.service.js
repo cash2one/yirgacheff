@@ -9,6 +9,7 @@ const createError = require('http-errors');
 const queryBuilder = require('../../functions/queryBuilder');
 const Event = mongoose.model('Event');
 const Enroll = mongoose.model('Enroll');
+const ScoreTask = mongoose.model('ScoreTask');
 
 module.exports = {
 
@@ -76,7 +77,6 @@ module.exports = {
         }
     }),
 
-
     updateById: co.wrap(function*(id, data) {
         let Discriminator = Event.discriminators[data.template];
         if (_.isEmpty(Discriminator)) {
@@ -88,11 +88,24 @@ module.exports = {
         }
         _.assign(event, _.omit(data, '_id', 'enroll', 'template', 'schoolId'));
         return yield event.save();
+    }),
+
+    //添加任务
+    addTask: co.wrap(function*(id, data) {
+        let event = yield Event.findById(id).select('_id task schoolId').exec();
+        if (!event) {
+            throw createError(400, '活动不存在')
+        }
+        if (event.task) {
+            throw createError(400, '任务已经存在,请先删除');
+        }
+        let task = new ScoreTask(data);
+        task.schoolId = event.schoolId;
+        yield task.save();
+        event.task = task;
+        return yield event.save();
     })
-
-
 };
-
 
 
 function needEnroll(template) {

@@ -4,6 +4,7 @@
 'use strict';
 const _ = require('lodash');
 const service = require('../../../services');
+const qrcode = require('../../../middleware/qrcode');
 
 module.exports = function (router) {
 
@@ -96,6 +97,19 @@ module.exports = function (router) {
         this.body = yield service.classes.addStudent(classId, this.request.body);
 
     });
+
+    router.get('/:classId/students/doc', qrcode(), function*() {
+        let qrcode = this.privateQrcode || this.rawQrcode;
+        let classId = this.params.classId;
+        let buf = yield service.classes.getDoc(classId, qrcode);
+        this.set({
+            'Content-Type': 'application/msdoc',
+            'Content-Length': buf.size,
+            'Content-Disposition': 'attachment;filename="' + encodeURIComponent('名单.docx') + '"'
+        });
+        this.body = buf;
+    });
+
 
     return router;
 };

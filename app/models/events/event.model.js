@@ -32,6 +32,12 @@ const eventSchema = new Schema({
         ref: 'Enroll'
     },
 
+    //积分任务
+    task: {
+        type: ObjectId,
+        ref: 'ScoreTask'
+    },
+
     // 阅读量
     visit: {
         type: Number,

@@ -12,7 +12,7 @@
                 </li>
                 <li class="active">
                     <a href="#">
-                        任务管理
+                        积分任务
                     </a>
                 </li>
                 <li>
@@ -38,19 +38,24 @@
                     </div>
                     <div class="switch">
                         <input type="checkbox" name="task" data-on-text="开启" data-off-text="关闭"
-                               data-on-color="success" data-off-color="warning" checked />
+                               data-on-color="success" data-off-color="warning" checked/>
                     </div>
                 </div>
 
                 <div class="task-score">
-                    <form class="form-horizontal hides" id="taskScore">
+                    <form class="form-horizontal hides" id="taskScore" name="taskScore">
                         <div class="form-group">
                             <label class="task-label">奖励积分</label>
                             <div class="col-xs-8">
-                                <input class="form-control" type="text">
+                                <input type="hidden" name="eventId" value="<<event._id.toString()>>">
+                                <input class="form-control validate" type="text"
+                                       id="scoreAward" name="scoreAward"
+                                       value="<<event && event.task && event.task.scoreAward>>"
+                                       data-rules="required|integer"
+                                       data-display="积分">
                             </div>
                             <div class="col-xs-2">
-                                <button class="btn btn-default">保存</button>
+                                <button class="btn btn-default" type="submit">保存</button>
                             </div>
                         </div>
                     </form>
