@@ -17,5 +17,11 @@ $(document).ready(function () {
         var student = dataTable.row($(this).parents('tr')).data();
         window.open('/school/students/' + student._id);
     });
+
+    $('#download-btn').click(function () {
+        var classId = $("#classId").val();
+        var url = '/api/v1/classes/' + classId + '/students/doc';
+        window.open(url);
+    });
 });
 
