@@ -25,6 +25,11 @@ module.exports = {
             this.throw(401, 'user not exist');
         }
         user.role = role;
+        if (user.role === 0) {
+            user.role = 'school';
+        } else if (user.role === 1) {
+            user.role = 'teacher';
+        }
         this.state.user = user;
         yield next;
     }
