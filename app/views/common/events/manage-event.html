@@ -10,6 +10,16 @@
                         活动概览
                     </a>
                 </li>
+                <li>
+                    <a href="/school/events/manage/<<event._id.toString()>>/task">
+                        积分任务
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        报名管理
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -22,28 +32,37 @@
             <div class="panel-body">
                 <div class="manage">
                     <div class="manage-header">
-                        <p class="manage-title"><<event.title>></p>
+                        <p class="manage-title">
+                            <<event.title>>
+                        </p>
                         <div class="manage-control">
-                            <a class="f-info" href="/school/events/edit/<<event._id.toString()>>"><i class="fa fa-pencil m-r-xxs"></i>活动编辑</a>
-                            <a class="f-pink m-l-md deleteEvent" href="javascript:void(0)" id="<<event._id.toString()>>"><i class="fa fa-trash-o m-r-xxs"></i>活动删除</a>
+                            <a class="f-info" href="/school/events/edit/<<event._id.toString()>>"><i
+                                    class="fa fa-pencil m-r-xxs"></i>活动编辑</a>
+                            <a class="f-pink m-l-md deleteEvent" href="javascript:void(0)"
+                               id="<<event._id.toString()>>"><i class="fa fa-trash-o m-r-xxs"></i>活动删除</a>
                         </div>
                     </div>
                     <div class="manage-num m-t-md">
                         <ul class="list-unstyled">
                             <li>
                                 <span>阅读</span>
-                                <div><<event.visit>></div>
+                                <div><<event.visit>>
+                                </div>
                             </li>
                             <li>
                                 <span>分享</span>
-                                <div><<event.share>></div>
+                                <div><<event.share>>
+                                </div>
                             </li>
                             <li>
                                 <span>喜欢</span>
-                                <div><<event.like>></div>
+                                <div><<event.like>>
+                                </div>
                             </li>
                             {% if event.enroll %}
-                            <li class="no-b"><span>报名</span><div>0</div></li>
+                            <li class="no-b"><span>报名</span>
+                                <div>0</div>
+                            </li>
                             {% endif %}
                         </ul>
                     </div>

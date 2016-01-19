@@ -41,7 +41,10 @@ function initLocalVariables(app) {
 function initMiddleware(app) {
     app.use(flash());
     forward(app, {debug: true});
-    app.use(bodyParser());
+    app.use(bodyParser({
+        jsonLimit: '5mb',
+        formLimit: '128kb'
+    }));
 
 }
 
@@ -82,7 +85,7 @@ function initViewEngine(app) {
         filters: require('./swigFilters'),
         cache: false, // disable, set to false
         ext: 'html',
-        varControls:['<<','>>']
+        varControls: ['<<', '>>']
     });
 }
 

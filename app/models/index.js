@@ -17,5 +17,6 @@ module.exports = _.extend(
     require('./communicationRecord.model'),
     require('./counter.model'),
     require('./question.model'),
-    require('./events')
+    require('./events'),
+    require('./scoreTask.model')
 );

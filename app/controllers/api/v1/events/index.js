@@ -35,6 +35,11 @@ module.exports = function (router) {
         this.body = yield eventService.updateById(this.params.id, this.request.body);
     });
 
+    //给指定活动添加任务
+    router.post('/:id/tasks', function*() {
+        this.body = yield eventService.addTask(this.params.id, this.request.body);
+    });
+
     return router;
 
 };

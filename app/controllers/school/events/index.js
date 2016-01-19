@@ -18,7 +18,7 @@ module.exports = function (router) {
         yield this.render(`common/events/template/${template}`);
     });
 
-    router.get('/edit/:id', function*() {
+    router.get('/edit/:id([a-f0-9]{24})', function*() {
         let eventId = this.params.id;
         let event = yield service.events.event.findById(eventId);
         let template = event.template;

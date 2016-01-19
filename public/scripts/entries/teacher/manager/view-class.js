@@ -214,7 +214,7 @@ $(document).ready(function () {
     });
 
     $('#download-btn').click(function () {
-        var url = '/api/v1/classes/' + classId + '/students/qrcode';
+        var url = '/api/v1/classes/' + classId + '/students/doc';
         window.open(url);
     });
 

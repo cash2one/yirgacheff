@@ -10,17 +10,22 @@ module.exports = function (router) {
         yield this.render('common/events/list-events');
     });
 
-    router.get('/:id', function*() {
+    router.get('/:id([a-f0-9]{24})', function*() {
         let eventId = this.params.id;
         this.state.event = yield service.events.event.findById(eventId, true);
         yield this.render('common/events/manage-event');
     });
 
-    router.get('/enroll/:id', function*() {
+    router.get('/:id([a-f0-9]{24})/enrolls', function*() {
         yield this.render('common/events/manage-enroll');
     });
 
-    router.get('/task/:id', function*() {
+    router.get('/:id([a-f0-9]{24})/task', function*() {
+        let event = yield service.events.event.findById(this.params.id);
+        if (event.task) {
+            yield event.populate('task').execPopulate();
+        }
+        this.state.event = event;
         yield this.render('common/events/manage-task');
     });
 
