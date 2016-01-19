@@ -34,23 +34,20 @@
                     <li>
                         <p class="b-b p-v-sm p-h-xs no-m f-gray">活动类型</p>
                     </li>
-                    <li class="active">
-                        <a href="javascript:void(0)" @click="selectCategory('')">全部活动</a>
+                    <li v-bind:class="{'active': currentCategory === '全部活动'}">
+                        <a href="javascript:void(0)" @click="selectCategory('全部活动')">全部活动</a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" @click="selectCategory('')">文章</a>
+                        <a href="javascript:void(0)" @click="selectCategory('文章')">文章</a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" @click="selectCategory('')">活动</a>
+                        <a href="javascript:void(0)" @click="selectCategory('活动')">活动</a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" @click="selectCategory('')">试听课</a>
+                        <a href="javascript:void(0)" @click="selectCategory('试听课')">试听课</a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" @click="selectCategory('')">在线课堂</a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)" @click="selectCategory('')">大转盘</a>
+                        <a href="javascript:void(0)" @click="selectCategory('在线课堂')">在线课堂</a>
                     </li>
 
                 </ul>

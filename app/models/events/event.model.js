@@ -94,7 +94,6 @@ const eventSchema = new Schema({
 
 
 eventSchema.post('remove', (event)=> {
-    console.log('execute post remove');
     //如果存在报名,删除该活动后,一并删除报名信息
     if (event.enroll && event.enroll !== null) {
         mongoose.model('Enroll').remove({

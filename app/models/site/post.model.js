@@ -70,6 +70,13 @@ var postSchema = new Schema({
 
 });
 
+postSchema.post('remove', (post)=> {
+    //对应分类文章数减去1
+    mongoose.model('Category').update({_id: post.category}, {
+        $inc: {postCount: -1}
+    }).exec();
+});
+
 module.exports = {
     Post: mongoose.model('Post', postSchema)
 };

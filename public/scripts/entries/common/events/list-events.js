@@ -1,6 +1,7 @@
 'use strict';
 var app = require('../../../common/app');
 var strftime = require('strftime');
+var _ = require('underscore');
 var Vue = require('vue');
 var VueAsyncData = require('vue-async-data');
 Vue.use(VueAsyncData);
@@ -29,16 +30,16 @@ $(document).ready(function () {
             }
         }
     });
-
     new Vue({
         el: "#eventList",
         data: {
-            events: []
+            cache: [],
+            currentCategory: '全部活动'
         },
         asyncData: function (resolve, reject) {
             $.get('/api/v1/events').then(function (events) {
                 resolve({
-                    events: events
+                    cache: events
                 })
             });
         },
@@ -56,8 +57,18 @@ $(document).ready(function () {
             selectCategory: function (category) {
                 this.currentCategory = category;
             }
+        },
+        computed: {
+            events: function () {
+                var vm = this;
+                if (vm.currentCategory === '全部活动') {
+                    return vm.cache;
+                }
+                return _.filter(vm.cache, function (event) {
+                    return TEMPLATES[event.template] === vm.currentCategory;
+                });
+            }
         }
     });
-
 });
 

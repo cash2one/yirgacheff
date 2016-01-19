@@ -49,6 +49,17 @@ module.exports = {
         return yield query.exec();
     }),
 
+
+    deleteById: co.wrap(function*(id) {
+        let student = yield Student.findById(id).select('state').exec();
+        if (!student || student.state === 1) {
+            throw createError(400, '学生不存在或已经删除');
+        }
+        student.state = 1;
+        yield student.save();
+        return true;
+    }),
+
     /**
      *  获取指定学校的学生数量
      */

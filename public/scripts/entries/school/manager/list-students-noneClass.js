@@ -4,8 +4,8 @@ require('datatables');
 var app = require('../../../common/app');
 
 $(document).ready(function () {
+    app = app();
     var jqTable = $('#students-list');
-
     var dataTable = jqTable.DataTable({
         'bAutoWidth': true,
         'bSort': false,
@@ -40,12 +40,12 @@ $(document).ready(function () {
                 url: url,
                 method: 'DELETE'
             }).then(function () {
+                app.notify.success("删除学生成功");
                 dataTable
                     .row("#" + student._id)
                     .remove()
                     .draw();
             })
-
         }
     });
 

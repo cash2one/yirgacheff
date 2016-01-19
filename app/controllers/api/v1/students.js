@@ -55,6 +55,10 @@ module.exports = function (router) {
         this.body = yield service.score.scoreAward(studentIds, this.request.body, this.user);
     });
 
+    router.delete('/:id', function*() {
+        this.body = yield service.students.deleteById(this.params.id);
+    });
+
 
     return router;
 };
