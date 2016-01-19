@@ -26,12 +26,12 @@
                         <div class="media-body">
                             <div class="m-l-xxs">
                                 <a href="/school/posts/{{post._id}}" class="post-item-title">
-                                    <p class="media-heading f-s-16 f-bold m-t-sm">{{post.title }}</p>
+                                    <p class="media-heading post-title f-s-16 f-bold m-t-sm" title="{{post.title }}">{{post.title }}</p>
                                     <span class="pull-right m-t-sm m-r-sm f-gray">文章详情 >></span>
                                 </a>
                                 <div class="f-gray m-t-xs">
                                     <p><span class="m-t-lg">发布时间：</span>
-                                        {{post.createdTime}}
+                                        {{post.createdTime | date}}
                                     </p>
                                     <p class="m-t-xs">
                                         <span>文章栏目:{{post.category.name}}</span>

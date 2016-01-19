@@ -33,7 +33,7 @@ $(document).ready(function () {
     $("#articleForm").validate(function ($form, data) {
         data.template = 'article';
         $.post('/api/v1/events', data).then(function () {
-            self.location.href = "/school/events/manager";
+            self.location.href = "/school/events/manage";
         });
     });
 

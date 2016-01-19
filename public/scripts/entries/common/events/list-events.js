@@ -15,7 +15,7 @@ var TEMPLATES = {
 $(document).ready(function () {
     app();
     Vue.filter('date', function (value) {
-        return strftime('%F', new Date(value));
+        return strftime('%F %T', new Date(value));
     });
     Vue.filter('visit', function (value) {
         return GLOBAL.visitUrl + '/' + value;
