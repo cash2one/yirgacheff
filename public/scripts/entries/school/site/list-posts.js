@@ -1,6 +1,7 @@
 'use strict';
 var app = require('../../../common/app');
 var notify = require('../../../common/notify');
+var strftime = require('strftime');
 var Vue = require('vue');
 var VueAsyncData = require('vue-async-data');
 Vue.use(VueAsyncData);
@@ -8,6 +9,11 @@ Vue.use(VueAsyncData);
 
 $(document).ready(function () {
     app();
+
+    Vue.filter('date', function (value) {
+        return strftime('%F %T', new Date(value));
+    });
+
     new Vue({
         el: "#postList",
         data: {

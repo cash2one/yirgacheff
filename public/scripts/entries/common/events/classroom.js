@@ -47,6 +47,11 @@ $(document).ready(function () {
                 if (!video.link || video.link === "") {
                     return notify.danger("链接不能为空");
                 }
+                console.log(video.link.indexOf("embed"));
+                if (video.link.indexOf("iframe") === -1 && video.link.indexOf("embed") === -1) {
+                    var handleLink = '<embed src="'+ video.link +'" allowFullScreen="true" quality="high" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>';
+                    video.link = handleLink;
+                }
                 if (!video.title || video.title === "") {
                     return notify.danger("标题不能为空");
                 }

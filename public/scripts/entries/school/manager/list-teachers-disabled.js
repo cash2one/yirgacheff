@@ -1,6 +1,7 @@
 'use strict';
 
 require('datatables');
+var notify = require('../../../common/notify');
 var app = require('../../../common/app');
 
 $(document).ready(function () {
@@ -37,6 +38,7 @@ $(document).ready(function () {
             url: url,
             method: "PUT"
         }).then(function () {
+            notify.success("启用教师成功");
             dataTable
                 .row(teacher._id)
                 .remove()

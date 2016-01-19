@@ -45,6 +45,12 @@
 .post-item .post-item-title p,.events-item .post-item-title p{
     display: inline-block;
 }
+.post-item .post-title{
+    width: 550px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 .post-item li,.events-item li{
     margin-bottom: 20px;
     padding: 10px;
@@ -57,6 +63,12 @@
 }
 .events-item .ps-r{
     position: relative;
+}
+.events-item .event-title{
+    width: 650px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 /*微信编辑器*/
 .editor .wx-editor-template-list{
