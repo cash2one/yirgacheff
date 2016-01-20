@@ -4,6 +4,7 @@
 
 var app = require('../../../common/app');
 
+
 $(document).ready(function () {
     app();
     window._bd_share_config = {

@@ -6,5 +6,6 @@
 module.exports = {
     article: require('./article.service'),
     activity: require('./activity.service'),
-    event: require('./event.service')
+    event: require('./event.service'),
+    enroll: require('./enroll.service')
 };

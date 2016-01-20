@@ -1,23 +1,23 @@
 {% extends '../../layout.html' %}
 {% block content %}
 <!-- END OF BREADCRUMBS -->
-<div class="row">
+<div class="row" id="enrollApp">
     <div class="col-xs-2">
         <div class="page-sidebar shadow">
             <ul class="nav nav-pills nav-stacked">
                 <li>
-                    <a href="#">
+                    <a href="/school/events/manage/<<eventId>>">
                         活动概览
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/school/events/manage/<<eventId>>/task">
                         积分任务
                     </a>
                 </li>
 
                 <li class="active">
-                    <a href="#">
+                    <a href="javascript:void(0)">
                         报名管理
                     </a>
                 </li>
@@ -33,29 +33,39 @@
                 </div>
             </div>
             <div class="panel-body">
+                {% if enroll %}
                 <table class="table">
                     <thead>
                     <tr>
                         <th>姓名</th>
                         <th>手机</th>
-                        <th>地址</th>
-                        <th>报名时间</th>
+                        {% for field in enroll.fields %}
+                        <th>
+                            {{field.label}}
+                        </th>
+                        {% endfor %}
                     </tr>
                     </thead>
                     <tbody>
+                    {% for enrollName in enrollNames %}
                     <tr>
-                        <td>李小二</td>
-                        <td>15912341234</td>
-                        <td>北京 海淀区 中关村北大街126号</td>
-                        <td>2016-1-11 13:56:34</td>
+                        <td><<enrollName.name>></td>
+                        <td><<enrollName.phone>></td>
+                        {% for field in enrollName.fields %}
+                          <td><<field>></td>
+                        {% endfor %}
                     </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
+                {% else %}
+
                 <div class="tips">
                     <img class="center-block" src="/images/tips-ku.png">
                     <p class="m-t-lg">分享至微信，微博，QQ等平台</p>
                     <p>召集小伙伴来报名吧！</p>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -63,4 +73,5 @@
 {% endblock %}
 
 {% block javascript %}
+<script src="/js/entries/common/events/manage-enroll.js"></script>
 {% endblock %}

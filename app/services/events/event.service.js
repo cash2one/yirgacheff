@@ -94,11 +94,9 @@ module.exports = {
     }),
 
 
-
-
     // 添加任务
-    addTask: co.wrap(function*(id, data) {
-        let event = yield Event.findById(id).select('_id schoolId tags').exec();
+    addTask: co.wrap(function*(eventId, data) {
+        let event = yield Event.findById(eventId).select('_id schoolId tags').exec();
         if (!event) {
             throw createError(400, '活动不存在')
         }
@@ -106,7 +104,7 @@ module.exports = {
         task.schoolId = event.schoolId;
         task.event = event;
         event.tags.addToSet('任务');
-        yield task.save();
+        return yield task.save();
     }),
 
     // 删除任务
@@ -125,6 +123,7 @@ module.exports = {
 
     // 更新任务
     updateTaskById: co.wrap(function*(taskId, data) {
+        data = _.omit(data, '_id');
         let task = yield ScoreTask.findById(taskId).exec();
         if (!task || task.state === 1) {
             throw createError(400, '任务不存在或已关闭');
@@ -152,6 +151,10 @@ module.exports = {
         }
         task.state = 1;
         return yield task.save();
+    }),
+
+    getTasksByEvent: co.wrap(function*(eventId) {
+        return yield ScoreTask.find({event: eventId}).lean().exec();
     })
 
 };
