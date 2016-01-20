@@ -21,11 +21,7 @@ module.exports = function (router) {
     });
 
     router.get('/:id([a-f0-9]{24})/task', function*() {
-        let event = yield service.events.event.findById(this.params.id);
-        if (event.task) {
-            yield event.populate('task').execPopulate();
-        }
-        this.state.event = event;
+        this.state.eventId = this.params.id;
         yield this.render('common/events/manage-task');
     });
 

@@ -2,7 +2,7 @@
 {% block content %}
 <!-- END OF BREADCRUMBS -->
 <div class="row" id="taskApp">
-
+    <input type="hidden" id="eventId" value="<<eventId>>">
     <div class="col-xs-2">
         <div class="page-sidebar shadow">
             <ul class="nav nav-pills nav-stacked">
@@ -30,7 +30,7 @@
             <div class="panel-heading clearfix">
                 <h4 class="panel-title">任务管理</h4>
                 <div class="panel-control">
-                    <button class="btn btn-default btn-sm" data-toggle="modal" id="addTask">
+                    <button class="btn btn-default btn-sm" data-toggle="modal" @click="showModal">
                         <i class="glyphicon glyphicon-plus m-r-xxs"></i>
                         添加任务
                     </button>
@@ -42,21 +42,26 @@
                 </div>
                 <input type="hidden" name="eventId" value="<<event._id.toString()>>">
                 <div class="task-list">
-                    <task-item v-for="task in tasks" :task="task"></task-item>
+                    <task-item v-for="task in tasks"
+                               :task="task"
+                               :index="$index"
+                               @open-task="openTask"
+                               @close-task="closeTask"
+                               @delete-task="deleteTask"></task-item>
                 </div>
-                <div class="tips">
+                <div class="tips" v-show="tasks.length === 0">
                     <img class="center-block" src="/images/tips-ku.png">
                     <p class="m-t-lg">还没有设置积分任务哦</p>
-                    <p>快去点击上方的开启按钮开启吧！</p>
+                    <p>快去点击上方的按钮添加吧！</p>
                 </div>
             </div>
         </div>
     </div>
-
+    <task-modal v-ref:modal @add-task="addTask"></task-modal>
 </div>
 
 
-<script type="x/template" id="taskModal">
+<script type="x/template" id="taskModalTemplate">
     <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -69,22 +74,22 @@
                     <form class="form-horizontal m-t-sm" id="taskForm" name="taskForm">
                         <input type="hidden" v-model="_id">
                         <div class="form-group">
-                            <label for="taskTitle" class="col-xs-2 control-label">任务名称</label>
+                            <label for="title" class="col-xs-2 control-label">任务名称</label>
                             <div class="col-xs-9">
-                                <input class="form-control" type="text" id="taskTitle" v-model="title">
+                                <input class="form-control" type="text" id="title" v-model="task.title">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="scoreAward" class="col-xs-2 control-label">奖励积分</label>
                             <div class="col-xs-9">
-                                <input class="form-control" type="text" id="scoreAward" v-model="scoreAward">
+                                <input class="form-control" type="text" id="scoreAward" v-model="task.scoreAward">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-xs-offset-2 col-xs-9">
-                                <button type="submit" class="btn btn-info">确定</button>
+                                <button type="button" class="btn btn-info" @click="add">确定</button>
                                 <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
                             </div>
                         </div>
@@ -100,7 +105,8 @@
     <div class="task-item">
         <div class="task-header">
             <p class="task-title">{{task.title}}</p>
-            <span class="label label-light-info pull-right">进行中</span>
+            <span class="label label-light-info pull-right" v-show="task.state===0">进行中</span>
+            <span class="label label-light-success pull-right" v-show="task.state===1">已关闭</span>
         </div>
         <p class="f-gray">创建时间：{{task.createdTime}}</p>
         <div class="task-footer">
@@ -109,8 +115,10 @@
                 <span class="m-l-lg">完成人数：<span class="f-info m-l-xs">12</span></span>
             </div>
             <div class="task-control">
-                <a href="#" @click="modify"><i class="icon icon-xiugai f-s-14 m-r-xxs"></i>修改任务</a>
-                <a href="#" @click="close"><i class="icon icon-shezhi f-s-14 m-r-xxs"></i>关闭任务</a>
+                <a href="javascript:void(0)" @click="modify"><i class="icon icon-xiugai f-s-14 m-r-xxs"></i>修改任务</a>
+                <a href="#" @click="close" v-show="task.state===0"><i
+                        class="icon icon-shezhi f-s-14 m-r-xxs"></i>关闭任务</a>
+                <a href="#" @click="open" v-show="task.state===1"><i class="icon icon-shezhi f-s-14 m-r-xxs"></i>打开任务</a>
                 <a href="#" @click="delete"><i class="icon icon-shanchu f-s-14 m-r-xxs"></i>删除任务</a>
             </div>
         </div>
