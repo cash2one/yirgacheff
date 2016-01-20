@@ -61,7 +61,6 @@
                     <a href="/school/posts/{{post._id}}" class="post-item-title">
                         <p class="media-heading post-title f-s-16 f-bold m-t-sm" title="{{post.title }}">{{post.title
                             }}</p>
-                        <span class="pull-right m-t-sm m-r-sm f-gray">文章详情 >></span>
                     </a>
                     <div class="f-gray m-t-xs">
                         <p><span class="m-t-lg">发布时间：</span>
@@ -78,10 +77,11 @@
                                         <span><i
                                                 class="fa fa-share-square-o f-yellow m-r-xs"></i>{{post.shareCount}}</span>
                             <div class="pull-right m-r-xs">
-                                <a class="f-pink del_btn" title="删除" data-tooltip="删除"
-                                   @click="deletePost(post,$index)">
-                                    <i class="glyphicon glyphicon-trash"></i>
-                                </a>
+                                <a class="f-gray m-r-lg" href="/school/posts/{{post._id}}"><i
+                                        class="icon icon-renwucaogao"></i>文章编辑</a>
+                                <a class="f-gray del_btn" title="删除" data-tooltip="删除"
+                                   @click="deletePost(post,$index)"><i
+                                        class="icon icon-shanchu m-r-xxs"></i>文章删除</a>
                             </div>
                         </div>
                     </div>

@@ -3,16 +3,24 @@
 <!-- END OF BREADCRUMBS -->
 <div class="row">
     <div class="col-xs-12">
-        <div class="student-profile-header">
-            <div class="avatar text-center">
-                <img class="lazy" src="/images/default_head.jpg" {% if student.avatar %}
-                     data-original="<<resourceURL>>/<<student.avatar>>" {% endif %} width="150px"
-                     height="150px">
-            </div>
-            <div class="pro-name text-center m-t-lg">
-                <p class="f-white f-s-18 m-r-xxl"><<student.displayName>></p>
-
-                <p class="f-white f-s-16"><<student.username>></p>
+        <div class="profile-header">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="avatar-upload">
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="avatar">
+                        <img class="img-thumbnail"  {% if user.avatar %} src="<<resourceURL>>/<<student.avatar>>?imageView2/1/w/180/h/180" {% else %}
+                             src="/images/default_head.jpg" {% endif %}
+                             width="150px"
+                             height="150px">
+                        <div class="pro-name">
+                            <p class="f-white f-s-18 m-r-xxl"><<student.displayName>></p>
+                            <p class="f-white f-s-16"><<student.username>></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

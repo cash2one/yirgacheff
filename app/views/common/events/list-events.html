@@ -5,14 +5,7 @@
 <div id="eventList">
     <div class="row m-b-md">
         <div class="col-xs-10">
-            <ul class="nav nav-tabs">
-                <li class="active">
-                    <a href="#home" data-toggle="tab" @click="changeState(0)">
-                        进行中
-                    </a>
-                </li>
-                <li><a href="#ios" data-toggle="tab" @click="changeState(1)">已结束</a></li>
-            </ul>
+            <p class="f-s-18 no-m m-t-xxs m-l-xs f-gray"><i class="glyphicon glyphicon-bookmark m-r-xs"></i>{{currentCategory}}</p>
         </div>
         <div class="col-xs-2">
             <a class="btn btn-default btn-sm btn-block" href="/school/events">
@@ -62,13 +55,13 @@
             <div class="media-left ps-r">
                 <a href="/school/events/manage/{{event._id}}">
                     <img :src="event.coverImage | visit" width="200px" height="140px">
-                    <span class="label label-success mask-tags">进行中</span>
                 </a>
             </div>
             <div class="media-body">
                 <div class="m-l-xxs">
                     <a href="/school/events/manage/{{event._id}}" class="post-item-title">
-                        <p class="media-heading f-s-16 f-bold m-t-sm">{{event.title}}</p>
+                        <p class="media-heading event-title f-s-16 f-bold m-t-sm">{{event.title}}</p>
+                        <i class="icon icon-renwuguanli task-tag"></i>
                     </a>
                     <div class="f-gray m-t-xs">
                         <p><span class="m-t-lg">发布时间：</span>

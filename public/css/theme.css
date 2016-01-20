@@ -1768,6 +1768,9 @@ td .checkbox {
 .panel-height{
     height: 480px;
 }
+.panel-h-220{
+    height: 220px;
+}
 .panel-min-h{
     min-height: 600px;
 }
