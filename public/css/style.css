@@ -894,7 +894,7 @@
 
 /*个人中心*/
 .profile-header{
-    background:url("../images/profile-cover.png");
+    background:url("../images/profile-bg.png");
     background-size: cover;
     height: 280px;
     margin-bottom: 20px;
