@@ -59,26 +59,22 @@
             <div class="media-body">
                 <div class="m-l-xxs">
                     <a href="/school/posts/{{post._id}}" class="post-item-title">
-                        <p class="media-heading post-title f-s-16 f-bold m-t-sm" title="{{post.title }}">{{post.title
+                        <p class="media-heading post-title m-t-xxs" title="{{post.title }}">{{post.title
                             }}</p>
                     </a>
-                    <div class="f-gray m-t-xs">
-                        <p><span class="m-t-lg">发布时间：</span>
+                    <div class="f-gray m-t-xxs">
+                        <p><span class="m-t-md">发布时间：</span>
                             {{post.createdTime | date}}
                         </p>
-                        <p class="m-t-xs">
-                            <span>文章栏目:{{post.category.name}}</span>
+                        <p class="m-t-sm">
+                            <span>文章栏目：{{post.category.name}}</span>
                         </p>
-                        <div class="m-t-xs">
-                                    <span class="m-r-xxl"><i class="fa fa-eye f-info m-r-xs"></i>
-                                        {{post.visitCount}}
-                                    </span>
-                            <span class="m-r-xxl"><i class="fa fa-thumbs-o-up f-default m-r-xs"></i>{{post.like}}</span>
-                                        <span><i
-                                                class="fa fa-share-square-o f-yellow m-r-xs"></i>{{post.shareCount}}</span>
-                            <div class="pull-right m-r-xs">
+                        <div class="m-t-sm">
+                            <span class="m-r-md">阅读：{{post.visitCount}}</span>
+                            <span>赞：{{post.like}}</span>
+                            <div class="pull-right m-r-xs m-t-n-xxs">
                                 <a class="f-gray m-r-lg" href="/school/posts/{{post._id}}"><i
-                                        class="icon icon-renwucaogao"></i>文章编辑</a>
+                                        class="icon icon-xiugai m-r-xxs"></i>文章编辑</a>
                                 <a class="f-gray del_btn" title="删除" data-tooltip="删除"
                                    @click="deletePost(post,$index)"><i
                                         class="icon icon-shanchu m-r-xxs"></i>文章删除</a>

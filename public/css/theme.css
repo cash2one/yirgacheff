@@ -1769,7 +1769,7 @@ td .checkbox {
     height: 480px;
 }
 .panel-h-220{
-    height: 220px;
+    height: 480px;
 }
 .panel-min-h{
     min-height: 600px;
@@ -2100,7 +2100,14 @@ color:#fff
 background-color:#337ab7;
 color:#fff
 }
-
+.label.label-light-info{
+    background-color:#f5faff;
+    color:#96cee0;
+}
+.label.label-light-success{
+    background-color:#eeffbf;
+    color:#7ec11f
+}
 /* Progress bars
 =================================================================== */
 .progress{
