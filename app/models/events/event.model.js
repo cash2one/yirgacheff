@@ -32,12 +32,6 @@ const eventSchema = new Schema({
         ref: 'Enroll'
     },
 
-    //积分任务
-    task: {
-        type: ObjectId,
-        ref: 'ScoreTask'
-    },
-
     // 阅读量
     visit: {
         type: Number,
@@ -67,6 +61,9 @@ const eventSchema = new Schema({
         default: 0
     },
 
+    //标签
+    tags: [String],
+
     //创建人角色
     creatorRole: {
         type: Number,
@@ -94,12 +91,16 @@ const eventSchema = new Schema({
 
 
 eventSchema.post('remove', (event)=> {
+
     //如果存在报名,删除该活动后,一并删除报名信息
-    if (event.enroll && event.enroll !== null) {
-        mongoose.model('Enroll').remove({
-            enroll: event.enroll
-        }).exec();
-    }
+    mongoose.model('Enroll').remove({
+        event: event._id
+    }).exec();
+
+    //如果存在任务,则删除任务信息
+    mongoose.model('ScoreTask').remove({
+        event: event._id
+    }).exec();
 
 });
 

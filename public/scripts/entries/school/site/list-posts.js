@@ -19,7 +19,7 @@ $(document).ready(function () {
         props: ['post', 'index'],
         template: '#postTemplate',
         methods: {
-            deletePost: function () {
+            delete: function () {
                 var vm = this;
                 if (confirm("确定删除所选文章?")) {
                     var url = '/api/v1/posts/' + vm.post._id;
@@ -69,6 +69,10 @@ $(document).ready(function () {
                 return _.filter(vm.cache, function (post) {
                     return post.category.name === vm.currentCategory;
                 });
+            },
+
+            deletePost: function (index) {
+                this.cache.splice(index, 1);
             }
         }
     });

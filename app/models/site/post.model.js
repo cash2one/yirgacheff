@@ -2,7 +2,7 @@
  * Created by Frank on 15/7/1.
  *
  */
-
+'use strict';
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
@@ -68,13 +68,6 @@ var postSchema = new Schema({
         index: true
     }
 
-});
-
-postSchema.post('remove', (post)=> {
-    //对应分类文章数减去1
-    mongoose.model('Category').update({_id: post.category}, {
-        $inc: {postCount: -1}
-    }).exec();
 });
 
 module.exports = {

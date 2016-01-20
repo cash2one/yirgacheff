@@ -56,6 +56,7 @@ module.exports = {
         event.creatorRole = creator.role;
         event.schoolId = creator.schoolId;
         event.template = template;
+        event.tags = [];
         //是否需要报名
         if (needEnroll(template)) {
             enroll = new Enroll({schoolId: creator.schoolId});
@@ -64,8 +65,10 @@ module.exports = {
                     return {label: field.label, inputType: 'text'};
                 });
             }
+            enroll.event = event;
             yield enroll.save();
             event.enroll = enroll;
+            event.tags.addToSet('报名');
         }
         try {
             return yield event.save();
@@ -90,21 +93,67 @@ module.exports = {
         return yield event.save();
     }),
 
-    //添加任务
+
+
+
+    // 添加任务
     addTask: co.wrap(function*(id, data) {
-        let event = yield Event.findById(id).select('_id task schoolId').exec();
+        let event = yield Event.findById(id).select('_id schoolId tags').exec();
         if (!event) {
             throw createError(400, '活动不存在')
         }
-        if (event.task) {
-            throw createError(400, '任务已经存在,请先删除');
-        }
         let task = new ScoreTask(data);
         task.schoolId = event.schoolId;
+        task.event = event;
+        event.tags.addToSet('任务');
         yield task.save();
-        event.task = task;
-        return yield event.save();
+    }),
+
+    // 删除任务
+    deleteTask: co.wrap(function*(eventId, taskId) {
+        let task = yield ScoreTask.findById(taskId).exec();
+        if (!task) {
+            throw createError(400, '任务不存在');
+        }
+        yield task.remove();
+        let count = yield ScoreTask.count({event: eventId}).exec();
+        if (count === 0) {
+            yield Event.update({_id: eventId}, {$pull: {tags: '任务'}}).exec();
+        }
+        return true;
+    }),
+
+    // 更新任务
+    updateTaskById: co.wrap(function*(taskId, data) {
+        let task = yield ScoreTask.findById(taskId).exec();
+        if (!task || task.state === 1) {
+            throw createError(400, '任务不存在或已关闭');
+        }
+        _.assign(task, data);
+        return yield task.save();
+    }),
+
+    //开启任务
+    openTaskById: co.wrap(function*(taskId) {
+        let task = yield ScoreTask.findById(taskId).exec();
+        if (!task || task.state === 0) {
+            throw createError(400, '任务不存在或已经开启');
+        }
+        task.state = 0;
+        return yield task.save();
+    }),
+
+
+    //关闭任务
+    closeTaskById: co.wrap(function*(taskId) {
+        let task = yield ScoreTask.findById(taskId).exec();
+        if (!task || task.state === 1) {
+            throw createError(400, '任务不存在或已关闭');
+        }
+        task.state = 1;
+        return yield task.save();
     })
+
 };
 
 
