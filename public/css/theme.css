@@ -17,8 +17,18 @@ font-family: "Helvetica Neue",Helvetica,"Hiragino Sans GB","STHeitiSC-Light","Mi
     border-top: 1px solid #dfdfdf;
     display: block;
     position: relative;
+    background-color: #2aabe6;
     bottom: 0;
     padding: 19px 25px;
+    font-size: 12px;
+}
+.footer-menu{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.footer-menu a{
+    color: #fff;
+    margin: 0 10px;
 }
 .hides{
     display: none;
@@ -1769,7 +1779,7 @@ td .checkbox {
     height: 480px;
 }
 .panel-h-220{
-    height: 480px;
+    height: 220px;
 }
 .panel-min-h{
     min-height: 600px;
