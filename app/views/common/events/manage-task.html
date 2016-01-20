@@ -27,44 +27,88 @@
         <div class="panel panel-default shadow">
             <div class="panel-heading clearfix">
                 <h4 class="panel-title">任务管理</h4>
+                <div class="panel-control">
+                    <button class="btn btn-default btn-sm" data-toggle="modal" id="addTask">
+                        <i class="glyphicon glyphicon-plus m-r-xxs"></i>
+                        添加任务
+                    </button>
+                </div>
             </div>
             <div class="panel-body panel-min-h">
                 <div class="alert-2 alert-warning-2">
                     提示：任务信息如果已经创建，则无法进行修改，如果需要请关闭任务后重新创建！
                 </div>
-                <div class="task-control">
-                    <div class="task-state">
-                        任务状态
-                    </div>
-                    <div class="switch">
-                        <input type="checkbox" name="task" data-on-text="开启" data-off-text="关闭"
-                               data-on-color="success" data-off-color="warning" checked/>
-                    </div>
-                </div>
-
-                <div class="task-score">
-                    <form class="form-horizontal hides" id="taskScore" name="taskScore">
-                        <div class="form-group">
-                            <label class="task-label">奖励积分</label>
-                            <div class="col-xs-8">
-                                <input type="hidden" name="eventId" value="<<event._id.toString()>>">
-                                <input class="form-control validate" type="text"
-                                       id="scoreAward" name="scoreAward"
-                                       value="<<event && event.task && event.task.scoreAward>>"
-                                       data-rules="required|integer"
-                                       data-display="积分">
+                <input type="hidden" name="eventId" value="<<event._id.toString()>>">
+                <div class="task-list">
+                    <div class="task-item">
+                        <div class="task-header">
+                            <p class="task-title">2016故宫寒假知识课堂——萌猴贺岁跃连年</p>
+                            <span class="label label-light-info pull-right">进行中</span>
+                        </div>
+                        <p class="f-gray">创建时间：2016-1-20 13:33:33</p>
+                        <div class="task-footer">
+                            <div class="task-info f-gray">
+                                    <span>奖励积分：<span class="f-info m-l-xs">20</span></span>
+                                    <span class="m-l-lg">完成人数：<span class="f-info m-l-xs">12</span></span>
                             </div>
-                            <div class="col-xs-2">
-                                <button class="btn btn-default" type="submit">保存</button>
+                            <div class="task-control">
+                                <a href="#"><i class="icon icon-xiugai f-s-14 m-r-xxs"></i>修改任务</a>
+                                <a href="#"><i class="icon icon-shezhi f-s-14 m-r-xxs"></i>关闭任务</a>
+                                <a href="#"><i class="icon icon-shanchu f-s-14 m-r-xxs"></i>删除任务</a>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
                 <div class="tips">
                     <img class="center-block" src="/images/tips-ku.png">
                     <p class="m-t-lg">还没有设置积分任务哦</p>
                     <p>快去点击上方的开启按钮开启吧！</p>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">任务设置</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal m-t-sm" id="taskForm" name="taskForm">
+                    <input type="hidden" id="teacherId" name="_id">
+                    <div class="form-group">
+                        <label for="taskTitle" class="col-xs-2 control-label">任务名称</label>
+
+                        <div class="col-xs-9">
+                            <input class="form-control validate" type="text"
+                                   name="taskTitle" id="taskTitle"
+                                   data-rules="required"
+                                   data-display="任务名称">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="scoreAward" class="col-xs-2 control-label">奖励积分</label>
+
+                        <div class="col-xs-9">
+                            <input class="form-control validate" type="text"
+                                   name="scoreAward"
+                                   id="scoreAward"
+                                   data-rules="required|integer"
+                                   data-display="奖励积分">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-offset-2 col-xs-9">
+                            <button type="submit" class="btn btn-info">确定</button>
+                            <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
+                        </div>
+                    </div>
+                </form>
+                <!--</form>-->
             </div>
         </div>
     </div>

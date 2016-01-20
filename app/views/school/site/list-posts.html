@@ -5,8 +5,7 @@
 <div id="postApp">
     <div class="row m-b-md">
         <div class="col-xs-10">
-            <p class="f-s-18 no-m m-t-xxs m-l-xs f-gray"><i class="glyphicon glyphicon-bookmark m-r-xs"></i>{{currentCategory}}
-            </p>
+            <p class="f-s-18 no-m m-t-xxs m-l-xs f-gray"><i class="glyphicon glyphicon-bookmark m-r-xs"></i>{{currentCategory}}</p>
         </div>
         <div class="col-xs-2">
             <a class="btn btn-default btn-sm btn-block" href="/school/posts/create">
@@ -18,13 +17,7 @@
         <div class="col-xs-10">
             <div class="post-item">
                 <ul class="list-unstyled">
-                    <post-item v-for="post in posts"
-                               :post="post"
-                               :index="$index"
-                               @delete-post="deletePost"
-                               transition="my-transition">
-
-                    </post-item>
+                    <post-item v-for="post in posts" :post="post" :index="$index"></post-item>
                 </ul>
                 <div class="tips" v-show="posts.length === 0">
                     <img class="center-block" src="/images/tips-ku.png">
@@ -54,6 +47,7 @@
 </div>
 
 
+
 <script type="x/template" id="postTemplate">
     <li>
         <div class="media">
@@ -65,31 +59,25 @@
             <div class="media-body">
                 <div class="m-l-xxs">
                     <a href="/school/posts/{{post._id}}" class="post-item-title">
-                        <p class="media-heading post-title f-s-16 f-bold m-t-sm" title="{{post.title }}">{{post.title
+                        <p class="media-heading post-title m-t-xxs" title="{{post.title }}">{{post.title
                             }}</p>
                     </a>
-                    <div class="f-gray m-t-xs">
-                        <p><span class="m-t-lg">发布时间:</span>
+                    <div class="f-gray m-t-xxs">
+                        <p><span class="m-t-md">发布时间：</span>
                             {{post.createdTime | date}}
                         </p>
-                        <p class="m-t-lg">
-                            <span>文章栏目:</span>
-                            {{post.category.name}}
+                        <p class="m-t-sm">
+                            <span>文章栏目：{{post.category.name}}</span>
                         </p>
-                        <div class="m-t-xs">
-                                    <span class="m-r-xxl"><i class="fa fa-eye f-info m-r-xs"></i>
-                                        {{post.visitCount}}
-                                    </span>
-                            <span class="m-r-xxl">
-                                <i class="fa fa-thumbs-o-up f-default m-r-xs"></i>{{post.like}}</span>
-                            <span><i class="fa fa-share-square-o f-yellow m-r-xs"></i>{{post.shareCount}}</span>
-                            <div class="pull-right m-r-xs">
+                        <div class="m-t-sm">
+                            <span class="m-r-md">阅读：{{post.visitCount}}</span>
+                            <span>赞：{{post.like}}</span>
+                            <div class="pull-right m-r-xs m-t-n-xxs">
                                 <a class="f-gray m-r-lg" href="/school/posts/{{post._id}}"><i
-                                        class="icon icon-renwucaogao"></i>文章编辑</a>
+                                        class="icon icon-xiugai m-r-xxs"></i>文章编辑</a>
                                 <a class="f-gray del_btn" title="删除" data-tooltip="删除"
-                                   @click="delete">
-                                    <i class="icon icon-shanchu m-r-xxs"></i>文章删除
-                                </a>
+                                   @click="deletePost(post,$index)"><i
+                                        class="icon icon-shanchu m-r-xxs"></i>文章删除</a>
                             </div>
                         </div>
                     </div>

@@ -52,7 +52,7 @@
 <template id="eventItem">
     <li>
         <div class="media">
-            <div class="media-left ps-r">
+            <div class="media-left">
                 <a href="/school/events/manage/{{event._id}}">
                     <img :src="event.coverImage | visit" width="200px" height="140px">
                 </a>
@@ -60,32 +60,29 @@
             <div class="media-body">
                 <div class="m-l-xxs">
                     <a href="/school/events/manage/{{event._id}}" class="post-item-title">
-                        <p class="media-heading event-title f-s-16 f-bold m-t-sm">{{event.title}}</p>
-                        <i class="icon icon-renwuguanli task-tag"></i>
+                        <p class="media-heading event-title m-t-xxs">{{event.title}}</p>
+                        <div class="task-tag">
+                            <span class="label label-light-info">任务</span>
+                            <span class="label label-light-info">报名</span>
+                            <span class="label label-light-info">投票</span>
+                        </div>
                     </a>
-                    <div class="f-gray m-t-xs">
-                        <p><span class="m-t-lg">发布时间：</span>
+                    <div class="f-gray m-t-xxs">
+                        <p><span class="m-t-md">发布时间：</span>
                             {{event.createdTime | date}}
                         </p>
-                        <p class="m-t-xs">
+                        <p class="m-t-sm">
                             <span>所属分类：</span>
                             {{eventType}}
                         </p>
-                        <div class="m-t-xs">
-                                    <span class="m-r-xxl">
-                                        <i class="fa fa-eye f-info m-r-xs"></i>{{event.visit}}
-                                    </span>
-                                    <span class="m-r-xxl">
-                                        <i class="fa fa-thumbs-o-up f-default m-r-xs"></i>{{event.share}}
-                                    </span>
-                                    <span>
-                                        <i class="fa fa-share-square-o f-yellow m-r-xs"></i>{{event.like}}
-                                    </span>
-                            <div class="pull-right m-r-xs">
+                        <div class="m-t-sm">
+                            <span class="m-r-md">阅读：{{event.visitCount}}</span>
+                            <span>赞：{{event.like}}</span>
+                            <div class="pull-right m-r-xs m-t-n-xxs">
                                 <a class="f-gray m-r-lg" href="/school/events/manage/{{event._id}}"><i
-                                        class="icon icon-iconfontrenwushezhi"></i>活动管理</a>
+                                        class="icon icon-shezhi m-r-xxs"></i>活动管理</a>
                                 <a class="f-gray" href="/school/events/edit/{{event._id}}"><i
-                                        class="icon icon-renwucaogao m-r-xxs"></i>活动编辑</a>
+                                        class="icon icon-xiugai m-r-xxs"></i>活动编辑</a>
                             </div>
                         </div>
                     </div>
