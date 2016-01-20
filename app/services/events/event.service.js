@@ -154,8 +154,7 @@ module.exports = {
     }),
 
     getTasksByEvent: co.wrap(function*(eventId) {
-        let tasks = yield ScoreTask.find({event: eventId}).lean().exec();
-        return tasks;
+        return yield ScoreTask.find({event: eventId}).lean().exec();
     })
 
 };
