@@ -4,10 +4,28 @@
 'use strict';
 
 var app = require('../../../common/app');
+var Vue = require('vue');
 require('../../../common/formvalidator');
 
 $(document).ready(function () {
     app = app();
+
+    Vue.component('task-modal', {
+        props: ['task'],
+        template: '#taskModalTemplate'
+    });
+
+    Vue.component('task-item', {
+        props: ['task'],
+        template: '#taskTemplate'
+    });
+
+    new Vue({
+        data: {
+            tasks: []
+        },
+        el: '#taskApp'
+    });
 
     //$("[name='task']").bootstrapSwitch();
     //
@@ -21,7 +39,7 @@ $(document).ready(function () {
     //        $("#taskScore").fadeIn();
     //    }
     //});
-    $("#addTask").click(function(){
+    $("#addTask").click(function () {
         $("#taskModal").modal("show");
     });
 

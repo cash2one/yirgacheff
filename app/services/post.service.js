@@ -24,14 +24,11 @@ module.exports = {
     }),
 
     deleteById: co.wrap(function*(id) {
-        let post = yield Post.findById(id).select('_id').exec();
+        let post = yield Post.findById(id).select('_id category').exec();
         if (!post) {
             throw createError(400, '文章不存在');
         }
-        let count = yield Task.count({item: post._id}).exec();
-        if (count > 0) {
-            throw createError(400, '该文章已经被分享,无法删除');
-        }
+        yield Category.update({_id: post.category}, {$inc: {postCount: -1}}).exec();
         return yield post.remove();
     }),
 

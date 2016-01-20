@@ -8,6 +8,10 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.Types.ObjectId;
 
 var taskSchema = new Schema({
+    title: {
+        type: String,
+        required: true
+    },
 
     scoreAward: {       // 奖励积分数
         type: Number,
@@ -24,11 +28,23 @@ var taskSchema = new Schema({
         default: Date.now
     },
 
+    event: {
+        type: ObjectId,
+        required: true,
+        ref: 'Event'
+    },
+
+    state: {
+        type: Number,
+        default: 0   //0  进行中 1关闭
+    },
+
     schoolId: {
         type: ObjectId,
         required: true
     }
 });
+
 
 taskSchema.index({schoolId: 1, state: 1});
 mongoose.model('ScoreTask', taskSchema);
