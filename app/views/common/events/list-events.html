@@ -62,9 +62,7 @@
                     <a href="/school/events/manage/{{event._id}}" class="post-item-title">
                         <p class="media-heading event-title m-t-xxs">{{event.title}}</p>
                         <div class="task-tag">
-                            <span class="label label-light-info">任务</span>
-                            <span class="label label-light-info">报名</span>
-                            <span class="label label-light-info">投票</span>
+                            <span class="label label-light-info" v-for="tag in event.tags">{{tag}}</span>
                         </div>
                     </a>
                     <div class="f-gray m-t-xxs">
