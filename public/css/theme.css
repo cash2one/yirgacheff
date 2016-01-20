@@ -19,7 +19,7 @@ font-family: "Helvetica Neue",Helvetica,"Hiragino Sans GB","STHeitiSC-Light","Mi
     position: relative;
     background-color: #2aabe6;
     bottom: 0;
-    padding: 19px 25px;
+    padding: 20px 25px 10px 25px;
     font-size: 12px;
 }
 .footer-menu{
@@ -1101,7 +1101,7 @@ a.bg-pink:focus {
 /*nanbar-inner*/
 .navbar-brand {
     float: left;
-    height: 60px;
+    height: 80px;
     padding: 15px 10px;
     font-size: 18px;
     line-height: 20px;
@@ -1114,41 +1114,46 @@ a.bg-pink:focus {
     }
 }
 .navbar-inner{
-    background: #2aabe6;
-    height: 60px;
+    background: #fff;
+    height: 80px;
 }
 .navbar-inner .navbar-nav > li > a {
-    color: #fff;
-    padding: 20px;
+    color: #2aabe6;
+    padding: 30px 0 30px 30px;
 }
 .navbar-inner .navbar-nav > li > a:hover,
 .navbar-inner .navbar-nav > li > a:focus {
-    color: #fff;
+    color: #2aabe6;
     opacity: 0.9;
     background-color: transparent;
 }
 /*header-menu*/
 .inner-menu{
+    height: 40px;
+    background: #2aabe6;
 }
-
+.inner-menu.navbar {
+    min-height: 40px;
+    border: none;
+}
 .inner-menu .navbar-nav > li{
     margin-right: 15px;
 }
 .inner-menu .navbar-nav > li > a {
-    color: #999999;
-    border-bottom: 2px solid transparent;
+    color: #fff;
+    padding:10px;
+    font-size: 16px;
 }
 .inner-menu .navbar-nav > li > a:hover,
 .inner-menu .navbar-nav > li > a:focus {
-    color: #2aabe6;
-    background-color: transparent;
+    color: #fff;
+    background:#1998d5;
 }
 .inner-menu .navbar-nav > .active > a,
 .inner-menu .navbar-nav > .active > a:hover,
 .inner-menu .navbar-nav > .active > a:focus {
-    color: #2aabe6;
-    border-bottom: 2px solid #2aabe6;
-    background:none;
+    color: #fff;
+    background:#1998d5;
 }
 .nav .open > a,
 .nav .open > a:hover,
@@ -1195,26 +1200,6 @@ a.bg-pink:focus {
     color: #2aabe6;
     background: none;
 }
-/*.dropdown-menu:before {*/
-    /*position: absolute;*/
-    /*top: -8px;*/
-    /*left: 9px;*/
-    /*display: inline-block !important;*/
-    /*border-right: 8px solid transparent;*/
-    /*border-bottom: 8px solid #d8dee4;*/
-    /*border-left: 8px solid transparent;*/
-    /*content: '';*/
-/*}*/
-/*.dropdown-menu:after {*/
-    /*position: absolute;*/
-    /*top: -7px;*/
-    /*left: 10px;*/
-    /*display: inline-block !important;*/
-    /*border-right: 7px solid transparent;*/
-    /*border-bottom: 7px solid #fff;*/
-    /*border-left: 7px solid transparent;*/
-    /*content: '';*/
-/*}*/
 .navbar .nav > li .dropdown-menu {
     margin: 0;
 }
