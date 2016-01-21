@@ -12,7 +12,11 @@ module.exports = function (router) {
 
     router.get('/:id([a-f0-9]{24})', function*() {
         let eventId = this.params.id;
-        this.state.event = yield service.events.event.findById(eventId, true);
+        let event = yield service.events.event.findById(eventId, true);
+        if (event.enroll) {
+            event.enrollCount = yield service.events.enroll.getEnrollCount(event.enroll);
+        }
+        this.state.event = event;
         yield this.render('common/events/manage-event');
     });
 
