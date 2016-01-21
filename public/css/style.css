@@ -37,7 +37,7 @@
     transition: all 0.2s linear;
 }
 
-/*��������*/
+/*上传封面*/
 .images-cover{
     overflow: hidden;
 }
@@ -344,7 +344,7 @@
     margin-left: 260px;
 }
 
-/*������֧��*/
+/*联系我们*/
 .consultation ul{
     padding-top: 40px;
     padding-bottom: 30px;
@@ -439,7 +439,7 @@
 .t-homeworkClass-list li.hover {
     text-align: center;
 }
-/*����*/
+/*添加题目*/
 .btn-home{
     border: 1px dashed #439fe0!important;
 }
@@ -526,7 +526,7 @@
     margin-left: 0;
     margin-right: 0;
 }
-/*����*/
+/*题目答案解析*/
 .analysis-que{
     background: #f7f6f2;
     padding: 10px;
@@ -555,7 +555,7 @@
 .analysis-que p{
     display: inline-block;
 }
-/*��Ŀ��ȷ����*/
+/*题库详情*/
 .result-flag-w {
     width: 40px;
     height: 40px;
@@ -590,61 +590,6 @@
     float: left;
     text-align: right;
 }
-/*��У��ͨ*/
-.record{
-    width: 680px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
-
-/*���񴴽��б�*/
-.type-list{
-    margin-top: 15px;
-    overflow: hidden;
-    margin-bottom: 15px;
-}
-
-.type-list ul{
-    width: 100%;
-    margin-top: -15px;
-}
-
-.type-list ul li{
-    width: 269px;
-    height: 220px;
-    float: left;
-    text-align: center;
-    border: 2px solid #dfdfdf;
-    margin-right: 19px;
-    margin-top: 30px;
-}
-
-.type-list ul li:hover{
-    border: 2px #72d26e solid;
-    cursor: pointer;
-    color: #999;
-}
-.type-list .task-icon{
-    height:120px;
-}
-
-.type-list .task-icon .img{
-    margin-top: 25px;
-}
-
-.type-list .task-icon .task-title{
-    color: #999;
-    font-size: 18px;
-    margin-top: 28px;
-}
-.type-list .task-icon .task-content{
-    margin-top: 26px;
-    font-size: 14px;
-    color: #999;
-}
-.no-task:hover{
-    cursor: not-allowed;
-}
 
 /*teacher-home*/
 .w-hwk-icon {
@@ -670,7 +615,7 @@
     background-position: -128px -91px;
 }
 
-/*���ߴ���*/
+/*在线答疑*/
 .checkbox-que{
     padding-top: 2px;
     float: left;
@@ -796,7 +741,7 @@
     margin-bottom: 20px;
 }
 
-/*�༶����*/
+/*班级列表*/
 .class-add-group{
     height: 220px;
     border: 1px dashed #cccccc;
@@ -920,7 +865,7 @@
 .profile-header .pro-name p{
     display: inline-block;
 }
-/*�绰��¼*/
+/*学生详情*/
 .record-list .panel,.scores-list .panel{
     border-bottom: 1px solid #f8f6f2;
 }

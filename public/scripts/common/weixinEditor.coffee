@@ -14,7 +14,7 @@ template = (image)->
                 <i class='fa fa-plus f-info'></i>
            </div>
         </a>
-        <a id="deleteImg">
+        <a class="deleteImg" id="#{image._id.toString()}">
            <div class='delete-img'>
                 <i class='icon icon-shanchu f-pink'></i>
            </div>
@@ -71,6 +71,14 @@ module.exports = (opts)->
     content = $(this).closest(".img-item").find(".img-box").html()
     editor.execCommand('insertHtml',content);
   #删除图片
-  $('.wx-editor-template-content').on 'click', '#deleteImg', ()->
+  $('.wx-editor-template-content').on 'click', '.deleteImg', ()->
+    imageID = $(this).attr("id")
+    url = url: '/api/v1/medias/'+ imageID
+    console.log(url)
+    if(confirm("确定要删除?"))
+      $.ajax({
+        url:'/api/v1/medias/'+ imageID,
+        method: 'DELETE'
+      }).then ()->
 
 
