@@ -65,7 +65,6 @@ module.exports = function (router) {
                 let data = [enrollName.name, enrollName.phone, ...enrollName.fields, enrollName.createdTime];
                 conf.rows.push(data);
             }
-            console.log(conf);
             let result = nodeExcel.execute(conf);
             this.set('Content-Type', 'application/vnd.openxmlformats');
             this.set("Content-Disposition", "attachment; filename=" + "Report.xls");
