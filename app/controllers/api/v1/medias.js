@@ -21,7 +21,7 @@ module.exports = function (router) {
     });
 
     router.delete('/:id', function*() {
-        this.body = yield service.medias.deleteByIds({ids: [this.params.id]});
+        this.body = yield service.medias.deleteByIds(this.params.id);
     });
 
     return router;
