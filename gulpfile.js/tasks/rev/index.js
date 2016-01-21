@@ -1,5 +1,5 @@
-var gulp         = require('gulp')
-var gulpSequence = require('gulp-sequence')
+var gulp         = require('gulp');
+var gulpSequence = require('gulp-sequence');
 
 // If you are familiar with Rails, this task the equivalent of `rake assets:precompile`
 var revTask = function(cb) {
@@ -15,7 +15,7 @@ var revTask = function(cb) {
     // 5) Report filesizes
     'size-report',
   cb)
-}
+};
 
-gulp.task('rev', revTask)
-module.exports = revTask
+gulp.task('rev', revTask);
+module.exports = revTask;
