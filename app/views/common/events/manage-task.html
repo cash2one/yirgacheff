@@ -37,9 +37,7 @@
                 </div>
             </div>
             <div class="panel-body panel-min-h">
-                <div class="alert-2 alert-warning-2">
-                    提示：任务信息如果已经创建，则无法进行修改，如果需要请关闭任务后重新创建！
-                </div>
+
                 <input type="hidden" name="eventId" value="<<event._id.toString()>>">
                 <div class="task-list">
                     <task-item v-for="task in tasks"
@@ -112,7 +110,7 @@
         <div class="task-footer">
             <div class="task-info f-gray">
                 <span>奖励积分：<span class="f-info m-l-xs">{{task.scoreAward}}</span></span>
-                <span class="m-l-lg">完成人数：<span class="f-info m-l-xs">12</span></span>
+                <span class="m-l-lg">完成人数：<span class="f-info m-l-xs">{{task.participants}}</span></span>
             </div>
             <div class="task-control">
                 <a href="javascript:void(0)" @click="modify"><i class="icon icon-xiugai f-s-14 m-r-xxs"></i>修改任务</a>
