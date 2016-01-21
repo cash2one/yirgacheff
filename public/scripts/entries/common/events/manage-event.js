@@ -7,12 +7,10 @@ var app = require('../../../common/app');
 
 $(document).ready(function () {
     app();
+    var wxUrl = $("#wxUrl").val();
     window._bd_share_config = {
         common: {
-            bdText: '自定义分享内容',
-            bdDesc: '自定义分享摘要',
-            bdUrl: '自定义分享url地址',
-            bdPic: '自定义分享图片'
+            bdUrl: wxUrl
         },
         share: [{
             "bdStyle": "1",
