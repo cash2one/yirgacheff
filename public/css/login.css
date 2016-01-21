@@ -8,13 +8,17 @@ body {
     font-family:"微软雅黑","Helvetica Neue",Helvetica,"Hiragino Sans GB","Segoe UI","Microsoft Yahei",Tahoma,Arial,STHeiti,sans-serif;
     padding: 0;
 }
+.login-logo{
+    text-align: center;
+    padding-top: 60px;
+}
 .login-box{
     width: 370px;
     margin: 0 auto;
     background: #fff;
     padding: 20px 0 0 0;
     border-radius: 3px;
-    margin-top: 80px;
+    margin-top: 70px;
     border: 1px solid #dfdfdf;
 }
 .login-box .login-top{
