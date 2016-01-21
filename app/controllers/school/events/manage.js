@@ -2,8 +2,10 @@
  * Created by Frank on 16/1/12.
  */
 'use strict';
+const config = require('../../../../config/config');
 const service = require('../../../services');
 const nodeExcel = require('excel-export');
+const Qrcode = require('yaqrcode');
 
 
 module.exports = function (router) {
@@ -19,6 +21,9 @@ module.exports = function (router) {
             event.enrollCount = yield service.events.enroll.getEnrollCount(event.enroll);
         }
         this.state.event = event;
+        let wxUrl = config.wxUrl + '/event/' + eventId;
+        this.state.qrcode = Qrcode(wxUrl, {size: 170});
+        this.state.wxUrl = wxUrl;
         yield this.render('common/events/manage-event');
     });
 
