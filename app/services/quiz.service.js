@@ -10,16 +10,18 @@ const queryBuilder = require('../functions/queryBuilder');
 
 const Quiz = mongoose.model('Quiz');
 const Homework = mongoose.model('Homework');
+const Teacher = mongoose.model('Teacher');
 
 module.exports = {
 
     create: co.wrap(function*(user, data) {
+        let teacher = yield Teacher.findById(user._id).lean().exec();
         let quiz = new Quiz(data);
         _.assign(quiz, {
-            creator: user._id,
-            creatorDisplayName: user.displayName,
-            creatorUsername: user.username,
-            schoolId: user.schoolId
+            creator: teacher._id,
+            creatorDisplayName: teacher.displayName,
+            creatorUsername: teacher.username,
+            schoolId: teacher.schoolId
         });
         return yield quiz.save();
     }),
