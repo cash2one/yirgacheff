@@ -79,14 +79,17 @@ function initPassport(app) {
  */
 function initViewEngine(app) {
 
+    //只在生产环境开启缓存
+    let isCache = process.env.NODE_ENV === 'production';
     app.context.render = swig({
         root: path.resolve(__dirname, '../app/views'),
         autoescape: true,
         filters: require('./swigFilters'),
-        cache: false, // disable, set to false
+        cache: isCache, // disable, set to false
         ext: 'html',
         varControls: ['<<', '>>']
     });
+
 }
 
 

@@ -4,6 +4,7 @@
 'use strict';
 var moment = require('moment');
 
+require('fullcalendar/dist/fullcalendar.css');
 require('fullcalendar');
 require('fullcalendar/dist/lang/zh-cn');
 require('../../../common/formvalidator');
