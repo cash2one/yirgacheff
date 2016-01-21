@@ -1,6 +1,7 @@
 #微信编辑器事件
 
 upload = require './uploadifive'
+notify = require './notify'
 constants = require './constants'
 RESOURCE_URL = constants.RESOURCE_URL
 
@@ -73,12 +74,13 @@ module.exports = (opts)->
   #删除图片
   $('.wx-editor-template-content').on 'click', '.deleteImg', ()->
     imageID = $(this).attr("id")
-    url = url: '/api/v1/medias/'+ imageID
-    console.log(url)
+    url = '/api/v1/medias/'+ imageID
     if(confirm("确定要删除?"))
       $.ajax({
-        url:'/api/v1/medias/'+ imageID,
+        url: url,
         method: 'DELETE'
-      }).then ()->
+      }).then ()=>
+        $(this).closest("li").remove()
+        notify.success("删除成功")
 
 
