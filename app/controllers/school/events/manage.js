@@ -48,7 +48,7 @@ module.exports = function (router) {
                 caption: '电话',
                 type: 'string'
             }];
-            for (let i = 0; i < enroll.fields; i++) {
+            for (let i = 0; i < enroll.fields.length; i++) {
                 let field = enroll.fields[i];
                 conf.cols.push({
                     caption: field.label,
@@ -60,14 +60,15 @@ module.exports = function (router) {
                 type: 'date'
             });
             conf.rows = [];
-            for (let i = 0; i < enrollNames; i++) {
+            for (let i = 0; i < enrollNames.length; i++) {
                 let enrollName = enrollNames[i];
                 let data = [enrollName.name, enrollName.phone, ...enrollName.fields, enrollName.createdTime];
                 conf.rows.push(data);
             }
+            console.log(conf);
             let result = nodeExcel.execute(conf);
             this.set('Content-Type', 'application/vnd.openxmlformats');
-            this.set("Content-Disposition", "attachment; filename=" + "Report.xlsx");
+            this.set("Content-Disposition", "attachment; filename=" + "Report.xls");
             this.body = result;
         } else {
             this.body = '暂时没有报名';
