@@ -19,6 +19,7 @@
     "datatables": "^1.10.9",
     "docxtemplater": "^1.2.1",
     "docxtemplater-image-module": "^0.3.4",
+    "excel-export": "^0.4.1",
     "exports-loader": "^0.6.2",
     "expose-loader": "^0.7.1",
     "formidable": "^1.0.17",

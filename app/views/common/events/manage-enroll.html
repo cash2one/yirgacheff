@@ -2,6 +2,7 @@
 {% block content %}
 <!-- END OF BREADCRUMBS -->
 <div class="row" id="enrollApp">
+    <input type="hidden" id="eventId" value="<<eventId>>">
     <div class="col-xs-2">
         <div class="page-sidebar shadow">
             <ul class="nav nav-pills nav-stacked">
@@ -29,34 +30,35 @@
             <div class="panel-heading clearfix">
                 <h4 class="panel-title">报名管理</h4>
                 <div class="panel-control">
-                    <button class="btn btn-default btn-sm"><i class="fa fa-cloud-download m-r-xxs"></i>下载名单</button>
+                    <button class="btn btn-default btn-sm" id="exportExcel">
+                        <i class="fa fa-cloud-download m-r-xxs"></i>导出excel
+                    </button>
                 </div>
             </div>
             <div class="panel-body">
                 {% if enroll %}
-                <table class="table">
+                <table class="table" id="enrollTable">
                     <thead>
                     <tr>
                         <th>姓名</th>
                         <th>手机</th>
                         {% for field in enroll.fields %}
-                        <th>
-                            <<field.label>>
-                        </th>
+                        <th><<field.label>></th>
                         {% endfor %}
+                        <th>报名时间</th>
                     </tr>
                     </thead>
                     <tbody>
                     {% for enrollName in enrollNames %}
                     <tr>
-                        <td><<enrollName.name>></td>
-                        <td><<enrollName.phone>></td>
+                        <td> <<enrollName.name>> </td>
+                        <td> <<enrollName.phone>> </td>
                         {% for field in enrollName.fields %}
-                          <td><<field>></td>
+                          <td> <<field>> </td>
                         {% endfor %}
+                        <td><< enrollName.createdTime |date('Y-m-d',-480)>></td>
                     </tr>
                     {% endfor %}
-
                     </tbody>
                 </table>
                 {% else %}

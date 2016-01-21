@@ -14,6 +14,11 @@ module.exports = {
         return yield EnrollNames.find({
             enroll: enroll
         }).exec();
+    }),
+
+    getEnrollCount: co.wrap(function*(enroll) {
+        return yield EnrollNames.count({enroll: enroll}).exec();
+
     })
 
 };
