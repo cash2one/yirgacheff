@@ -1301,3 +1301,17 @@
 .a_disable{
     cursor: no-drop;
 }
+
+/*下载录音软件页面*/
+.audio-guider{
+    background-color: #fff;
+    background: url('../images/audio-guider.png') center no-repeat;
+    height: 2000px;
+}
+.audio-recorder-software{
+    position: absolute;
+    margin-top: 260px;
+    left: 50%;
+    margin-left: -50px;
+}
+

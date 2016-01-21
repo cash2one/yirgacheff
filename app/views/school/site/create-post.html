@@ -80,14 +80,18 @@
                     </div>
                     <div class="form-group">
                         <label class="col-xs-1 control-label" for="useSlide">首页文章：</label>
-                        <div class="col-xs-8">
-                            <input type="radio" name="isSlide" id="useSlide" value="1"
-                                   {% if post && post.isSlide %} checked {% endif %}>
-                            <span class="">是</span>
-                            <input type="radio" name="isSlide" id="noSlide" value="0"
-                                   {% if !post || !post.isSlide %} checked {% endif %}>
-                            <span class="">否</span>
-                        </div>
+                            <div class="radio c-radio col-xs-1">
+                                <label>
+                                    <input type="radio" name="isSlide" id="useSlide" value="1"
+                                           {% if post && post.isSlide %} checked {% endif %}>
+                                    <span class="fa fa-circle"></span>是</label>
+                            </div>
+                            <div class="radio c-radio col-xs-1">
+                                <label>
+                                    <input type="radio" name="isSlide" id="noSlide" value="0"
+                                           {% if !post || !post.isSlide %} checked {% endif %}>
+                                    <span class="fa fa-circle"></span>否</label>
+                            </div>
                     </div>
                     <div class="form-group images-cover">
                         <label class="col-xs-1 control-label">设置封面：</label>
