@@ -62,7 +62,6 @@ $ ->
         text: ''
       tooltip:
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-
       plotOptions:
         pie:
           allowPointSelect: true,
@@ -86,6 +85,8 @@ $ ->
         fontFamily: '\u5fae\u8f6f\u96c5\u9ed1' #微软雅黑
       }
     },
+    colors: ['#56abe4', '#fb6d9d', '#ffbd4a', '#f7a35c', '#8085e9',
+             '#f15c80', '#e4d354', '#8085e8', '#8d4653', '#91e8e1']
     xAxis: {
       categories: []
     },
@@ -96,6 +97,9 @@ $ ->
           fontFamily: '\u5fae\u8f6f\u96c5\u9ed1' #微软雅黑
         }
       }
+    },
+    credits: {
+      enabled:false
     },
     series: [{
       type: 'column',

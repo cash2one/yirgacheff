@@ -133,7 +133,7 @@
                 {% for cla in classes %}
                 <li {% if cla._id.toString()=== clazz._id.toString() %} class="active" {% endif %}>
                     <a href="/teacher/classes/<<cla._id.toString()>>">
-                        <<cla.className>>
+                        <<cla.className  | subTitle(6)>>
                     </a>
                 </li>
                 {% endfor %}
@@ -220,9 +220,10 @@
                                 <label for="password" class="col-xs-2 control-label">密码：</label>
                                 <div class="col-xs-9">
                                     <input class="form-control validate" type="text" name="password"
+                                           value="123456"
                                            id="password"
                                            data-display="密码"
-                                           data-rules="required">
+                                           data-rules="required|min_length[6]">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -231,8 +232,15 @@
                                     <input class="form-control validate"
                                            type="text"
                                            name="phone"
+                                           data-rules="required|exact_length[11]"
                                            data-display="电话"
                                            id="phone">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="studentRemark" class="col-xs-2 control-label">备注：</label>
+                                <div class="col-xs-9">
+                                    <textarea class="form-control" rows="3" name="remark" id="studentRemark"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -311,7 +319,7 @@
                             <input class="form-control validate" type="text" name="password"
                                    id="passwordId"
                                    data-display="密码"
-                                   data-rules="required">
+                                   data-rules="required|min_length[6]">
                         </div>
                     </div>
                     <div class="form-group">
@@ -321,7 +329,14 @@
                                    type="text"
                                    name="phone"
                                    data-display="电话"
-                                   id="phoneId">
+                                   id="phoneId"
+                                   data-rules="required|exact_length[11]">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentRemarkId" class="col-xs-2 control-label">备注：</label>
+                        <div class="col-xs-9">
+                            <textarea class="form-control" rows="3" name="remark" id="studentRemarkId"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
@@ -348,8 +363,8 @@
             <div class="modal-body">
                 <form class="form-horizontal m-t-sm" id="scoreForm" name="scoreForm">
                     <div class="form-group">
-                        <label for="scoreOpt" class="col-xs-3 control-label">操作：</label>
-                        <div class="col-xs-8">
+                        <label for="scoreOpt" class="col-xs-2 control-label">操作：</label>
+                        <div class="col-xs-9">
                             <select class="form-control" name="operation" id="scoreOpt">
                                 <option value="0">增加</option>
                                 <option value="1">减少</option>
@@ -357,8 +372,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="scoreValue" class="col-xs-3 control-label">积分：</label>
-                        <div class="col-xs-8">
+                        <label for="scoreValue" class="col-xs-2 control-label">积分：</label>
+                        <div class="col-xs-9">
                             <input class="form-control validate" type="text" name="score"
                                    id="scoreValue"
                                    data-rules="required|integer"
@@ -366,14 +381,14 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="remark" class="col-xs-3 control-label">备注：</label>
-                        <div class="col-xs-8">
+                        <label for="remark" class="col-xs-2 control-label">备注：</label>
+                        <div class="col-xs-9">
                             <textarea class="form-control" name="remark" id="remark" cols="20" rows="10"
                                       placeholder="填写积分操作理由"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-xs-offset-3 col-xs-8">
+                        <div class="col-xs-offset-2 col-xs-9">
                             <button type="submit" class="btn btn-info" id="save-score">确定</button>
                             <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
                         </div>
@@ -396,8 +411,8 @@
             <div class="modal-body">
                 <form class="form-horizontal m-t-md" id="classForm" name="classForm">
                     <div class="form-group">
-                        <label class="col-xs-4 control-label">班级名称：</label>
-                        <div class="col-xs-7">
+                        <label class="col-xs-3 control-label">班级名称：</label>
+                        <div class="col-xs-8">
                             <input class="form-control validate"
                                    type="text" placeholder="比如：新概念英语1班"
                                    name="className"
@@ -406,8 +421,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-4 control-label">上课时间：</label>
-                        <div class="col-xs-7">
+                        <label class="col-xs-3 control-label">上课时间：</label>
+                        <div class="col-xs-8">
                             <input class="form-control validate"
                                    type="text" placeholder="比如：每周五上午9点"
                                    name="courseTime"
@@ -416,7 +431,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-xs-offset-4 col-xs-7">
+                        <div class="col-xs-offset-3 col-xs-8">
                             <button type="submit" class="btn btn-info">确定</button>
                             <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
                         </div>

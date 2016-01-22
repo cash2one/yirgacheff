@@ -48,7 +48,9 @@ ImageComponent = Vue.extend
   template: """
       <div class='row quiz-item'>
         <div class="col-xs-12 m-b-md">
-              <input placeholder="这是一个图片题" type="text" class="form-control" v-model='question'>
+           <textarea class="form-control question-title" placeholder="这是一个图片题"
+            onpropertychange="this.style.height=this.scrollHeight + 'px'"
+            oninput="this.style.height=this.scrollHeight + 'px'" v-model='question'></textarea>
         </div>
         <div class="col-xs-12 m-b-md">
              <e-option v-for='option in choices'

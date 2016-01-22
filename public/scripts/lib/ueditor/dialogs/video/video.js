@@ -112,6 +112,7 @@
 
     /**
      * 将单个视频信息插入编辑器中
+     * 修改：处理通用视频代码iframe   BY oceanking 20150309
      */
     function insertSingle(){
         var width = $G("videoWidth"),
@@ -120,12 +121,34 @@
             align = findFocus("videoFloat","name");
         if(!url) return false;
         if ( !checkNum( [width, height] ) ) return false;
-        editor.execCommand('insertvideo', {
-            url: convert_url(url),
-            width: width.value,
-            height: height.value,
-            align: align
-        }, isModifyUploadVideo ? 'upload':null);
+
+        url = utils.trim(url);
+        if(/^<iframe/.test(url)){
+            var conUrl = '';
+            if(/src=\"[^\s"]+/i.test(url)){
+                conUrl = url.match(/src=\"[^\s"]+/i)[0].substr(5);
+            }
+            var newIframe = editor.document.createElement("iframe");
+            var div;
+            newIframe.setAttribute("src",/http:\/\/|https:\/\//ig.test(conUrl) ? conUrl : "http://"+conUrl);
+            /^[1-9]+[.]?\d*$/g.test( width.value ) ? newIframe.setAttribute("width",width.value) : "";
+            /^[1-9]+[.]?\d*$/g.test( height.value ) ? newIframe.setAttribute("height",height.value) : "";
+            //newIframe.setAttribute("scrolling","no");
+            newIframe.setAttribute("frameborder","0",0);
+            newIframe.setAttribute("allowfullscreen","allowfullscreen");
+            newIframe.setAttribute("align",align);
+            div = editor.document.createElement("div");
+            div.appendChild(newIframe);
+            console.log(div.innerHTML);
+            editor.execCommand("inserthtml",div.innerHTML);
+        } else {
+            editor.execCommand('insertvideo', {
+                url: convert_url(url),
+                width: width.value,
+                height: height.value,
+                align: align
+            }, isModifyUploadVideo ? 'upload':null);
+        }
     }
 
     /**
@@ -155,7 +178,7 @@
      */
     function findFocus( id, returnProperty ) {
         var tabs = $G( id ).children,
-                property;
+            property;
         for ( var i = 0, ci; ci = tabs[i++]; ) {
             if ( ci.className=="focus" ) {
                 property = ci.getAttribute( returnProperty );
@@ -184,21 +207,21 @@
     }
 
     /**
-      * 检测传入的所有input框中输入的长宽是否是正数
-      * @param nodes input框集合，
-      */
-     function checkNum( nodes ) {
-         for ( var i = 0, ci; ci = nodes[i++]; ) {
-             var value = ci.value;
-             if ( !isNumber( value ) && value) {
-                 alert( lang.numError );
-                 ci.value = "";
-                 ci.focus();
-                 return false;
-             }
-         }
-         return true;
-     }
+     * 检测传入的所有input框中输入的长宽是否是正数
+     * @param nodes input框集合，
+     */
+    function checkNum( nodes ) {
+        for ( var i = 0, ci; ci = nodes[i++]; ) {
+            var value = ci.value;
+            if ( !isNumber( value ) && value) {
+                alert( lang.numError );
+                ci.value = "";
+                ci.focus();
+                return false;
+            }
+        }
+        return true;
+    }
 
     /**
      * 数字判断
@@ -209,24 +232,24 @@
     }
 
     /**
-      * 创建图片浮动选择按钮
-      * @param ids
-      */
-     function createAlignButton( ids ) {
-         for ( var i = 0, ci; ci = ids[i++]; ) {
-             var floatContainer = $G( ci ),
-                     nameMaps = {"none":lang['default'], "left":lang.floatLeft, "right":lang.floatRight, "center":lang.block};
-             for ( var j in nameMaps ) {
-                 var div = document.createElement( "div" );
-                 div.setAttribute( "name", j );
-                 if ( j == "none" ) div.className="focus";
-                 div.style.cssText = "background:url(images/" + j + "_focus.jpg);";
-                 div.setAttribute( "title", nameMaps[j] );
-                 floatContainer.appendChild( div );
-             }
-             switchSelect( ci );
-         }
-     }
+     * 创建图片浮动选择按钮
+     * @param ids
+     */
+    function createAlignButton( ids ) {
+        for ( var i = 0, ci; ci = ids[i++]; ) {
+            var floatContainer = $G( ci ),
+                nameMaps = {"none":lang['default'], "left":lang.floatLeft, "right":lang.floatRight, "center":lang.block};
+            for ( var j in nameMaps ) {
+                var div = document.createElement( "div" );
+                div.setAttribute( "name", j );
+                if ( j == "none" ) div.className="focus";
+                div.style.cssText = "background:url(images/" + j + "_focus.jpg);";
+                div.setAttribute( "title", nameMaps[j] );
+                floatContainer.appendChild( div );
+            }
+            switchSelect( ci );
+        }
+    }
 
     /**
      * 选择切换
@@ -263,20 +286,35 @@
 
     /**
      * 根据url生成视频预览
+     * 修改：处理通用视频代码iframe   BY oceanking 20150309
      * @param url
      */
     function createPreviewVideo(url){
         if ( !url )return;
+        url = utils.trim(url);
+        if(/^<iframe/.test(url)){
+            var conUrl = '';
+            if(/src=\"[^\s"]+/i.test(url)){
+                conUrl = url.match(/src=\"[^\s"]+/i)[0].substr(5);
+            }
+            $G("preview").innerHTML = '<div class="previewMsg"><span>'+lang.urlError+'</span></div>'+
+                '<iframe class="previewVideo"' +
+                ' src="' + conUrl + '"' +
+                ' width="' + 420  + '"' +
+                ' height="' + 280  + '"' +
+                ' frameborder=0 allowfullscreen>' +
+                '</iframe>';
+        } else {
+            var conUrl = convert_url(url);
 
-        var conUrl = convert_url(url);
-
-        $G("preview").innerHTML = '<div class="previewMsg"><span>'+lang.urlError+'</span></div>'+
-        '<embed class="previewVideo" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"' +
-            ' src="' + conUrl + '"' +
-            ' width="' + 420  + '"' +
-            ' height="' + 280  + '"' +
-            ' wmode="transparent" play="true" loop="false" menu="false" allowscriptaccess="never" allowfullscreen="true" >' +
-        '</embed>';
+            $G("preview").innerHTML = '<div class="previewMsg"><span>'+lang.urlError+'</span></div>'+
+                '<embed class="previewVideo" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"' +
+                ' src="' + conUrl + '"' +
+                ' width="' + 420  + '"' +
+                ' height="' + 280  + '"' +
+                ' wmode="transparent" play="true" loop="false" menu="false" allowscriptaccess="never" allowfullscreen="true" >' +
+                '</embed>';
+        }
     }
 
 

@@ -16,7 +16,7 @@
                            data-rules="required"/>
                     <input type="hidden" value="<<post._id.toString()>>" id="postId" name="postId"/>
                     <div class="form-group">
-                        <label class="col-xs-1 control-label" for="postTitle">文章标题：</label>
+                        <label class="col-xs-1 control-label" for="postTitle">文章标题</label>
 
                         <div class="col-xs-8">
                             <input class="form-control validate" type="text" id="postTitle"
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-1 control-label" for="category">文章分类：</label>
+                        <label class="col-xs-1 control-label" for="category">文章分类</label>
                         <div class="col-xs-8">
                             <select name="category" id="category" class="form-control validate"
                                     data-rules="required"
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-1 control-label" for="visitCount">阅读次数：</label>
+                        <label class="col-xs-1 control-label" for="visitCount">阅读次数</label>
 
                         <div class="col-xs-8">
                             <input type="text" class="form-control validate" name="visitCount"
@@ -60,7 +60,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-1 control-label" for="shareCount">分享次数：</label>
+                        <label class="col-xs-1 control-label" for="shareCount">分享次数</label>
 
                         <div class="col-xs-8">
                             <input type="text" class="form-control" name="shareCount"
@@ -70,7 +70,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-1 control-label" for="like">点赞次数：</label>
+                        <label class="col-xs-1 control-label" for="like">点赞次数</label>
                         <div class="col-xs-8">
                             <input type="text" class="form-control" name="like"
                                    id="like" value="<<post && post.like || 0>>"
@@ -79,7 +79,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-1 control-label" for="useSlide">首页文章：</label>
+                        <label class="col-xs-1 control-label" for="useSlide">首页文章</label>
                             <div class="radio c-radio col-xs-1">
                                 <label>
                                     <input type="radio" name="isSlide" id="useSlide" value="1"
@@ -94,7 +94,7 @@
                             </div>
                     </div>
                     <div class="form-group images-cover">
-                        <label class="col-xs-1 control-label">设置封面：</label>
+                        <label class="col-xs-1 control-label">设置封面</label>
                         <div class="col-xs-4">
                             <img class="b" width="345px" height="220px" id="indexImage"
                                  {% if post %}
@@ -111,7 +111,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-1 control-label">详细内容：</label>
+                        <label class="col-xs-1 control-label">详细内容</label>
                         <div class="col-xs-5">
                             {%include '../../components/weixinEditor.html' %}
                         </div>
