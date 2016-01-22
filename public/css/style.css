@@ -473,7 +473,7 @@ xcredits
 
 .editor .wx-editor-template-content{
     width: 438px;
-    height: 623px;
+    height: 544px;
     border: 1px solid #d4d4d4;
     border-top:none;
     border-radius: 0 0 4px 4px;
@@ -851,6 +851,13 @@ xcredits
 .images-group img{
     width: 154px;
     height: 154px;
+}
+.question-title{
+    word-break: break-all;
+    word-wrap: break-word;
+    resize: none;
+    overflow-y:hidden;
+    outline:none;
 }
 .quest-number{
     width: 32px;

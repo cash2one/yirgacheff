@@ -7,7 +7,9 @@ FillBlankComponent = Vue.extend(
   template: """
      <div class='row quiz-item'>
         <div class="col-xs-12 m-b-md">
-            <input placeholder="这是一个填空题目" type="text" class="form-control" v-model='question'>
+            <textarea class="form-control question-title" placeholder="这是一个填空题目"
+            onpropertychange="this.style.height=this.scrollHeight + 'px'"
+            oninput="this.style.height=this.scrollHeight + 'px'" v-model='question'></textarea>
         </div>
         <div class="col-xs-12 m-b-md">
             <input placeholder="答案" type="text" class="form-control" v-model='answer'>
