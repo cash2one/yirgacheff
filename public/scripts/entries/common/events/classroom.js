@@ -23,7 +23,9 @@ $(document).ready(function () {
         template: '#videoTemplate',
         methods: {
             delete: function () {
-                this.$dispatch('delete-video', this.index);
+                if (confirm("确定要删除该视频?")) {
+                    this.$dispatch('delete-video', this.index);
+                }
             },
             edit: function () {
                 this.$dispatch('edit-video', this.index);
@@ -47,9 +49,9 @@ $(document).ready(function () {
                 if (!video.link || video.link === "") {
                     return notify.danger("链接不能为空");
                 }
-                if (video.link.indexOf("iframe") === -1 && video.link.indexOf("embed") === -1) {
-                    var handleLink = '<embed src="'+ video.link +'" allowFullScreen="true" quality="high" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>';
-                    video.link = handleLink;
+                console.log(video.link.indexOf("iframe"))
+                if (video.link.indexOf("iframe") === -1) {
+                    return notify.danger("错误的视频链接");
                 }
                 if (!video.title || video.title === "") {
                     return notify.danger("标题不能为空");
