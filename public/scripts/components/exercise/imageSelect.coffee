@@ -73,7 +73,7 @@ ImageComponent = Vue.extend
           </select>
        </div>
         <div class="col-xs-12 m-t-xs">
-          <textarea placeholder="答案解析" class="form-control" rows="3"></textarea>
+          <textarea placeholder="答案解析" class="form-control" rows="3" v-model='analysis'></textarea>
         </div>
      </div>
   """
