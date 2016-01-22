@@ -1,4 +1,7 @@
 {% extends '../../layout.html' %}
+{% block css %}
+<link href="//cdn.bootcss.com/fullcalendar/2.6.0/fullcalendar.min.css" rel="stylesheet">
+{% endblock %}
 {% block content %}
 <!-- END OF BREADCRUMBS -->
 
@@ -16,7 +19,6 @@
 </div>
 
 
-
 <div class="modal fade" id="scheduleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -27,7 +29,8 @@
                     <a href="#" class="dropdown-toggle f-gray" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">更多 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="del-btn" href="javascript:void(0)"><i class="glyphicon glyphicon-trash f-pink m-r-xs"></i>删除日程</a></li>
+                        <li><a class="del-btn" href="javascript:void(0)"><i
+                                class="glyphicon glyphicon-trash f-pink m-r-xs"></i>删除日程</a></li>
                     </ul>
                 </div>
                 <h4 class="modal-title" id="myModalLabel"> 日程信息</h4>
@@ -77,7 +80,9 @@
 </div>
 {% endblock %}
 {% block javascript %}
+<script src="//cdn.bootcss.com/moment.js/2.11.1/moment.min.js"></script>
+<script src="//cdn.bootcss.com/fullcalendar/2.6.0/fullcalendar.min.js"></script>
+<script src="//cdn.bootcss.com/fullcalendar/2.6.0/lang/zh-cn.js"></script>
 <script src="/js/entries/school/scheduler/list-schedulers.js"></script>
-
 
 {% endblock %}

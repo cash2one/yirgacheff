@@ -7,7 +7,6 @@ const path = require('path');
 const fs = require('fs');
 const walk = require('walk');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 const bower_modules = path.resolve(process.cwd(), './bower_components');
@@ -31,7 +30,6 @@ function makeConf(env) {
             alias: sourceMap()
         },
         module: {
-            noParse: [/moment/],
             loaders: [
                 {test: /\.coffee$/, loader: "coffee-loader"},
                 {test: /\.(coffee\.md|litcoffee)$/, loader: "coffee-loader?literate"},
@@ -39,7 +37,9 @@ function makeConf(env) {
             ]
         },
         externals: {
-            "jquery": "window.jQuery"
+            "jquery": "window.jQuery",
+            "moment": true
+
         },
         plugins: []
     };
@@ -70,13 +70,10 @@ function makeConf(env) {
     if (env === 'production') {
         let cssLoader = {
             test: /\.css$/,
-            loader: ExtractTextPlugin.extract('style', 'css?minimize') // enable minimize
+            loader: "style-loader!css-loader"
         };
         webpackConfig.module.loaders.push(cssLoader);
         webpackConfig.plugins.push(
-            new ExtractTextPlugin('css/[name].css', {
-                allChunks: false
-            }),
             new UglifyJsPlugin()
         )
     }
@@ -109,7 +106,6 @@ function genEntries(srcDir) {
 
 function sourceMap() {
     return {
-        'moment': 'moment/moment.js',
         'slimscroll': 'jquery-slimscroll/jquery.slimscroll.min',
         'highcharts': 'highcharts/highcharts.js',
         'datatables': 'datatables/media/js/jquery.dataTables.js',

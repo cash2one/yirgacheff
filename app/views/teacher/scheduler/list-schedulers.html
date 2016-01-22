@@ -1,4 +1,7 @@
 {% extends '../../layout.html' %}
+{% block css %}
+<link href="//cdn.bootcss.com/fullcalendar/2.6.0/fullcalendar.min.css" rel="stylesheet">
+{% endblock %}
 {% block content %}
 <!-- END OF BREADCRUMBS -->
 
@@ -77,7 +80,10 @@
 </div>
 {% endblock %}
 {% block javascript %}
+<script src="//cdn.bootcss.com/moment.js/2.11.1/moment.min.js"></script>
+<script src="//cdn.bootcss.com/fullcalendar/2.6.0/fullcalendar.min.js"></script>
+<script src="//cdn.bootcss.com/fullcalendar/2.6.0/lang/zh-cn.js"></script>
 <script src="/js/entries/teacher/scheduler/list-schedulers.js"></script>
->
+
 
 {% endblock %}
