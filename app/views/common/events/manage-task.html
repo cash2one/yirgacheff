@@ -113,7 +113,7 @@
                 <span class="m-l-lg">完成人数：<span class="f-info m-l-xs">{{task.participants}}</span></span>
             </div>
             <div class="task-control">
-                <a href="javascript:void(0)" @click="modify"><i class="icon icon-xiugai f-s-14 m-r-xxs"></i>修改任务</a>
+                <a href="javascript:void(0)" @click="modify" v-show="task.state===0"><i class="icon icon-xiugai f-s-14 m-r-xxs"></i>修改任务</a>
                 <a href="#" @click="close" v-show="task.state===0"><i
                         class="icon icon-shezhi f-s-14 m-r-xxs"></i>关闭任务</a>
                 <a href="#" @click="open" v-show="task.state===1"><i class="icon icon-shezhi f-s-14 m-r-xxs"></i>打开任务</a>
