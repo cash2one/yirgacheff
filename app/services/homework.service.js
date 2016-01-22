@@ -206,7 +206,7 @@ module.exports = {
         _.forEach(wrongCollect, wrong => {
             let exercise = exercises[wrong.sequence - 1];
             if (exercise) {
-                exercise.wrongAnswer = wrong.wrongAnswer;
+                exercise.wrongAnswer = wrong.answer;
             }
         });
         _.forEach(audioAnswers, audio => {
