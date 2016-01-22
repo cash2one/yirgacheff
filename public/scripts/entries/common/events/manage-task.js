@@ -6,6 +6,7 @@
 
 require('../../../common/formvalidator');
 var app = require('../../../common/app');
+var strftime = require('strftime');
 var _ = require('lodash');
 var Vue = require('vue');
 var VueAsyncData = require('vue-async-data');
@@ -14,6 +15,9 @@ Vue.use(VueAsyncData);
 $(document).ready(function () {
     app = app();
     var eventId = $("#eventId").val();
+    Vue.filter('date', function (value) {
+        return strftime('%F %T', new Date(value));
+    });
     Vue.component('task-modal', {
         data: function () {
             return {

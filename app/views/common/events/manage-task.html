@@ -106,7 +106,7 @@
             <span class="label label-light-info pull-right" v-show="task.state===0">进行中</span>
             <span class="label label-light-success pull-right" v-show="task.state===1">已关闭</span>
         </div>
-        <p class="f-gray">创建时间：{{task.createdTime}}</p>
+        <p class="f-gray">创建时间：{{task.createdTime | date}}</p>
         <div class="task-footer">
             <div class="task-info f-gray">
                 <span>奖励积分：<span class="f-info m-l-xs">{{task.scoreAward}}</span></span>
