@@ -473,12 +473,14 @@ xcredits
 
 .editor .wx-editor-template-content{
     width: 438px;
-    height: 544px;
-    padding: 20px;
+    height: 623px;
     border: 1px solid #d4d4d4;
     border-top:none;
     border-radius: 0 0 4px 4px;
     overflow: hidden;
+}
+.editor .wx-editor-template-content .tab-content{
+    padding: 20px;
 }
 .editor .wx-editor-template-list ul{
 }
