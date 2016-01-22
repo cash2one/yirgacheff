@@ -3,16 +3,16 @@ var app = require('../../../common/app');
 var strftime = require('strftime');
 var _ = require('underscore');
 var Vue = require('vue');
+var Pagination = require('../../../components/Pagination');
 var VueAsyncData = require('vue-async-data');
 Vue.use(VueAsyncData);
-
 var TEMPLATES = {
+    'all': '全部',
     'article': '文章',
     'activity': '活动',
     'audition': '试听课',
     'classroom': '在线课堂'
 };
-
 $(document).ready(function () {
     app();
     Vue.filter('date', function (value) {
@@ -25,48 +25,55 @@ $(document).ready(function () {
         props: ['event'],
         template: "#eventItem",
         computed: {
-            eventType: function () {
+            templateName: function () {
                 return TEMPLATES[this.event.template];
             }
         }
     });
+
     new Vue({
         el: "#eventList",
+        components: {
+            'Pagination': Pagination
+        },
         data: {
-            cache: [],
-            currentCategory: '全部活动'
+            limit: 10,
+            total: 0,
+            events: [],
+            template: 'all'
         },
         asyncData: function (resolve, reject) {
-            $.get('/api/v1/events').then(function (events) {
+            $.get('/api/v1/events?offset=0&limit=10').then(function (res) {
                 resolve({
-                    cache: events
+                    events: res.events,
+                    total: res.total
                 })
             });
         },
         methods: {
-            changeState: function (state) {
+            fetch: function (page) {
                 var self = this;
-                $.get('/api/v1/events?state=' + state).then(function (events) {
-                    self.events = events
+                page = page || 1;
+                var skip = (page - 1) * this.limit;
+                var url = '/api/v1/events?skip=' + skip + '&limit=' + self.limit + '&template=' + this.template;
+                $.get(url).then(function (res) {
+                    self.events = res.events;
+                    self.total = res.total;
                 });
             },
-            shouldShow: function (category) {
-                var current = this.currentCategory;
-                return current === '' || category === current;
-            },
-            selectCategory: function (category) {
-                this.currentCategory = category;
+            pageChange: function (page) {
+                this.fetch(page);
             }
         },
         computed: {
-            events: function () {
-                var vm = this;
-                if (vm.currentCategory === '全部活动') {
-                    return vm.cache;
-                }
-                return _.filter(vm.cache, function (event) {
-                    return TEMPLATES[event.template] === vm.currentCategory;
-                });
+            templateName: function () {
+                return TEMPLATES[this.template];
+            }
+        },
+
+        watch: {
+            'template': function (val) {
+                this.fetch();
             }
         }
     });

@@ -4,9 +4,9 @@ var notify = require('../../../common/notify');
 var _ = require('underscore');
 var strftime = require('strftime');
 var Vue = require('vue');
+var Pagination = require('../../../components/Pagination');
 var VueAsyncData = require('vue-async-data');
 Vue.use(VueAsyncData);
-
 
 $(document).ready(function () {
     app();
@@ -37,7 +37,9 @@ $(document).ready(function () {
 
     new Vue({
         el: "#postApp",
-
+        components: {
+            'Pagination': Pagination
+        },
         data: {
             cache: [],
             categories: [],

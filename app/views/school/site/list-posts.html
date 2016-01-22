@@ -25,6 +25,7 @@
                     <p>赶快去<a class="f-info" href="/school/posts/create">发布</a>吧！</p>
                 </div>
             </div>
+            <Pagination :total="total" :limit="limit" @page-change="pageChange"> </Pagination>
         </div>
         <div class="col-xs-2">
             <div class="category-sidebar shadow">

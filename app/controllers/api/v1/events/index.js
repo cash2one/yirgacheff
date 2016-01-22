@@ -10,10 +10,21 @@ const eventService = require('../../../../services').events.event;
 module.exports = function (router) {
 
     router.get('/', function*() {
-        let state = this.query.state || 0;
-        this.body = yield eventService.findBySchool(this.user.schoolId, {
-            where: {state: state}
-        });
+        let query = this.query;
+        let filter = {};
+        if (query.limit) {
+            filter.limit = query.limit;
+        }
+        if (query.skip) {
+            filter.skip = query.skip;
+        }
+        if (query.template && query.template !== 'all') {
+            filter.where = {template: query.template};
+        }
+        this.body = yield  {
+            events: eventService.findBySchool(this.user.schoolId, filter),
+            total: eventService.countBySchool(this.user.schoolId, query.template)
+        }
     });
 
     router.delete('/:id([a-f0-9]{24})', function*() {
