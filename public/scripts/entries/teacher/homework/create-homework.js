@@ -34,7 +34,6 @@ $(document).ready(function () {
         },
         methods: {
             addClass: function (e) {
-                console.log(classes);
                 var selected = $(e.target).closest('li');
                 var id = selected.attr('id');
                 selected.toggleClass('active');
