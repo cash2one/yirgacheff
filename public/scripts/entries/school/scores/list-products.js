@@ -33,7 +33,7 @@ $(document).ready(function () {
                 method: 'DELETE'
             }).then(function () {
                 notify.success("删除商品成功");
-                self.remove();
+                current.remove();
             });
         }
     });

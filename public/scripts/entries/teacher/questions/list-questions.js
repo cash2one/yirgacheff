@@ -80,7 +80,7 @@ $(document).ready(function () {
             {'data': 'teacher.displayName'},
             {
                 'data': null,
-                'defaultContent': '<a  class="f-info detail"><i class="icon icon-xiangqing"></i></a>&nbsp;&nbsp;'
+                'defaultContent': '<a  class="f-info detail">详情</a>'
             }
         ],
         'columnDefs': [

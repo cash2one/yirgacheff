@@ -31,8 +31,8 @@ $(document).ready(function () {
             {'data': 'department'},
             {
                 'data': null,
-                'defaultContent': '<a class="f-info m-r-xs edit" title="修改"><i class="icon icon-xiugai"></i></a>' +
-                '<a class="f-pink delete" data-toggle="confirmation" title="禁用"><i class="icon icon-jinzhi"></i></a>'
+                'defaultContent': '<a class="f-info m-r-xs edit" title="修改">修改</a>' +
+                '<a class="f-info delete" data-toggle="confirmation" title="禁用">禁用</a>'
             }
         ]
     });

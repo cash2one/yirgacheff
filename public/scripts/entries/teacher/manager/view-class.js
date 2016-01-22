@@ -41,9 +41,9 @@ $(document).ready(function () {
             {'data': 'score'},
             {
                 'data': null,
-                'defaultContent': '<a href="javascript:void(0)" class="m-r-xs f-info view" title="查看"><i class="icon icon-xiangqing"></i></a>' +
-                '<a href="javascript:void(0)" class="f-info edit m-r-xs" title="修改"><i class="icon icon-xiugai"></i></a>' +
-                '<a href="javascript:void(0)" class="f-pink delete m-r-xs" title="删除"><i class="icon icon-shanchu"></i></a>'
+                'defaultContent': '<a href="javascript:void(0)" class="m-r-xs f-info view" title="查看">查看</a>' +
+                '<a href="javascript:void(0)" class="f-info edit m-r-xs" title="修改">修改</a>' +
+                '<a href="javascript:void(0)" class="f-info delete m-r-xs" title="删除">删除</a>'
 
             }],
         'order': [[1, "desc"]]

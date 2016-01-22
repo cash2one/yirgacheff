@@ -42,7 +42,7 @@ $(document).ready(function () {
             {
                 'targets': [5],
                 'render': function (data, type, row, meta) {
-                    return '<a class="f-info detail" href=" /teacher/quizzes/' + data + '"><i class="icon icon-xiangqing"></i></a> ';
+                    return '<a class="f-info detail" href=" /teacher/quizzes/' + data + '">详情</a> ';
                 }
             }
         ]
