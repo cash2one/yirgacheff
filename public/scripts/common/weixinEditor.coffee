@@ -15,7 +15,7 @@ template = (image)->
                 <i class='fa fa-plus f-info'></i>
            </div>
         </a>
-        <a class="deleteImg" id="#{image._id.toString()}">
+        <a class="deleteImg" id="#{image.key.toString()}">
            <div class='delete-img'>
                 <i class='icon icon-shanchu f-pink'></i>
            </div>
@@ -56,7 +56,7 @@ module.exports = (opts)->
     done: (uploads)->
       $.post('/api/v1/medias', {uploads: uploads}).then ()->
         templates = uploads.map template
-        firstItem = $("#weixinGallery").find(".item:first")
+        firstItem = $("#weixinGallery").find(".img-item:first")
         $(templates.join '').insertBefore firstItem
   })
 
@@ -73,8 +73,8 @@ module.exports = (opts)->
     editor.execCommand('insertHtml',content);
   #删除图片
   $('.wx-editor-template-content').on 'click', '.deleteImg', ()->
-    imageID = $(this).attr("id")
-    url = '/api/v1/medias/'+ imageID
+    imageKey = $(this).attr("id")
+    url = '/api/v1/medias/'+ imageKey
     if(confirm("确定要删除?"))
       $.ajax({
         url: url,

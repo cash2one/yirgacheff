@@ -922,6 +922,9 @@ xcredits
     width: 610px;
     float: left;
 }
+.analysis-que p.que-info{
+    padding-left: 2px;
+}
 .analysis-que textarea{
     word-break: break-all;
     word-wrap: break-word;
