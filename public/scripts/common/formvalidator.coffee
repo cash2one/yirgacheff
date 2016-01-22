@@ -47,7 +47,7 @@ messages =
   valid_emails: 'The %s field must contain all valid email addresses.'
   min_length: '%s不能小于%s位'
   max_length: '%s不能大于%s位'
-  exact_length: 'The %s field must be exactly %s characters in length.'
+  exact_length: '%s格式不正确'
   greater_than: '%s只能是大于%s的数字'
   less_than: '%s 只能是小于 %s 的数字'
   alpha: 'The %s field must only contain alphabetical characters.'
