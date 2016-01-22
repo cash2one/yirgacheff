@@ -17,11 +17,11 @@ module.exports = function (router) {
     });
 
     router.delete('/', function*() {
-        this.body = yield service.medias.deleteByIds(this.request.body.medias);
+        this.body = yield service.medias.deleteByKeys(this.request.body.medias);
     });
 
-    router.delete('/:id', function*() {
-        this.body = yield service.medias.deleteByIds(this.params.id);
+    router.delete('/:key', function*() {
+        this.body = yield service.medias.deleteByKeys(this.params.key);
     });
 
     return router;
