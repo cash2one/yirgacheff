@@ -8,7 +8,6 @@ const fs = require('fs');
 const koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const session = require('koa-generic-session');
-const error = require('koa-error');
 const passport = require('koa-passport');
 const flash = require('koa-flash');
 const swig = require('koa-swig');
@@ -16,6 +15,7 @@ const forward = require('koa-forward-request');
 const config = require('./config');
 const router = require('./router');
 const jwt = require('../app/middleware/jwt');
+const error = require('../app/middleware/error');
 
 const app = koa();
 

@@ -103,9 +103,11 @@ $(document).ready(function () {
     });
 
     $("#add-student-btn").click(function () {
-        $("#studentModal").modal("show");
         $studentForm[0].reset();
         $joinClassForm[0].reset();
+        $("#studentModal").modal("show");
+        var randomPassword = new Date().getTime().toString(16).substring(4);
+        $("#password").val(randomPassword);
     });
 
     $studentForm.validate(function ($form, student) {

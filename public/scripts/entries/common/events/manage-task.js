@@ -25,8 +25,7 @@ $(document).ready(function () {
                     _id: null,
                     title: '',
                     scoreAward: 0
-                },
-                index: null
+                }
             };
         },
         template: '#taskModalTemplate',
@@ -49,10 +48,9 @@ $(document).ready(function () {
                     data._id = task._id;
                 }
                 $.post(url, data).then(function (task) {
-                    self.$dispatch('add-task', task, self.index);
+                    self.$dispatch('add-task', task);
                     $(self.$el).modal("hide");
-                    alert(self.index);
-                    if (!isNaN(self.index)) {
+                    if (task._id !== null) {
                         app.notify.success("修改成功");
                     } else {
                         app.notify.success("添加成功");
@@ -61,9 +59,8 @@ $(document).ready(function () {
             }
         },
         events: {
-            show: function (task, index) {
+            show: function (task) {
                 this.task = _.assign({}, task);
-                this.index = index;
                 $(this.$el).modal("show");
             }
         }
@@ -127,17 +124,15 @@ $(document).ready(function () {
             });
         },
         methods: {
-            showModal: function (task, index) {
-                if (task) {
-                    this.$refs.modal.$emit('show', task, index);
-                } else {
-                    this.$refs.modal.$emit('show', {});
-                }
+            showModal: function (task) {
+                this.$refs.modal.$emit('show', task || {});
             },
 
-            addTask: function (task, index) {
-                console.log(task, index);
-                if (index) {
+            addTask: function (task) {
+                var index = _.findIndex(this.tasks, function (tk) {
+                    return task._id === tk._id;
+                });
+                if (index !== -1) {
                     this.tasks.$set(index, task);
                 } else {
                     this.tasks.push(task);
