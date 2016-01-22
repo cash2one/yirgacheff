@@ -51,7 +51,12 @@ $(document).ready(function () {
                 $.post(url, data).then(function (task) {
                     self.$dispatch('add-task', task, self.index);
                     $(self.$el).modal("hide");
-                    app.notify.success("添加任务成功");
+                    alert(self.index);
+                    if (!isNaN(self.index)) {
+                        app.notify.success("修改成功");
+                    } else {
+                        app.notify.success("添加成功");
+                    }
                 });
             }
         },
