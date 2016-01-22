@@ -39,7 +39,6 @@ module.exports = function (router) {
     });
 
     router.get('/:id([a-f0-9]{24})/enroll/excel', function*() {
-        console.log('export to excel');
         let event = yield service.events.event.findById(this.params.id);
         if (event.enroll) {
             yield event.populate('enroll').execPopulate();

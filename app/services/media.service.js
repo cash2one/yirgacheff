@@ -39,15 +39,14 @@ module.exports = {
 
 
     /**
-     * 根据ID删除媒体,支持批量删除
+     * 根据key删除媒体,支持批量删除
      */
-    deleteByIds: co.wrap(function*(ids) {
-        let medias = ids;
-        if (!_.isArray(medias)) {
-            medias = [medias];
+    deleteByKeys: co.wrap(function*(keys) {
+        if (!_.isArray(keys)) {
+            keys = [keys];
         }
-        return yield Media.where('_id')
-            .in(medias)
+        return yield Media.where('key')
+            .in(keys)
             .setOptions({multi: true})
             .update({state: 1})
             .exec();

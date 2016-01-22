@@ -2,10 +2,6 @@
  * Created by Frank on 15/6/5.
  */
 'use strict';
-require('moment');
-require('fullcalendar/dist/fullcalendar.css');
-require('fullcalendar');
-require('fullcalendar/dist/lang/zh-cn');
 require('../../../common/formvalidator');
 var app = require('../../../common/app');
 var datepicker = require('../../../common/datetimepicker');
