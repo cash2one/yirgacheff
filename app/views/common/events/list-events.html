@@ -73,6 +73,7 @@
             <div class="media-left">
                 <a href="/school/events/manage/{{event._id}}">
                     <img :src="event.coverImage | visit" width="200px" height="140px">
+                    <span class="label label-info label-{{event.template}}">{{templateName}}</span>
                 </a>
             </div>
             <div class="media-body">
