@@ -5,7 +5,7 @@
 <div id="postApp">
     <div class="row m-b-md">
         <div class="col-xs-10">
-            <p class="f-s-18 no-m m-t-xxs m-l-xs f-gray"><i class="fa fa-bookmark m-r-xs"></i>{{currentCategory}}</p>
+            <p class="f-s-18 no-m m-t-xxs m-l-xs f-gray"><i class="fa fa-bookmark m-r-xs"></i>{{categoryName}}</p>
         </div>
         <div class="col-xs-2">
             <a class="btn btn-default btn-sm btn-block" href="/school/posts/create">
@@ -14,32 +14,35 @@
         </div>
     </div>
     <div class="row" id="postList">
+        <Loading :loading="loading"></Loading>
         <div class="col-xs-10">
-            <div class="post-item">
-                <ul class="list-unstyled">
-                    <post-item v-for="post in posts" :post="post" :index="$index"></post-item>
-                </ul>
-                <div class="tips" v-show="posts.length === 0">
-                    <img class="center-block" src="/images/tips-ku.png">
-                    <p class="m-t-lg">当前分类没有文章</p>
-                    <p>赶快去<a class="f-info" href="/school/posts/create">发布</a>吧！</p>
+            <div v-show="!loading">
+                <div class="post-item">
+                    <ul class="list-unstyled">
+                        <post-item v-for="post in posts" :post="post" :index="$index"></post-item>
+                    </ul>
+                    <div class="tips" v-show="posts.length === 0">
+                        <img class="center-block" src="/images/tips-ku.png">
+                        <p class="m-t-lg">当前分类没有文章</p>
+                        <p>赶快去<a class="f-info" href="/school/posts/create">发布</a>吧！</p>
+                    </div>
                 </div>
+                <Pagination  v-show="posts.length > 0" :total="total" :limit="limit" @page-change="pageChange"></Pagination>
             </div>
-            <Pagination :total="total" :limit="limit" @page-change="pageChange"></Pagination>
+
         </div>
         <div class="col-xs-2">
             <div class="category-sidebar shadow">
-                <ul class="nav nav-pills nav-stacked" id="selectCategory">
+                <ul class="nav nav-pills nav-stacked">
                     <li>
                         <p class="b-b p-v-sm p-h-xs no-m f-gray">文章分类</p>
                     </li>
-                    <li v-bind:class="{'active': currentCategory === '全部文章'}">
-                        <a href="javascript:void(0)" @click="selectCategory('all')">全部文章</a>
+                    <li v-bind:class="{'active': category === 'all'}" @click="category ='all'">
+                        <a href="javascript:void(0)" @click="category = 'all'">全部文章</a>
                     </li>
-
-                    <li v-for="category in categories">
-                        <a href="javascript:void(0)" @click="selectCategory(category._id)">
-                            {{category.name}}
+                    <li v-for="cg in categories" v-bind:class="{'active': category === cg._id}">
+                        <a href="javascript:void(0)" @click="category = cg._id">
+                            {{cg.name}}
                         </a>
                     </li>
                 </ul>
@@ -53,7 +56,7 @@
         <div class="media">
             <div class="media-left">
                 <a href="/school/posts/{{post._id}}">
-                    <img src="http://resource.hizuoye.com/{{post.image}}" width="200px" height="140px">
+                    <img :src="post.image | visit" width="200px" height="140px">
                 </a>
             </div>
             <div class="media-body">
@@ -76,7 +79,7 @@
                                     <i class="icon icon-xiugai m-r-xxs"></i>文章编辑</a>
 
                                 <a class="f-gray del_btn" title="删除" data-tooltip="删除"
-                                   @click="delete(post,$index)">
+                                   @click="delete">
                                     <i class="icon icon-shanchu m-r-xxs"></i>文章删除</a>
                             </div>
                         </div>

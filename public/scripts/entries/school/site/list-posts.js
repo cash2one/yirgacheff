@@ -5,16 +5,18 @@ var _ = require('underscore');
 var strftime = require('strftime');
 var Vue = require('vue');
 var Pagination = require('../../../components/Pagination');
+var Loading = require('../../../components/Loading');
 var VueAsyncData = require('vue-async-data');
 Vue.use(VueAsyncData);
 
 $(document).ready(function () {
     app();
-
     Vue.filter('date', function (value) {
         return strftime('%F %T', new Date(value));
     });
-
+    Vue.filter('visit', function (value) {
+        return GLOBAL.visitUrl + '/' + value;
+    });
     Vue.component('post-item', {
         props: ['post', 'index'],
         template: '#postTemplate',
@@ -38,18 +40,25 @@ $(document).ready(function () {
     new Vue({
         el: "#postApp",
         components: {
-            'pagination': Pagination
+            'pagination': Pagination,
+            'Loading': Loading
         },
         data: {
+            loading: true,
+            limit: 10,
+            total: 0,
             posts: [],
             categories: [],
-            currentCategory: '全部文章'
+            category: 'all'
         },
         asyncData: function (resolve, reject) {
-            $.get('/api/v1/posts/').then(function (posts) {
+            var self = this;
+            $.get('/api/v1/posts?skip=0&limit=' + this.limit).then(function (res) {
                 resolve({
-                    posts: posts
-                })
+                    posts: res.posts,
+                    total: res.total
+                });
+                self.loading = false;
             });
             $.get('/api/v1/categories').then(function (categories) {
                 resolve({
@@ -58,20 +67,47 @@ $(document).ready(function () {
             });
         },
         methods: {
-
-            selectCategory: function (category) {
-                this.currentCategory = category;
+            fetch: function (page) {
+                var self = this;
+                self.loading = true;
+                page = page || 1;
+                var skip = (page - 1) * this.limit;
+                var url = '/api/v1/posts?skip=' + skip + '&limit=' + self.limit;
+                if (this.category !== 'all') {
+                    url += '&category=' + this.category;
+                }
+                $.get(url).then(function (res) {
+                    self.posts = res.posts;
+                    self.total = res.total;
+                    self.loading = false;
+                });
             },
 
             deletePost: function (index) {
-                this.cache.splice(index, 1);
+                this.posts.splice(index, 1);
+                this.total = this.total - 1;
             },
-
             pageChange: function (page) {
-
+                this.fetch(page);
+            }
+        },
+        computed: {
+            categoryName: function () {
+                var self = this;
+                var index = _.findIndex(this.categories, function (c) {
+                    return c._id === self.category;
+                });
+                if (index === -1) {
+                    return '全部文章';
+                }
+                return this.categories[index].name;
+            }
+        },
+        watch: {
+            'category': function () {
+                this.fetch();
             }
         }
-
     });
 
 });

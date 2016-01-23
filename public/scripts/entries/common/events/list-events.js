@@ -4,6 +4,7 @@ var strftime = require('strftime');
 var _ = require('underscore');
 var Vue = require('vue');
 var Pagination = require('../../../components/Pagination');
+var Loading = require('../../../components/Loading');
 var VueAsyncData = require('vue-async-data');
 Vue.use(VueAsyncData);
 var TEMPLATES = {
@@ -34,31 +35,37 @@ $(document).ready(function () {
     new Vue({
         el: "#eventList",
         components: {
-            'Pagination': Pagination
+            'Pagination': Pagination,
+            'Loading': Loading
         },
         data: {
             limit: 10,
             total: 0,
             events: [],
-            template: 'all'
+            template: 'all',
+            loading: true
         },
         asyncData: function (resolve, reject) {
+            var self = this;
             $.get('/api/v1/events?offset=0&limit=10').then(function (res) {
                 resolve({
                     events: res.events,
                     total: res.total
-                })
+                });
+                self.loading = false;
             });
         },
         methods: {
             fetch: function (page) {
                 var self = this;
+                self.loading = true;
                 page = page || 1;
                 var skip = (page - 1) * this.limit;
                 var url = '/api/v1/events?skip=' + skip + '&limit=' + self.limit + '&template=' + this.template;
                 $.get(url).then(function (res) {
                     self.events = res.events;
                     self.total = res.total;
+                    self.loading = false;
                 });
             },
             pageChange: function (page) {

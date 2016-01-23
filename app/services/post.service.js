@@ -23,6 +23,16 @@ module.exports = {
         return yield query.lean().exec();
     }),
 
+    countBySchool: co.wrap(function*(schoolId, category) {
+        let filter = {
+            schoolId: schoolId
+        };
+        if (category && category !== null) {
+            filter.category = category;
+        }
+        return yield Post.count(filter).exec();
+    }),
+
     deleteById: co.wrap(function*(id) {
         let post = yield Post.findById(id).select('_id category').exec();
         if (!post) {
