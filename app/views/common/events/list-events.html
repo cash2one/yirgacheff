@@ -14,16 +14,16 @@
         </div>
     </div>
     <div class="row">
+        <Loading :loading="loading"></Loading>
         <div class="col-xs-10">
-            <div class="events-item">
-                <div class="">
-                    <img class="center-block" src="/images/xubox_loading0.gif">
+            <div v-show="!loading">
+                <div class="events-item">
+                    <ul class="list-unstyled">
+                        <event-item v-for="event in events" :event="event"></event-item>
+                    </ul>
                 </div>
-                <ul class="list-unstyled">
-                    <event-item v-for="event in events" :event="event"></event-item>
-                </ul>
+                <Pagination :total="total" :limit="limit" @page-change="pageChange"></Pagination>
             </div>
-            <pagination :total="total" :limit="limit" @page-change="pageChange"> </pagination>
         </div>
         <div class="col-xs-2">
             <div class="category-sidebar shadow">
