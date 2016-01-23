@@ -84,6 +84,7 @@ $(document).ready(function () {
             },
 
             deletePost: function (index) {
+                console.log('index is ',index);
                 this.posts.splice(index, 1);
                 this.total = this.total - 1;
             },

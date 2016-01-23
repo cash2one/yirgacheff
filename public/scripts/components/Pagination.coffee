@@ -54,6 +54,8 @@ Pagination = Vue.extend
   watch:
     'current': (n, o)->
       this.$dispatch('page-change', n)
+    'total': ()->
+      this.current = 1
 
   computed:
     isFirst: ()->
@@ -63,7 +65,7 @@ Pagination = Vue.extend
       this.pageSize is 1 or this.current is this.pageSize
 
     pageSize: ()->
-      Math.max 1, parseInt(this.total / this.limit)
+      Math.ceil(this.total / this.limit)
 
     pageNumbers: ()->
       if this.pageSize <= 9   #页码小于10就全部显示出来
