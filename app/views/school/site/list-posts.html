@@ -25,7 +25,7 @@
                     <p>赶快去<a class="f-info" href="/school/posts/create">发布</a>吧！</p>
                 </div>
             </div>
-            <Pagination :total="total" :limit="limit" @page-change="pageChange"> </Pagination>
+            <Pagination :total="total" :limit="limit" @page-change="pageChange"></Pagination>
         </div>
         <div class="col-xs-2">
             <div class="category-sidebar shadow">
@@ -34,10 +34,11 @@
                         <p class="b-b p-v-sm p-h-xs no-m f-gray">文章分类</p>
                     </li>
                     <li v-bind:class="{'active': currentCategory === '全部文章'}">
-                        <a href="javascript:void(0)" @click="selectCategory('全部文章')">全部文章</a>
+                        <a href="javascript:void(0)" @click="selectCategory('all')">全部文章</a>
                     </li>
+
                     <li v-for="category in categories">
-                        <a href="javascript:void(0)" @click="selectCategory(category.name)">
+                        <a href="javascript:void(0)" @click="selectCategory(category._id)">
                             {{category.name}}
                         </a>
                     </li>
@@ -46,8 +47,6 @@
         </div>
     </div>
 </div>
-
-
 
 <script type="x/template" id="postTemplate">
     <li>
@@ -73,11 +72,12 @@
                             <span class="m-r-md">阅读：{{post.visitCount || 0}}</span>
                             <span>赞：{{post.like}}</span>
                             <div class="pull-right m-r-xs m-t-n-xxs">
-                                <a class="f-gray m-r-lg" href="/school/posts/{{post._id}}"><i
-                                        class="icon icon-xiugai m-r-xxs"></i>文章编辑</a>
+                                <a class="f-gray m-r-lg" href="/school/posts/{{post._id}}">
+                                    <i class="icon icon-xiugai m-r-xxs"></i>文章编辑</a>
+
                                 <a class="f-gray del_btn" title="删除" data-tooltip="删除"
-                                   @click="delete(post,$index)"><i
-                                        class="icon icon-shanchu m-r-xxs"></i>文章删除</a>
+                                   @click="delete(post,$index)">
+                                    <i class="icon icon-shanchu m-r-xxs"></i>文章删除</a>
                             </div>
                         </div>
                     </div>

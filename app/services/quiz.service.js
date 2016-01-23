@@ -72,6 +72,10 @@ module.exports = {
             asTemplate: true
         }).exec();
 
+    }),
+
+    increaseUsage: co.wrap(function*(quizId) {
+        return yield Quiz.update({_id: quizId}, {$inc: {usage: 1}}).exec();
     })
 
 };

@@ -27,6 +27,9 @@ module.exports = function (router) {
         this.state.classes = yield service.classes.findByTeacher(this.user._id, {
             fields: ['className']
         });
+        if (this.query.quizId) {
+            yield service.quizzes.increaseUsage(this.quizId);
+        }
         yield this.render('teacher/homework/create-homework');
     });
 

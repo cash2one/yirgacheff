@@ -6,23 +6,7 @@ const service = require('../../services');
 
 module.exports = function (router) {
 
-
     router.get('/', function*() {
-        let user = this.user;
-        let filter = {
-            fields: ['-content'],
-            order: ['-createdTime'],
-            include: {
-                'category': 'name'
-            },
-            where: {}
-        };
-        if (this.query.category) {
-            filter.where.category = this.query.category;
-            this.state.currentCategory = this.query.category;
-        }
-        this.state.categories = yield service.categories.findBySchool(user.schoolId);
-        this.state.posts = yield service.posts.findBySchool(user.schoolId, filter);
         yield this.render('school/site/list-posts');
     });
 

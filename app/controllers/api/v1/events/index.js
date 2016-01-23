@@ -21,6 +21,7 @@ module.exports = function (router) {
         if (query.template && query.template !== 'all') {
             filter.where = {template: query.template};
         }
+        filter.order = ['-createdTime'];
         this.body = yield  {
             events: eventService.findBySchool(this.user.schoolId, filter),
             total: eventService.countBySchool(this.user.schoolId, query.template)

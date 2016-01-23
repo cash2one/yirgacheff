@@ -20,7 +20,7 @@
                     <event-item v-for="event in events" :event="event"></event-item>
                 </ul>
             </div>
-            <Pagination :total="total" :limit="limit" @page-change="pageChange"> </Pagination>
+            <pagination :total="total" :limit="limit" @page-change="pageChange"> </pagination>
         </div>
         <div class="col-xs-2">
             <div class="category-sidebar shadow">
@@ -31,16 +31,16 @@
                     <li v-bind:class="{'active': template === 'all'}">
                         <a href="javascript:void(0)" @click="template = 'all'">全部活动</a>
                     </li>
-                    <li>
+                    <li v-bind:class="{'active': template === 'article'}">
                         <a href="javascript:void(0)" @click="template = 'article'">文章</a>
                     </li>
-                    <li>
+                    <li v-bind:class="{'active': template === 'activity'}">
                         <a href="javascript:void(0)" @click="template = 'activity'">活动</a>
                     </li>
-                    <li>
+                    <li v-bind:class="{'active': template === 'audition'}">
                         <a href="javascript:void(0)" @click="template = 'audition'">试听课</a>
                     </li>
-                    <li>
+                    <li v-bind:class="{'active': template === 'classroom'}">
                         <a href="javascript:void(0)" @click="template = 'classroom'">在线课堂</a>
                     </li>
                 </ul>
