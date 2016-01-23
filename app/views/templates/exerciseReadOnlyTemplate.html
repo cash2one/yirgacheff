@@ -72,7 +72,9 @@
             <div class="panel-body">
                 <form class="form-horizontal">
                     <div class="form-group">
-                        <p class="no-m"><%= exercise && exercise.question %></p>
+                        <div class="col-xs-10 no-p">
+                            <p class="question-title"><%= exercise && exercise.question.replace(/\n/g,'<br>') %></p>
+                        </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-10 no-p">
@@ -137,7 +139,9 @@
             <div class="panel-body">
                 <form class="form-horizontal">
                     <div class="form-group">
-                        <p class="no-m"><%= exercise && exercise.question %></p>
+                        <div class="col-xs-10 no-p">
+                            <p class="question-title"><%= exercise && exercise.question.replace(/\n/g,'<br>') %></p>
+                        </div>
                     </div>
                     <div class="form-group">
                         <div class="analysis-que col-xs-10">
@@ -175,7 +179,9 @@
             <div class="panel-body">
                 <form class="form-horizontal">
                     <div class="form-group">
-                        <p class="no-m"><%= exercise && exercise.question %></p>
+                        <div class="col-xs-10 no-p">
+                            <p class="question-title"><%= exercise && exercise.question.replace(/\n/g,'<br>') %></p>
+                        </div>
                     </div>
                     <% if(exercise.audioAnswer) {%>
                     <audio src="http://resource.hizuoye.com/<%= exercise.audioAnswer %>" controls="controls">

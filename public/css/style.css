@@ -918,7 +918,7 @@ xcredits
 /*题目答案解析*/
 .analysis-que{
     background: #f7f6f2;
-    padding: 10px;
+    padding: 10px 20px;
     font-size: 14px;
     color: #999;
     min-height: 70px;
@@ -1652,3 +1652,14 @@ xcredits
     margin-left: -50px;
 }
 
+/*日程管理*/
+.fc-event {
+    position: relative;
+    display: block;
+    font-size: .85em;
+    line-height: 1.3;
+    border-radius: 3px;
+    border: 1px solid #2aabe6;
+    background-color: #2aabe6;
+    font-weight: 400;
+}
