@@ -53,6 +53,22 @@
                     <div class="form-group">
                         <label class="col-xs-1 control-label">课程视频</label>
                         <div class="col-xs-11">
+                            <div class="col-xs-12" id="uploadVideo">
+                                <div class="upload-video">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <a class="upload f-info" @click="showModal">
+                                                <i class="fa fa-plus"></i>
+                                                <p class="upload-video-t">添加视频</p>
+                                            </a>
+                                            <div class="up-video-detail">
+                                                <p>禁止添加色情，反动等违法视频。添加视频，即表示您已同意360家校云上传服务条款。</p>
+                                                <p>添加视频链接，请先将视频上传到优酷、腾讯、爱奇艺、 喜马拉雅等视频、音频平台，粘贴通用代码到【视频链接 】。如有其他问题请咨询360家校云客服人员。</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row video-list">
                                 <video-item v-for="video in videos"
                                             :video="video"
@@ -60,13 +76,6 @@
                                             @delete-video="deleteVideo"
                                             @edit-video="editVideo">
                                 </video-item>
-                                <div class="col-xs-4" id="uploadVideo">
-                                    <div class="upload-video">
-                                        <a class="upload" @click="showModal">
-                                            <img class="center-block" src="/images/upload-video.png">
-                                        </a>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -91,8 +100,7 @@
     <div class="col-xs-4">
         <div class="thumbnail">
             <div class="video-container">
-                {{{video.link}}}
-
+                    {{{video.link}}}
             </div>
             <div class="caption">
                 <div class="video-header">

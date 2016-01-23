@@ -473,7 +473,7 @@ xcredits
 
 .editor .wx-editor-template-content{
     width: 438px;
-    height: 544px;
+    height: 623px;
     border: 1px solid #d4d4d4;
     border-top:none;
     border-radius: 0 0 4px 4px;
@@ -1304,7 +1304,20 @@ xcredits
 .upload-video{
     border: 1px dashed #dfdfdf;
     padding-top: 70px;
-    height: 308px;
+    height: 300px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.upload-video .up-video-detail{
+    width: 600px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.upload-video-t{
+    font-size: 18px;
+}
+.upload-video i{
+    font-size: 70px;
 }
 .video-list .thumbnail{
     height: 308px;

@@ -8,8 +8,10 @@ var app = require('../../../common/app');
 $(document).ready(function () {
     app();
     var wxUrl = $("#wxUrl").val();
+    var eventTitle = $("#eventTitle").val();
     window._bd_share_config = {
         common: {
+            bdText : '我在360家校云发布一个活动，欢迎来参加——#'+eventTitle,
             bdUrl: wxUrl
         },
         share: [{
