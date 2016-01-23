@@ -141,8 +141,17 @@ module.exports = {
      * 根据教师ID获取学生列表
      */
     findByTeacher: co.wrap(function*(teacherId, filter) {
-
-
+        let classes = yield Class.find({
+            owner: teacherId,
+            state: 0
+        }).exec();
+        let query = Student.find({
+            classes: {$in: classes}
+        }).select('username displayName password gender');
+        if (filter) {
+            query = queryBuilder(query, filter);
+        }
+        return yield query.exec();
     }),
 
     /**

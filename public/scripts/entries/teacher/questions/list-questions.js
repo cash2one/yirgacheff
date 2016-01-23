@@ -23,7 +23,6 @@ $(document).ready(function () {
         });
     }
 
-
     //截取字符串，多余的部分用...代替
     function setString(str, len) {
         if (str.length > len) {
@@ -32,7 +31,6 @@ $(document).ready(function () {
         return str;
     }
 
-    //
     var $questOpts = $('.quest-opts-area');
     $questOpts.on('click', '.item>a', function () {
         var state = $(this).data('id');
@@ -115,6 +113,7 @@ $(document).ready(function () {
         for (var item in allStudent) {
             arr.push(allStudent[item].username);
         }
+        console.log(allStudent);
         //找到我的学生保存在fliterData中
         var fliterData = table
             .data()
