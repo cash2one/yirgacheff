@@ -3,18 +3,24 @@
 <!-- 面包屑 -->
 <!-- END OF BREADCRUMBS -->
 <div id="eventList">
-    <div class="row m-b-md">
-        <div class="col-xs-10">
-            <p class="f-s-18 no-m m-t-xxs m-l-xs f-gray"><i class="fa fa-bookmark m-r-xs"></i>{{templateName}}</p>
-        </div>
-        <div class="col-xs-2">
-            <a class="btn btn-default btn-sm btn-block" href="/school/events">
-                <i class="fa fa-plus m-r-xxs"></i>活动发布
-            </a>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel shadow">
+                <div class="panel-heading clearfix">
+                    <h4 class="panel-title"><i class="fa fa-bookmark m-r-xs"></i>{{templateName}}&nbsp;&nbsp;({{total}})</h4>
+                    <div class="panel-control">
+                        <a class="btn btn-info btn-sm pull-right" href="/school/events">
+                            <i class="fa fa-plus m-r-xxs"></i>活动发布
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">
-        <Loading :loading="loading"></Loading>
+        <div class="col-xs-10">
+            <Loading :loading="loading"></Loading>
+        </div>
         <div class="col-xs-10">
             <div v-show="!loading">
                 <div class="events-item">

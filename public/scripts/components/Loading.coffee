@@ -3,9 +3,15 @@ Vue = require 'vue'
 Loading = Vue.extend({
   props: ['loading']
   template: """
-        <div v-show="loading">
-            <img class="center-block" src="/images/xubox_loading0.gif">
-        </div>
+<div class='loaders'>
+   <div class="loader" v-show="loading">
+    <div class="loader-inner ball-scale-multiple">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</div>
   """
 })
 
