@@ -28,11 +28,11 @@ module.exports = function (router) {
         let filter = {
             include: {
                 'category': 'name'
-            }
+            },
+            order: ['-createdTime']
         };
         this.body = yield service.posts.findBySchool(this.user.schoolId, filter);
     });
-
 
     return router;
 };

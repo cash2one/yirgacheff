@@ -25,7 +25,7 @@ module.exports = {
         visitUrl: 'http://7rfll3.com1.z0.glb.clouddn.com'
     },
     apiUrl: 'http://testapi.hizuoye.com',
-    wxUrl: 'http://wx.hizuoye.com',
+    wxUrl: 'http://testwx.hizuoye.com',
     logDir: './log'
 
 };

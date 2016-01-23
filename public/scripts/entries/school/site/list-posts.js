@@ -4,9 +4,9 @@ var notify = require('../../../common/notify');
 var _ = require('underscore');
 var strftime = require('strftime');
 var Vue = require('vue');
+var Pagination = require('../../../components/Pagination');
 var VueAsyncData = require('vue-async-data');
 Vue.use(VueAsyncData);
-
 
 $(document).ready(function () {
     app();
@@ -37,16 +37,18 @@ $(document).ready(function () {
 
     new Vue({
         el: "#postApp",
-
+        components: {
+            'pagination': Pagination
+        },
         data: {
-            cache: [],
+            posts: [],
             categories: [],
             currentCategory: '全部文章'
         },
         asyncData: function (resolve, reject) {
             $.get('/api/v1/posts/').then(function (posts) {
                 resolve({
-                    cache: posts
+                    posts: posts
                 })
             });
             $.get('/api/v1/categories').then(function (categories) {
@@ -56,25 +58,20 @@ $(document).ready(function () {
             });
         },
         methods: {
+
             selectCategory: function (category) {
                 this.currentCategory = category;
-            }
-        },
-        computed: {
-            posts: function () {
-                var vm = this;
-                if (vm.currentCategory === '全部文章') {
-                    return vm.cache;
-                }
-                return _.filter(vm.cache, function (post) {
-                    return post.category.name === vm.currentCategory;
-                });
             },
 
             deletePost: function (index) {
                 this.cache.splice(index, 1);
+            },
+
+            pageChange: function (page) {
+
             }
         }
+
     });
 
 });

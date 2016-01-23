@@ -13,6 +13,14 @@ const ScoreTask = mongoose.model('ScoreTask');
 
 module.exports = {
 
+    countBySchool: co.wrap(function*(schoolId, template) {
+        let query = {schoolId: schoolId};
+        if (template && template !== 'all') {
+            query.template = template;
+        }
+        return yield Event.count(query).exec();
+    }),
+
     findBySchool: co.wrap(function*(schoolId, filter) {
         let query = Event.find({schoolId: schoolId});
         if (filter) {

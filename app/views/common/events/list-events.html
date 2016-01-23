@@ -5,7 +5,7 @@
 <div id="eventList">
     <div class="row m-b-md">
         <div class="col-xs-10">
-            <p class="f-s-18 no-m m-t-xxs m-l-xs f-gray"><i class="fa fa-bookmark m-r-xs"></i>{{currentCategory}}</p>
+            <p class="f-s-18 no-m m-t-xxs m-l-xs f-gray"><i class="fa fa-bookmark m-r-xs"></i>{{templateName}}</p>
         </div>
         <div class="col-xs-2">
             <a class="btn btn-default btn-sm btn-block" href="/school/events">
@@ -20,29 +20,29 @@
                     <event-item v-for="event in events" :event="event"></event-item>
                 </ul>
             </div>
+            <pagination :total="total" :limit="limit" @page-change="pageChange"> </pagination>
         </div>
         <div class="col-xs-2">
             <div class="category-sidebar shadow">
-                <ul class="nav nav-pills nav-stacked" id="selectCategory">
+                <ul class="nav nav-pills nav-stacked">
                     <li>
                         <p class="b-b p-v-sm p-h-xs no-m f-gray">活动类型</p>
                     </li>
-                    <li v-bind:class="{'active': currentCategory === '全部活动'}">
-                        <a href="javascript:void(0)" @click="selectCategory('全部活动')">全部活动</a>
+                    <li v-bind:class="{'active': template === 'all'}">
+                        <a href="javascript:void(0)" @click="template = 'all'">全部活动</a>
                     </li>
-                    <li>
-                        <a href="javascript:void(0)" @click="selectCategory('文章')">文章</a>
+                    <li v-bind:class="{'active': template === 'article'}">
+                        <a href="javascript:void(0)" @click="template = 'article'">文章</a>
                     </li>
-                    <li>
-                        <a href="javascript:void(0)" @click="selectCategory('活动')">活动</a>
+                    <li v-bind:class="{'active': template === 'activity'}">
+                        <a href="javascript:void(0)" @click="template = 'activity'">活动</a>
                     </li>
-                    <li>
-                        <a href="javascript:void(0)" @click="selectCategory('试听课')">试听课</a>
+                    <li v-bind:class="{'active': template === 'audition'}">
+                        <a href="javascript:void(0)" @click="template = 'audition'">试听课</a>
                     </li>
-                    <li>
-                        <a href="javascript:void(0)" @click="selectCategory('在线课堂')">在线课堂</a>
+                    <li v-bind:class="{'active': template === 'classroom'}">
+                        <a href="javascript:void(0)" @click="template = 'classroom'">在线课堂</a>
                     </li>
-
                 </ul>
             </div>
         </div>
@@ -71,7 +71,7 @@
                         </p>
                         <p class="m-t-sm">
                             <span>所属分类：</span>
-                            {{eventType}}
+                            {{templateName}}
                         </p>
                         <div class="m-t-sm">
                             <span class="m-r-md">阅读：{{event.visit || 0}}</span>
