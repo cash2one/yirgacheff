@@ -70,10 +70,10 @@
 <template id="eventItem">
     <li>
         <div class="media">
-            <div class="media-left">
+            <div class="media-left ps-r">
                 <a href="/school/events/manage/{{event._id}}">
                     <img :src="event.coverImage | visit" width="200px" height="140px">
-                    <span class="label label-info label-{{event.template}}">{{templateName}}</span>
+                    <span class="label label-event label-{{event.template}}">{{templateName}}</span>
                 </a>
             </div>
             <div class="media-body">

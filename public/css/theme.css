@@ -2102,6 +2102,31 @@ color:#fff
     background-color:#eeffbf;
     color:#7ec11f
 }
+/*活动*/
+.ps-r{
+    position: relative;
+}
+.label-event{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.label-activity{
+    background-color:#2aabe6;
+    color:#fff
+}
+.label-article{
+    background-color:#5cb85c;
+    color:#fff
+}
+.label-audition{
+    background-color:#ffbd4a;
+    color:#fff
+}
+.label-classroom{
+    background-color:#fb6d9d;
+    color:#fff
+}
 /* Progress bars
 =================================================================== */
 .progress{
