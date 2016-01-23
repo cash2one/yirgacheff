@@ -1322,7 +1322,7 @@ a.bg-pink:focus {
 .category-sidebar .nav-pills > li.active > a:hover,
 .category-sidebar .nav-pills > li.active > a:focus {
     color: #2aabe6;
-    background-color: #fff;
+    background-color: #f4f8fb;
 }
 .category-sidebar .nav-stacked > li {
     float: none;

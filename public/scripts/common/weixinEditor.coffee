@@ -8,7 +8,7 @@ RESOURCE_URL = constants.RESOURCE_URL
 template = (image)->
   """
   <li class='img-item' id="imgItem">
-    <div class='img-box'><img src='#{RESOURCE_URL}#{image.key}' alt='' class='img-thumbnail' style='max-width: 500px'></div>
+    <div class='img-box'><img src='#{RESOURCE_URL}#{image.key}' alt='' class='img-thumbnail'></div>
     <div class='img-controls' style='display: none'>
         <a id="addImg">
            <div class='add-img'>
