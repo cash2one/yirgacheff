@@ -4,6 +4,7 @@
 'use strict';
 
 require('../../../common/formvalidator');
+var _ = require('underscore');
 var app = require('../../../common/app');
 var upload = require('../../../common/uploadifive');
 var richEditor = require('../../../common/richEditor');
@@ -17,7 +18,7 @@ $(document).ready(function () {
             enrollFields: []
         },
         components: {
-            'enroll': require('../../../components/enroll')
+            'enroll': require('../../../components/Enroll')
         },
         el: '#auditionApp'
     });
@@ -55,7 +56,9 @@ $(document).ready(function () {
             return app.notify.danger("请填写试听课内容")
         }
         data.template = 'audition';
-        data.enrollFields = vm.enrollFields;
+        data.enrollFields = _.filter(vm.enrollFields, function (field) {
+            return field.trim() !== '';
+        });
         $.post('/api/v1/events', data).then(function () {
             self.location.href = "/school/events/manage"
         });

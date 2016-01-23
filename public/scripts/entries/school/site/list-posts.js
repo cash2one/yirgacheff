@@ -49,11 +49,15 @@ $(document).ready(function () {
             total: 0,
             posts: [],
             categories: [],
-            category: 'all'
+            category: $.getUrlParam('category') || 'all'
         },
         asyncData: function (resolve, reject) {
             var self = this;
-            $.get('/api/v1/posts?skip=0&limit=' + this.limit).then(function (res) {
+            var url = '/api/v1/posts?skip=0&limit=' + this.limit;
+            if (self.category !== 'all') {
+                url += '&category=' + self.category;
+            }
+            $.get(url).then(function (res) {
                 resolve({
                     posts: res.posts,
                     total: res.total
@@ -68,14 +72,14 @@ $(document).ready(function () {
         },
         methods: {
             fetch: function (page) {
-                var self = this;
-                self.loading = true;
+                this.loading = true;
                 page = page || 1;
                 var skip = (page - 1) * this.limit;
-                var url = '/api/v1/posts?skip=' + skip + '&limit=' + self.limit;
+                var url = '/api/v1/posts?skip=' + skip + '&limit=' + this.limit;
                 if (this.category !== 'all') {
                     url += '&category=' + this.category;
                 }
+                var self = this;
                 $.get(url).then(function (res) {
                     self.posts = res.posts;
                     self.total = res.total;
