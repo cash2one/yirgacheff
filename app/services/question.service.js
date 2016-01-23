@@ -45,6 +45,7 @@ module.exports = {
         }
         question.answer = answer;
         question.state = 1;
+        question.teacher = teacherId;
         return yield question.save();
     })
 
