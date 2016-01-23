@@ -21,8 +21,17 @@
                     <ul class="list-unstyled">
                         <event-item v-for="event in events" :event="event"></event-item>
                     </ul>
+                    <div class="tips" v-show="events.length === 0">
+                        <img class="center-block" src="/images/tips-ku.png">
+                        <p class="m-t-lg">当前分类没有活动</p>
+                        <p>赶快去<a class="f-info" href="/school/events">发布</a>吧！</p>
+                    </div>
                 </div>
-                <Pagination :total="total" :limit="limit" @page-change="pageChange"></Pagination>
+                <Pagination v-show="events.length > 0"
+                            :total="total"
+                            :limit="limit"
+                            @page-change="pageChange">
+                </Pagination>
             </div>
         </div>
         <div class="col-xs-2">
