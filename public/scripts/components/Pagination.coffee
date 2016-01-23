@@ -1,11 +1,16 @@
 Vue = require 'vue'
 
 template = """
-<nav>
+<nav class='text-center'>
   <ul class="pagination">
+    <li>
+       <a href="javascript:void(0)" aria-label="Previous" @click='current = 1'>
+         <span aria-hidden="true">首页</span>
+       </a>
+    </li>
     <li v-bind:class="{disabled: isFirst}">
       <a href="javascript:void(0)" aria-label="Previous" @click='previous'>
-        <span aria-hidden="true">&laquo;</span>
+        <span aria-hidden="true">上一页</span>
       </a>
     </li>
    <li v-show='pageNumbers[0] > 1'>
@@ -19,8 +24,13 @@ template = """
     </li>
     <li v-bind:class="{disabled: isLast}">
       <a href="javascript:void(0)" aria-label="Next" @click='next'>
-        <span aria-hidden="true">&raquo;</span>
+        <span aria-hidden="true">下一页</span>
       </a>
+    </li>
+    <li>
+       <a href="javascript:void(0)" aria-label="Previous" @click='current = pageSize'>
+         <span aria-hidden="true">末页</span>
+       </a>
     </li>
   </ul>
 </nav>
