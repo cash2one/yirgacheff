@@ -4,6 +4,7 @@
 'use strict';
 
 require('../../../common/formvalidator');
+var _ = require('underscore');
 var app = require('../../../common/app');
 var datepicker = require('../../../common/datetimepicker');
 var upload = require('../../../common/uploadifive');
@@ -18,7 +19,7 @@ $(document).ready(function () {
             enrollFields: []
         },
         components: {
-            'enroll': require('../../../components/enroll')
+            'enroll': require('../../../components/Enroll')
         },
         el: '#activityApp'
     });
@@ -53,7 +54,9 @@ $(document).ready(function () {
             return app.notify.danger("请填写文章内容")
         }
         data.template = 'activity';
-        data.enrollFields = vm.enrollFields;
+        data.enrollFields = _.filter(vm.enrollFields, function (field) {
+            return field.trim() !== '';
+        });
         $.post('/api/v1/events', data).then(function () {
             self.location.href = "/school/events/manage"
         });
