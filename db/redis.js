@@ -13,7 +13,7 @@ const redis = new Redis({
 
     host: config.host,
 
-    keyPrefix: config.keyPrefix,
+    keyPrefix: config.prefix,
 
     retryStrategy(times) {
         return Math.min(times * 2, 2000);

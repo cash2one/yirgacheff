@@ -12,6 +12,8 @@ const passport = require('koa-passport');
 const flash = require('koa-flash');
 const swig = require('koa-swig');
 const forward = require('koa-forward-request');
+const redisStore = require('koa-redis');
+const cors = require('koa-cors');
 const config = require('./config');
 const router = require('./router');
 const jwt = require('../app/middleware/jwt');
@@ -39,13 +41,13 @@ function initLocalVariables(app) {
  * @param app
  */
 function initMiddleware(app) {
+    app.use(cors());
     app.use(flash());
     forward(app, {debug: true});
     app.use(bodyParser({
-        jsonLimit: '5mb',
-        formLimit: '128kb'
+        jsonLimit: '4mb',
+        formLimit: '2mb'
     }));
-
 }
 
 
@@ -55,7 +57,9 @@ function initMiddleware(app) {
  */
 function initSession(app) {
     app.keys = config.keys;
-    app.use(session());
+    app.use(session({
+        store: redisStore(config.redis)
+    }));
 }
 
 function initJwt(app) {
@@ -85,7 +89,7 @@ function initViewEngine(app) {
         root: path.resolve(__dirname, '../app/views'),
         autoescape: true,
         filters: require('./swigFilters'),
-        cache: isCache, // disable, set to false
+        cache: isCache ? "memory" : false, // disable, set to false
         ext: 'html',
         varControls: ['<<', '>>']
     });

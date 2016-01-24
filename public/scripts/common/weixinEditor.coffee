@@ -35,7 +35,7 @@ module.exports = (opts)->
     event.stopPropagation();
     $(".item .wxqq-bg").css({backgroundColor: color})
     $(".item .wxqq-color").css({color: color});
-    border = ["borderTopColor", "borderRightColor", "borderBottomColor", "borderLeftColor","borderColor"]
+    border = ["borderTopColor", "borderRightColor", "borderBottomColor", "borderLeftColor", "borderColor"]
     clazz = [];
     $.each border, (position)-> clazz.push(".item .wxqq-" + border[position])
     $.each clazz, (name)-> $(clazz[name]).css(border[name], color)
@@ -43,7 +43,7 @@ module.exports = (opts)->
   #绑定组件点击事件
   $('.wx-editor-template-content').on 'click', '.item', ()->
     content = $(this).html()
-    editor.execCommand('insertHtml',content);
+    editor.execCommand('insertHtml', content);
 
   $.get '/api/v1/medias', (images)->
     templates = images.map template
@@ -70,14 +70,15 @@ module.exports = (opts)->
   #添加图片
   $('.wx-editor-template-content').on 'click', '#addImg', ()->
     content = $(this).closest(".img-item").find(".img-box").html()
-    editor.execCommand('insertHtml',content);
+    editor.execCommand('insertHtml', content);
   #删除图片
   $('.wx-editor-template-content').on 'click', '.deleteImg', ()->
     imageKey = $(this).attr("id")
-    url = '/api/v1/medias/'+ imageKey
     if(confirm("确定要删除?"))
       $.ajax({
-        url: url,
+        data:
+          medias: imageKey
+        url: '/api/v1/medias',
         method: 'DELETE'
       }).then ()=>
         $(this).closest("li").remove()

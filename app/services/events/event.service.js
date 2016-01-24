@@ -69,8 +69,12 @@ module.exports = {
         if (needEnroll(template)) {
             enroll = new Enroll({schoolId: creator.schoolId});
             if (data.enrollFields) {
-                enroll.fields = _.map(data.enrollFields, field=> {
-                    return {label: field.label, inputType: 'text'};
+                enroll.fields = [];
+                _.forEach(data.enrollFields, field => {
+                    let label = field.label;
+                    if (label && label.trim() !== "") {
+                        enroll.fields.push({label: label, inputType: 'text'});
+                    }
                 });
             }
             enroll.event = event;

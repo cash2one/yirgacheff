@@ -2,7 +2,6 @@
  * Created by Admin on 2016/1/9.
  */
 'use strict';
-
 require('../../../common/formvalidator');
 var app = require('../../../common/app');
 var datepicker = require('../../../common/datetimepicker');
@@ -54,9 +53,7 @@ $(document).ready(function () {
             return app.notify.danger("请填写文章内容")
         }
         data.template = 'activity';
-        data.enrollFields = _.filter(vm.enrollFields, function (field) {
-            return field.trim() !== '';
-        });
+        data.enrollFields = vm.enrollFields;
         vm.loading = true;
         $.post('/api/v1/events', data).then(function (event) {
             self.location.href = "/school/events/manage/" + event._id.toString();

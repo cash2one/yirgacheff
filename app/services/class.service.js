@@ -137,12 +137,8 @@ module.exports = {
         if (!clazz) {
             throw createError(400, '班级不存在');
         }
-        let newName = data.className && data.className.trim();
-        if (clazz.className !== newName) {
-            clazz.className = newName;
-            yield clazz.save();
-        }
-        return clazz;
+        _.assign(clazz, _.pick(data, ['className', 'courseTime']));
+        return yield clazz.save();
     }),
 
 
