@@ -1,6 +1,5 @@
 'use strict';
 
-require('datatables');
 var notify = require('../../../common/notify');
 var app = require('../../../common/app');
 

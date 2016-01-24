@@ -1,7 +1,5 @@
 'use strict';
 
-require('datatables');
-require('highcharts');
 var app = require('../../../common/app');
 $(document).ready(function () {
     $('#homework-list').dataTable({

@@ -1,5 +1,4 @@
 'use strict';
-require('datatables');
 var app = require('../../../common/app');
 
 $(document).ready(function () {

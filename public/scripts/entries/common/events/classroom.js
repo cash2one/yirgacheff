@@ -3,7 +3,6 @@
  */
 'use strict';
 require('../../../common/formvalidator');
-var _ = require('underscore');
 var app = require('../../../common/app');
 var notify = require('../../../common/notify');
 var upload = require('../../../common/uploadifive');

@@ -1,7 +1,6 @@
 'use strict';
 var app = require('../../../common/app');
 var strftime = require('strftime');
-var _ = require('underscore');
 var Vue = require('vue');
 var Pagination = require('../../../components/Pagination');
 var Loading = require('../../../components/Loading');

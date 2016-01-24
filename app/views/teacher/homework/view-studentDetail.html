@@ -126,11 +126,9 @@
 {% block javascript %}
 
 <script type="text/javascript">
-    window.exercises =
-    <<exercises | json | safe >>;
+    window.exercises = <<exercises | json | safe >>;
 </script>
-
-
+<script src="//cdn.bootcss.com/datatables/1.10.10/js/jquery.dataTables.min.js"></script>
 <script src="/js/entries/teacher/homework/view-studentDetail.js"></script>
 
 {% endblock %}

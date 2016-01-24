@@ -1,5 +1,4 @@
 'use strict';
-_ = require 'lodash'
 
 #序列化表单为javascript对象
 $.fn.serializeObject = ()->

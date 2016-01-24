@@ -2,7 +2,6 @@
 
 require('../../../common/formvalidator');
 var app = require('../../../common/app');
-var _ = require('underscore');
 
 $(document).ready(function () {
     app = app();

@@ -1,5 +1,4 @@
 'use strict';
-require('datatables');
 var app = require('../../../common/app');
 var strftime = require('strftime');
 var notify = require('../../../common/notify');

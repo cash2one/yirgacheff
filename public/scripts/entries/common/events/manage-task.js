@@ -7,7 +7,6 @@
 require('../../../common/formvalidator');
 var app = require('../../../common/app');
 var strftime = require('strftime');
-var _ = require('lodash');
 var Vue = require('vue');
 var VueAsyncData = require('vue-async-data');
 Vue.use(VueAsyncData);

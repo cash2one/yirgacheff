@@ -1,7 +1,5 @@
 'use strict';
 
-require('datatables');
-require('highcharts');
 
 var app = require('../../../common/app');
 var exerciseBuilder = require('../../../common/exerciseReadOnlyBuilder');

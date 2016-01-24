@@ -4,7 +4,6 @@
 'use strict';
 
 require('../../../common/formvalidator');
-var _ = require('underscore');
 var app = require('../../../common/app');
 var datepicker = require('../../../common/datetimepicker');
 var upload = require('../../../common/uploadifive');

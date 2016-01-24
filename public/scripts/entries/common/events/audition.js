@@ -4,7 +4,6 @@
 'use strict';
 
 require('../../../common/formvalidator');
-var _ = require('underscore');
 var app = require('../../../common/app');
 var upload = require('../../../common/uploadifive');
 var richEditor = require('../../../common/richEditor');

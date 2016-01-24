@@ -1,6 +1,4 @@
-_ = require 'underscore'
 app = require '../../common/app'
-require '../../common/highcharts'
 
 $ ->
 #app 初始化
@@ -86,7 +84,7 @@ $ ->
       }
     },
     colors: ['#56abe4', '#fb6d9d', '#ffbd4a', '#f7a35c', '#8085e9',
-             '#f15c80', '#e4d354', '#8085e8', '#8d4653', '#91e8e1']
+      '#f15c80', '#e4d354', '#8085e8', '#8d4653', '#91e8e1']
     xAxis: {
       categories: []
     },
@@ -99,7 +97,7 @@ $ ->
       }
     },
     credits: {
-      enabled:false
+      enabled: false
     },
     series: [{
       type: 'column',

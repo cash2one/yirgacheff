@@ -1,7 +1,6 @@
 'use strict';
 
 var app = require('../../common/app');
-var _ = require('underscore');
 
 
 $(document).ready(function () {

@@ -2,10 +2,7 @@
  * Created by Admin on 2016/1/11.
  */
 
-require('datatables');
 var app = require('../../../common/app');
-
-
 $(document).ready(function () {
     var eventId = $("#eventId").val();
     app();

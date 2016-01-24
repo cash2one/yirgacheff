@@ -1,7 +1,6 @@
 'use strict';
 
 
-require('datatables');
 require('../../../common/formvalidator');
 var app = require('../../../common/app');
 

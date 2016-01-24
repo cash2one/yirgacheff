@@ -38,10 +38,14 @@ function makeConf(env) {
         },
         externals: {
             "jquery": "window.jQuery",
-            "moment": true
-
+            "moment": true,
+            "bootstrap": true
         },
-        plugins: []
+        plugins: [
+            new webpack.ProvidePlugin({
+                _: "underscore"
+            })
+        ]
     };
     webpackConfig.entry = genEntries(jsSrc);
     webpackConfig.output = {
@@ -53,6 +57,7 @@ function makeConf(env) {
     if (config.tasks.js.extractSharedJs) {
         webpackConfig.plugins.push(
             new CommonsChunkPlugin({
+                minChunks: 5,
                 name: 'shared',
                 filename: filenamePattern
             })
@@ -107,8 +112,6 @@ function genEntries(srcDir) {
 function sourceMap() {
     return {
         'slimscroll': 'jquery-slimscroll/jquery.slimscroll.min',
-        'highcharts': 'highcharts/highcharts.js',
-        'datatables': 'datatables/media/js/jquery.dataTables.js',
         'bootstrap-notify': 'bootstrap-notify/bootstrap-notify.min.js'
     };
 }
