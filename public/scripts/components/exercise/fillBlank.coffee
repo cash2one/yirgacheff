@@ -1,5 +1,6 @@
 Vue = require 'vue'
 notify = require '../../common/notify'
+_ = require 'underscore'
 #填空题
 FillBlankComponent = Vue.extend(
   props: ['index', 'exercise']

@@ -4,7 +4,9 @@
 
 'use strict';
 
+
 require('../../../common/formvalidator');
+var _ = require('underscore');
 var app = require('../../../common/app');
 var strftime = require('strftime');
 var Vue = require('vue');
@@ -24,7 +26,8 @@ $(document).ready(function () {
                     _id: null,
                     title: '',
                     scoreAward: 0
-                }
+                },
+                loading: false
             };
         },
         template: '#taskModalTemplate',
@@ -32,7 +35,7 @@ $(document).ready(function () {
             add: function () {
                 var self = this;
                 var task = self.task;
-                if (_.trim(task.title) === '') {
+                if (task.title.trim() === '') {
                     return app.notify.danger("任务名称不能为空");
                 }
                 if (isNaN(task.scoreAward)) {
@@ -46,19 +49,17 @@ $(document).ready(function () {
                 if (task._id !== null) {
                     data._id = task._id;
                 }
+                this.loading = true;
                 $.post(url, data).then(function (task) {
                     self.$dispatch('add-task', task);
                     $(self.$el).modal("hide");
-                    if (task._id !== null) {
-                        app.notify.success("修改成功");
-                    } else {
-                        app.notify.success("添加成功");
-                    }
+                    app.notify.success("操作成功");
                 });
             }
         },
         events: {
             show: function (task) {
+                this.loading = false;
                 this.task = _.assign({}, task);
                 $(this.$el).modal("show");
             }

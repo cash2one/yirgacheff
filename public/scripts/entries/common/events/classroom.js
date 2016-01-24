@@ -70,7 +70,8 @@ $(document).ready(function () {
     var vm = new Vue({
         el: "#classroomApp",
         data: {
-            videos: window.courses || []
+            videos: window.courses || [],
+            loading: false
         },
         methods: {
             showModal: function () {
@@ -105,6 +106,7 @@ $(document).ready(function () {
         }
         data.courses = videos;
         data.template = 'classroom';
+        vm.loading = true;
         $.post('/api/v1/events', data).then(function (event) {
             self.location.href = "/school/events/manage/" + event._id.toString();
         });

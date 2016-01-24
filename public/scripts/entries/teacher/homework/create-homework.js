@@ -1,5 +1,5 @@
 'use strict';
-
+var _ = require('underscore');
 var Vue = require('vue');
 var VueAsyncData = require('vue-async-data');
 var app = require('../../../common/app');

@@ -43,7 +43,7 @@ function makeConf(env) {
         },
         plugins: [
             new webpack.ProvidePlugin({
-                _: "underscore"
+                "_": "underscore"
             })
         ]
     };

@@ -1,5 +1,5 @@
 app = require '../../common/app'
-
+_ = require 'underscore'
 $ ->
 #app 初始化
   app()

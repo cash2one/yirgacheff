@@ -1,4 +1,5 @@
 'use strict';
+var _ = require('underscore');
 var app = require('../../../common/app');
 var notify = require('../../../common/notify');
 var strftime = require('strftime');

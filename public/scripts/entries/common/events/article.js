@@ -7,9 +7,16 @@ var app = require('../../../common/app');
 var upload = require('../../../common/uploadifive');
 var richEditor = require('../../../common/richEditor');
 var weixinEditor = require('../../../common/weixinEditor');
+var Vue = require('vue');
 
 $(document).ready(function () {
     app();
+    var vm = new Vue({
+        data: {
+            loading: false
+        },
+        el: '#articleApp'
+    });
 
     //富编辑器渲染
     var editor = richEditor.render('content');
@@ -32,6 +39,7 @@ $(document).ready(function () {
 
     $("#articleForm").validate(function ($form, data) {
         data.template = 'article';
+        vm.loading = true;
         $.post('/api/v1/events', data).then(function (event) {
             self.location.href = "/school/events/manage/" + event._id.toString();
         });

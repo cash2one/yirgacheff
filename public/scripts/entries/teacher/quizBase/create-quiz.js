@@ -1,5 +1,5 @@
 'use strict';
-
+var _ = require ('underscore');
 var Vue = require('vue');
 var app = require('../../../common/app');
 var QuizComponent = require('../../../components/exercise');

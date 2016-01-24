@@ -1,5 +1,5 @@
 'use strict';
-
+var _ = require ('underscore');
 require('../../../common/formvalidator');
 var app = require('../../../common/app');
 

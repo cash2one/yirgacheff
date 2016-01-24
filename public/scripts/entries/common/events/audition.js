@@ -14,7 +14,8 @@ $(document).ready(function () {
     app();
     var vm = new Vue({
         data: {
-            enrollFields: []
+            enrollFields: [],
+            loading: false
         },
         components: {
             'enroll': require('../../../components/Enroll')
@@ -58,6 +59,7 @@ $(document).ready(function () {
         data.enrollFields = _.filter(vm.enrollFields, function (field) {
             return field.trim() !== '';
         });
+        vm.loading = true;
         $.post('/api/v1/events', data).then(function (event) {
             self.location.href = "/school/events/manage/" + event._id.toString();
         });

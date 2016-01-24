@@ -1,3 +1,4 @@
+_ = require 'underscore'
 Vue = require 'vue'
 notify = require '../../common/notify'
 #语音题
