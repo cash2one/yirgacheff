@@ -3,6 +3,7 @@
 
 require('../../../common/formvalidator');
 var app = require('../../../common/app');
+var _ = require('underscore');
 
 $(document).ready(function () {
     app = app();
@@ -177,11 +178,14 @@ $(document).ready(function () {
     //积分操作
     $scoreForm.validate(function ($form, data) {
         data.students = getSelectedStudents();
+        $("#save-score").prop("disabled");
         $.ajax({
             url: '/api/v1/students/score',
             type: 'PUT',
             data: data
         }).then(function () {
+            $scoreModal.modal("hide");
+            $("#save-score").prop("disabled", false);
             self.location.href = '';
         });
     });
@@ -208,9 +212,9 @@ $(document).ready(function () {
             data: data,
             type: 'PUT'
         }).then(function (student) {
+            $("#studentModal").modal("hide");
             app.notify.success("添加学生成功");
             dataTable.row.add(student).draw();
-            $("#studentModal").modal("hide");
         });
     });
 

@@ -85,7 +85,6 @@ module.exports = {
      * 积分操作
      */
     scoreAward: co.wrap(function*(studentIds, data, operator) {
-        console.log(data);
         if (!_.isArray(studentIds)) {
             studentIds = [studentIds];
         }
@@ -120,7 +119,8 @@ module.exports = {
     logByStudent: co.wrap(function*(studentId) {
         return yield ScoreLog.find({
             student: studentId
-        }).populate('operator', 'displayName avatar').lean().exec();
+        }).populate('operator', 'displayName avatar')
+            .sort('-createdTime').lean().exec();
     })
 
 };

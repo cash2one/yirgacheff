@@ -4,6 +4,22 @@ notify = require "./notify"
 
 
 $ ->
+  pendingRequests = {}
+  #ajax 防止重复提交
+  $.ajaxPrefilter (options, originalOptions, jqXHR)->
+#去掉浏览器添加的 _参数 ()
+    key = options.url
+    if not pendingRequests[key]? and key.indexOf '.html' is -1
+      pendingRequests[key] = jqXHR
+    else if key.indexOf '.html' is -1
+      jqXHR.abort()
+
+    complete = options.complete
+    options.complete = (jqXHR, textStatus)->
+      pendingRequests[key] = null
+      if $.isFunction complete
+        complete.apply this, arguments
+
   $.ajaxSetup({
     dataType: "json"
   })
@@ -25,12 +41,12 @@ $ ->
   $("#toTop").hide()
 
   $(window).scroll ()->
-    if($(window).scrollTop()>100)
-       $("#toTop").fadeIn()
+    if($(window).scrollTop() > 100)
+      $("#toTop").fadeIn()
     else $("#toTop").fadeOut()
 
   $('#toTop').click ()->
-    $('body,html').animate({scrollTop:0},500)
+    $('body,html').animate({scrollTop: 0}, 500)
     return false
 
   $('#message').click ()->
@@ -48,7 +64,7 @@ $ ->
   })
 
   $('.inner-menu li a').each ()->
-    if($($(this))[0].href==String(window.location))
+    if($($(this))[0].href == String(window.location))
       $(this).closest('.item').addClass('active')
 
 #app 导出常用的功能模块
