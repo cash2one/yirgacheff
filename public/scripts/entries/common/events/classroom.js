@@ -105,8 +105,8 @@ $(document).ready(function () {
         }
         data.courses = videos;
         data.template = 'classroom';
-        $.post('/api/v1/events', data).then(function () {
-            self.location.href = "/school/events/manage"
+        $.post('/api/v1/events', data).then(function (event) {
+            self.location.href = "/school/events/manage/" + event._id.toString();
         });
     });
 

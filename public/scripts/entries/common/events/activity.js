@@ -56,8 +56,8 @@ $(document).ready(function () {
         data.enrollFields = _.filter(vm.enrollFields, function (field) {
             return field.trim() !== '';
         });
-        $.post('/api/v1/events', data).then(function () {
-            self.location.href = "/school/events/manage"
+        $.post('/api/v1/events', data).then(function (event) {
+            self.location.href = "/school/events/manage/" + event._id.toString();
         });
     });
 
