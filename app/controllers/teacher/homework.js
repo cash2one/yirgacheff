@@ -28,7 +28,7 @@ module.exports = function (router) {
             fields: ['className']
         });
         if (this.query.quizId) {
-            yield service.quizzes.increaseUsage(this.quizId);
+            yield service.quizzes.increaseUsage(this.query.quizId);
         }
         yield this.render('teacher/homework/create-homework');
     });
