@@ -6,20 +6,26 @@ require('../../../common/formvalidator');
 var app = require('../../../common/app');
 var upload = require('../../../common/uploadifive');
 var richEditor = require('../../../common/richEditor');
-var weixinEditor = require('../../../common/weixinEditor');
+var WXEditor = require('../../../components/weixinEditor/Editor');
 var Vue = require('vue');
 
 $(document).ready(function () {
     app();
     var vm = new Vue({
+        el: '#auditionApp',
         data: {
             enrollFields: [],
             loading: false
         },
         components: {
-            'enroll': require('../../../components/Enroll')
+            'enroll': require('../../../components/Enroll'),
+            'wx-editor': WXEditor
         },
-        el: '#auditionApp'
+        methods: {
+            uiSelect: function (ui) {
+                editor.execCommand('insertHtml', ui);
+            }
+        }
     });
 
     //富编辑器渲染

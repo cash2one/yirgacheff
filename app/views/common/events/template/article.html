@@ -58,7 +58,7 @@
                     <div class="form-group">
                         <label for="content" class="col-xs-1 control-label">文章内容</label>
                         <div class="col-xs-5">
-                            {%include '../../../components/weixinEditor.html' %}
+                            <wx-editor @ui-select="uiSelect"></wx-editor>
                         </div>
                         <div class="col-xs-6">
                             <div class="textarea-container" id="content"></div>

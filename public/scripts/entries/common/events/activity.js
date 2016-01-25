@@ -7,26 +7,30 @@ var app = require('../../../common/app');
 var datepicker = require('../../../common/datetimepicker');
 var upload = require('../../../common/uploadifive');
 var richEditor = require('../../../common/richEditor');
-var weixinEditor = require('../../../common/weixinEditor');
+var WXEditor = require('../../../components/weixinEditor/Editor');
 var Vue = require('vue');
 
 $(document).ready(function () {
     app = app();
+    var editor = richEditor.render('content');
     var vm = new Vue({
+        el: '#activityApp',
         data: {
             enrollFields: [],
             loading: false
         },
-        components: {
-            'enroll': require('../../../components/Enroll')
-        },
-        el: '#activityApp'
-    });
 
+        components: {
+            'enroll': require('../../../components/Enroll'),
+            'wx-editor': WXEditor
+        },
+        methods: {
+            uiSelect: function (ui) {
+                editor.execCommand('insertHtml', ui);
+            }
+        }
+    });
     //富编辑器渲染
-    var editor = richEditor.render('content');
-    //初始化微信编辑器
-    weixinEditor({editor: editor});
     editor.ready(function () {
         var hideContent = $("#hideContent");
         if (hideContent.length > 0) {

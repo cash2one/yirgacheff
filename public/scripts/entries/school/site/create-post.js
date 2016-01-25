@@ -5,15 +5,24 @@ var app = require('../../../common/app');
 var notify = require('../../../common/notify');
 var upload = require('../../../common/uploadifive');
 var richEditor = require('../../../common/richEditor');
-var weixinEditor = require('../../../common/weixinEditor');
-
+var WXEditor = require('../../../components/weixinEditor/Editor');
+var Vue = require('vue');
 $(document).ready(function () {
     app();
 
     //富编辑器渲染
     var editor = richEditor.render('content');
-    //初始化微信编辑器
-    weixinEditor({editor: editor});
+    new Vue({
+        el: '#postApp',
+        components: {
+            'wx-editor': WXEditor
+        },
+        methods: {
+            uiSelect: function (ui) {
+                editor.execCommand('insertHtml', ui);
+            }
+        }
+    });
     editor.ready(function () {
         editor.setContent($("#postContent").val());
     });
