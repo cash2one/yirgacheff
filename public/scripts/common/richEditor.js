@@ -29,10 +29,10 @@ module.exports.render = function (elemId) {
         var $editor = $("#ueditor_0");
         var content = $($editor[0].contentWindow.document.body);
         var top = select_target.offset().top + select_target.height() - content.scrollTop();
-        var left = select_target.offset().left + $editor.offset().left;
+        var left = select_target.offset().left;
         selectedTools.css({
             top: top + 95,
-            left: left + 45,
+            left: left + 465,
             display: "block"
         });
         selectedTools.show();
