@@ -1,5 +1,8 @@
 {% extends '../../layout.html' %}
 {% block content %}
+{% block css %}
+<link href="//cdn.bootcss.com/datatables-tabletools/2.1.5/css/TableTools.css" rel="stylesheet">
+{% endblock %}
 <!-- END OF BREADCRUMBS -->
 <div class="row" id="enrollApp">
     <input type="hidden" id="eventId" value="<<eventId>>">
@@ -28,15 +31,10 @@
         <div class="panel panel-default shadow">
             <div class="panel-heading clearfix">
                 <h4 class="panel-title">报名管理</h4>
-                <div class="panel-control">
-                    <button class="btn btn-default btn-sm" id="exportExcel">
-                        <i class="fa fa-cloud-download m-r-xxs"></i>导出excel
-                    </button>
-                </div>
             </div>
             <div class="panel-body">
                 {% if enroll %}
-                <table class="table" id="enrollTable">
+                <table class="display" id="enrollTable">
                     <thead>
                     <tr>
                         <th>姓名</th>
@@ -77,4 +75,6 @@
 {% block javascript %}
 <script src="//cdn.bootcss.com/datatables/1.10.10/js/jquery.dataTables.min.js"></script>
 <script src="/js/entries/common/events/manage-enroll.js"></script>
+<script src="//cdn.bootcss.com/datatables-tabletools/2.1.5/js/TableTools.js"></script>
+<script src="//cdn.bootcss.com/datatables-tabletools/2.1.5/js/ZeroClipboard.js"></script>
 {% endblock %}

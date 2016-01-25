@@ -1304,20 +1304,33 @@ xcredits
 .upload-video{
     border: 1px dashed #dfdfdf;
     padding-top: 70px;
-    height: 300px;
+    height: 308px;
     text-align: center;
-    margin-bottom: 20px;
+    background-color: #f4f8fb;
 }
 .upload-video .up-video-detail{
     width: 600px;
     margin: 0 auto;
     margin-top: 20px;
 }
+.upload-video .upload-icon{
+    width: 100px;
+    height: 100px;
+    border: 1px solid #2aabe6;
+    border-radius: 50%;
+    text-align: center;
+    margin: 0 auto;
+}
+.upload-video .upload-icon i{
+    color: #2aabe6;
+    line-height: 100px;
+    font-size: 32px;
+}
 .upload-video-t{
     font-size: 18px;
-}
-.upload-video i{
-    font-size: 70px;
+    margin-top: 30px;
+    letter-spacing:12px;
+    margin-left: 12px;
 }
 .video-list .thumbnail{
     height: 308px;
@@ -1675,6 +1688,10 @@ xcredits
     border: 1px solid #2aabe6;
     background-color: #2aabe6;
     font-weight: 400;
+}
+/*导出到excel*/
+div.DTTT_container {
+    margin-left: 10px;
 }
 /*loading*/
 .loaders {

@@ -48,8 +48,7 @@ $(document).ready(function () {
                 if (!video.link || video.link === "") {
                     return notify.danger("链接不能为空");
                 }
-                console.log(video.link.indexOf("iframe"))
-                if (video.link.indexOf("iframe") === -1) {
+                if (video.link.indexOf("iframe") !== -1 || video.link.indexOf("embed") !== -1 || video.link.indexOf("http") === -1)  {
                     return notify.danger("错误的视频链接");
                 }
                 if (!video.title || video.title === "") {
