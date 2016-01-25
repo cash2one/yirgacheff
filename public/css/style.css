@@ -1689,6 +1689,10 @@ xcredits
     background-color: #2aabe6;
     font-weight: 400;
 }
+/*导出到excel*/
+div.DTTT_container {
+    margin-left: 10px;
+}
 /*loading*/
 .loaders {
     width: 100%;
