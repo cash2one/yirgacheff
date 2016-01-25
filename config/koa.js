@@ -18,6 +18,8 @@ const config = require('./config');
 const router = require('./router');
 const jwt = require('../app/middleware/jwt');
 const error = require('../app/middleware/error');
+const accesslog = require('koa-accesslog');
+
 
 const app = koa();
 
@@ -41,6 +43,9 @@ function initLocalVariables(app) {
  * @param app
  */
 function initMiddleware(app) {
+    if (config.debug) {
+        app.use(accesslog());
+    }
     app.use(cors());
     app.use(flash());
     forward(app, {debug: true});

@@ -194,7 +194,6 @@ module.exports = {
 
 
     getDoc: co.wrap(function*(id, qrcode) {
-        console.log(qrcode);
         let clazz = yield Class.findById(id).select('className schoolId').lean().exec();
         if (!clazz) {
             throw createError(400, '班级不存在');
