@@ -1,5 +1,11 @@
 Vue = require 'vue'
-
+colors = [
+  "#fff45c", "#fde800", "#ffcb15", "#ffa921", "#ff691f", "#ff391f",
+  "#c53f46", "#d6004a", "#ff1d6b", "#ff4da9", "#ff80c5", "#ffb4ce",
+  "#ddf56d", "#b0f346", "#6fe113", "#87c943", "#129527", "#059d7f",
+  "#00589c", "#4676d9", "#4e99df", "#5faaff", "#3abcff", "#70d8ff",
+  "#cccccc", "#999999", "#666666", "#333333", "#000000"
+]
 template = """
 <div class="editor">
     <div class="wx-editor-template-list">
@@ -64,35 +70,7 @@ template = """
                     <li>
                         <div class="colorpick">
                             <ul class="list-unstyled">
-                                <li style="background-color: #fff45c;"></li>
-                                <li style="background-color: #fde800;"></li>
-                                <li style="background-color: #ffcb15;"></li>
-                                <li style="background-color: #ffa921;"></li>
-                                <li style="background-color: #ff691f;"></li>
-                                <li style="background-color: #ff391f;"></li>
-                                <li style="background-color: #c53f46;"></li>
-                                <li style="background-color: #d6004a;"></li>
-                                <li style="background-color: #ff1d6b;"></li>
-                                <li style="background-color: #ff4da9;"></li>
-                                <li style="background-color: #ff80c5;"></li>
-                                <li style="background-color: #ffb4ce;"></li>
-                                <li style="background-color: #ddf56d;"></li>
-                                <li style="background-color: #b0f346;"></li>
-                                <li style="background-color: #6fe113;"></li>
-                                <li style="background-color: #87c943;"></li>
-                                <li style="background-color: #129527;"></li>
-                                <li style="background-color: #059d7f;"></li>
-                                <li style="background-color: #00589c;"></li>
-                                <li style="background-color: #4676d9;"></li>
-                                <li style="background-color: #4e99df;"></li>
-                                <li style="background-color: #5faaff;"></li>
-                                <li style="background-color: #3abcff;"></li>
-                                <li style="background-color: #70d8ff;"></li>
-                                <li style="background-color: #cccccc;"></li>
-                                <li style="background-color: #999999;"></li>
-                                <li style="background-color: #666666;"></li>
-                                <li style="background-color: #333333;"></li>
-                                <li style="background-color: #000000;"></li>
+                                <li v-for="color in colors" style="background-color: {{color}};" @click='selectColor(color)'></li>
                             </ul>
                         </div>
                     </li>
@@ -113,12 +91,10 @@ WXEditor = Vue.extend
   template: template
   data: ()->
     currentView: 'title'
+    colors: colors
 
-  ready: ()->
-    $('.slimscroll').slimscroll
-      alwaysVisible: false
-      allowPageScroll: false
-      height: "auto"
+
+
   components:
     title: (resolve)-> require ['./ui/Title'], resolve
     content: (resolve)-> require ['./ui/Content'], resolve
@@ -126,6 +102,16 @@ WXEditor = Vue.extend
     share: (resolve)-> require ['./ui/Share'], resolve
     festival: (resolve)-> require ['./ui/Festival'], resolve
     gallery: (resolve)-> require ['./ui/Gallery'], resolve
+
+  methods:
+    selectColor: (color)->
+      this.$broadcast 'change-color', color
+
+  ready: ()->
+    $('.slimscroll').slimscroll
+      alwaysVisible: false
+      allowPageScroll: false
+      height: "auto"
 
   events:
     'element-select': (e)->
