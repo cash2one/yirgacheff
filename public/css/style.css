@@ -1638,8 +1638,8 @@ xcredits
 .rankings-number{
     width: 19px;
     position: absolute;
-    top: 7px;
-    left: 5px;
+    top: 3px;
+    left: 0;
     text-align: center;
     color: #fff;
     font-size: 12px;
