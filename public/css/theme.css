@@ -1198,7 +1198,7 @@ a.bg-pink:focus {
 .navbar .dropdown-menu > .active > a:hover,
 .navbar .dropdown-menu > .active > a:focus {
     color: #2aabe6;
-    background: none;
+    background: #f4f8fb;
 }
 .navbar .nav > li .dropdown-menu {
     margin: 0;
@@ -1261,6 +1261,7 @@ a.bg-pink:focus {
 .page-sidebar .nav > li > a:focus {
     text-decoration: none;
     background: none;
+    border-left: 3px solid #2aabe6;
     color: #2aabe6;
 }
 .page-sidebar .nav-pills > li {
@@ -1306,7 +1307,7 @@ a.bg-pink:focus {
 .category-sidebar .nav > li > a:hover,
 .category-sidebar .nav > li > a:focus {
     text-decoration: none;
-    background: none;
+    background: #f4f8fb;
     color: #2aabe6;
 }
 .category-sidebar .nav-pills > li {
