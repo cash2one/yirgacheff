@@ -272,7 +272,7 @@
     overflow: hidden;
 }
 .cd-item-info .cd-price {
-    color: #2aabe6;
+    color: #999;
     position: relative;
     -webkit-transition: color 0.2s;
     -moz-transition: color 0.2s;
@@ -1769,3 +1769,8 @@ div.DTTT_container {
     height: 60px;
     -webkit-animation: ball-scale-multiple 1s 0s linear infinite;
     animation: ball-scale-multiple 1s 0s linear infinite; }
+
+.animated {
+    -webkit-animation-duration: .3s;
+    animation-duration: .3s;
+}
