@@ -5,14 +5,12 @@ module.exports =
       $this = $(this.$el)
       $this.find(".item .wxqq-bg").css({backgroundColor: color})
       $this.find(".item .wxqq-color").css({color: color});
-      borders = [
-        ".wxqq-borderTopColor"
-        ".wxqq-borderRightColor"
-        ".wxqq-borderBottomColor"
-        ".wxqq-borderLeftColor"
-        ".wxqq-borderColor"]
-
-      $.each borders, (border)-> $this.find(border).css({'border-color': color})
+      borders =
+        ".wxqq-borderTopColor":'top'
+        ".wxqq-borderRightColor":'right'
+        ".wxqq-borderBottomColor":'bottom'
+        ".wxqq-borderLeftColor":'left'
+      $.each borders, (c,p)-> $this.find(c).css("border-#{p}-color",color)
 
   ready: ()->
     vm = this
