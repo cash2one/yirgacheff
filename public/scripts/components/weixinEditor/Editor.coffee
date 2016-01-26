@@ -70,7 +70,10 @@ template = """
                     <li>
                         <div class="colorpick">
                             <ul class="list-unstyled">
-                                <li v-for="color in colors" style="background-color: {{color}};" @click='selectColor(color)'></li>
+                                <li v-for="color in colors"
+                                v-bind:style="{backgroundColor:color}"
+                                @click='selectColor(color)'>
+                                </li>
                             </ul>
                         </div>
                     </li>
@@ -81,7 +84,7 @@ template = """
     <div class="wx-editor-template-content">
         <div class="tab-content slimscroll">
             <div class="tab-pane fade in active">
-              <component :is="currentView"></component>
+              <component :is="currentView" keep-alive></component>
             </div>
         </div>
     </div>
@@ -92,8 +95,6 @@ WXEditor = Vue.extend
   data: ()->
     currentView: 'title'
     colors: colors
-
-
 
   components:
     title: (resolve)-> require ['./ui/Title'], resolve

@@ -8,7 +8,6 @@ const _ = require('lodash');
 const createError = require('http-errors');
 const queryBuilder = require('../functions/queryBuilder');
 const Post = mongoose.model('Post');
-const Task = mongoose.model('Task');
 const Category = mongoose.model('Category');
 
 module.exports = {
