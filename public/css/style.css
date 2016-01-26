@@ -260,6 +260,7 @@
 .cd-item-info b {
     margin-bottom: 5px;
     display: block;
+    color:#666;
 
 }
 .cd-item-info b a {
@@ -271,7 +272,7 @@
     overflow: hidden;
 }
 .cd-item-info .cd-price {
-    color: #22BAA0;
+    color: #2aabe6;
     position: relative;
     -webkit-transition: color 0.2s;
     -moz-transition: color 0.2s;

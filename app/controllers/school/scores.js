@@ -16,7 +16,8 @@ module.exports = function (router) {
     router.get('/mall', function*() {
         let user = this.user;
         let filter = {
-            fields: ['-createdTime', '-schoolId']
+            fields: ['-createdTime', '-schoolId'],
+            order: ['score']
         };
         this.state.exchanges = yield service.score.getExchanges(user.schoolId, filter);
         yield this.render('school/scores/list-products');

@@ -11,6 +11,8 @@ var Vue = require('vue');
 
 $(document).ready(function () {
     app();
+    //富编辑器渲染
+    var editor = richEditor.render('content');
     var vm = new Vue({
         el: '#auditionApp',
         data: {
@@ -28,10 +30,8 @@ $(document).ready(function () {
         }
     });
 
-    //富编辑器渲染
-    var editor = richEditor.render('content');
+
     //初始化微信编辑器
-    weixinEditor({editor: editor});
     editor.ready(function () {
         var hideContent = $("#hideContent");
         if (hideContent.length > 0) {
