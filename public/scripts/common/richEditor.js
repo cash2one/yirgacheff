@@ -20,7 +20,7 @@ module.exports.render = function (elemId) {
         '<span data-operate="insert-after">后空行</span>' +
         '</div>');
 
-    $('body').append(imageToolsTemplate).append(selectToolsTemplate);
+    $('#content').append(imageToolsTemplate).append(selectToolsTemplate);
     var imgTools = $("#J-imgTools");
     var selectedTools = $("#J-editTools");
     var editor = UE.getEditor(elemId, {
@@ -46,10 +46,10 @@ module.exports.render = function (elemId) {
         var $editor = $("#ueditor_0");
         var content = $($editor[0].contentWindow.document.body);
         var top = select_target.offset().top + select_target.height() - content.scrollTop();
-        var left = select_target.offset().left;
+        var right = content.width() - (select_target.offset().left + select_target.width());
         selectedTools.css({
             top: top + 95,
-            left: left + 465,
+            right: right + 15,
             display: "block"
         });
         selectedTools.show();
@@ -100,7 +100,7 @@ module.exports.render = function (elemId) {
         var left = target.offset().left;
         imgTools.css({
             top: top + 85,
-            left: left + 465,
+            left: left + 10,
             display: "block"
         });
         imgTools.show();
