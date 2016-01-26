@@ -10,7 +10,6 @@ module.exports = _.extend(
     require('./media'),
     require('./score'),
     require('./site'),
-    require('./task'),
     require('./user'),
     require('./schedule.model'),
     require('./class.model'),
