@@ -108,14 +108,17 @@ module.exports = {
 
     // 添加任务
     addTask: co.wrap(function*(eventId, data) {
-        let event = yield Event.findById(eventId).select('_id schoolId tags').exec();
+        let event = yield Event.findById(eventId).select('schoolId tags').exec();
         if (!event) {
             throw createError(400, '活动不存在')
         }
         let task = new ScoreTask(data);
         task.schoolId = event.schoolId;
         task.event = event;
-        event.tags.addToSet('任务');
+        if (event.tags.indexOf('任务') === -1) {
+            event.tags.addToSet('任务');
+            yield event.save();
+        }
         return yield task.save();
     }),
 
