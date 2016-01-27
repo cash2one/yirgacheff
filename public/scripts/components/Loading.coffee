@@ -1,10 +1,8 @@
 Vue = require 'vue'
 
-Loading = Vue.extend({
-  props: ['loading']
-  template: """
+template = """
 <div class='loaders'>
-   <div class="loader" v-show="loading">
+   <div class="loader">
     <div class="loader-inner ball-scale-multiple">
       <div></div>
       <div></div>
@@ -12,7 +10,10 @@ Loading = Vue.extend({
     </div>
   </div>
 </div>
-  """
+"""
+
+Loading = Vue.extend({
+  template: template
 })
 
 module.exports = Loading

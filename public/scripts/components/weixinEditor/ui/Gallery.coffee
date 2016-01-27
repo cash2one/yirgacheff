@@ -2,7 +2,7 @@ upload = require('../../../common/uploadifive');
 Vue = require 'vue'
 Vue.use (require 'vue-async-data')
 Vue.filter 'visit', (value)->
-  "http://resource.hizuoye.com/#{value}"
+  "http://resource.hizuoye.com/#{value}-gallery"
 
 template = """
   <ul class="list-unstyled images-list" id="weixinGallery">
@@ -46,6 +46,7 @@ Gallery = Vue.extend
   methods:
     selectImage: (event)->
       img = $(event.target).closest('.img-item').find('.img-box').html()
+      img = img.replace('-gallery', '')
       this.$dispatch 'image-select', img
 
     deleteImage: (index)->

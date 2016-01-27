@@ -19,7 +19,7 @@ $(document).ready(function () {
         return strftime('%F %T', new Date(value));
     });
     Vue.filter('visit', function (value) {
-        return GLOBAL.visitUrl + '/' + value;
+        return GLOBAL.visitUrl + '/' + value + '-list';
     });
     Vue.component('event-item', {
         props: ['event'],

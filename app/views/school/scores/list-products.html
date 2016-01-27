@@ -20,7 +20,7 @@
                     备注：微信端积分商城会根据积分数自动排序，设置时可以不用考虑顺序问题。
                 </div>
                 <ul class="cd-gallery" id="product-list">
-                    <Loading :loading="loading"></Loading>
+                    <Loading v-if="loading"></Loading>
                     <product-item v-for="product in products | orderBy 'score' -1 "
                                   :product="product"
                                   :index="$index"
