@@ -41,6 +41,7 @@ module.exports = function (router) {
         if (query.category) {
             filter.where = {category: query.category};
         }
+        filter.fields = ['title image createdTime visitCount like category'];
         this.body = yield {
             total: service.posts.countBySchool(this.user.schoolId, query.category),
             posts: service.posts.findBySchool(this.user.schoolId, filter)

@@ -66,6 +66,7 @@ module.exports = {
             throw createError(400, '商品不存在');
         }
         _.assign(exchange, data);
+        console.log(exchange);
         return yield exchange.save();
     }),
 

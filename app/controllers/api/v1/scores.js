@@ -6,6 +6,12 @@ const service = require('../../../services');
 
 module.exports = function (router) {
 
+
+    router.get('/scoreExchanges', function*() {
+        let user = this.user;
+        this.body = yield service.score.getExchanges(user.schoolId);
+    });
+
     router.post('/scoreExchangeInstructions', function*() {
         let user = this.user;
         let content = this.request.body.content;
@@ -18,7 +24,14 @@ module.exports = function (router) {
 
     router.post('/scoreExchanges', function*() {
         let user = this.user;
-        this.body = yield service.score.addExchange(user.schoolId, this.request.body);
+        let productId = this.request.body._id;
+        if (productId && productId !== null) {
+            console.log('修改商品');
+            this.body = yield service.score.updateExchangeById(productId, this.request.body);
+        } else {
+            console.log('添加商品');
+            this.body = yield service.score.addExchange(user.schoolId, this.request.body);
+        }
     });
 
     router.delete('/scoreExchanges/:id', function*() {
