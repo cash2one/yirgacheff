@@ -57,7 +57,6 @@
     "mongoose": "4.3.7",
     "nanobar": "^0.2.1",
     "node-uuid": "^1.4.3",
-    "parameter": "^2.0.0",
     "passport": "0.3.0",
     "passport-local": "^1.0.0",
     "qiniu": "^6.1.9",
