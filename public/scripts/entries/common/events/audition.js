@@ -20,7 +20,7 @@ $(document).ready(function () {
             loading: false
         },
         components: {
-            'enroll': require('../../../components/Enroll'),
+            'enroll': require('../../../components/enroll'),
             'wx-editor': WXEditor
         },
         methods: {

@@ -32,8 +32,12 @@ function makeConf(env) {
     module: {
       loaders: [{
         test: /\.js$/,
-        loader: 'babel!eslint',
-        exclude: /node_modules/
+        loader: 'babel',
+        exclude: [
+        /node_modules/,
+        /bower_components/,
+        /lib/
+        ]
       }, {
         test: /\.coffee$/,
         loader: "coffee-loader"
