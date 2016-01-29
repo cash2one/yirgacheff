@@ -20,7 +20,7 @@
     </div>
     <div class="row" id="postList">
         <div class="col-xs-10">
-            <Loading :loading="loading"></Loading>
+            <Loading v-if="loading"></Loading>
         </div>
         <div class="col-xs-10">
             <div v-show="!loading">

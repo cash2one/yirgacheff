@@ -6,7 +6,7 @@ const _ = require('lodash');
 const service = require('../../../services');
 const qrcode = require('../../../middleware/qrcode');
 
-module.exports = function (router) {
+module.exports = function(router) {
 
     //TODO 修改为通过ID获取
     router.get('/me', function*() {
@@ -47,7 +47,11 @@ module.exports = function (router) {
             let search = query.search && query.search.value;
             if (search && '' !== search.trim()) {
                 let regx = new RegExp(search);
-                filter.where.or = [{'displayName': regx}, {username: regx}];
+                filter.where.or = [{
+                    'displayName': regx
+                }, {
+                    username: regx
+                }];
             }
             filter.limit = query.length;
             filter.skip = query.start

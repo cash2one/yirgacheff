@@ -5,7 +5,7 @@ var _ = require('underscore');
 var app = require('../../../common/app');
 var notify = require('../../../common/notify');
 var uploader = require('../../../common/uploadifive');
-var Loading = require('../../../components/Loading');
+var Loading = require('../../../components/Loading.vue');
 var Vue = require('vue');
 $(document).ready(function () {
     app = app();

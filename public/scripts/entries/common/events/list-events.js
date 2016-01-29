@@ -2,8 +2,8 @@
 var app = require('../../../common/app');
 var strftime = require('strftime');
 var Vue = require('vue');
-var Pagination = require('../../../components/Pagination');
-var Loading = require('../../../components/Loading');
+var Pagination = require('../../../components/Pagination.vue');
+var Loading = require('../../../components/Loading.vue');
 var VueAsyncData = require('vue-async-data');
 Vue.use(VueAsyncData);
 var TEMPLATES = {
@@ -19,7 +19,7 @@ $(document).ready(function () {
         return strftime('%F %T', new Date(value));
     });
     Vue.filter('visit', function (value) {
-        return GLOBAL.visitUrl + '/' + value;
+        return GLOBAL.visitUrl + '/' + value + '-list';
     });
     Vue.component('event-item', {
         props: ['event'],
