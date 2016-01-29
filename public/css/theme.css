@@ -2,7 +2,10 @@ body {
 background: #ebeff2 !important;
 margin: 0 !important;
 font-size: 14px !important;
-font-family: "Helvetica Neue",Helvetica,"Hiragino Sans GB","STHeitiSC-Light","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+}
+.chearfix{
+    clear: both;
 }
 .page-inner{
     background: #ebeff2;
@@ -1336,13 +1339,16 @@ a.bg-pink:focus {
 /* Form
 =================================================================== */
 .form-control {
-border-radius: 0;
+    border-radius: 6px;
+    font-size: 13px;
 }
 .form-group {
     margin-bottom: 20px;
 }
 label {
-    color: #999999;
+    color: #666;
+    font-weight: 100;
+    font-size: 13px;
 }
 
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
@@ -1460,6 +1466,21 @@ color: #dddddd;
 }
 .form-control-rounded {
 border-radius: 100px;
+}
+.help-inline{
+    margin-bottom: 0;
+    vertical-align: middle;
+    color: #999;
+    display: inline-block;
+    font-weight: 100;
+    font-size: 13px;
+    line-height: 32px;
+}
+.help-block {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: #999;
 }
 td .checkbox {
     position: relative;
@@ -2385,6 +2406,9 @@ transition:width 6s ease-in
 }
 .close {
     font-size: 22px;
+}
+.modal-lg {
+    width: 920px;
 }
 /*tabs*/
 .nav-tabs {

@@ -1774,3 +1774,48 @@ div.DTTT_container {
     -webkit-animation-duration: .3s;
     animation-duration: .3s;
 }
+
+/**/
+
+#voteForm .radio{
+    margin-bottom: 1px;
+}
+.vote-setting legend p{
+    font-size: 14px;
+    margin: 0 0 -1px;
+    line-height: 38px;
+    border-bottom: solid 2px #2aabe6;
+    display: inline-block;
+}
+.option-item{
+    border-bottom: 1px solid #dfdfdf;
+    padding: 15px 0;
+}
+.option-number{
+    line-height: 30px;
+}
+.option-content .option-medias{
+    display: block;
+    margin-top: 15px;
+}
+.option-content .option-medias .media-box{
+    position: relative;
+    width: 60px;
+    height: 60px;
+    float: left;
+    margin-right: 30px;
+}
+.option-content .option-edits{
+    margin-top: 15px;
+}
+.option-content .option-medias .option-del{
+    position: absolute;
+    right: -5px;
+    top: -8px;
+}
+.option-content .media-box .page-details{
+    font-size: 54px;
+    color: #2aabe6;
+    line-height: 60px;
+}
+

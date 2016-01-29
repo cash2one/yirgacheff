@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+body {
+    background: #2aabe6!important;
+    font-size: 14px;
+    height: 100%;
+    width: 100%;
+    font-family:"微软雅黑","Helvetica Neue",Helvetica,"Hiragino Sans GB","Segoe UI","Microsoft Yahei",Tahoma,Arial,STHeiti,sans-serif;
+    padding: 0;
+}
+.phone{
+    float: left;
+}
+.phone .phone-header{
+    background: url("http://r.c.mvote.net/images/iphoneboxbg/phone_header.png") no-repeat scroll 0 0;
+    height: 42px;
+    width: 322px;
+}
+.phone .phone-title{
+    background: url("http://r.c.mvote.net/images/iphoneboxbg/phonetop2.gif") no-repeat scroll 0 0;
+    height: 20px;
+    width: 322px;
+}
+.phone .phone-body{
+    height: 533px;
+    width: 322px;
+    background: #fff;
+    overflow: hidden;
+    position: relative;
+}
+.phone .phone-body iframe{
+    height: 533px;
+    left: 1px;
+    position: absolute;
+    top: 0;
+    width: 320px;
+}
+.phone .phone-footer{
+    background: url("http://r.c.mvote.net/images/iphoneboxbg/phone_footer.png") no-repeat scroll 0 0;
+    height: 47px;
+    width: 322px;
+}
+.wxqrcode .qrcodeimg{
+
+}

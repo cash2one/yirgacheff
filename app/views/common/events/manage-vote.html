@@ -1,0 +1,169 @@
+{% extends '../../layout.html' %}
+{% block content %}
+<!-- END OF BREADCRUMBS -->
+<div class="row">
+    <input type="hidden" id="eventId" value="<<eventId>>">
+    <div class="col-xs-2">
+        <div class="page-sidebar shadow">
+            <ul class="nav nav-pills nav-stacked">
+                <li>
+                    <a href="/school/events/manage/<<eventId>>">
+                        活动概览
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        报名管理
+                    </a>
+                </li>
+                <li>
+                    <a href="/school/events/manage/<<eventId>>/task">
+                        积分任务
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="javascript:void(0)">
+                        投票选项
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-xs-10">
+        <div class="panel panel-default shadow panel-min-h">
+            <div class="panel-heading clearfix">
+                <h4 class="panel-title">投票选项</h4>
+                <div class="panel-control">
+                    <a class="btn btn-info btn-sm" href="/school/events/manage/<<eventId>>/preview">预览</a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <fieldset class="vote-setting">
+                    <legend>
+                        <p>添加选项/选手</p>
+                    </legend>
+                </fieldset>
+                <div class="alert-2 alert-warning-2">
+                    已有选项个数 : 2 个
+                </div>
+                <form class="form-horizontal ">
+                    <div class="form-group">
+                        <div class="col-xs-10">
+                            <input class="form-control" type="text" placeholder="请输入投票选项（或选手姓名）">
+                        </div>
+                        <div class="col-xs-2">
+                            <button type="button" class="btn btn-info btn-block"><i class="fa fa-plus m-r-xxs"></i>添加选项/选手</button>
+                        </div>
+                    </div>
+                </form>
+                <fieldset class="vote-setting">
+                    <legend>
+                        <p>已有选项/选手</p>
+                    </legend>
+                </fieldset>
+                <div class="option-list">
+                    <div class="row option-item">
+                        <div class="col-xs-1 option-number">00001.</div>
+                        <div class="col-xs-11 option-content">
+                            <input class="form-control" value="李小二" type="text" disabled>
+                            <div class="option-medias">
+                                <div class="media-box media-image">
+                                    <img class="img-thumbnail" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_FD1836EA-71A3-CE25-A77F-83F6AC7C7AAB_src.png">
+                                    <a class="option-del">
+                                        <i class="fa fa-times" title="删除图片"></i>
+                                    </a>
+                                </div>
+                                <div class="media-box media-page">
+                                    <a class="page-details" title="查看详情" target="_blank"><i class="fa fa-file-text-o"></i></a>
+                                    <a class="option-del">
+                                        <i class="fa fa-times" title="删除图片"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="chearfix"></div>
+                            <div class="option-edits">
+                                <button class="btn btn-white m-r-xs" data-toggle="modal" id="editOption"><i class="fa fa-pencil m-r-xxs"></i>修改选项</button>
+                                <button class="btn btn-white m-r-xs"><i class="fa fa-picture-o m-r-xxs"></i>添加图片</button>
+                                <button class="btn btn-white" data-toggle="modal" id="editPage"><i class="fa fa-file-text-o m-r-xxs"></i>添加详情页</button>
+                                <button class="btn btn-white pull-right"><i class="fa fa-trash-o m-r-xxs"></i>删除选项</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 选项信息 -->
+<div class="modal fade" id="optionInfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">选项/选手信息</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal m-t-sm" id="optionInfoForm" name="optionInfoForm">
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label">编号：</label>
+
+                        <div class="col-xs-9">
+                            <input class="form-control validate" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label">名称：</label>
+
+                        <div class="col-xs-9">
+                            <input class="form-control validate" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-offset-2 col-xs-9">
+                            <button type="submit" class="btn btn-info">确定</button>
+                            <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
+                        </div>
+                    </div>
+                </form>
+                <!--</form>-->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="optionPageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">选项/选手详情页内容</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <wx-editor @ui-select="uiSelect"></wx-editor>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="textarea-container" id="content"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12 text-right">
+                            <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
+                            <button type="submit" class="btn btn-info">确定</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script src="/js/lib/ueditor/ueditor.config.js"></script>
+<script src="/js/lib/ueditor/ueditor.all.min.js"></script>
+<script src="/js/entries/common/events/manage-vote.js"></script>
+{% endblock %}
