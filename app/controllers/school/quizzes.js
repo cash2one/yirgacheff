@@ -5,19 +5,19 @@
 const service = require('../../services');
 const quizzes = service.quizzes;
 
-module.exports = function (router) {
+module.exports = function(router) {
 
-    router.get('/', function*() {
-        yield this.render('school/quizBase/list-quizzes');
+  router.get('/', function*() {
+    yield this.render('school/quizBase/list-quizzes');
 
-    });
+  });
 
-    router.get('/:id', function*() {
-        let quizId = this.params.id;
-        this.state.quiz = yield quizzes.findById(quizId, true);
-        yield this.render('school/quizBase/view-quiz');
+  router.get('/:id', function*() {
+    let quizId = this.params.id;
+    this.state.quiz = yield quizzes.findById(quizId, true);
+    yield this.render('school/quizBase/view-quiz');
 
-    });
+  });
 
-    return router;
+  return router;
 };

@@ -44,7 +44,7 @@ $(document).ready(function () {
     });
 
     $categoryForm.validate(function ($form, data) {
-        var isModify = !!data._id;
+      var isModify = data._id && data._id !== null;
         if (isModify) {
             $.ajax({
                 url: '/api/v1/categories/' + data._id,

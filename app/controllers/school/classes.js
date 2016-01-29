@@ -5,10 +5,9 @@
 const _ = require('lodash');
 const service = require('../../services');
 
-module.exports = function (router) {
+module.exports = function(router) {
 
-    router.get('/', function*() {
-
+    router.get('/', function * () {
         let user = this.user;
         let classes = yield service.classes.findBySchool(user.schoolId);
 
@@ -25,7 +24,7 @@ module.exports = function (router) {
     });
 
 
-    router.get('/:id', function*() {
+    router.get('/:id', function * () {
         let classId = this.params.id;
         let result = yield {
             clazz: service.classes.findById(classId),

@@ -11,7 +11,7 @@ module.exports = _.extend(
 /**
  * Get files by glob patterns
  */
-module.exports.getGlobbedFiles = function (globPatterns, removeRoot) {
+module.exports.getGlobbedFiles = function(globPatterns, removeRoot) {
     // For context switching
     var _this = this;
 
@@ -23,7 +23,7 @@ module.exports.getGlobbedFiles = function (globPatterns, removeRoot) {
 
     // If glob pattern is array so we use each pattern in a recursive way, otherwise we use glob
     if (_.isArray(globPatterns)) {
-        globPatterns.forEach(function (globPattern) {
+        globPatterns.forEach(function(globPattern) {
             output = _.union(output, _this.getGlobbedFiles(globPattern, removeRoot));
         });
     } else if (_.isString(globPatterns)) {
@@ -32,9 +32,9 @@ module.exports.getGlobbedFiles = function (globPatterns, removeRoot) {
         } else {
             glob(globPatterns, {
                 sync: true
-            }, function (err, files) {
+            }, function(err, files) {
                 if (removeRoot) {
-                    files = files.map(function (file) {
+                    files = files.map(function(file) {
                         return file.replace(removeRoot, '');
                     });
                 }

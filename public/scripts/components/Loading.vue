@@ -1,7 +1,5 @@
-Vue = require 'vue'
-
-template = """
-<div class='loaders'>
+<template>
+	<div class='loaders'>
    <div class="loader">
     <div class="loader-inner ball-scale-multiple">
       <div></div>
@@ -10,10 +8,9 @@ template = """
     </div>
   </div>
 </div>
-"""
+</template>
 
-Loading = Vue.extend({
-  template: template
-})
-
-module.exports = Loading
+<script>
+  import Vue from 'vue';
+	export default Vue.extend({});
+</script>
