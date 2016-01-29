@@ -22,7 +22,7 @@ OptionComponent = Vue.extend
      </div>
   """
   data: ()->
-    imagePath: '/images/icon-upload.png'
+    imagePath: '/images/upload-images.png'
     uploadText: '上传'
 
   created: ()->

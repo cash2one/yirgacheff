@@ -1818,4 +1818,8 @@ div.DTTT_container {
     color: #2aabe6;
     line-height: 60px;
 }
+.option-page img{
+    display: block;
+    margin-bottom: 10px;
+}
 

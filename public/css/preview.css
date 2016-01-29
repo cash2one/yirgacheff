@@ -8,8 +8,18 @@ body {
     font-family:"微软雅黑","Helvetica Neue",Helvetica,"Hiragino Sans GB","Segoe UI","Microsoft Yahei",Tahoma,Arial,STHeiti,sans-serif;
     padding: 0;
 }
+.iphone-box{
+    position: absolute;
+    width: 720px;
+    padding: 20px 0;
+    left: 50%;
+    margin-left: -360px;
+    top: 50%;
+    margin-top: -300px;
+}
 .phone{
     float: left;
+    width: 322px;
 }
 .phone .phone-header{
     background: url("http://r.c.mvote.net/images/iphoneboxbg/phone_header.png") no-repeat scroll 0 0;
@@ -40,6 +50,23 @@ body {
     height: 47px;
     width: 322px;
 }
-.wxqrcode .qrcodeimg{
-
+.wxqrcode{
+    width: 248px;
+    float: left;
+    margin-top: 100px;
+    margin-left: 150px;
+    text-align: center;
+}
+.wxqrcode .qrcode-img{
+}
+.wxqrcode .qrcode-info{
+    color: #fff;
+    margin-top: 30px;
+    font-size: 13px;
+}
+.wxqrcode .qrcode-info h4{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 25px;
+    margin-top: 30px;
 }
