@@ -1345,10 +1345,11 @@ a.bg-pink:focus {
 .form-group {
     margin-bottom: 20px;
 }
-label {
+
+.form-group label {
     color: #666;
-    font-weight: 100;
-    font-size: 13px;
+    font-weight:normal;
+    font-size: 14px;
 }
 
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
@@ -1472,7 +1473,7 @@ border-radius: 100px;
     vertical-align: middle;
     color: #999;
     display: inline-block;
-    font-weight: 100;
+    font-weight: normal;
     font-size: 13px;
     line-height: 32px;
 }
