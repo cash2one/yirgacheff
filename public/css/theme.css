@@ -990,7 +990,6 @@ a.bg-pink:focus {
 }
 .btn:hover{
     opacity: 0.8;
-    box-shadow: inset 0 -2px rgba(0,0,0,.25);
 }
 .open > .dropdown-toggle.btn-primary.btn-custom,
 .open > .dropdown-toggle.btn-success.btn-custom,
@@ -1195,11 +1194,11 @@ a.bg-pink:focus {
     color: #999999;
     white-space: nowrap;
 }
-.navbar .dropdown-menu > li > a:hover,
-.navbar .dropdown-menu > li > a:focus,
-.navbar .dropdown-menu > .active > a,
-.navbar .dropdown-menu > .active > a:hover,
-.navbar .dropdown-menu > .active > a:focus {
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
     color: #2aabe6;
     background: #f4f8fb;
 }

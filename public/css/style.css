@@ -1775,8 +1775,7 @@ div.DTTT_container {
     animation-duration: .3s;
 }
 
-/**/
-
+/*投票创建*/
 #voteForm .radio{
     margin-bottom: 1px;
 }
@@ -1787,39 +1786,151 @@ div.DTTT_container {
     border-bottom: solid 2px #2aabe6;
     display: inline-block;
 }
-.option-item{
-    border-bottom: 1px solid #dfdfdf;
-    padding: 15px 0;
-}
-.option-number{
-    line-height: 30px;
-}
-.option-content .option-medias{
-    display: block;
-    margin-top: 15px;
-}
-.option-content .option-medias .media-box{
+/*投票选项报名选项*/
+.vote-option-list .vote-option-item,
+.vote-enroll-list .vote-enroll-item{
+    border-top: 1px dashed #dfdfdf;
+    margin-bottom: 15px;
+    padding-top:15px;
+    height: 96px;
     position: relative;
-    width: 60px;
-    height: 60px;
+}
+.vote-option-number,
+.vote-enroll-number{
     float: left;
-    margin-right: 30px;
-}
-.option-content .option-edits{
-    margin-top: 15px;
-}
-.option-content .option-medias .option-del{
-    position: absolute;
-    right: -5px;
-    top: -8px;
-}
-.option-content .media-box .page-details{
-    font-size: 54px;
+    width: 40px;
     color: #2aabe6;
-    line-height: 60px;
+    line-height: 80px;
 }
-.option-page img{
+.vote-option-item .vote-option-info,
+.vote-enroll-item .vote-enroll-info{
+    width: 180px;
+    float: left;
+    color: #999;
+}
+.vote-option-list .vote-numbers {
+    float: left;
+    text-align: center;
+    margin-right: 20px;
+    width: 40px;
+}
+.vote-option-list .vote-numbers > a{
+    width: 40px;
+    height: 36px;
     display: block;
-    margin-bottom: 10px;
+    cursor: pointer;
+}
+.vote-option-list .vote-numbers>span {
+    display: block;
+    width: 40px;
+    height: 24px;
+    line-height: 24px;
+    background: #eff8fd;
+    color: #31a8e0;
+    border-radius: 5px;
+    font-size: 12px;
+}
+.vote-option-list .vote-numbers> a span {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    display: inline-block;
+}
+.vote-option-list .vote-numbers> a.sup span{
+    border-bottom: 8px solid #c6e6f1;
+    margin-top: 20px;
+}
+.vote-option-list .vote-numbers> a.opp span {
+    border-top: 8px solid #c6e6f1;
+    margin-top: 9px;
+}
+.vote-option-list .vote-option-info .vote-option-name{
+    padding-top: 20px;
+    float: left;
+}
+.vote-option-list .vote-option-info .vote-option-name>p{
+    width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.vote-option-item .vote-option-img,
+.vote-enroll-item .vote-enroll-img{
+    width: 300px;
+    float: left;
+}
+.vote-option-item .vote-option-img .img-box,
+.vote-enroll-item .vote-enroll-img .img-box{
+    margin-right: 10px;
+    position: relative;
+    float: left;
+}
+.img-setting{
+    width: 80px;
+    height: 80px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 25px;
+}
+.img-setting a:hover{
+    opacity: 0.1;
+}
+.img-rotate{
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #fff;
+    margin: 0 auto;
+}
+.vote-option-item .vote-option-approve,
+.vote-enroll-item .vote-enroll-approve{
+    padding-top: 30px;
+    float: right;
+}
+.vote-option-item .vote-option-details,
+.vote-enroll-item .vote-enroll-details{
+    width: 240px;
+    height: 80px;
+    color: #999;
+    float: left;
+    padding: 5px 10px;
+    background: #f9f9f9;
+    overflow: hidden;
+    text-align: justify;
+    font-size: 12px;
 }
 
+/*search*/
+.search .btn-white{
+    border: 1px solid #cccccc!important;
+    color: #999;
+}
+.search .btn-white:hover{
+    background: #2aabe6;
+    color: #fff;
+    border: 1px solid #2aabe6!important;
+    transition: .2s;
+}
+.search .btn-white:hover .input-group-btn{
+    border: 1px solid #2aabe6;
+}
+
+/*列表排序*/
+.list-sort{
+    padding: 5px;
+    border: 1px solid #2aabe6;
+    text-align: center;
+}
+.list-sort .dropdown-menu {
+    margin: 0;
+    margin-top: 1px;
+}
+.list-sort:hover .dropdown-menu {
+    display: block;
+}

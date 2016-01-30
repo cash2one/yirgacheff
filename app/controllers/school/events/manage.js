@@ -88,6 +88,11 @@ module.exports = function (router) {
         yield this.render('common/events/manage-vote');
     });
 
+    router.get('/:id([a-f0-9]{24})/vote/enroll', function*() {
+        this.state.eventId = this.params.id;
+        yield this.render('common/events/vote-enroll');
+    });
+
     router.get('/:id([a-f0-9]{24})/preview', function*() {
         this.state.eventId = this.params.id;
         yield this.render('common/events/vote-preview');

@@ -22,12 +22,12 @@ body {
     width: 322px;
 }
 .phone .phone-header{
-    background: url("http://r.c.mvote.net/images/iphoneboxbg/phone_header.png") no-repeat scroll 0 0;
+    background: url("/images/phone_header.png") no-repeat center;
     height: 42px;
     width: 322px;
 }
 .phone .phone-title{
-    background: url("http://r.c.mvote.net/images/iphoneboxbg/phonetop2.gif") no-repeat scroll 0 0;
+    background: url("/images/phonetitle1.gif") no-repeat center;
     height: 20px;
     width: 322px;
 }
@@ -46,7 +46,7 @@ body {
     width: 320px;
 }
 .phone .phone-footer{
-    background: url("http://r.c.mvote.net/images/iphoneboxbg/phone_footer.png") no-repeat scroll 0 0;
+    background: url("/images/phone_footer.png") no-repeat center;
     height: 47px;
     width: 322px;
 }
