@@ -19,7 +19,9 @@ $(document).ready(function () {
             'wx-editor': WXEditor
         },
         data: {
-            loading: false
+            loading: false,
+            isEnroll: true,
+            requireFollow:true
         },
         methods: {
             uiSelect: function (ui) {
