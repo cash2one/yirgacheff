@@ -68,35 +68,43 @@
 <template>
 <nav class='text-center'>
   <ul class="pagination">
+    
     <li>
       <a href="javascript:void(0)" aria-label="Previous" @click='current = 1'>
         <span aria-hidden="true">首页</span>
       </a>
     </li>
+    
     <li v-bind:class="{disabled: isFirst}">
       <a href="javascript:void(0)" aria-label="Previous" @click='previous'>
         <span aria-hidden="true">上一页</span>
       </a>
     </li>
+    
     <li v-show='pageNumbers[0] > 1'>
       <span aria-hidden="true">...</span>
     </li>
+    
     <li v-for='pn in pageNumbers' v-bind:class="{active: pn === current}">
       <a href="javascript:void(0)" @click='current = pn'>{{pn}}</a>
     </li>
+    
     <li v-show='pageNumbers[pageNumbers.length -1 ] < pageSize'>
       <span aria-hidden="true">...</span>
     </li>
+    
     <li v-bind:class="{disabled: isLast}">
       <a href="javascript:void(0)" aria-label="Next" @click='next'>
         <span aria-hidden="true">下一页</span>
       </a>
     </li>
+
     <li>
       <a href="javascript:void(0)" aria-label="Previous" @click='current = pageSize'>
         <span aria-hidden="true">末页</span>
       </a>
     </li>
+
   </ul>
 </nav>
 </template>
@@ -117,21 +125,27 @@ export default {
   },
 
   methods: {
+
     next: function() {
-      this.current = Math.min(1, this.current - 1)
+      this.current = Math.min(this.pageSize, this.current + 1);
     },
+
     previous: function() {
-      this.current = Math.max(this.total, this.current + 1)
+      this.current = Math.max(1, this.current - 1);
     }
+
   },
 
   watch: {
+    
     'current': function(val, old) {
       this.$dispatch('page-change', val)
     },
+
     'total': function() {
       this.current = 1;
     }
+
   },
 
   computed: {
