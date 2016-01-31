@@ -1,20 +1,22 @@
 'use strict';
 
-var models = require('../app/models');
-var roles = require('../app/common/constants').roles;
+const mongoose = require('mongoose');
+const roles = require('../app/common/constants').roles;
 
-module.exports = function (passport) {
+module.exports = function(passport) {
 
     // Serialize sessions
-    passport.serializeUser(function (user, done) {
-        done(null, {id: user._id.toString(), role: user.role});
+    passport.serializeUser(function(user, done) {
+        done(null, {
+            id: user._id.toString(),
+            role: user.role
+        });
     });
 
     // Deserialize sessions
-    passport.deserializeUser(function (user, done) {
-        console.log('execute deserializeUser .. ');
-        var userProxy = user.role === roles.HEADMASTER ? models.School : models.Teacher;
-        userProxy.findById(user.id, function (err, userInfo) {
+    passport.deserializeUser(function(user, done) {
+        let userProxy = user.role === roles.HEADMASTER ? mongoose.model('School') : mongoose.model('Teacher');
+        userProxy.findById(user.id, function(err, userInfo) {
             if (!userInfo) {
                 return done(new Error('用户不存在'));
             }

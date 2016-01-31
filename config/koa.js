@@ -14,6 +14,7 @@ const swig = require('koa-swig');
 const forward = require('koa-forward-request');
 const redisStore = require('koa-redis');
 const cors = require('koa-cors');
+const requireDir = require('require-dir');
 const config = require('./config');
 const router = require('./router');
 const jwt = require('../app/middleware/jwt');
@@ -48,7 +49,9 @@ function initMiddleware(app) {
     }
     app.use(cors());
     app.use(flash());
-    forward(app, {debug: true});
+    forward(app, {
+        debug: true
+    });
     app.use(bodyParser({
         jsonLimit: '4mb',
         formLimit: '2mb'
@@ -116,7 +119,9 @@ function initStatic(app) {
  * @param app
  */
 function initServerModels(app) {
-    require('../app/models');
+    requireDir('../app/models', {
+        recurse: true
+    });
 }
 
 /**
@@ -138,7 +143,7 @@ function initErrorRoutes(app) {
     app.use(error());
 }
 
-(function () {
+(function() {
     initLocalVariables(app);
     initSession(app);
     initMiddleware(app);

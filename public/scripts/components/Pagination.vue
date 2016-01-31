@@ -63,6 +63,8 @@
 }
 </style>
 
+
+
 <template>
 <nav class='text-center'>
   <ul class="pagination">
@@ -100,11 +102,11 @@
 </template>
 
 
-<script lang="babel">
-import Vue from 'vue';
-import * as _ from 'underscore';
 
-export default Vue.extend({
+<script lang="babel">
+import _ from 'underscore';
+
+export default {
 
   props: ['total', 'limit'],
 
@@ -139,8 +141,8 @@ export default Vue.extend({
     },
 
     isLast: function() {
-      return this.pageSize === 1 || 
-             this.current === this.pageSize;
+      return this.pageSize === 1 ||
+        this.current === this.pageSize;
     },
 
     pageSize: function() {
@@ -163,6 +165,5 @@ export default Vue.extend({
       }
     }
   }
-});
-
+};
 </script>

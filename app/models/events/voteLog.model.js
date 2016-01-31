@@ -1,10 +1,11 @@
 'use strict';
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
 
-//投票纪录数据模型，每条纪录最多保持一天
-const voteLogSchema = new mongoose.Schema({
+//投票纪录数据模型，每条纪录保持一天后会被删除
+const voteLogSchema = new Schema({
 
 	// 对应投票ID
 	vote: {
@@ -32,3 +33,5 @@ const voteLogSchema = new mongoose.Schema({
 	}
 
 });
+
+mongoose.model('VoteLog', voteLogSchema);

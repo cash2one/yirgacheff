@@ -3,21 +3,21 @@
 /**
  * Module dependencies.
  */
-var LocalStrategy = require('passport-local').Strategy;
-var models = require('../../app/models');
+const mongoose = require('mongoose');
+const LocalStrategy = require('passport-local').Strategy;
 
-module.exports = function (passport) {
+module.exports = function(passport) {
     // Use local strategy
     passport.use(new LocalStrategy({
             usernameField: 'username',
             passwordField: 'password',
             passReqToCallback: true
         },
-        function (req, username, password, done) {
-            var UserModel = username.length === 5 ? models.School : models.Teacher;
+        function(req, username, password, done) {
+            let UserModel = username.length === 5 ? mongoose.model('School') : mongoose.model('Teacher');
             UserModel.findOne({
                 username: username
-            }, 'username password salt schoolId state', function (err, user) {
+            }, 'username password salt schoolId state', function(err, user) {
                 if (err) {
                     return done(err);
                 }

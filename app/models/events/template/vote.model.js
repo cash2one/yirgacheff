@@ -13,7 +13,7 @@ const voteSchema = new mongoose.Schema({
     rank: {
         type: Number,
         required: true,
-        default:50
+        default: 50
     },
 
     // 开始时间
@@ -54,4 +54,9 @@ const voteSchema = new mongoose.Schema({
 
 });
 
-module.exports = classroomSchema;
+voteSchema.post('remove', (vote) => {
+
+
+});
+
+module.exports = voteSchema;
