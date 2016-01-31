@@ -44,11 +44,8 @@ $(document).ready(function () {
         }
     });
 
-    $("#editOption").click(function(){
-        $("#optionInfoModal").modal("show");
-    });
-    $("#editPage").click(function(){
-        $("#optionPageModal").modal("show");
+    $("#addOption").click(function(){
+        $("#addOptionModal").modal("show");
     });
 
 });
