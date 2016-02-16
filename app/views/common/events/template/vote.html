@@ -11,7 +11,7 @@
                 <form class="form-horizontal" id="voteForm" name="voteForm">
                     <!-- 基本信息设置 -->
                     <fieldset class="vote-setting">
-                        <legend>
+                        <legend class="no-p">
                             <p>基本信息设置</p>
                         </legend>
                     </fieldset>
@@ -37,16 +37,15 @@
                     <div class="form-group images-cover">
                         <p class="col-xs-11 f-gray">注：建议上传图片大小640px*420px，至少一张，最多三张</p>
                         <div class="col-xs-3" v-for="cover in vote.covers">
-                            <img :src="cover | visit">
+                            <img :src="cover | visit" width="100%" height="150">
+                            <a class="f-info pull-right m-t-xxs">删除</a>
                         </div>
                         <div class="col-xs-3">
-                            <div class="m-t-xs">
                                 <v-upload :data={token:"<<token>>"} @success="addCover">
                                     <a class="pull-left upload-btn">
-                                      <v-icon type="plus"/>上传图片
+                                      <v-icon type="plus"/>
                                     </a>
                                 </v-upload>
-                            </div>
                         </div>
                     </div>
                     <!-- 主题设置 -->

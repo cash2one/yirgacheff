@@ -642,11 +642,19 @@ xcredits
     font-weight: 600;
 }
 .upload-btn{
-    width: 160px;
-    height: 160px;
-    border: 2px dashed #dfdfdf;
-    /*background: url("/images/icon-upload.png") no-repeat center;*/
-    background-color: #f4f4f4;
+    height: 150px;
+    width: 100%;
+    border: 1px dashed #dfdfdf;
+    text-align: center;
+    line-height: 140px;
+    color: #ccc;
+}
+.upload-btn:hover{
+    border: 1px dashed #2aabe6;
+    color: #2aabe6;
+}
+.upload-btn i{
+    font-size: 30px;
 }
 
 /*��������*/
@@ -1779,6 +1787,12 @@ div.DTTT_container {
 #voteForm .radio{
     margin-bottom: 1px;
 }
+.vote-setting legend{
+    padding-top: 10px;
+}
+.vote-setting legend.no-p{
+    padding: 0;
+}
 .vote-setting legend p{
     font-size: 14px;
     margin: 0 0 -1px;
@@ -1905,7 +1919,10 @@ div.DTTT_container {
     text-align: justify;
     font-size: 12px;
 }
-
+.trumbowyg-box, .trumbowyg-editor {
+    width: 100%!important;
+    margin: 5px auto!important;
+}
 /*search*/
 .search .btn-white{
     border: 1px solid #cccccc!important;
