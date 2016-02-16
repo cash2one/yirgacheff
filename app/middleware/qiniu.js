@@ -48,7 +48,9 @@ module.exports = {
             fsizeLimit: 1024 * 1024 * 5,  //最多5M
             saveKey: '$(x:schoolId)/$(etag)$(ext)'
         };
-        this.token = generateToken(policy);
+        let resultToken = generateToken(policy);
+        this.token = resultToken;
+        this.state.audioToken = resultToken;
         yield next;
     },
 
@@ -65,7 +67,6 @@ module.exports = {
                 policy.mimeLimit = mimeLimit;
             }
             this.token = generateToken(policy);
-            ;
             yield next;
         }
     }

@@ -642,10 +642,10 @@ xcredits
     font-weight: 600;
 }
 .upload-btn{
-    width: 190px;
+    width: 160px;
     height: 160px;
     border: 2px dashed #dfdfdf;
-    background: url("/images/icon-upload.png") no-repeat center;
+    /*background: url("/images/icon-upload.png") no-repeat center;*/
     background-color: #f4f4f4;
 }
 

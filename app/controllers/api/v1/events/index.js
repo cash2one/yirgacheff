@@ -71,24 +71,19 @@ module.exports = function(router) {
   });
 
 
-  router.delete('/:eventId([a-f0-9]{24})/tasks/:taskId([a-f0-9]{24})',
-    function*() {
-      this.body = yield eventService.deleteTask(this.params.eventId, this.params
-        .taskId);
+  router.delete('/:eventId([a-f0-9]{24})/tasks/:taskId([a-f0-9]{24})',function*() {
+      this.body = yield eventService.deleteTask(this.params.eventId, this.params.taskId);
     });
 
 
-  router.put('/:eventId([a-f0-9]{24})/tasks/:taskId([a-f0-9]{24})/open',
-    function*() {
+  router.put('/:eventId([a-f0-9]{24})/tasks/:taskId([a-f0-9]{24})/open',function*() {
       this.body = yield eventService.openTaskById(this.params.taskId);
     });
 
 
-  router.put('/:eventId([a-f0-9]{24})/tasks/:taskId([a-f0-9]{24})/close',
-    function*() {
+  router.put('/:eventId([a-f0-9]{24})/tasks/:taskId([a-f0-9]{24})/close',function*() {
       this.body = yield eventService.closeTaskById(this.params.taskId);
     });
-
 
   return router;
 

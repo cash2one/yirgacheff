@@ -13,7 +13,8 @@
       "extractSharedJs": true,
       "extensions": [
         "js",
-        "coffee"
+        "coffee",
+        "vue"
       ]
     },
     "jsCopy": {

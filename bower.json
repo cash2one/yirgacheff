@@ -16,6 +16,8 @@
   "dependencies": {
     "list.js": "~1.1.1",
     "list.pagination.js": "~0.1.1",
-    "datatables-buttons": "~1.1.1"
+    "datatables-buttons": "~1.1.1",
+    "air-datepicker": "~1.2.1",
+    "trumbowyg": "~1.1.7"
   }
 }

@@ -3,18 +3,20 @@
  */
 'use strict';
 const service = require('../../../services');
+const qiniu = require('../../../middleware/qiniu');
 
 module.exports = function (router) {
 
-    router.get('/', function*() {
+    router.get('/',function*() {
         yield this.render('common/events/events');
     });
 
-    router.get('/edit', function*() {
+    router.get('/edit', qiniu.token(),function*() {
         let template = this.query.template;
         if (!template) {
             return this.redirect('/school/events');
         }
+        this.state.token = this.token;
         yield this.render(`common/events/template/${template}`);
     });
 

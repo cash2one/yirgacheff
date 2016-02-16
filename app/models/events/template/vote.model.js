@@ -25,14 +25,14 @@ const voteSchema = new mongoose.Schema({
     endTime: {
         type: Date
     },
+ 
+    // 首页滑动图片
+    slides: [String],
 
-    // 广告位
-    ads: [String],
-
-    // 投票主题 
+    // 颜色主题 
     theme: {
         type: String,
-        enum: ['red', 'green']
+        default: 'default'
     },
 
     // 每人投票数量限制 
@@ -49,6 +49,21 @@ const voteSchema = new mongoose.Schema({
 
     // 关注提示
     followTip: {
+        type: String
+    },
+
+    // 奖项设置
+    prize: {
+        type: String
+    },
+
+    // 参与方式
+    participation: {
+        type: String
+    },
+    
+    // 投票说明
+    explanation: {
         type: String
     }
 
