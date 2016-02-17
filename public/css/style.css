@@ -1266,6 +1266,23 @@ xcredits
 .profile-header .pro-name p{
     display: inline-block;
 }
+.bind{
+    height: 200px;
+    width: 160px;
+    margin: 0 auto;
+    padding: 25px 10px;
+    border-radius: 5px;
+    background-color: #F9F9F9;
+    text-align: center;
+}
+.bind img{
+    width: 80px;
+    height: 80px;
+}
+.bind p{
+    font-size: 12px;
+}
+
 /*学生详情*/
 .record-list .panel,.scores-list .panel{
     border-bottom: 1px solid #f8f6f2;
@@ -1922,6 +1939,21 @@ div.DTTT_container {
 .trumbowyg-box, .trumbowyg-editor {
     width: 100%!important;
     margin: 5px auto!important;
+}
+.option-page .upload-btn{
+    height: 126px;
+    width: 100%;
+    border: 1px dashed #dfdfdf;
+    text-align: center;
+    line-height: 120px;
+    color: #ccc;
+}
+.option-page .upload-btn:hover{
+    border: 1px dashed #2aabe6;
+    color: #2aabe6;
+}
+.option-page .upload-btn i{
+    font-size: 30px;
 }
 /*search*/
 .search .btn-white{
