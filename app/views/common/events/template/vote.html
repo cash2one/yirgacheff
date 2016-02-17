@@ -1,265 +1,235 @@
 {% extends '../../../layout.html' %}
 {% block content %}
-<!-- END OF BREADCRUMBS -->
-<div class="row" id="voteApp">
-    <div class="col-xs-12">
-        <div class="panel panel-default shadow">
-            <div class="panel-heading clearfix">
-                <h4 class="panel-title">投票发布</h4>
-            </div>
-            <div class="panel-body">
-                <form class="form-horizontal" id="voteForm" name="voteForm">
-                    <!-- 基本信息设置 -->
-                    <fieldset class="vote-setting">
-                        <legend class="no-p">
-                            <p>基本信息设置</p>
-                        </legend>
-                    </fieldset>
-                    <div class="form-group">
-                        <div class="col-xs-6 ">
-                            <input class="form-control validate"
-                            type="text" id="title"
-                            name="title"
-                            placeholder="投票标题"
-                        v-model="vote.title"></div>
-                    </div>
-                    <div class="form-group">
-                        <date-range
-                        :startTime="vote.startTime"
-                        :endTime="vote.endTime"></date-range>
-                    </div>
-                    <!-- 广告位设置 -->
-                    <fieldset class="vote-setting">
-                        <legend>
-                            <p>页头图片设置</p>
-                        </legend>
-                    </fieldset>
-                    <div class="form-group images-cover">
-                        <p class="col-xs-11 f-gray">注：建议上传图片大小640px*420px，至少一张，最多三张</p>
-                        <div class="col-xs-3" v-for="cover in vote.covers">
-                            <img :src="cover | visit" width="100%" height="150">
-                            <a class="f-info pull-right m-t-xxs">删除</a>
+    <!-- END OF BREADCRUMBS -->
+    <div class="row" id="voteApp">
+        <div class="col-xs-12">
+            <div class="panel panel-default shadow">
+                <div class="panel-heading clearfix">
+                    <h4 class="panel-title">投票发布</h4>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" id="voteForm" name="voteForm">
+                        <!-- 基本信息设置 -->
+                        <fieldset class="vote-setting">
+                            <legend class="no-p">
+                                <p>基本信息设置</p>
+                            </legend>
+                        </fieldset>
+                        <div class="form-group">
+                            <div class="col-xs-1">
+                                <label class="control-label">投票标题: </label>
+                            </div>
+                            <div class="col-xs-6 ">
+                                <input class="form-control" type="text" placeholder="投票标题"
+                            v-model="vote.title"></div>
                         </div>
-                        <div class="col-xs-3">
+                        <div class="form-group">
+                            <div class="col-xs-1">
+                                <label class="control-label">投票时间: </label>
+                            </div>
+                            <date-range 
+                            :start-time.sync="vote.startTime" 
+                            :end-time.sync="vote.endTime">
+                            </date-range>
+                        </div>
+                        <!-- 广告位设置 -->
+                        <fieldset class="vote-setting">
+                            <legend>
+                                <p>页头图片设置</p>
+                            </legend>
+                        </fieldset>
+                        <div class="form-group images-cover">
+                            <p class="col-xs-11 f-gray">注：建议上传图片大小640px*420px，至少一张，最多三张</p>
+                            <div class="col-xs-3" v-for="cover in vote.covers">
+                                <img :src="cover | visit" width="100%" height="150">
+                                <a class="f-info pull-right m-t-xxs" @click="deleteCover($index)">删除</a>
+                            </div>
+                            <div class="col-xs-3" v-show="vote.covers.length < 3">
                                 <v-upload :data={token:"<<token>>"} @success="addCover">
-                                    <a class="pull-left upload-btn">
-                                      <v-icon type="plus"/>
-                                    </a>
+                                <a class="pull-left upload-btn">
+                                    <v-icon type="plus"/>
+                                </a>
                                 </v-upload>
-                        </div>
-                    </div>
-                    <!-- 主题设置 -->
-                    <fieldset class="vote-setting">
-                        <legend>
-                            <p>主题设置</p>
-                        </legend>
-                    </fieldset>
-                    <div class="form-group">
-                        <div class="col-xs-4">
-                            <div class="radio c-radio">
-                                <label>
-                                    <input type="radio" name="theme" value="default" checked>
-                                    <span class="fa fa-circle"></span>
-                                    <i
-                                    class="fa fa-circle f-info m-r-xxs"></i>
-                                    默认风格
-                                </label>
-                            </div>
-                            <div class="radio c-radio">
-                                <label>
-                                    <input type="radio" name="theme" value="red">
-                                    <span class="fa fa-circle"></span>
-                                    <i
-                                    class="fa fa-globe f-danger m-r-xxs"></i>
-                                    中国红
-                                </label>
-                            </div>
-                            <div class="radio c-radio">
-                                <label>
-                                    <input type="radio" name="theme" value="green">
-                                    <span class="fa fa-circle"></span>
-                                    <i
-                                    class="fa fa-leaf f-success m-r-xxs"></i>
-                                    绿色心情
-                                </label>
-                            </div>
-                            <div class="radio c-radio">
-                                <label>
-                                    <input type="radio" name="theme" value="orange">
-                                    <span class="fa fa-circle"></span>
-                                    <i
-                                    class="fa fa-certificate f-warning m-r-xxs"></i>
-                                    浓浓香橙
-                                </label>
-                            </div>
-                            <div class="radio c-radio">
-                                <label>
-                                    <input type="radio" name="theme" value="pink">
-                                    <span class="fa fa-circle"></span>
-                                    <i
-                                    class="fa fa-fire f-pink m-r-xxs"></i>
-                                    粉色青春
-                                </label>
-                            </div>
-                            <div class="radio c-radio">
-                                <label>
-                                    <input type="radio" name="theme" value="gold">
-                                    <span class="fa fa-circle"></span>
-                                    <i
-                                    class="fa fa-star f-yellow m-r-xxs"></i>
-                                    金色阳光
-                                </label>
                             </div>
                         </div>
-                        <div class="col-xs-6">
-                            <img class="img-thumbnail" width="220"
-                        src="http://www.stonepoll.net/images/topic/vote/pro2-1.jpg"></div>
-                    </div>
-                    <!-- 高级设置 -->
-                    <fieldset class="vote-setting">
-                        <legend>
-                            <p>高级设置</p>
-                        </legend>
-                    </fieldset>
-                    <div class="form-group">
-                        <div class="col-xs-2">
-                            <div class="radio c-radio">
-                                <label>
-                                    <input type="radio"
-                                    v-model="vote.requireFollow"
-                                    :value="true">
-                                    <span class="fa fa-circle"></span>
-                                    关注后投票
-                                </label>
+                        <!-- 主题设置 -->
+                        <fieldset class="vote-setting">
+                            <legend>
+                                <p>主题设置</p>
+                            </legend>
+                        </fieldset>
+                        <div class="form-group">
+                            <div class="col-xs-4">
+                                <div class="radio c-radio">
+                                    <label>
+                                        <input type="radio" v-model="vote.theme" value="default" checked>
+                                        <span class="fa fa-circle"></span>
+                                        <i class="fa fa-circle f-info m-r-xxs"></i>
+                                        默认风格
+                                    </label>
+                                </div>
+                                <div class="radio c-radio">
+                                    <label>
+                                        <input type="radio" v-model="vote.theme" value="red">
+                                        <span class="fa fa-circle"></span>
+                                        <i class="fa fa-globe f-danger m-r-xxs"></i>
+                                        中国红
+                                    </label>
+                                </div>
+                                <div class="radio c-radio">
+                                    <label>
+                                        <input type="radio" v-model="vote.theme" value="green">
+                                        <span class="fa fa-circle"></span>
+                                        <i class="fa fa-leaf f-success m-r-xxs"></i>
+                                        绿色心情
+                                    </label>
+                                </div>
+                                
                             </div>
-                            <div class="radio c-radio">
-                                <label>
-                                    <input type="radio"
-                                    v-model="vote.requireFollow"
-                                    :value="false">
-                                    <span class="fa fa-circle"></span>
-                                    直接投票
-                                </label>
+                            <div class="col-xs-6">
+                                <img class="img-thumbnail" width="220"
+                                src="http://www.stonepoll.net/images/topic/vote/pro2-1.jpg" />
                             </div>
                         </div>
-                        <p class="help-inline">
-                            必须先关注公众号才能投票，需要按照教程进行完整设置，
-                            <a class="f-info">点此查看</a>
-                        </p>
-                        <p class="help-block">无须关注公众号可以直接投票</p>
-                    </div>
-                    <div class="form-group" v-if="vote.requireFollow">
-                        <div class="col-xs-6">
-                            <label>关注说明</label>
-                            <v-editor placeholder="例如：扫描上方的二维码关注公告号"></v-editor>
+                        <!-- 高级设置 -->
+                        <fieldset class="vote-setting">
+                            <legend>
+                                <p>高级设置</p>
+                            </legend>
+                        </fieldset>
+                        <div class="form-group">
+                            <div class="col-xs-2">
+                                <div class="radio c-radio">
+                                    <label>
+                                        <input type="radio"
+                                        v-model="vote.requireFollow"
+                                        :value="true">
+                                        <span class="fa fa-circle"></span>
+                                        关注后投票
+                                    </label>
+                                </div>
+                                <div class="radio c-radio">
+                                    <label>
+                                        <input type="radio"
+                                        v-model="vote.requireFollow"
+                                        :value="false">
+                                        <span class="fa fa-circle"></span>
+                                        直接投票
+                                    </label>
+                                </div>
+                            </div>
+                            <p class="help-inline">
+                                必须先关注公众号才能投票，需要按照教程进行完整设置，
+                                <a class="f-info">点此查看</a>
+                            </p>
+                            <p class="help-block">无须关注公众号可以直接投票</p>
                         </div>
-                    </div>
-                    <!-- 页尾内容设置 -->
-                    <fieldset class="vote-setting">
-                        <legend>
-                            <p>页尾内容设置</p>
-                        </legend>
-                    </fieldset>
-                    <div v-for="custom in vote.customs">
+                        <div class="form-group" v-if="vote.requireFollow">
+                            <div class="col-xs-6">
+                                <label>关注说明</label>
+                                <v-editor placeholder="例如：扫描上方的二维码关注公告号"
+                                          :content.sync="vote.followTip"></v-editor>
+                            </div>
+                        </div>
+                        <!-- 页尾内容设置 -->
+                        <fieldset class="vote-setting">
+                            <legend>
+                                <p>页尾内容设置</p>
+                            </legend>
+                        </fieldset>
                         <div class="form-group">
                             <div class="col-xs-6">
                                 <label>奖项设置</label>
-                                <v-editor 
-                                 placeholder="奖项设置"
-                                 :content.sync="prize"></v-editor>
+                                <v-editor placeholder="奖项设置"
+                                :content.sync="vote.prize">
+                                </v-editor>
                             </div>
                         </div>
-                          <div class="form-group">
+                        <div class="form-group">
                             <div class="col-xs-6">
                                 <label>参赛方式</label>
-                                <v-editor 
-                                placeholder="选手参赛方式及注意事项"
-                                :content.sync="participation"></v-editor>
+                                <v-editor placeholder="选手参赛方式及注意事项"
+                                :content.sync="vote.participation">
+                                </v-editor>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-6">
                                 <label>投票说明</label>
-                                <v-editor 
-                                 placeholder="其它注意事项"
-                                :content.sync=""></v-editor>
+                                <v-editor placeholder="其它注意事项"
+                                :content.sync="vote.explanation">
+                                </v-editor>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- 报名设置 -->
-                    <fieldset class="vote-setting">
-                        <legend>
-                            <p>报名设置</p>
-                        </legend>
-                    </fieldset>
-                    <div class="form-group">
-                        <div class="col-xs-2">
-                            <div class="radio c-radio">
-                                <label>
-                                    <input type="radio" name="isEnroll"
-                                    :value="true"
-                                    v-model="vote.isEnroll">
-                                    <span class="fa fa-circle"></span>
-                                    开启报名
-                                </label>
-                            </div>
-                            <div class="radio c-radio">
-                                <label>
-                                    <input type="radio" name="isEnroll"
-                                    :value="false"
-                                    v-model="vote.isEnroll">
-                                    <span class="fa fa-circle"></span>
-                                    关闭报名
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div v-if="vote.isEnroll">
-                       
+                        <!-- 报名设置 -->
+                        <fieldset class="vote-setting">
+                            <legend>
+                                <p>报名设置</p>
+                            </legend>
+                        </fieldset>
                         <div class="form-group">
-                            <label for="title" class="col-xs-1 control-label">报名信息</label>
-                            <div class="col-xs-1">
-                                <div class="checkbox c-checkbox">
+                            <div class="col-xs-2">
+                                <div class="radio c-radio">
                                     <label>
-                                        <input type="checkbox" value="" checked disabled>
-                                        <span class="fa fa-check"></span>
-                                        姓名
+                                        <input type="radio" name="isEnroll" :value="true" 
+                                        v-model="vote.voteEnroll">
+                                        <span class="fa fa-circle"></span>
+                                        开启报名
                                     </label>
                                 </div>
-                            </div>
-                            <div class="col-xs-1">
-                                <div class="checkbox c-checkbox">
+                                <div class="radio c-radio">
                                     <label>
-                                        <input type="checkbox" value="" checked disabled>
-                                        <span class="fa fa-check"></span>
-                                        手机
-                                    </label>
-                                </div>
-                            </div>
-                           
-                            <div class="col-xs-1">
-                                <div class="checkbox c-checkbox">
-                                    <label>
-                                        <input type="checkbox" value="" checked disabled>
-                                        <span class="fa fa-check"></span>
-                                        描述
+                                        <input type="radio" name="isEnroll" :value="false" v-model="vote.voteEnroll">
+                                        <span class="fa fa-circle"></span>
+                                        关闭报名
                                     </label>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-xs-12 m-t-lg">
-                        <div class="col-xs-offset-4 col-xs-4">
-                            <button class="btn btn-info btn-block" type="submit">保存并添加选项</button>
+                        <div v-if="vote.voteEnroll">
+                            <div class="form-group">
+                                <label for="title" class="col-xs-1 control-label">报名信息</label>
+                                <div class="col-xs-1">
+                                    <div class="checkbox c-checkbox">
+                                        <label>
+                                            <input type="checkbox" value="" checked disabled>
+                                            <span class="fa fa-check"></span>
+                                            姓名
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-xs-1">
+                                    <div class="checkbox c-checkbox">
+                                        <label>
+                                            <input type="checkbox" value="" checked disabled>
+                                            <span class="fa fa-check"></span>
+                                            手机
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-xs-1">
+                                    <div class="checkbox c-checkbox">
+                                        <label>
+                                            <input type="checkbox" value="" checked disabled>
+                                            <span class="fa fa-check"></span>
+                                            描述
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                        <div class="col-xs-12 m-t-lg">
+                            <div class="col-xs-offset-4 col-xs-4">
+                                <button class="btn btn-info btn-block" type="button" @click="submit">保存并添加选项</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
 {% block javascript %}
-<script src="/js/entries/common/events/vote.js"></script>
+    <script src="/js/entries/common/events/vote.js"></script>
 {% endblock %}

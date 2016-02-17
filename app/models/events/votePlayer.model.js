@@ -25,14 +25,9 @@ const playerSchema = new Schema({
 		required: true
 	},
 
-	// 封面
-	cover: {
-		type: String,
-		required: true
-	},
 
 	// 作品
-	gallery: [String],
+	images: [String],
 
 	// 简介
 	brief: {

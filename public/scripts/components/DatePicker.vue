@@ -13,6 +13,12 @@
   require('expose?Datepicker!exports?Datepicker!air-datepicker/dist/js/datepicker');
   require('air-datepicker/dist/js/i18n/datepicker.zh');
 
+  function getDate(val) {
+    if(!val || val === '') return;
+    if(typeof val !== 'string') return val;
+    if(val === 'now') return new Date();
+    return new Date(val);
+  }
   export default {
 
     props: defaultProps({
@@ -49,27 +55,27 @@
       });
       
       if(this.defaultValue !== ""){
-        var val = this.defaultValue;
-        if(typeof val === "string"){
-          if(val === "now"){
-            val = new Date();
-          }else{
-            val = new Date(val);
-          }
-        }
-        $(this.$el).data('datepicker').selectDate(val);
+        $(this.$el).data('datepicker').selectDate(getDate(this.defaultValue));
+      }
+
+      if(this.minDate !== ""){
+        $(this.$el).data('datepicker').update('minDate',getDate(this.minDate));
+      }
+
+      if(this.maxDate !== ""){
+        $(this.$el).data('datepicker').update('maxDate',getDate(this.maxDate));
       }
     },
 
     watch: {
       'minDate': function(val, old) {
         if (val !== '') {
-          $(this.$el).data('datepicker').update('minDate', new Date(val))
+          $(this.$el).data('datepicker').update('minDate',getDate(val));
         }
       },
       'maxDate': function(val, old) {
         if (val !== '') {
-          $(this.$el).data('datepicker').update('maxDate', new Date(val));
+          $(this.$el).data('datepicker').update('maxDate',getDate(val));
         }
       }
     }

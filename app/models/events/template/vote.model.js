@@ -61,6 +61,10 @@ const voteSchema = new mongoose.Schema({
     participation: {
         type: String
     },
+
+    voteEnroll:{
+        type: Boolean
+    },
     
     // 投票说明
     explanation: {

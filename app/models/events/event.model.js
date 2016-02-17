@@ -74,7 +74,7 @@ const eventSchema = new Schema({
     template: {
         type: String,
         required: '模版不能为空',
-        enum: ['article', 'activity', 'audition', 'classroom']
+        enum: ['article', 'activity', 'audition', 'classroom','vote']
     },
 
     schoolId: {
@@ -111,5 +111,6 @@ Event.discriminator('activity', require('./template/activity.model'));
 Event.discriminator('article', require('./template/article.model'));
 Event.discriminator('audition', require('./template/audition.model'));
 Event.discriminator('classroom', require('./template/classroom.model'));
+Event.discriminator('vote', require('./template/vote.model'));
 
 

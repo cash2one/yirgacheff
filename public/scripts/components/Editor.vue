@@ -19,9 +19,9 @@
  	}),
 
  	ready: function() {
-
+ 		var self = this;
     //初始化editor
- 		$(this.$el).trumbowyg({
+ 		var editor = $(this.$el).trumbowyg({
  			lang: 'zh_cn',
  			semantic: false,
  			fullscreenable: false,
@@ -30,11 +30,11 @@
 
    //监听blur事件
  		$(this.$el).on('tbwblur', function(){
- 			this.content = $(this.$el).trumbowyg('html');
+ 			self.content = editor.trumbowyg('html');
  		});
 
  		//初始化editor 内容
- 		$(this.$el).trumbowyg('html', this.content);
+ 		editor.trumbowyg('html', this.content);
  	}
 
 
