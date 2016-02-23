@@ -69,12 +69,22 @@ const voteSchema = new mongoose.Schema({
     // 投票说明
     explanation: {
         type: String
+    },
+
+    // 选手序号, 用于产生选手编号
+    playerCounter: {
+        type: Number,
+        default: 0
     }
 
 });
 
 voteSchema.post('remove', (vote) => {
 
+    //删除该投票对应的选手信息
+    mongoose.model('VotePlayer').remove({
+        vote: vote._id
+    }).exec();
 
 });
 

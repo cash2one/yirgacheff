@@ -1,8 +1,8 @@
 {% extends '../../layout.html' %}
 {% block content %}
 <!-- END OF BREADCRUMBS -->
-<div class="row">
-    <input type="hidden" id="eventId" value="<<eventId>>">
+<div class="row" id="voteApp">
+    <input type="hidden" id="voteId" value="<<eventId>>">
     <div class="col-xs-2">
         <div class="page-sidebar shadow">
             <ul class="nav nav-pills nav-stacked">
@@ -39,7 +39,9 @@
             <div class="panel-heading clearfix">
                 <h4 class="panel-title">投票选项</h4>
                 <div class="panel-control">
-                    <button type="button" id="addOption" class="btn btn-info btn-block"><i class="fa fa-plus m-r-xxs"></i>添加选项</button>
+                    <button type="button" class="btn btn-info btn-block" @click="showModal">
+                        <i class="fa fa-plus m-r-xxs"></i>添加选项
+                    </button>
                 </div>
             </div>
             <div class="panel-body">
@@ -47,426 +49,129 @@
                     <div class="form-group">
                         <div class="col-xs-2">
                             <div class="dropdown list-sort">
-                                <a href="#" class="dropdown-toggle f-info" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">按时间排序 <span class="caret"></span></a>
+                                <a href="#" class="dropdown-toggle f-info" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">{{orderTxt}}<span class="caret"></span></a>
                                 <ul class="dropdown-menu animated fadeIn">
-                                    <li><a href="javascript:void(0)">按时间排序</a></li>
-                                    <li><a href="javascript:void(0)">按票数排序</a></li>
+                                    <li><a href="javascript:void(0)" @click="orderBy('-sequence')">按时间排序</a></li>
+                                    <li><a href="javascript:void(0)" @click="orderBy('-poll')">按票数排序</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-xs-offset-6 col-xs-4">
                             <div class="input-group search">
-                                <input type="text" class="form-control" placeholder="请输入编号或选项">
+                                <input type="text" class="form-control" placeholder="请输入编号或姓名" v-model="search">
                                 <span class="input-group-btn">
-                                     <button class="btn btn-white" type="button"><i class="fa fa-search"></i></button>
+                                     <button class="btn btn-white" type="button" @click="searchBy"><i class="fa fa-search"></i></button>
                                 </span>
                             </div>
                         </div>
                     </div>
                 </form>
-                <div class="vote-option-list" id="voteOptionList">
-                    <div class="vote-option-item">
-                        <div class="vote-option-info">
-                            <div class="vote-numbers">
-                                <a class="sup" href="javascript:void(0)" data-gaevent="lecture-list-zan:v4.0.0.0:academy">
-                                    <span></span>
-                                </a>
-                                <span>70</span>
-                                <a class="opp" href="javascript:void(0)" data-gaevent="lecture-list-zan:v4.0.0.0:academy">
-                                    <span></span>
-                                </a>
-                            </div>
-                            <div class="vote-option-name">
-                                <p>00001</p>
-                                <p>李小二</p>
-                            </div>
+                <div class="vote-option-list">
+                    <player-item v-for="player in players"
+                                 @delete-player="deletePlayer"
+                                 :player="player"
+                                 :index="$index"></player-item>
+                </div>
+                <v-pagination v-show="players.length > 0"
+                 :limit="limit" :total="total" @page-change="pageChange">
+                </v-pagination>
+            </div>
+        </div>
+    </div>
+    <player-modal title="测试标题" :visible="visible" @add-player="addPlayer" v-ref:modal></player-modal>
 
-                        </div>
-                        <div class="vote-option-img">
-                            <div class="img-box">
-                                <img class="img-thumbnail" width="80" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_FD1836EA-71A3-CE25-A77F-83F6AC7C7AAB_src.png">
-                                <div class="img-setting hides">
-                                    <a href="javascript:void(0)">
-                                        <div class="img-rotate">
-                                            <i class="fa fa-undo f-info"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="img-box">
-                                <img class="img-thumbnail" width="80" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_17948ACA-7E0A-540F-35AE-2FB09FC04628_src.jpg">
-                                <div class="img-setting hides">
-                                    <a href="javascript:void(0)">
-                                        <div class="img-rotate">
-                                            <i class="fa fa-undo f-info"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="img-box">
-                                <img class="img-thumbnail" width="80" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_FDA88909-F67D-9346-FDC1-FD7A488E86D4_src.jpg">
-                                <div class="img-setting hides">
-                                    <a href="javascript:void(0)">
-                                        <div class="img-rotate">
-                                            <i class="fa fa-undo f-info"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vote-option-details">
-                            <p>证明他们能够得到自己选区,的选票证明他们能够,得到自己选区的选票证明他们能够得到自己选区,的选票证明他们能够得到自己选区的选票</p>
-                        </div>
-                        <div class="vote-option-approve">
-                            <a class="f-info m-r-xs"><i class="fa fa-pencil m-r-xxs"></i>编辑</a>
-                            <a class="f-info"><i class="fa fa-trash-o m-r-xxs"></i>删除</a>
-                        </div>
-                    </div>
-                    <div class="vote-option-item">
-                        <div class="vote-option-info">
-                            <div class="vote-numbers">
-                                <a class="sup" href="javascript:void(0)" data-gaevent="lecture-list-zan:v4.0.0.0:academy">
-                                    <span></span>
-                                </a>
-                                <span>70</span>
-                                <a class="opp" href="javascript:void(0)" data-gaevent="lecture-list-zan:v4.0.0.0:academy">
-                                    <span></span>
-                                </a>
-                            </div>
-                            <div class="vote-option-name">
-                                <p>00001</p>
-                                <p>李小二</p>
-                            </div>
+</div>
 
-                        </div>
-                        <div class="vote-option-img">
-                            <div class="img-box">
-                                <img class="img-thumbnail" width="80" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_FD1836EA-71A3-CE25-A77F-83F6AC7C7AAB_src.png">
-                                <div class="img-setting hides">
-                                    <a href="javascript:void(0)">
-                                        <div class="img-rotate">
-                                            <i class="fa fa-undo f-info"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="img-box">
-                                <img class="img-thumbnail" width="80" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_17948ACA-7E0A-540F-35AE-2FB09FC04628_src.jpg">
-                                <div class="img-setting hides">
-                                    <a href="javascript:void(0)">
-                                        <div class="img-rotate">
-                                            <i class="fa fa-undo f-info"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="img-box">
-                                <img class="img-thumbnail" width="80" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_FDA88909-F67D-9346-FDC1-FD7A488E86D4_src.jpg">
-                                <div class="img-setting hides">
-                                    <a href="javascript:void(0)">
-                                        <div class="img-rotate">
-                                            <i class="fa fa-undo f-info"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vote-option-details">
-                            <p>证明他们能够得到自己选区,的选票证明他们能够,得到自己选区的选票证明他们能够得到自己选区,的选票证明他们能够得到自己选区的选票</p>
-                        </div>
-                        <div class="vote-option-approve">
-                            <a class="f-info m-r-xs"><i class="fa fa-pencil m-r-xxs"></i>编辑</a>
-                            <a class="f-info"><i class="fa fa-trash-o m-r-xxs"></i>删除</a>
-                        </div>
-                    </div>
-                    <div class="vote-option-item">
-                        <div class="vote-option-info">
-                            <div class="vote-numbers">
-                                <a class="sup" href="javascript:void(0)" data-gaevent="lecture-list-zan:v4.0.0.0:academy">
-                                    <span></span>
-                                </a>
-                                <span>70</span>
-                                <a class="opp" href="javascript:void(0)" data-gaevent="lecture-list-zan:v4.0.0.0:academy">
-                                    <span></span>
-                                </a>
-                            </div>
-                            <div class="vote-option-name">
-                                <p>00001</p>
-                                <p>李小二</p>
-                            </div>
+{% endblock %}
 
-                        </div>
-                        <div class="vote-option-img">
-                            <div class="img-box">
-                                <img class="img-thumbnail" width="80" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_FD1836EA-71A3-CE25-A77F-83F6AC7C7AAB_src.png">
-                                <div class="img-setting hides">
-                                    <a href="javascript:void(0)">
-                                        <div class="img-rotate">
-                                            <i class="fa fa-undo f-info"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="img-box">
-                                <img class="img-thumbnail" width="80" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_17948ACA-7E0A-540F-35AE-2FB09FC04628_src.jpg">
-                                <div class="img-setting hides">
-                                    <a href="javascript:void(0)">
-                                        <div class="img-rotate">
-                                            <i class="fa fa-undo f-info"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="img-box">
-                                <img class="img-thumbnail" width="80" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_FDA88909-F67D-9346-FDC1-FD7A488E86D4_src.jpg">
-                                <div class="img-setting hides">
-                                    <a href="javascript:void(0)">
-                                        <div class="img-rotate">
-                                            <i class="fa fa-undo f-info"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vote-option-details">
-                            <p>证明他们能够得到自己选区,的选票证明他们能够,得到自己选区的选票证明他们能够得到自己选区,的选票证明他们能够得到自己选区的选票</p>
-                        </div>
-                        <div class="vote-option-approve">
-                            <a class="f-info m-r-xs"><i class="fa fa-pencil m-r-xxs"></i>编辑</a>
-                            <a class="f-info"><i class="fa fa-trash-o m-r-xxs"></i>删除</a>
-                        </div>
-                    </div>
-                    <div class="vote-option-item">
-                        <div class="vote-option-info">
-                            <div class="vote-numbers">
-                                <a class="sup" href="javascript:void(0)" data-gaevent="lecture-list-zan:v4.0.0.0:academy">
-                                    <span></span>
-                                </a>
-                                <span>70</span>
-                                <a class="opp" href="javascript:void(0)" data-gaevent="lecture-list-zan:v4.0.0.0:academy">
-                                    <span></span>
-                                </a>
-                            </div>
-                            <div class="vote-option-name">
-                                <p>00001</p>
-                                <p>李小二</p>
-                            </div>
+{% block javascript %}
 
-                        </div>
-                        <div class="vote-option-img">
-                            <div class="img-box">
-                                <img class="img-thumbnail" width="80" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_FD1836EA-71A3-CE25-A77F-83F6AC7C7AAB_src.png">
-                                <div class="img-setting hides">
-                                    <a href="javascript:void(0)">
-                                        <div class="img-rotate">
-                                            <i class="fa fa-undo f-info"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="img-box">
-                                <img class="img-thumbnail" width="80" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_17948ACA-7E0A-540F-35AE-2FB09FC04628_src.jpg">
-                                <div class="img-setting hides">
-                                    <a href="javascript:void(0)">
-                                        <div class="img-rotate">
-                                            <i class="fa fa-undo f-info"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="img-box">
-                                <img class="img-thumbnail" width="80" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_FDA88909-F67D-9346-FDC1-FD7A488E86D4_src.jpg">
-                                <div class="img-setting hides">
-                                    <a href="javascript:void(0)">
-                                        <div class="img-rotate">
-                                            <i class="fa fa-undo f-info"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vote-option-details">
-                            <p>证明他们能够得到自己选区,的选票证明他们能够,得到自己选区的选票证明他们能够得到自己选区,的选票证明他们能够得到自己选区的选票</p>
-                        </div>
-                        <div class="vote-option-approve">
-                            <a class="f-info m-r-xs"><i class="fa fa-pencil m-r-xxs"></i>编辑</a>
-                            <a class="f-info"><i class="fa fa-trash-o m-r-xxs"></i>删除</a>
-                        </div>
-                    </div>
-                    <div class="vote-option-item">
-                        <div class="vote-option-info">
-                            <div class="vote-numbers">
-                                <a class="sup" href="javascript:void(0)" data-gaevent="lecture-list-zan:v4.0.0.0:academy">
-                                    <span></span>
-                                </a>
-                                <span>70</span>
-                                <a class="opp" href="javascript:void(0)" data-gaevent="lecture-list-zan:v4.0.0.0:academy">
-                                    <span></span>
-                                </a>
-                            </div>
-                            <div class="vote-option-name">
-                                <p>00001</p>
-                                <p>李小二</p>
-                            </div>
+<script type="x/template" id="playerItem">
+    <div class="vote-option-item">
+        <div class="vote-option-info">
+            <div class="vote-numbers">
+                <a class="sup" href="javascript:void(0)">
+                    <span></span>
+                </a>
+                <span>{{player.poll}}</span>
+                <a class="opp" href="javascript:void(0)">
+                    <span></span>
+                </a>
+            </div>
+            <div class="vote-option-name">
+                <p>{{player.sequence}}号</p>
+                <p>{{player.name}}</p>
+            </div>
+        </div>
+        <div class="vote-option-img">
+            <div class="img-box" v-for="image in player.images">
+                <img class="img-thumbnail" width="80" :src="image | visit">
+            </div>
+        </div>
+        <div class="vote-option-details">
+            <p>{{player.brief}}</p>
+        </div>
+        <div class="vote-option-approve">
+            <a class="f-info m-r-xs" @click="update"><i class="fa fa-pencil m-r-xxs"></i>编辑</a>
+            <a class="f-info" @click="delete"><i class="fa fa-trash-o m-r-xxs"></i>删除</a>
+        </div>
+    </div>
+</script>
 
-                        </div>
-                        <div class="vote-option-img">
-                            <div class="img-box">
-                                <img class="img-thumbnail" width="80" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_FD1836EA-71A3-CE25-A77F-83F6AC7C7AAB_src.png">
-                                <div class="img-setting hides">
-                                    <a href="javascript:void(0)">
-                                        <div class="img-rotate">
-                                            <i class="fa fa-undo f-info"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="img-box">
-                                <img class="img-thumbnail" width="80" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_17948ACA-7E0A-540F-35AE-2FB09FC04628_src.jpg">
-                                <div class="img-setting hides">
-                                    <a href="javascript:void(0)">
-                                        <div class="img-rotate">
-                                            <i class="fa fa-undo f-info"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="img-box">
-                                <img class="img-thumbnail" width="80" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_FDA88909-F67D-9346-FDC1-FD7A488E86D4_src.jpg">
-                                <div class="img-setting hides">
-                                    <a href="javascript:void(0)">
-                                        <div class="img-rotate">
-                                            <i class="fa fa-undo f-info"></i>
-                                        </div>
-                                    </a>
-                                </div>
+<script type="x/template" id="playerModal">
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">选项信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal option-page">
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">姓名：</label>
+                            <div class="col-xs-9">
+                                <input class="form-control" type="text" v-model="name">
+                                <input type="hidden" value="<<eventId>>" v-model="vote">
                             </div>
                         </div>
-                        <div class="vote-option-details">
-                            <p>证明他们能够得到自己选区,的选票证明他们能够,得到自己选区的选票证明他们能够得到自己选区,的选票证明他们能够得到自己选区的选票</p>
-                        </div>
-                        <div class="vote-option-approve">
-                            <a class="f-info m-r-xs"><i class="fa fa-pencil m-r-xxs"></i>编辑</a>
-                            <a class="f-info"><i class="fa fa-trash-o m-r-xxs"></i>删除</a>
-                        </div>
-                    </div>
-                    <div class="vote-option-item">
-                        <div class="vote-option-info">
-                            <div class="vote-numbers">
-                                <a class="sup" href="javascript:void(0)" data-gaevent="lecture-list-zan:v4.0.0.0:academy">
-                                    <span></span>
-                                </a>
-                                <span>70</span>
-                                <a class="opp" href="javascript:void(0)" data-gaevent="lecture-list-zan:v4.0.0.0:academy">
-                                    <span></span>
-                                </a>
-                            </div>
-                            <div class="vote-option-name">
-                                <p>00001</p>
-                                <p>李小二</p>
-                            </div>
-
-                        </div>
-                        <div class="vote-option-img">
-                            <div class="img-box">
-                                <img class="img-thumbnail" width="80" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_FD1836EA-71A3-CE25-A77F-83F6AC7C7AAB_src.png">
-                                <div class="img-setting hides">
-                                    <a href="javascript:void(0)">
-                                        <div class="img-rotate">
-                                            <i class="fa fa-undo f-info"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="img-box">
-                                <img class="img-thumbnail" width="80" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_17948ACA-7E0A-540F-35AE-2FB09FC04628_src.jpg">
-                                <div class="img-setting hides">
-                                    <a href="javascript:void(0)">
-                                        <div class="img-rotate">
-                                            <i class="fa fa-undo f-info"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="img-box">
-                                <img class="img-thumbnail" width="80" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_FDA88909-F67D-9346-FDC1-FD7A488E86D4_src.jpg">
-                                <div class="img-setting hides">
-                                    <a href="javascript:void(0)">
-                                        <div class="img-rotate">
-                                            <i class="fa fa-undo f-info"></i>
-                                        </div>
-                                    </a>
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">图片：</label>
+                            <div class="col-xs-9">
+                                <div class="row">
+                                    <div class="col-xs-4" v-for="image in images">
+                                        <img :src="image | visit" width="100%" height="126">
+                                        <a class="f-info pull-right m-t-xxs" @click="deleteImage">删除</a>
+                                    </div>
+                                    <div class="col-xs-4" v-show="images.length < 3">
+                                        <v-upload :data={token:"<<token>>"} @success="addImage">
+                                            <a class="pull-left upload-btn">
+                                                <v-icon type="plus"></v-icon>
+                                            </a>
+                                        </v-upload>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="vote-option-details">
-                            <p>证明他们能够得到自己选区,的选票证明他们能够,得到自己选区的选票证明他们能够得到自己选区,的选票证明他们能够得到自己选区的选票</p>
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">简介：</label>
+                            <div class="col-xs-9">
+                                <textarea class="form-control" rows="5" v-model="brief">{{brief}}</textarea>
+                            </div>
                         </div>
-                        <div class="vote-option-approve">
-                            <a class="f-info m-r-xs"><i class="fa fa-pencil m-r-xxs"></i>编辑</a>
-                            <a class="f-info"><i class="fa fa-trash-o m-r-xxs"></i>删除</a>
+                        <div class="form-group">
+                            <div class="col-xs-offset-2 col-xs-10">
+                                <button type="button" class="btn btn-info" @click="add">确定</button>
+                                <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="modal fade" id="addOptionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">选项详情</h4>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal option-page">
-                    <div class="form-group">
-                        <label class="col-xs-2 control-label">标题：</label>
-                        <div class="col-xs-9">
-                            <input class="form-control validate" type="text">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-2 control-label">作品：</label>
-                        <div class="col-xs-9">
-                            <div class="row">
-                                <div class="col-xs-4">
-                                    <img src="/images/events-classroom.png" width="100%" height="126">
-                                    <a class="f-info pull-right m-t-xxs">删除</a>
-                                </div>
-                                <div class="col-xs-4">
-                                    <v-upload :data={token:"<<token>>"} @success="addCover">
-                                        <a class="pull-left upload-btn">
-                                            <v-icon type="plus"/>
-                                        </a>
-                                    </v-upload>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-2 control-label">描述：</label>
-                        <div class="col-xs-9">
-                            <textarea class="form-control" rows="3" placeholder="这里添加选项/选手描述"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-offset-2 col-xs-10">
-                            <button type="submit" class="btn btn-info">确定</button>
-                            <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-{% endblock %}
-
-{% block javascript %}
-<script src="/js/lib/ueditor/ueditor.config.js"></script>
-<script src="/js/lib/ueditor/ueditor.all.min.js"></script>
+</script>
 <script src="/js/entries/common/events/manage-vote.js"></script>
 {% endblock %}

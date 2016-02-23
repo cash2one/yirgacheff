@@ -33,8 +33,9 @@
  			self.content = editor.trumbowyg('html');
  		});
 
+    console.log('content is ', self.content);
  		//初始化editor 内容
- 		editor.trumbowyg('html', this.content);
+ 		editor.trumbowyg('html', self.content);
  	}
 
 

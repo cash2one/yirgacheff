@@ -7,6 +7,7 @@ var notify = require('../../../common/notify');
 var uploader = require('../../../common/uploadifive');
 var Loading = require('../../../components/Loading.vue');
 var Vue = require('vue');
+
 $(document).ready(function () {
     app = app();
     Vue.filter('visit', function (value) {
@@ -94,6 +95,7 @@ $(document).ready(function () {
             showModal: function (event, product) {
                 this.$refs.modal.show(product || {});
             },
+
             addProduct: function (product) {
                 var index = _.findIndex(this.products, function (pro) {
                     return product._id === pro._id;
@@ -106,6 +108,7 @@ $(document).ready(function () {
                     app.notify.success("添加商品成功");
                 }
             },
+
             deleteProduct: function (productID) {
                 this.products = _.filter(this.products, function (pro) {
                     return pro._id !== productID;

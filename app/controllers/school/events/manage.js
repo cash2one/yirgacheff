@@ -4,6 +4,7 @@
 'use strict';
 const config = require('../../../../config/config');
 const service = require('../../../services');
+const qiniu = require('../../../middleware/qiniu');
 const nodeExcel = require('excel-export');
 const Qrcode = require('yaqrcode');
 
@@ -83,8 +84,9 @@ module.exports = function (router) {
         yield this.render('common/events/manage-task');
     });
 
-    router.get('/:id([a-f0-9]{24})/vote', function*() {
+    router.get('/:id([a-f0-9]{24})/vote',qiniu.token(), function*() {
         this.state.eventId = this.params.id;
+        this.state.token = this.token;
         yield this.render('common/events/manage-vote');
     });
 

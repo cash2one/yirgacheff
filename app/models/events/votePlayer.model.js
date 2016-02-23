@@ -7,49 +7,59 @@ const ObjectId = Schema.Types.ObjectId;
 //投票纪录数据模型，每条纪录保持一天后会被删除
 const playerSchema = new Schema({
 
-	// 对应投票ID
-	vote: {
-		type: ObjectId,
-		required: true
-	},
+    // 对应投票ID
+    vote: {
+        type: ObjectId,
+        required: true
+    },
 
-	// 参与人唯一标识
-	uid: {
-		type: String,
-		required: true
-	},
+    // 编号
+    sequence: {
+        type: String
+    },
 
-	// 姓名
-	name: {
-		type: String,
-		required: true
-	},
+    //报名电话
+    phone: {
+        type: String
+    },
 
+    // 姓名
+    name: {
+        type: String,
+        required: true
+    },
 
-	// 作品
-	images: [String],
+    // 是否审核
+    isAudit: {
+        type: Boolean,
+        required: true
+    },
 
-	// 简介
-	brief: {
-		type: String
-	},
+    // 图片
+    images: [String],
 
-	// 票数
-	poll: {
-		type: Number,
-		default: 0
-	},
+    // 简介
+    brief: {
+        type: String
+    },
 
-	// 来源 
-	source: {
-		type: String,
-		required: true
-	},
+    // 票数
+    poll: {
+        type: Number,
+        default: 0
+    },
 
-	createdTime: {
-		type: Date,
-		default: Date.now
-	}
+    // 来源
+    source: {
+        type: String,
+        required: true,
+        default: 'school'
+    },
+
+    createdTime: {
+        type: Date,
+        default: Date.now
+    }
 
 });
 
