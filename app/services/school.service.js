@@ -18,7 +18,7 @@ module.exports = {
         let school = new School(data);
         school.username = counter.seq + 10000;
         school.password = '12345678';
-        return yield school;
+        return yield school.save();
     }),
 
     findAll: co.wrap(function*() {

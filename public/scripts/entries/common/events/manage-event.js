@@ -24,6 +24,7 @@ $(document).ready(function() {
     .src = 'http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion=' + ~(-new Date() / 36e5);
 
   $(".deleteEvent").click(function() {
+
     var eventId = $(this).attr('id');
     if (confirm("确定要删除该活动?")) {
       $.ajax({

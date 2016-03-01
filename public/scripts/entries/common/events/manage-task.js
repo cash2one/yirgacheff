@@ -80,6 +80,7 @@ $(document).ready(function () {
                         url: '/api/v1/events/' + eventId + '/tasks/' + this.task._id,
                         method: 'DELETE'
                     }).then(function () {
+
                         self.$dispatch('delete-task', self.index);
                         app.notify.success("删除任务成功");
                     });
