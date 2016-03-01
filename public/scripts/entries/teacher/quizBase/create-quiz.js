@@ -1,5 +1,5 @@
 'use strict';
-var _ = require ('underscore');
+var _ = require('underscore');
 var Vue = require('vue');
 var app = require('../../../common/app');
 var QuizComponent = require('../../../components/exercise');
@@ -49,7 +49,8 @@ $(document).ready(function () {
                 if (!this.isValid()) {
                     return false;
                 }
-                $.post('/api/v1/quizzes', this.getData()).then(function (res) {
+                var data = $.parseJSON(JSON.stringify(this.getData()));
+                $.post('/api/v1/quizzes', data).then(function (res) {
                     app.notify.success("保存题目成功");
                     self.location.href = "/teacher/quizzes";
                 });

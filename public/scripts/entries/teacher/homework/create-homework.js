@@ -82,7 +82,8 @@ $(document).ready(function () {
                 if (!this.isValid()) {
                     return false;
                 }
-                $.post('/api/v1/homework', this.getData()).then(function (res) {
+                var data = $.parseJSON(JSON.stringify(this.getData()));
+                $.post('/api/v1/homework', data).then(function (res) {
                     app.notify.success("保存作业成功");
                     self.location.href = "/teacher/homework";
                 });
