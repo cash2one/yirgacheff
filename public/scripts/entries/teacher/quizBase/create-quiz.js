@@ -21,11 +21,14 @@ $(document).ready(function () {
             deleteExercise: function (index) {
                 this.exercises.splice(index, 1);
             },
-            getData: function () {
-                this.exercises = _.map(this.$children, function (child) {
-                    return child.getData();
+            getPlainData: function () {
+                var data = {};
+                data.title = this.title;
+                data.exercises = [];
+                _.forEach(this.$children, function (child) {
+                    data.exercises.push(child.getPlainData());
                 });
-                return this.$data;
+                return data;
             },
 
             isValid: function () {
@@ -49,10 +52,11 @@ $(document).ready(function () {
                 if (!this.isValid()) {
                     return false;
                 }
-                var data = $.parseJSON(JSON.stringify(this.getData()));
+                var data = this.getPlainData();
+                console.log(data);
                 $.post('/api/v1/quizzes', data).then(function (res) {
                     app.notify.success("保存题目成功");
-                    self.location.href = "/teacher/quizzes";
+                    //self.location.href = "/teacher/quizzes";
                 });
             }
         }

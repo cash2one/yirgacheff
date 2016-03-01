@@ -76,8 +76,8 @@ QuizComponent = Vue.extend(
     delete: ()->
       this.$dispatch('delete-exercise', this.index)
 
-    getData: ()->
-      this.$refs.child.$data
+    getPlainData: ()->
+      this.$refs.child.getPlainData()
 
     isValid: ()->
       this.$refs.child.isValid()

@@ -22,6 +22,12 @@ VoiceComponent = Vue.extend(
     delete this.$data['exercise']
 
   methods:
+
+    getPlainData: ()->
+        data = question: this.question
+        data
+
+
     isValid: ()->
       if _.isEmpty this.question
         notify.danger "第#{this.index + 1}题题目不能为空"

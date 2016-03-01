@@ -39,6 +39,12 @@ FillBlankComponent = Vue.extend(
         notify.danger "第#{this.index + 1}题答案不能为空"
         return false
       true
+    getPlainData: ()->
+      return {
+        question: this.question,
+        answer: this.answer,
+        analysis: this.analysis
+      }
 )
 
 module.exports = FillBlankComponent

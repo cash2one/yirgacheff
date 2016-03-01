@@ -27,6 +27,14 @@ module.exports =
     getTitle: (index)->
       OPTIONS[index]
 
+    getPlainData: ()->
+      return {
+        question: this.question,
+        analysis: this.analysis,
+        answer: this.answer,
+        choices: this.choices
+      }
+
     isValid: ()->
       if _.isEmpty this.question
         notify.danger "第#{this.index + 1}题题目不能为空"
