@@ -53,7 +53,6 @@ $(document).ready(function () {
                     return false;
                 }
                 var data = this.getPlainData();
-                console.log(data);
                 $.post('/api/v1/quizzes', data).then(function (res) {
                     app.notify.success("保存题目成功");
                     //self.location.href = "/teacher/quizzes";

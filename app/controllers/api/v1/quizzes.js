@@ -12,9 +12,6 @@ module.exports = function (router) {
 
     router.post('/', function*() {
         let user = this.user;
-        let data = this.request.body;
-        console.log(data);
-        console.log(typeof data);
         this.body = yield service.quizzes.create(user, this.request.body);
     });
 
