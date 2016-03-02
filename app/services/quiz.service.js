@@ -23,6 +23,7 @@ module.exports = {
             creatorUsername: teacher.username,
             schoolId: teacher.schoolId
         });
+        console.log(quiz);
         return yield quiz.save();
     }),
 

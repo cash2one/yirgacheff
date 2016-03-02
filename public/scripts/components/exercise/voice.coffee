@@ -16,16 +16,18 @@ VoiceComponent = Vue.extend(
   """
   data: ()->
     question: ''
+    eType: 3
 
   created: ()->
     _.extend this.$data, this.exercise
     delete this.$data['exercise']
 
   methods:
-
     getPlainData: ()->
-        data = question: this.question
-        data
+      return {
+        question: this.question
+        eType: this.eType
+      }
 
 
     isValid: ()->

@@ -32,7 +32,8 @@ module.exports =
         question: this.question,
         analysis: this.analysis,
         answer: this.answer,
-        choices: this.choices
+        choices: this.choices,
+        eType: this.eType
       }
 
     isValid: ()->

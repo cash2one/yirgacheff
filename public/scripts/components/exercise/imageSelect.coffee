@@ -45,6 +45,8 @@ OptionComponent = Vue.extend
 ImageComponent = Vue.extend
   props: ['index', 'exercise']
   mixins: [exerciseMixin, selectMixin]
+  data: ()->
+    eType: 1
   template: """
       <div class='row quiz-item'>
         <div class="col-xs-12 m-b-md">

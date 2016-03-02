@@ -23,7 +23,8 @@ FillBlankComponent = Vue.extend(
   data: ()->
     question: ''
     answer: ''
-    analysis: ''
+    analysis: '',
+    eType: 2
 
   created: ()->
     _.extend this.$data, this.exercise
@@ -43,7 +44,8 @@ FillBlankComponent = Vue.extend(
       return {
         question: this.question,
         answer: this.answer,
-        analysis: this.analysis
+        analysis: this.analysis,
+        eType: this.eType
       }
 )
 

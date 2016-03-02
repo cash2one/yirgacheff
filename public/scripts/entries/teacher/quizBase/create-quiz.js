@@ -25,8 +25,10 @@ $(document).ready(function () {
                 var data = {};
                 data.title = this.title;
                 data.exercises = [];
-                _.forEach(this.$children, function (child) {
-                    data.exercises.push(child.getPlainData());
+                _.forEach(this.$children, function (child, i) {
+                    var exercise = child.getPlainData();
+                    exercise.sequence = i + 1;
+                    data.exercises.push(exercise);
                 });
                 return data;
             },

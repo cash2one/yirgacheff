@@ -17,6 +17,8 @@ $(document).ready(function () {
         data: {
             classes: [],
             title: '',
+            finishAward: 0,
+            performanceAward: 0,
             keyPointRecord: '',
             addQuizBase: true,
             exercises: []
@@ -57,8 +59,10 @@ $(document).ready(function () {
                 data.keyPointRecord = this.keyPointRecord;
                 data.addQuizBase = this.addQuizBase;
                 data.exercises = [];
-                _.forEach(this.$children, function (child) {
-                    data.exercises.push(child.getPlainData());
+                _.forEach(this.$children, function (child, i) {
+                    var exercise = child.getPlainData();
+                    exercise.sequence = i + 1;
+                    data.exercises.push(exercise);
                 });
                 return data;
             },
