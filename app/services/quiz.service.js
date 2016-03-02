@@ -16,7 +16,14 @@ module.exports = {
 
     create: co.wrap(function*(user, data) {
         let teacher = yield Teacher.findById(user._id).lean().exec();
-        let quiz = new Quiz(data);
+        let exercises = data.exercises;
+        if (!_.isArray(exercises)) {
+            exercises = _.values(exercises);
+        }
+        let quiz = new Quiz({
+            title: data.title,
+            exercises: exercises
+        });
         _.assign(quiz, {
             creator: teacher._id,
             creatorDisplayName: teacher.displayName,
