@@ -23,6 +23,9 @@ module.exports = {
         let exercises = data.exercises;
         let classes = homework.classes;
         let asTemplate = homework.addQuizBase;
+        if (!_.isArray(exercises)) {
+            exercises = _.values(exercises);
+        }
         let quiz = new Quiz({
             title: homework.title,
             creator: teacher,
