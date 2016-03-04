@@ -1,7 +1,7 @@
 {% extends '../../layout.html' %}
 {% block content %}
 <!-- END OF BREADCRUMBS -->
-<div class="row">
+<div class="row" id="enrollApp">
     <input type="hidden" id="eventId" value="<<eventId>>">
     <div class="col-xs-2">
         <div class="page-sidebar shadow">
@@ -40,157 +40,32 @@
             <div class="panel-heading clearfix">
                 <h4 class="panel-title">报名管理</h4>
                 <div class="panel-control">
-                    <button type="button" id="addOption" class="btn btn-info btn-block"><i class="fa fa-check m-r-xxs"></i>一键审核</button>
+                    <button type="button"
+                            @click="auditAll"
+                            class="btn btn-info btn-block"><i
+                            class="fa fa-check m-r-xxs"></i>一键审核
+                    </button>
                 </div>
             </div>
             <div class="panel-body panel-min-h">
+                <Loading v-if="loading"></Loading>
                 <div class="vote-enroll-list" id="voteEnrollList">
-                    <div class="vote-enroll-item">
-                        <div class="vote-enroll-number">1.</div>
-                        <div class="vote-enroll-info">
-                            <p>李小二</p>
-                            <p>手机：15912341234</p>
-                            <p>报名时间：2016-1-29</p>
-                        </div>
-                        <div class="vote-enroll-img">
-                            <div class="img-box">
-                                <img class="img-thumbnail" width="80" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_FD1836EA-71A3-CE25-A77F-83F6AC7C7AAB_src.png">
-                                <div class="img-setting hides">
-                                    <a href="javascript:void(0)">
-                                        <div class="img-rotate">
-                                            <i class="fa fa-undo f-info"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="img-box">
-                                <img class="img-thumbnail" width="80" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_17948ACA-7E0A-540F-35AE-2FB09FC04628_src.jpg">
-                                <div class="img-setting hides">
-                                    <a href="javascript:void(0)">
-                                        <div class="img-rotate">
-                                            <i class="fa fa-undo f-info"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="img-box">
-                                <img class="img-thumbnail" width="80" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_FDA88909-F67D-9346-FDC1-FD7A488E86D4_src.jpg">
-                                <div class="img-setting hides">
-                                    <a href="javascript:void(0)">
-                                        <div class="img-rotate">
-                                            <i class="fa fa-undo f-info"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vote-enroll-details">
-                            描述：After you get up and running, you can place Font Awesome icons just about anywhere with the
-                        </div>
-                        <div class="vote-enroll-approve">
-                            <a class="f-info m-r-xs"><i class="fa fa-check m-r-xxs"></i>审核</a>
-                            <a class="f-info"><i class="fa fa-trash-o m-r-xxs"></i>删除</a>
-                        </div>
-                    </div>
-                    <div class="vote-enroll-item">
-                        <div class="vote-enroll-number">1.</div>
-                        <div class="vote-enroll-info">
-                            <p>李小二</p>
-                            <p>手机：15912341234</p>
-                            <p>报名时间：2016-1-29</p>
-                        </div>
-                        <div class="vote-enroll-img">
-                            <div class="img-box">
-                                <img class="img-thumbnail" width="80" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_FD1836EA-71A3-CE25-A77F-83F6AC7C7AAB_src.png">
-                                <div class="img-setting hides">
-                                    <a href="javascript:void(0)">
-                                        <div class="img-rotate">
-                                            <i class="fa fa-undo f-info"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="img-box">
-                                <img class="img-thumbnail" width="80" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_17948ACA-7E0A-540F-35AE-2FB09FC04628_src.jpg">
-                                <div class="img-setting hides">
-                                    <a href="javascript:void(0)">
-                                        <div class="img-rotate">
-                                            <i class="fa fa-undo f-info"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="img-box">
-                                <img class="img-thumbnail" width="80" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_FDA88909-F67D-9346-FDC1-FD7A488E86D4_src.jpg">
-                                <div class="img-setting hides">
-                                    <a href="javascript:void(0)">
-                                        <div class="img-rotate">
-                                            <i class="fa fa-undo f-info"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vote-enroll-details">
-                            描述：After you get up and running, you can place Font Awesome icons just about anywhere with the
-                        </div>
-                        <div class="vote-enroll-approve">
-                            <a class="f-info m-r-xs"><i class="fa fa-check m-r-xxs"></i>审核</a>
-                            <a class="f-info"><i class="fa fa-trash-o m-r-xxs"></i>删除</a>
-                        </div>
-                    </div>
-                    <div class="vote-enroll-item">
-                        <div class="vote-enroll-number">1.</div>
-                        <div class="vote-enroll-info">
-                            <p>李小二</p>
-                            <p>手机：15912341234</p>
-                            <p>报名时间：2016-1-29</p>
-                        </div>
-                        <div class="vote-enroll-img">
-                            <div class="img-box">
-                                <img class="img-thumbnail" width="80" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_FD1836EA-71A3-CE25-A77F-83F6AC7C7AAB_src.png">
-                                <div class="img-setting hides">
-                                    <a href="javascript:void(0)">
-                                        <div class="img-rotate">
-                                            <i class="fa fa-undo f-info"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="img-box">
-                                <img class="img-thumbnail" width="80" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_17948ACA-7E0A-540F-35AE-2FB09FC04628_src.jpg">
-                                <div class="img-setting hides">
-                                    <a href="javascript:void(0)">
-                                        <div class="img-rotate">
-                                            <i class="fa fa-undo f-info"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="img-box">
-                                <img class="img-thumbnail" width="80" src="http://img.a.mvote.net/imgsource/thumbnail_50X50_FDA88909-F67D-9346-FDC1-FD7A488E86D4_src.jpg">
-                                <div class="img-setting hides">
-                                    <a href="javascript:void(0)">
-                                        <div class="img-rotate">
-                                            <i class="fa fa-undo f-info"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="vote-enroll-details">
-                            描述：After you get up and running, you can place Font Awesome icons just about anywhere with the
-                        </div>
-                        <div class="vote-enroll-approve">
-                            <a class="f-info m-r-xs"><i class="fa fa-check m-r-xxs"></i>审核</a>
-                            <a class="f-info"><i class="fa fa-trash-o m-r-xxs"></i>删除</a>
-                        </div>
-                    </div>
+
+                    <player-item v-for="player in players"
+                                 :player="player"
+                                 :delete="deletePlayer"
+                                 :audit="auditPlayer"
+                                 :index="$index">
+                    </player-item>
                 </div>
-                <div class="tips">
+                <Pagination v-show="players.length > 0"
+                            :total="total"
+                            :limit="limit"
+                            @page-change="pageChange">
+                </Pagination>
+                <div class="tips" v-show="players.length === 0 && loading === false">
                     <img class="center-block" src="/images/tips-ku.png">
-                    <p class="m-t-lg">分享至微信，微博，QQ等平台</p>
-                    <p>召集小伙伴来报名吧！</p>
+                    <p>暂时还没有人报名!</p>
                 </div>
             </div>
         </div>
@@ -201,5 +76,27 @@
 {% endblock %}
 
 {% block javascript %}
+<script type="x/template" id="playerItemTemplate">
+    <div class="vote-enroll-item">
+        <div class="vote-enroll-number">{{index + 1}}</div>
+        <div class="vote-enroll-info">
+            <p>{{player.name}}</p>
+            <p>手机：{{player.phone}}</p>
+            <p>报名时间：{{player.createdTime | date}}</p>
+        </div>
+        <div class="vote-enroll-img">
+            <div class="img-box" v-for="image in player.images">
+                <img class="img-thumbnail" width="80" :src="image | visit">
+            </div>
+        </div>
+        <div class="vote-enroll-details">
+            描述：{{player.brief}}
+        </div>
+        <div class="vote-enroll-approve">
+            <a class="f-info m-r-xs" @click="audit(player._id)"><i class="fa fa-check m-r-xxs"></i>审核</a>
+            <a class="f-info" @click="delete(player._id,index)"><i class="fa fa-trash-o m-r-xxs"></i>删除</a>
+        </div>
+    </div>
+</script>
 <script src="/js/entries/common/events/vote-enroll.js"></script>
 {% endblock %}

@@ -75,6 +75,15 @@ module.exports = {
             query.or([{name: exp}, {sequence: exp}]);
         }
         return yield query.count().exec();
+    }),
+
+    auditPlayers: co.wrap(function *(players) {
+        if (!_.isArray(players)) {
+            players = [players];
+        }
+        return yield VotePlayer.update({_id: {$in: players}}, {
+            isAudit: true
+        }).exec();
     })
 
 };

@@ -8,6 +8,7 @@ var VueAsyncData = require('vue-async-data');
 Vue.use(VueAsyncData);
 var TEMPLATES = {
     'all': '全部',
+    'vote':'投票',
     'article': '文章',
     'activity': '活动',
     'audition': '试听课',

@@ -57,7 +57,7 @@ $(document).ready(function () {
                 var data = this.getPlainData();
                 $.post('/api/v1/quizzes', data).then(function (res) {
                     app.notify.success("保存题目成功");
-                    //self.location.href = "/teacher/quizzes";
+                    self.location.href = "/teacher/quizzes";
                 });
             }
         }

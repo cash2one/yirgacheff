@@ -59,6 +59,8 @@ $(document).ready(function () {
                 data.keyPointRecord = this.keyPointRecord;
                 data.addQuizBase = this.addQuizBase;
                 data.exercises = [];
+                data.finishAward = this.finishAward;
+                data.performanceAward = this.performanceAward;
                 _.forEach(this.$children, function (child, i) {
                     var exercise = child.getPlainData();
                     exercise.sequence = i + 1;
