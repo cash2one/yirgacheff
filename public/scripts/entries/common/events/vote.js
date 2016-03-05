@@ -4,6 +4,7 @@
 'use strict';
 
 import Vue from 'vue';
+import _ from 'underscore';
 import app from  '../../../common/app';
 import notify from '../../../common/notify';
 import dateRange from '../../../components/DateRange';
@@ -11,13 +12,20 @@ import vEditor from '../../../components/Editor';
 import vUpload from '../../../components/upload';
 import vIcon from '../../../components/iconfont';
 
-$(document).ready(function() {
-    
+$(document).ready(function () {
+
     Vue.filter('visit', function (value) {
-      return GLOBAL.visitUrl + '/' + value;
+        return GLOBAL.visitUrl + '/' + value;
     });
+    var voteData = window.vote || {};
+    if (voteData.startTime) {
+        voteData.startTime = voteData.startTime.substr(0, 10);
+    }
+    if (voteData.endTime) {
+        voteData.endTime = voteData.endTime.substr(0, 10);
+    }
     //富编辑器渲染
-    var vm = new Vue({
+    new Vue({
         el: '#voteApp',
         components: {
             vEditor,
@@ -27,53 +35,63 @@ $(document).ready(function() {
         },
         data: {
             loading: false,
-            vote: {
+            vote: _.assign({
                 template: 'vote',
                 title: '',
                 startTime: '',
                 endTime: '',
-                covers: [],
-                prize: '', 
+                slides: [],
+                prize: '',
                 participation: '',
                 explanation: '',
                 theme: 'default',
                 requireFollow: true,
                 followTip: '',
                 voteEnroll: true
-            }
+            }, voteData)
         },
-        methods:{
-            addCover:function addCover(res) {
-              this.vote.covers.push(res.key);
+        methods: {
+            addCover: function addCover(res) {
+                this.vote.slides.push(res.key);
             },
-            deleteCover:function deleteCover(index) {
-              this.vote.covers.splice(index,1);
+            deleteCover: function deleteCover(index) {
+                this.vote.slides.splice(index, 1);
             },
-            submit:function submit() {
+            submit: function submit() {
                 var vote = this.$data.vote;
-                if(vote.title === ""){
+                if (vote.title === "") {
                     return notify.danger("投票标题不能为空");
                 }
-                if(vote.startTime === "" || vote.endTime === ""){
+                if (vote.startTime === "" || vote.endTime === "") {
                     return notify.danger("必须设置投票时间");
                 }
-                if(vote.covers.length === 0){
+                if (vote.slides.length === 0) {
                     return notify.danger("至少设置一张页头图片");
                 }
-                if(vote.requireFollow && vote.followTip === ""){
+                if (vote.requireFollow && vote.followTip === "") {
                     return notify.danger("关注说明不能为空");
                 }
-                if(vote.prize === ""){
+                if (vote.prize === "") {
                     return notify.danger("奖项设置不能为空");
                 }
-                if(vote.participation === ""){
+                if (vote.participation === "") {
                     return notify.danger("参与说明不能为空");
                 }
-                vote.coverImage = vote.covers[0];
+                vote.coverImage = vote.slides[0];
                 this.loading = true;
-                $.post('/api/v1/events', vote).then(function (event) {
-                    self.location.href = "/school/events/manage/" + event._id.toString();
-                });
+                if (vote._id) {
+                    $.ajax({
+                        url: `/api/v1/events/${vote._id}`,
+                        method: 'PUT',
+                        data: vote
+                    }).then(function (res) {
+                        notify.success("修改投票成功");
+                    });
+                } else {
+                    $.post('/api/v1/events', vote).then(function (event) {
+                        self.location.href = "/school/events/manage/" + event._id.toString();
+                    });
+                }
             }
         }
     });

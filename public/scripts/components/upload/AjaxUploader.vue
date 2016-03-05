@@ -22,7 +22,7 @@ import uid from './uid'
 
 export default {
   props: defaultProps({
-    action: String,
+    action: "post",
     name: String,
     multiple: Boolean,
     data: Object,

@@ -44,15 +44,8 @@ module.exports = {
 
     findPlayers: co.wrap(function *(filter) {
         let query = VotePlayer.find({vote: filter.vote});
-        if (filter.skip) {
-            query.skip(parseInt(filter.skip));
-        }
-        if (filter.limit) {
-            query.limit(parseInt(filter.limit));
-        }
-        if (filter.order) {
-            query.sort(filter.order);
-        }
+        let page = parseInt(filter.page || 1);
+        let limit = parseInt(filter.limit || 20);
         if (filter.search && filter.search !== '') {
             let exp = new RegExp(filter.search);
             query.or([{name: exp}, {sequence: filter.search}]);
@@ -60,7 +53,24 @@ module.exports = {
         if (filter.isAudit) {
             query.where('isAudit', filter.isAudit);
         }
-        return yield query.lean().exec();
+        let count = yield VotePlayer.count(query.getQuery()).exec();
+        let totalPage = Math.ceil(count / limit);
+        page = Math.min(page, totalPage);
+        if (page === 0) {
+            return {
+                total: 0,
+                players: []
+            };
+        }
+        query.skip((page - 1) * limit).limit(limit);
+        if (filter.order) {
+            query.sort(filter.order);
+        }
+        let players = yield query.lean().exec();
+        return {
+            total: count,
+            players: players
+        };
     }),
 
     findPlayerCount: co.wrap(function *(filter) {
@@ -83,7 +93,21 @@ module.exports = {
         }
         return yield VotePlayer.update({_id: {$in: players}}, {
             isAudit: true
-        }).exec();
+        }, {multi: true}).exec();
+    }),
+
+    operatePoll: co.wrap(function*(playerId, operatedPoll) {
+        operatedPoll = parseInt(operatedPoll);
+        if (_.isNaN(operatedPoll)) {
+            throw createError(400, '票数必须为整数');
+        }
+        let player = yield VotePlayer.findById(playerId).select('poll').exec();
+        if (!player) {
+            throw createError(400, '选手不存在');
+        }
+        let poll = player.poll;
+        player.poll = Math.max(0, poll + operatedPoll);
+        return yield player.save();
     })
 
 };

@@ -102,6 +102,7 @@ module.exports = {
             throw createError(400, '活动不存在');
         }
         _.assign(event, _.omit(data, '_id', 'enroll', 'template', 'schoolId'));
+
         return yield event.save();
     }),
 

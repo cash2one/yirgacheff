@@ -11,69 +11,50 @@ import notify from '../../../common/notify';
 import vUpload from '../../../components/upload';
 import vIcon from '../../../components/iconfont';
 import Pagination from '../../../components/Pagination';
+import 'webui-popover/dist/jquery.webui-popover';
+import 'webui-popover/dist/jquery.webui-popover.css';
+var Loading = require('../../../components/Loading.vue');
+
 
 $(document).ready(function () {
     var voteId = $("#voteId").val();
     Vue.filter('visit', function (value) {
-        return GLOBAL.visitUrl + '/' + value;
+        return GLOBAL.visitUrl + '/' + value + '-enroll';
     });
     Vue.use(VueAsyncData);
     Vue.component('v-upload', vUpload);
     Vue.component('v-icon', vIcon);
     Vue.component('v-pagination', Pagination);
+    Vue.component('Loading', Loading);
+
     Vue.component('player-modal', {
         template: '#playerModal',
+        props: ['addPlayer'],
         data: function () {
-            return {
+            var player = {
                 _id: '',
                 images: [],
                 name: '',
                 brief: '',
-                isAudit: true,
-                vote: voteId
+                isAudit: true
             };
+            return {player: player};
         },
         methods: {
-
             addImage: function (res) {
-                this.images.push(res.key);
+                this.player.images.push(res.key);
             },
-
             deleteImage: function (index) {
-                this.images.splice(index, 1);
-            },
-
-            add: function () {
-                var player = this.$data;
-                if (this._id && this._id !== '') {
-                    player._id = this._id;
-                }
-                var vm = this;
-                if (player.name === "") {
-                    return notify.danger("选手名字不能为空");
-                }
-                if (player.images.length === 0) {
-                    return notify.danger("至少添加一张选手图片");
-                }
-                if (player.brief === "") {
-                    return notify.danger("选手简介不能为空");
-                }
-                $.post('/api/v1/events/vote/votePlayer', player)
-                    .then(function (player) {
-                        notify.success("操作成功");
-                        vm.$emit("hide");
-                        vm.$dispatch('add-player', player);
-                    });
+                this.player.images.splice(index, 1);
             }
         },
-
         events: {
             show: function (player = {}) {
+                _.assign(this.player, player);
+                if (player.images) {
+                    this.player.images = [...player.images];
+                }
                 $(this.$el).modal("show");
-                this.images = player.images || [];
-                this.name = player.name || '';
-                this.brief = player.brief || '';
-                this._id = player._id;
             },
             hide: function () {
                 $(this.$el).modal("hide");
@@ -83,80 +64,132 @@ $(document).ready(function () {
 
     Vue.component('player-item', {
         template: "#playerItem",
-        props: ['player', 'index'],
+        props: ['player', 'index', 'deletePlayer'],
+        data: function () {
+            return {
+                addedPoll: 0,
+                subedPoll: 0
+            }
+        },
+        ready: function () {
+            $('a.sup').webuiPopover({animation: 'pop'});
+            $('a.opp').webuiPopover({animation: 'pop'});
+        },
         methods: {
+            addPoll: function () {
+                var self = this;
+                var poll = parseInt(this.addedPoll);
+                if (!_.isNumber(poll)) {
+                    return notify.danger('票数必须为整数');
+                }
+                $.ajax({
+                    url: `/api/v1/events/vote/votePlayer/${this.player._id}/poll`,
+                    method: 'PUT',
+                    data: {
+                        poll: poll
+                    }
+                }).then(function (res) {
+                    self.addedPoll = 0;
+                    self.player.poll = res.poll;
+                    notify.success("添加票数成功");
+                })
+            },
+            subPoll: function () {
+                var self = this;
+                var poll = parseInt(this.subedPoll);
+                if (!_.isNumber(poll)) {
+                    return notify.danger('积分必须为整数');
+                }
+                poll = 0 - poll;
+                $.ajax({
+                    url: `/api/v1/events/vote/votePlayer/${this.player._id}/poll`,
+                    method: 'PUT',
+                    data: {
+                        poll: poll
+                    }
+                }).then(function (res) {
+                    self.player.poll = res.poll;
+                    self.subedPoll = 0;
+                    notify.success("减少票数成功");
+                })
+            },
             update: function () {
                 this.$parent.$refs.modal.$emit('show', this.player);
-            },
-            delete: function () {
-                var playerId = this.player._id;
-                var vm = this;
-                if (confirm("是否删除该选手?")) {
-                    $.ajax({
-                        url: `/api/v1/events/vote/votePlayer/${playerId}`,
-                        method: 'DELETE'
-                    }).then(function () {
-                        notify.success("删除选手成功");
-                        vm.$dispatch('delete-player', vm.index);
-                    });
-                }
             }
         }
     });
 
     new Vue({
         el: '#voteApp',
-
         data: {
             visible: false,
             players: [],
             total: 0,
             loading: true,
             limit: 10,
-            skip: 0,
+            page: 1,
             order: '-sequence',
             orderTxt: '按时间排序',
-            search: ''
+            search: '',
+            refreshFlag: 0
         },
-
         asyncData: function (resolve, reject) {
             var self = this;
-            $.get(`/api/v1/events/vote/${voteId}/votePlayer?isAudit=true&skip=0&limit=${this.limit}&order=-sequence`)
-                .then(function (res) {
-                    resolve({
-                        players: res.players,
-                        total: res.total
-                    });
-                    self.loading = false;
+            var url = `/api/v1/events/vote/${voteId}/votePlayer?isAudit=true&page=${this.page}&limit=${this.limit}&order=${this.order}&search=${this.search}`;
+            $.get(url).then(function (res) {
+                resolve({
+                    players: res.players,
+                    total: res.total
                 });
+                self.loading = false;
+            });
         },
 
         methods: {
-
             showModal: function () {
                 this.$broadcast('show');
             },
 
-            deletePlayer: function (index) {
-                this.players.splice(index, 1);
-            },
-
-            addPlayer: function (player) {
-                if (!player._id || player._id === '') {
-                    this.players.unshift(player);
-                } else {
-                    var index = _.findIndex(this.players, function (p) {
-                        return player._id === p._id;
+            deletePlayer: function (player) {
+                if (confirm("是否删除该选手?")) {
+                    $.ajax({
+                        url: `/api/v1/events/vote/votePlayer/${player._id}`,
+                        method: 'DELETE'
+                    }).then(function () {
+                        notify.success("删除选手成功");
                     });
-                    if (index !== -1) {
-                        this.players.$set(index, player);
-                    }
                 }
+                this.refresh();
             },
-
+            addPlayer: function (player) {
+                var self = this;
+                if (player.name === "") {
+                    return notify.danger("选手名字不能为空");
+                }
+                if (player.images.length === 0) {
+                    return notify.danger("至少添加一张选手图片");
+                }
+                if (player.brief === "") {
+                    return notify.danger("选手简介不能为空");
+                }
+                $.post(`/api/v1/events/vote/${voteId}/votePlayer`, player).then(function () {
+                    notify.success("操作成功");
+                    self.$broadcast("hide");
+                    if (!player._id || player._id === '') {
+                        self.refresh();
+                    } else {
+                        var index = _.findIndex(self.players, function (p) {
+                            return player._id === p._id;
+                        });
+                        if (index !== -1) {
+                            self.players.$set(index, player);
+                        }
+                    }
+                });
+            },
             pageChange: function (page) {
-                this.skip = (page - 1) * this.limit;
-                this.fetch();
+                this.page = page;
+                this.refresh();
             },
 
             orderBy: function (order) {
@@ -166,23 +199,22 @@ $(document).ready(function () {
                 } else {
                     this.orderTxt = '按票数排序';
                 }
-                this.skip = 0;
-                this.fetch();
+                this.page = 1;
+                this.refresh();
             },
 
             searchBy: function () {
-                this.skip = 0;
-                this.fetch();
+                this.page = 1;
+                this.refresh();
             },
 
-            fetch: function () {
-                var vm = this;
-                var url = `/api/v1/events/vote/${voteId}/votePlayer?isAudit=true&skip=${this.skip}&limit=${this.limit}&order=${this.order}&search=${this.search}`;
-                $.get(url).then(function (res) {
-                    vm.total = res.total;
-                    vm.players = res.players;
-                });
+            refresh: function () {
+                this.loading = true;
+                this.refreshFlag = this.refreshFlag + 1;
             }
+        },
+        watch: {
+            refreshFlag: 'reloadAsyncData'
         }
     });
 });

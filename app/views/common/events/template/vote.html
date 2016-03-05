@@ -40,11 +40,11 @@
                     </fieldset>
                     <div class="form-group images-cover">
                         <p class="col-xs-11 f-gray">注：建议上传图片大小640px*420px，至少一张，最多三张</p>
-                        <div class="col-xs-3" v-for="cover in vote.covers">
+                        <div class="col-xs-3" v-for="cover in vote.slides">
                             <img :src="cover | visit" width="100%" height="150">
                             <a class="f-info pull-right m-t-xxs" @click="deleteCover($index)">删除</a>
                         </div>
-                        <div class="col-xs-3" v-show="vote.covers.length < 3">
+                        <div class="col-xs-3" v-show="vote.slides.length < 3">
                             <v-upload :data={token:"<<token>>"} @success="addCover">
                                 <a class="pull-left upload-btn">
                                     <v-icon type="plus"></v-icon>
@@ -62,7 +62,7 @@
                         <div class="col-xs-4">
                             <div class="radio c-radio">
                                 <label>
-                                    <input type="radio" v-model="vote.theme" value="default" checked>
+                                    <input type="radio" v-model="vote.theme" value="default">
                                     <span class="fa fa-circle"></span>
                                     <i class="fa fa-circle f-info m-r-xxs"></i>
                                     默认风格
@@ -128,7 +128,8 @@
                         <div class="col-xs-6">
                             <label>关注说明</label>
                             <v-editor placeholder="例如：扫描上方的二维码关注公告号"
-                                      :content.sync="vote.followTip"></v-editor>
+                                      :content.sync="vote.followTip">
+                            </v-editor>
                         </div>
                     </div>
                     <!-- 页尾内容设置 -->
@@ -231,5 +232,8 @@
 </div>
 {% endblock %}
 {% block javascript %}
+<script>
+    window.vote = <<event | json | safe >>;
+</script>
 <script src="/js/entries/common/events/vote.js"></script>
 {% endblock %}

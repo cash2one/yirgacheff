@@ -10,11 +10,14 @@
                         活动概览
                     </a>
                 </li>
+                {% if event.template === 'activity' || event.template === 'audition' %}
                 <li>
                     <a href="/school/events/manage/<<event._id.toString()>>/enroll">
                         报名管理
                     </a>
                 </li>
+                {% endif %}
+                {% if event.template === 'vote' %}
                 <li>
                     <a href="/school/events/manage/<<event._id.toString()>>/vote/enroll">
                         投票报名
@@ -25,6 +28,7 @@
                         投票选项
                     </a>
                 </li>
+                {% endif %}
                 <li>
                     <a href="/school/events/manage/<<event._id.toString()>>/task">
                         积分任务

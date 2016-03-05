@@ -7,11 +7,11 @@ const qiniu = require('../../../middleware/qiniu');
 
 module.exports = function (router) {
 
-    router.get('/',function*() {
+    router.get('/', function*() {
         yield this.render('common/events/events');
     });
 
-    router.get('/edit', qiniu.token(),function*() {
+    router.get('/edit', qiniu.token(), function*() {
         let template = this.query.template;
         if (!template) {
             return this.redirect('/school/events');
@@ -20,7 +20,7 @@ module.exports = function (router) {
         yield this.render(`common/events/template/${template}`);
     });
 
-    router.get('/edit/:id([a-f0-9]{24})', function*() {
+    router.get('/edit/:id([a-f0-9]{24})', qiniu.token(), function*() {
         let eventId = this.params.id;
         let event = yield service.events.event.findById(eventId);
         let template = event.template;
@@ -28,6 +28,7 @@ module.exports = function (router) {
             yield event.populate('enroll', 'fields').execPopulate();
         }
         this.state.event = event;
+        this.state.token = this.token;
         if (event.enroll) {
             this.state.enroll = event.enroll;
         }

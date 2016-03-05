@@ -25,7 +25,7 @@ const voteSchema = new mongoose.Schema({
     endTime: {
         type: Date
     },
- 
+
     // 首页滑动图片
     slides: [String],
 
@@ -62,10 +62,10 @@ const voteSchema = new mongoose.Schema({
         type: String
     },
 
-    voteEnroll:{
+    voteEnroll: {
         type: Boolean
     },
-    
+
     // 投票说明
     explanation: {
         type: String

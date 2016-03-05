@@ -74,6 +74,7 @@
     "validator": "^4.4.0",
     "vue": "^1.0.15",
     "vue-async-data": "^1.0.2",
+    "webui-popover": "^1.2.5",
     "yaqrcode": "^0.2.1"
   },
   "devDependencies": {

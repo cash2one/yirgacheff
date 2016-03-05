@@ -45,7 +45,7 @@ export default function upload (option) {
 
   xhr.onerror = (e) => {
     option.onError(e)
-  }
+  };
 
   xhr.onload = () => {
     if (xhr.status !== 200) {
@@ -53,9 +53,9 @@ export default function upload (option) {
     }
 
     option.onSuccess(getBody(xhr))
-  }
+  };
 
-  xhr.open('post', option.action, true)
-  xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
+  xhr.open('post', option.action, true);
+  xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
   xhr.send(formData)
 }

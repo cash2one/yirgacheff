@@ -35,6 +35,7 @@ module.exports = function (router) {
             this.state.enroll = event.enroll;
             this.state.enrollNames = yield service.events.enroll.getEnrollNames(event.enroll);
         }
+        this.state.template = event.template;
         this.state.eventId = this.params.id;
         yield this.render('common/events/manage-enroll');
     });
@@ -84,7 +85,7 @@ module.exports = function (router) {
         yield this.render('common/events/manage-task');
     });
 
-    router.get('/:id([a-f0-9]{24})/vote',qiniu.token(), function*() {
+    router.get('/:id([a-f0-9]{24})/vote', qiniu.token(), function*() {
         this.state.eventId = this.params.id;
         this.state.token = this.token;
         yield this.render('common/events/manage-vote');
@@ -92,8 +93,7 @@ module.exports = function (router) {
 
     router.get('/:id([a-f0-9]{24})/vote/enroll', function*() {
         this.state.eventId = this.params.id;
-
-        yield this.render('common/events/vote-enroll');
+        yield this.render('common/events/manage-vote-enroll');
     });
 
     router.get('/:id([a-f0-9]{24})/preview', function*() {

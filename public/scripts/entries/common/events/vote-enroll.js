@@ -18,13 +18,12 @@ $(document).ready(function () {
         return strftime('%F', new Date(value));
     });
     Vue.filter('visit', function (value) {
-        return GLOBAL.visitUrl + '/' + value;
+        return GLOBAL.visitUrl + '/' + value + '-enroll';
     });
     Vue.use(VueAsyncData);
     Vue.component('player-item', {
         template: '#playerItemTemplate',
         props: ['player', 'index', 'delete', 'audit']
-
     });
     Vue.component('Loading', Loading);
     Vue.component('Pagination', Pagination);
@@ -33,9 +32,9 @@ $(document).ready(function () {
         data: {
             loading: true,
             players: [],
-            refresh: 0,
+            refreshFlag: 0,
             page: 1,
-            limit: 20,
+            limit: 10,
             total: 0
         },
         asyncData: function (resolve, reject) {
@@ -50,7 +49,6 @@ $(document).ready(function () {
                 });
         },
         methods: {
-
             auditAll: function () {
                 if (this.players.length <= 0) {
                     return notify.warning('当前没有需要审核的报名信息');
@@ -63,7 +61,8 @@ $(document).ready(function () {
                 }
             },
 
-            auditPlayer: function (player, cb) {
+            auditPlayer: function (player) {
+                var self = this;
                 $.ajax({
                     url: `/api/v1/events/vote/auditPlayers`,
                     method: 'PUT',
@@ -72,6 +71,7 @@ $(document).ready(function () {
                     }
                 }).then(function () {
                     notify.success("审核成功");
+                    self.refresh();
                 })
             },
 
@@ -83,16 +83,22 @@ $(document).ready(function () {
                         method: 'DELETE'
                     }).then(function () {
                         notify.success("删除成功");
-                        self.players.splice(index, 1);
+                        self.refresh();
                     })
                 }
             },
             pageChange: function (page) {
+                this.page = page;
+                this.refresh();
+            },
 
+            refresh: function () {
+                this.loading = true;
+                this.refreshFlag = this.refreshFlag + 1;
             }
         },
         watch: {
-            refresh: 'reloadAsyncData'
+            refreshFlag: 'reloadAsyncData'
         }
     });
 });

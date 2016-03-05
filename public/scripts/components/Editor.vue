@@ -1,5 +1,5 @@
 <template>
-	<textarea placeholder="{{placeholder}}"></textarea>
+	<textarea placeholder="{{placeholder}}">{{content}}</textarea>
 </template>
 
 <script lang='babel'>
@@ -19,6 +19,7 @@
  	}),
 
  	ready: function() {
+ 	  console.log('content is ',this.content);
  		var self = this;
     //初始化editor
  		var editor = $(this.$el).trumbowyg({
@@ -27,13 +28,15 @@
  			fullscreenable: false,
  			btns: ['bold', 'italic', '|', 'link']
  		});
+ 		if(self.content !== ''){
+ 		  $(this.$el).trumbowyg('html',self.content);
+ 		}
 
    //监听blur事件
  		$(this.$el).on('tbwblur', function(){
  			self.content = editor.trumbowyg('html');
  		});
 
-    console.log('content is ', self.content);
  		//初始化editor 内容
  		editor.trumbowyg('html', self.content);
  	}
