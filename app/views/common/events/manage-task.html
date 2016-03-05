@@ -2,20 +2,34 @@
 {% block content %}
 <!-- END OF BREADCRUMBS -->
 <div class="row" id="taskApp">
-    <input type="hidden" id="eventId" value="<<eventId>>">
+    <input type="hidden" id="eventId" value="<<event._id.toString()>>">
     <div class="col-xs-2">
         <div class="page-sidebar shadow">
             <ul class="nav nav-pills nav-stacked">
                 <li>
-                    <a href="/school/events/manage/<<eventId>>">
+                    <a href="/school/events/manage/<<event._id.toString()>>">
                         活动概览
                     </a>
                 </li>
+                {% if event.template === 'activity' || event.template === 'audition' %}
                 <li>
-                    <a href="/school/events/manage/<<eventId>>/enroll">
+                    <a href="/school/events/manage/<<event._id.toString()>>/enroll">
                         报名管理
                     </a>
                 </li>
+                {% endif %}
+                {% if event.template === 'vote' %}
+                <li>
+                    <a href="/school/events/manage/<<event._id.toString()>>/vote/enroll">
+                        投票报名
+                    </a>
+                </li>
+                <li>
+                    <a href="/school/events/manage/<<event._id.toString()>>/vote">
+                        投票选项
+                    </a>
+                </li>
+                {% endif %}
                 <li class="active">
                     <a href="javascript:void(0)">
                         积分任务
