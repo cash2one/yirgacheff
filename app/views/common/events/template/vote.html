@@ -127,9 +127,9 @@
                     <div class="form-group" v-if="vote.requireFollow">
                         <div class="col-xs-6">
                             <label>关注说明</label>
-                            <v-editor placeholder="例如：扫描上方的二维码关注公告号"
-                                      :content.sync="vote.followTip">
-                            </v-editor>
+                            <textarea class="form-control" placeholder="例如：扫描上方的二维码关注公告号"
+                                      v-model="vote.followTip"
+                                      rows="10"></textarea>
                         </div>
                     </div>
                     <!-- 页尾内容设置 -->
@@ -141,25 +141,25 @@
                     <div class="form-group">
                         <div class="col-xs-6">
                             <label>奖项设置</label>
-                            <v-editor placeholder="奖项设置"
-                                      :content.sync="vote.prize">
-                            </v-editor>
+                            <textarea class="form-control" placeholder="奖项设置"
+                                      v-model="vote.prize"
+                                      rows="10"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-6">
                             <label>参赛方式</label>
-                            <v-editor placeholder="选手参赛方式及注意事项"
-                                      :content.sync="vote.participation">
-                            </v-editor>
+                            <textarea class="form-control" placeholder="选手参赛方式及注意事项"
+                                      v-model="vote.participation"
+                                      rows="10"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-6">
                             <label>投票说明</label>
-                            <v-editor placeholder="其它注意事项"
-                                      :content.sync="vote.explanation">
-                            </v-editor>
+                            <textarea class="form-control" placeholder="其它注意事项"
+                                      v-model="vote.explanation"
+                                      rows="10"></textarea>
                         </div>
                     </div>
                     <!-- 报名设置 -->
@@ -233,7 +233,7 @@
 {% endblock %}
 {% block javascript %}
 <script>
-    window.vote = <<event | json | safe >>;
+    window.vote =<<event | json | safe >>;
 </script>
 <script src="/js/entries/common/events/vote.js"></script>
 {% endblock %}
