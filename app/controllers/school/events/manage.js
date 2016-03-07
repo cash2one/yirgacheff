@@ -100,7 +100,6 @@ module.exports = function (router) {
     router.get('/:id([a-f0-9]{24})/preview', function*() {
         let eventId = this.params.id;
         this.state.event = yield service.events.event.findById(eventId, true);
-        console.log(this.state.event);
         let wxUrl = config.wxUrl + '/events/' + eventId;
         this.state.qrcode = Qrcode(wxUrl, {size: 200});
         this.state.wxUrl = wxUrl;
