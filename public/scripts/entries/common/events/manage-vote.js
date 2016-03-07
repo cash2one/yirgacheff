@@ -58,6 +58,13 @@ $(document).ready(function () {
             },
             hide: function () {
                 $(this.$el).modal("hide");
+                this.player = {
+                    _id: '',
+                    images: [],
+                    name: '',
+                    brief: '',
+                    isAudit: true
+                };
             }
         }
     });
@@ -128,7 +135,7 @@ $(document).ready(function () {
             loading: true,
             limit: 10,
             page: 1,
-            order: '-sequence',
+            order: '-createdTime',
             orderTxt: '按时间排序',
             search: '',
             refreshFlag: 0
@@ -194,7 +201,7 @@ $(document).ready(function () {
 
             orderBy: function (order) {
                 this.order = order;
-                if (order === '-sequence') {
+                if (order === '-createdTime') {
                     this.orderTxt = '按时间排序';
                 } else {
                     this.orderTxt = '按票数排序';
