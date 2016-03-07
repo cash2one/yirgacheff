@@ -8,7 +8,6 @@ import _ from 'underscore';
 import app from  '../../../common/app';
 import notify from '../../../common/notify';
 import dateRange from '../../../components/DateRange';
-import vEditor from '../../../components/Editor';
 import vUpload from '../../../components/upload';
 import vIcon from '../../../components/iconfont';
 
@@ -28,7 +27,6 @@ $(document).ready(function () {
     new Vue({
         el: '#voteApp',
         components: {
-            vEditor,
             dateRange,
             vUpload,
             vIcon
