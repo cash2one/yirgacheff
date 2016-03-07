@@ -35,4 +35,14 @@ $(document).ready(function() {
       });
     }
   });
+
+  function jsCopy(){
+    var e=document.getElementById("copyFromTxt");//对象是content
+    e.select(); //选择对象
+    document.execCommand("Copy"); //执行浏览器复制命令
+    alert("已复制好，可贴粘。");
+  }
+  $("#copyBtn").click(function() {
+     jsCopy();
+  });
 });
