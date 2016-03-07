@@ -14,7 +14,7 @@
 
                 <li>
                     <a href="/school/events/manage/<<eventId>>/vote/enroll">
-                        投票报名
+                        报名审核
                     </a>
                 </li>
                 <li class="active">
@@ -124,7 +124,7 @@
             </div>
         </div>
         <div class="vote-option-details">
-            <p>{{player.brief}}</p>
+            <textarea class="form-control" disabled>{{player.brief}}</textarea>
         </div>
         <div class="vote-option-approve">
             <a class="f-info m-r-xs" @click="update"><i class="fa fa-pencil m-r-xxs"></i>编辑</a>
