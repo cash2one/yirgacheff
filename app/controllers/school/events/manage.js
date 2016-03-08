@@ -17,12 +17,17 @@ module.exports = function (router) {
 
     router.get('/:id([a-f0-9]{24})', function*() {
         let eventId = this.params.id;
+        let wxUrl;
         let event = yield service.events.event.findById(eventId, true);
         if (event.enroll) {
             event.enrollCount = yield service.events.enroll.getEnrollCount(event.enroll);
         }
         this.state.event = event;
-        let wxUrl = config.wxUrl + '/events/' + eventId;
+        if(event.requireFollow === true){
+            wxUrl = config.wxUrl + '/events/' + eventId + '?followFlag=1';
+        }else{
+            wxUrl = config.wxUrl + '/events/' + eventId;
+        }
         this.state.qrcode = Qrcode(wxUrl, {size: 200});
         this.state.wxUrl = wxUrl;
         yield this.render('common/events/manage-event');
