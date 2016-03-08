@@ -1944,7 +1944,8 @@ div.DTTT_container {
     background: none;
     border: none;
     resize: none;
-    box-shadow:none
+    box-shadow:none;
+    text-align: justify;
 }
 .trumbowyg-box, .trumbowyg-editor {
     width: 100%!important;

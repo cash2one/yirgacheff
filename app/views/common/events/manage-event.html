@@ -29,11 +29,13 @@
                     </a>
                 </li>
                 {% endif %}
+                {% if event.template != 'vote' %}
                 <li>
                     <a href="/school/events/manage/<<event._id.toString()>>/task">
                         积分任务
                     </a>
                 </li>
+                {% endif %}
             </ul>
         </div>
     </div>

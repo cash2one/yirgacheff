@@ -22,11 +22,6 @@
                         选手列表
                     </a>
                 </li>
-                <li>
-                    <a href="/school/events/manage/<<eventId>>/task">
-                        积分任务
-                    </a>
-                </li>
             </ul>
         </div>
     </div>
@@ -86,7 +81,7 @@
             </div>
         </div>
         <div class="vote-enroll-details">
-            描述：{{player.brief}}
+            <textarea class="form-control" disabled>描述：{{player.brief}}</textarea>
         </div>
         <div class="vote-enroll-approve">
             <a class="f-info m-r-xs" @click="audit(player._id)"><i class="fa fa-check m-r-xxs"></i>审核</a>
