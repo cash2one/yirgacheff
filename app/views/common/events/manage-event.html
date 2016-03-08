@@ -19,13 +19,13 @@
                 {% endif %}
                 {% if event.template === 'vote' %}
                 <li>
-                    <a href="/school/events/manage/<<event._id.toString()>>/vote/enroll">
-                        报名审核
+                    <a href="/school/events/manage/<<event._id.toString()>>/vote">
+                        选手列表
                     </a>
                 </li>
                 <li>
-                    <a href="/school/events/manage/<<event._id.toString()>>/vote">
-                        选手列表
+                    <a href="/school/events/manage/<<event._id.toString()>>/vote/enroll">
+                        报名审核
                     </a>
                 </li>
                 {% endif %}
