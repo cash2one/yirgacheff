@@ -8,7 +8,7 @@
             <ul class="nav nav-pills nav-stacked">
                 <li>
                     <a href="/school/events/manage/<<event._id.toString()>>">
-                        活动概览
+                        <<event.template | templateName >>概览
                     </a>
                 </li>
                 {% if event.template === 'activity' || event.template === 'audition' %}
