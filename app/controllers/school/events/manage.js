@@ -23,7 +23,7 @@ module.exports = function (router) {
         }
         this.state.event = event;
         let wxUrl = config.wxUrl + '/events/' + eventId;
-        this.state.qrcode = Qrcode(wxUrl, {size: 170});
+        this.state.qrcode = Qrcode(wxUrl, {size: 200});
         this.state.wxUrl = wxUrl;
         yield this.render('common/events/manage-event');
     });
