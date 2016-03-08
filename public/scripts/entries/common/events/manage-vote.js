@@ -15,7 +15,6 @@ import 'webui-popover/dist/jquery.webui-popover';
 import 'webui-popover/dist/jquery.webui-popover.css';
 var Loading = require('../../../components/Loading.vue');
 
-
 $(document).ready(function () {
     var voteId = $("#voteId").val();
     Vue.filter('visit', function (value) {
@@ -154,9 +153,13 @@ $(document).ready(function () {
 
         methods: {
             showModal: function () {
-                this.$broadcast('show');
+                this.$broadcast('show', {
+                    _id: '',
+                    images: [],
+                    name: '',
+                    brief: ''
+                });
             },
-
             deletePlayer: function (player) {
                 if (confirm("是否删除该选手?")) {
                     $.ajax({
