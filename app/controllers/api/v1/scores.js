@@ -26,10 +26,8 @@ module.exports = function (router) {
         let user = this.user;
         let productId = this.request.body._id;
         if (productId && productId !== null) {
-            console.log('修改商品');
             this.body = yield service.score.updateExchangeById(productId, this.request.body);
         } else {
-            console.log('添加商品');
             this.body = yield service.score.addExchange(user.schoolId, this.request.body);
         }
     });
