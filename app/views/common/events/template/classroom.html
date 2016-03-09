@@ -97,11 +97,7 @@
     <div class="col-xs-4">
         <div class="thumbnail">
             <div class="video-container">
-                <object>
-                    <param name="quality" value="high">
-                    <param name="wmode" value="transparent" />
-                    <embed src="{{video.link}}" quality="high" wmode="opaque" type="application/x-shockwave-flash" width="540" height="312"></embed>
-                </object>
+                {{{video.link}}}
             </div>
             <div class="caption">
                 <div class="video-header">
@@ -132,7 +128,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="alert-2 alert-warning-2">
-                        备注：只能添加flash地址视频链接。
+                        备注：只能添加通用代码视频链接。
                     </div>
                     <form class="form-horizontal m-t-sm" id="addVideoForm" name="addVideoForm">
                         <div class="form-group">
