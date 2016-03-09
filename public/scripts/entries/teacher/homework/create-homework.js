@@ -19,6 +19,7 @@ $(document).ready(function () {
             title: '',
             finishAward: 0,
             performanceAward: 0,
+            keyPoint: '',
             keyPointRecord: '',
             addQuizBase: true,
             exercises: []
@@ -56,6 +57,7 @@ $(document).ready(function () {
                 var data = {};
                 data.title = this.title;
                 data.classes = this.classes;
+                data.keyPoint = this.keyPoint;
                 data.keyPointRecord = this.keyPointRecord;
                 data.addQuizBase = this.addQuizBase;
                 data.exercises = [];
