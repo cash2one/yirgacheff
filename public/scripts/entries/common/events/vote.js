@@ -84,6 +84,7 @@ $(document).ready(function () {
                         data: vote
                     }).then(function (res) {
                         notify.success("修改投票成功");
+                        self.location.href = "/school/events/manage/" + vote._id.toString();
                     });
                 } else {
                     $.post('/api/v1/events', vote).then(function (event) {
