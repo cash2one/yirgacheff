@@ -218,7 +218,6 @@ module.exports = {
         }
 
         ImageModule.prototype.getImageFromData = function (image) {
-            console.log(imageData);
             return imageData;
         };
         let imageModule = new ImageModule({centered: false});
